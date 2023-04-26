@@ -1,0 +1,5 @@
+enum34==1.1.10
+numpy==1.24.2
+pydantic==1.10.6
+pyupset==0.1.1.post7
+pdfrw2==0.5.0

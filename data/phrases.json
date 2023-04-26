@@ -1,0 +1,27 @@
+{
+  "level_0": {
+    "low": "The following is an UpSet plot, an alternative state-of-the-art data visualization technique for the visual representation of intersecting sets and their membership.",
+    "mid": "The following is an UpSet plot, and alternative state-of-the-art data visualization technique for the visual representation of intersecting sets and their membership. An UpSet plot arranges your co-occurring, interlocking variables into sets and shows a bar chart of their unconditional frequency count at the top sorted from left to right.",
+    "high": "The following presents an UpSet plot, an alternative state-of-the-art data visualization technique for the visual representation of intersecting sets and their membership. An UpSet plot arranges your co-occuring, interlocking variables into sets and shows a bar chart of their unconditional frequency count at the top sorted from left to right. A matrix layout is shown underneath. Each row of the matrix corresponds to a set and bar charts to the left of it show the number of elements within that set."
+  },
+  "level_1": {
+    "low": "",
+    "mid": "",
+    "high": ""
+  },
+  "level_2": {
+    "low": "",
+    "mid": "",
+    "high": ""
+  },
+  "level_3": {
+    "low": "",
+    "mid": "",
+    "high": ""
+  },
+  "level_4": {
+    "low": "",
+    "mid": "",
+    "high": ""
+  }
+}

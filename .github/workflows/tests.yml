@@ -21,5 +21,9 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install tox tox-gh-actions
-    - name: Test with tox
-      run: tox
+    - name: Test Lint with Tox
+      run: tox -e lint
+    - name: Test Types with Tox
+      run: tox -e type
+    - name: Run tests with Tox
+      run: tox -e test

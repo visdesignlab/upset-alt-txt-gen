@@ -86,18 +86,21 @@ def main(argv: Optional[list[str]] = None) -> int:
         help="Show this help message and exit.",
     )
     parser.add_argument(
+        "-D",
         "--data",
         required=True,
         type=Path,
         help="Relative path to data file.",
     )
     parser.add_argument(
+        "-G",
         "--grammar",
         required=True,
         type=Path,
         help="Relative path to grammar file.",
     )
     parser.add_argument(
+        "-l",
         "--level",
         type=Level,
         choices=list(
@@ -107,6 +110,7 @@ def main(argv: Optional[list[str]] = None) -> int:
         help="Semantic level for contextually aware alt-text. Defaults to %(default)s.",
     )
     parser.add_argument(
+        "-g",
         "--granularity",
         type=Granularity,
         choices=list(Granularity),

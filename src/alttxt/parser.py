@@ -1,20 +1,16 @@
 import json
-
-from alttxt.types_ import AggregateBy
-from alttxt.types_ import FileType
-from alttxt.types_ import SortBy
-from alttxt.types_ import SortVisibleBy
-
-from alttxt.models import BookmarkedIntersectionModel
-from alttxt.models import DataModel
-from alttxt.models import FilterModel
-from alttxt.models import GrammarModel
-from alttxt.models import PlotModel
-
-from pathlib import Path
 from collections import Counter
+from pathlib import Path
 from typing import Any
 
+from alttxt.models import (
+    BookmarkedIntersectionModel,
+    DataModel,
+    FilterModel,
+    GrammarModel,
+    PlotModel,
+)
+from alttxt.types_ import AggregateBy, FileType, SortBy, SortVisibleBy
 
 Model = DataModel | GrammarModel
 
@@ -51,16 +47,22 @@ class Parser:
                     parsed_data = self.__parse_tbldata(tbldata)
 
             case _:
-                raise TypeError(f'Expected {FileType.list()}. Got {file_type}.')
+                raise TypeError(f"Expected {FileType.list()}. Got {file_type}.")
 
         return parsed_data
 
-    def __query_devs(self, membs: list[frozenset[str]], count: list[int], sets: list[str], sizes: dict[str, int]) -> list[float]:
-        '''
+    def __query_devs(
+        self,
+        membs: list[frozenset[str]],
+        count: list[int],
+        sets: list[str],
+        sizes: dict[str, int],
+    ) -> list[float]:
+        """
         Computes the `disproportionality` w.r.t. expected `count`.
         Assumes marginal independence of the sets. Weakly adapted
         from Lex et al `UpSet: Visualizing Intersecting Sets`.
-        '''
+        """
         devs = [0.0] * len(membs)
         nval = sum(count)
         for i, membership in enumerate(membs):
@@ -69,7 +71,7 @@ class Parser:
             for set_ in membership:
                 residue *= sizes[set_] / nval
             for set_ in filter(lambda set_: set_ not in membership, sets):
-                residue *= (1 - sizes[set_] / nval)
+                residue *= 1 - sizes[set_] / nval
             devs[i] -= residue
         devs = list(map(lambda dev: round(100 * dev, 1), devs))
         return devs
@@ -95,20 +97,26 @@ class Parser:
     def __parse_rawdata(self, rawdata: dict[str, dict[str, Any]]) -> Model:
         sizes: dict[str, int] = {}
         sets_: list[str] = []
-        for set_ in rawdata['sets'].values():
-            set_name = set_['elementName']
-            sizes[set_name] = set_['size']
+        for set_ in rawdata["sets"].values():
+            set_name = set_["elementName"]
+            sizes[set_name] = set_["size"]
             sets_.append(set_name)
         membs = []
-        for elem in rawdata['items'].values():
-            membership = frozenset([
-                key for key, value in elem.items() if key in rawdata['setColumns'] and value == 1
-            ])
+        for elem in rawdata["items"].values():
+            membership = frozenset(
+                [
+                    key
+                    for key, value in elem.items()
+                    if key in rawdata["setColumns"] and value == 1
+                ]
+            )
             membs.append(membership)
         count = list(Counter(membs).values())
         membs = list(Counter(membs).keys())
         devs = self.__query_devs(membs, count, sets_, sizes)
-        data_model = DataModel(membs=membs, sets=sets_, sizes=sizes, count=count, devs=devs)
+        data_model = DataModel(
+            membs=membs, sets=sets_, sizes=sizes, count=count, devs=devs
+        )
         return data_model
 
     def __parse_matdata(self, matdata: list[str]) -> Model:
@@ -118,48 +126,38 @@ class Parser:
         return DataModel(membs=[], sets=[], sizes={}, count=[], devs=[])
 
     def __parse_grammar(self, grammar: dict[str, Any]) -> Model:
-        first_aggregate_by = AggregateBy(
-            grammar['firstAggregateBy']
-        )
-        second_aggregate_by = AggregateBy(
-            grammar['secondAggregateBy']
-        )
+        first_aggregate_by = AggregateBy(grammar["firstAggregateBy"])
+        second_aggregate_by = AggregateBy(grammar["secondAggregateBy"])
 
-        first_overlap_degree = int(
-            grammar['firstOverlapDegree']
-        )
-        second_overlap_degree = int(
-            grammar['secondOverlapDegree']
-        )
+        first_overlap_degree = int(grammar["firstOverlapDegree"])
+        second_overlap_degree = int(grammar["secondOverlapDegree"])
 
-        sort_visible_by = SortVisibleBy(
-            grammar['sortVisibleBy']
-        )
+        sort_visible_by = SortVisibleBy(grammar["sortVisibleBy"])
 
-        sort_by = SortBy(
-            grammar['sortBy']
-        )
+        sort_by = SortBy(grammar["sortBy"])
 
         filters = FilterModel(
-            max_visible=grammar['filters']['maxVisible'],
-            min_visible=grammar['filters']['minVisible'],
-            hide_empty=grammar['filters']['hideEmpty']
+            max_visible=grammar["filters"]["maxVisible"],
+            min_visible=grammar["filters"]["minVisible"],
+            hide_empty=grammar["filters"]["hideEmpty"],
         )
 
         plots = PlotModel(
-            scatterplots=grammar['plots']['scatterplots'],
-            histograms=grammar['plots']['histograms'],
-            wordclouds=grammar['plots']['wordClouds']
+            scatterplots=grammar["plots"]["scatterplots"],
+            histograms=grammar["plots"]["histograms"],
+            wordclouds=grammar["plots"]["wordClouds"],
         )
 
-        collapsed = grammar['collapsed']
-        visible_sets = grammar['visibleSets']
-        visible_atts = grammar['visibleAttributes']
+        collapsed = grammar["collapsed"]
+        visible_sets = grammar["visibleSets"]
+        visible_atts = grammar["visibleAttributes"]
 
         bookmarked_intersections = list(
             map(
-                lambda bookmarked_intersection: BookmarkedIntersectionModel(**bookmarked_intersection),
-                grammar['bookmarkedIntersections']
+                lambda bookmarked_intersection: BookmarkedIntersectionModel(
+                    **bookmarked_intersection
+                ),
+                grammar["bookmarkedIntersections"],
             )
         )
 
@@ -175,7 +173,7 @@ class Parser:
             visible_sets=visible_sets,
             visible_atts=visible_atts,
             plots=plots,
-            bookmarked_intersections=bookmarked_intersections
+            bookmarked_intersections=bookmarked_intersections,
         )
 
         return grammar_model

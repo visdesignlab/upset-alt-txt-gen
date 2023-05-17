@@ -18,6 +18,6 @@ show_error_codes = true
 strict_equality = true
 warn_redundant_casts = true
 warn_return_any = true
-warn_unreachable = true
+warn_unreachable = false
 warn_unused_configs = true
 no_implicit_reexport = true

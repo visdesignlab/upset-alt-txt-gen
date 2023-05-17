@@ -96,14 +96,14 @@ def main(argv: Optional[list[str]] = None) -> int:
     parser.add_argument(
         '--level',
         type=Level,
-        choices=Level.list(),
+        choices=list(Level), # Enum values here don't work unless listed. Argparser does support using Enum as actions
         default=Level.ONE.value,
         help='Semantic level for contextually aware alt-text. Defaults to %(default)s.',
     )
     parser.add_argument(
         '--granularity',
         type=Granularity,
-        choices=Granularity.list(),
+        choices=list(Granularity),
         default=Granularity.MEDIUM.value,
         help='Alt-text granularity/specificity. Defaults to %(default)s.',
     )
@@ -112,7 +112,7 @@ def main(argv: Optional[list[str]] = None) -> int:
 
     rawdata = RawData(Path(args.data)).model
     grammar = Grammar(Path(args.grammar)).model
-    alttext = AltTxt(Direction.HORIZONTAL, rawdata, grammar, args.level, args.granularity)
+    alttext = AltTxt(Direction.HORIZONTAL, rawdata, grammar, args.level.value, args.granularity)
 
     print(alttext.text)
 

@@ -1,9 +1,8 @@
-from alttxt.models import DataModel
-from alttxt.models import GrammarModel
-from alttxt.types_ import FileType
-from alttxt.parser import Parser
 from pathlib import Path
 
+from alttxt.models import DataModel, GrammarModel
+from alttxt.parser import Parser
+from alttxt.types_ import FileType
 
 Model = DataModel | GrammarModel
 

@@ -1,10 +1,6 @@
 import pytest
-from alttxt import models
-from alttxt import parser
-from alttxt import types_
-from alttxt import generic
-from alttxt import main
-from alttxt import phrases
+
+from alttxt import generic, main, models, parser, phrases, types_
 
 
 def test_models() -> bool:

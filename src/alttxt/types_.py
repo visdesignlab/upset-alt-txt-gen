@@ -1,5 +1,5 @@
 import re
-from enum import auto, Enum
+from enum import Enum, auto
 from typing import Any
 
 
@@ -18,42 +18,42 @@ class FileType(Listable):
 
 
 class Granularity(Listable):
-    LOW = 'Low'
-    MEDIUM = 'Medium'
-    HIGH = 'High'
+    LOW = "Low"
+    MEDIUM = "Medium"
+    HIGH = "High"
 
     def __str__(self) -> str:
         return self.value
 
 
 class Level(Listable):
-    ZERO = '0'
-    ONE = '1'
-    TWO = '2'
-    THREE = '3'
+    ZERO = "0"
+    ONE = "1"
+    TWO = "2"
+    THREE = "3"
 
     def __str__(self) -> str:
         return self.value
 
 
 class AggregateBy(Listable):
-    DEGREE = 'Degree'
-    SETS = 'Sets'
-    DEVIATION = 'Deviation'
-    OVERLAPS = 'Overlaps'
-    NONE = 'None'
+    DEGREE = "Degree"
+    SETS = "Sets"
+    DEVIATION = "Deviation"
+    OVERLAPS = "Overlaps"
+    NONE = "None"
 
 
 class SortBy(Listable):
-    DEGREE = 'Degree'
-    CARDINALITY = 'Cardinality'
-    DEVIATION = 'Deviation'
+    DEGREE = "Degree"
+    CARDINALITY = "Cardinality"
+    DEVIATION = "Deviation"
 
 
 class SortVisibleBy(Listable):
-    ALPHABETICAL = 'Alphabetical'
-    ASCENDING = 'Ascending'
-    DESCENDING = 'Descending'
+    ALPHABETICAL = "Alphabetical"
+    ASCENDING = "Ascending"
+    DESCENDING = "Descending"
 
 
 class Direction(Listable):
@@ -72,4 +72,4 @@ class Dict(dict[Any, Any]):
         self[self.snake_case(attr)] = value
 
     def snake_case(self, attr):
-        return re.sub(r'(?<!^)(?=[A-Z])', '_', attr).lower()
+        return re.sub(r"(?<!^)(?=[A-Z])", "_", attr).lower()

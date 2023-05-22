@@ -56,7 +56,7 @@ class SortVisibleBy(Listable):
     DESCENDING = "Descending"
 
 
-class Direction(Listable):
+class Orientation(Listable):
     HORIZONTAL = "horizontal"
     VERTICAL = "vertical"
 

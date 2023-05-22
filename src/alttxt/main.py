@@ -1,4 +1,5 @@
 import argparse
+import os
 import re
 import sys
 
@@ -9,14 +10,23 @@ from alttxt.generic import Grammar
 
 from alttxt.models import DataModel
 from alttxt.models import GrammarModel
-from alttxt.types_ import Direction
 from alttxt.types_ import Granularity
 from alttxt.types_ import Level
+from alttxt.types_ import Orientation
 
 from pprint import pprint
 from pathlib import Path
 from typing import cast
 from typing import Optional
+
+from matplotlib import pyplot as plt
+from upsetplot import from_memberships
+from upsetplot import plot
+
+
+plt.rcParams['font.size'] = 8
+plt.rcParams['text.usetex'] = True
+plt.rcParams['toolbar'] = 'None'
 
 
 Model = DataModel | GrammarModel
@@ -25,7 +35,7 @@ Model = DataModel | GrammarModel
 class AltTxt:
     def __init__(
         self,
-        direction: Direction,
+        orientation: Orientation,
         data: Model,
         grammar: Model,
         level: Level,
@@ -33,7 +43,7 @@ class AltTxt:
     ) -> None:
         self.data = cast(DataModel, data)
         self.descriptions = phrases.DESCRIPTIONS
-        self.direction = direction
+        self.orientation = orientation
         self.grammar = cast(GrammarModel, grammar)
         self.granularity = granularity
         self.level = level
@@ -88,12 +98,12 @@ class AltTxt:
                 ]
                 text_desc = re.sub(
                     r"{{max_perc}}",
-                    f"{100*max_size/sum(self.data.count):.1f}%",
+                    f"{100*max_size/sum(self.data.count):.2f}%",
                     text_desc,
                 )
                 text_desc = re.sub(
                     r"{{min_perc}}",
-                    f"{100*min_size/sum(self.data.count):.1f}%",
+                    f"{100*min_size/sum(self.data.count):.2f}%",
                     text_desc,
                 )
 
@@ -153,18 +163,21 @@ def main(argv: Optional[list[str]] = None) -> int:
         help="Show this help message and exit.",
     )
     parser.add_argument(
+        "-D",
         "--data",
         required=True,
         type=Path,
         help="Relative path to data file.",
     )
     parser.add_argument(
+        "-G",
         "--grammar",
         required=True,
         type=Path,
         help="Relative path to grammar file.",
     )
     parser.add_argument(
+        "-l",
         "--level",
         type=Level,
         choices=list(Level),
@@ -172,11 +185,18 @@ def main(argv: Optional[list[str]] = None) -> int:
         help="Semantic level. Defaults to %(default)s.",
     )
     parser.add_argument(
+        "-g",
         "--granularity",
         type=Granularity,
         choices=list(Granularity),
         default=Granularity.MEDIUM,
         help="Alt-text granularity. Defaults to %(default)s.",
+    )
+    parser.add_argument(
+        "--show-plot",
+        action='store_true',
+        default=False,
+        help="Shows UpSet plot. Defaults to %(default)s.",
     )
 
     args = parser.parse_args(argv)
@@ -184,17 +204,23 @@ def main(argv: Optional[list[str]] = None) -> int:
     rawdata = RawData(Path(args.data)).model
     grammar = Grammar(Path(args.grammar)).model
     alttext = AltTxt(
-        Direction.HORIZONTAL, rawdata, grammar, args.level, args.granularity
+        Orientation.VERTICAL, rawdata, grammar, args.level, args.granularity
     )
 
+    print(100 * "-")
     print(
-        "---------------------------------------------------------------------------------"
+        f"DATASET={os.path.basename(args.data)}\tGRAMMAR={args.grammar}\t\tLEVEL={args.level.value}\t\tGRANULARITY={args.granularity.value}"
     )
-    print(f"LEVEL = {args.level.value}\tGRANULARITY = {args.granularity.value}")
-    print(
-        "---------------------------------------------------------------------------------"
-    )
-    pprint(alttext.text)
+    print(100 * "-")
+    print(alttext.text)
+
+    if args.show_plot:
+        fig_1, fig_2 = plt.figure(), plt.figure()
+        membership_cardinality = from_memberships(rawdata.membs, data=rawdata.count)
+        membership_deviation = from_memberships(rawdata.membs, data=rawdata.devs)
+        plot(membership_cardinality, fig=fig_1, orientation=alttext.orientation)
+        plot(membership_deviation, fig=fig_2, orientation=alttext.orientation)
+        plt.show()
 
     return 0
 

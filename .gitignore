@@ -1,7 +1,8 @@
 .cache/
 .mypy_cache/
 .pytest_cache/
-.coverage
+.coverage/
+.tox/
 venv/
 src/alttxt.egg-info/
 src/alttxt/__pycache__/

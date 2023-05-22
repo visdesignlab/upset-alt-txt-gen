@@ -7,9 +7,9 @@ from pydantic import BaseModel
 class DataModel(BaseModel):
     membs: list[frozenset[str]]
     count: list[int]
-    sets:  list[str]
+    sets: list[str]
     sizes: dict[str, int]
-    devs:  list[float]
+    devs: list[float]
 
 
 class FilterModel(BaseModel):

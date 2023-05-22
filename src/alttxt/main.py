@@ -14,7 +14,6 @@ from alttxt.types_ import Granularity
 from alttxt.types_ import Level
 from alttxt.types_ import Orientation
 
-from pprint import pprint
 from pathlib import Path
 from typing import cast
 from typing import Optional

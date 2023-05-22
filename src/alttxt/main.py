@@ -24,9 +24,9 @@ from upsetplot import from_memberships
 from upsetplot import plot
 
 
-plt.rcParams['font.size'] = 8
-plt.rcParams['text.usetex'] = True
-plt.rcParams['toolbar'] = 'None'
+plt.rcParams["font.size"] = 8
+plt.rcParams["text.usetex"] = True
+plt.rcParams["toolbar"] = "None"
 
 
 Model = DataModel | GrammarModel
@@ -194,7 +194,7 @@ def main(argv: Optional[list[str]] = None) -> int:
     )
     parser.add_argument(
         "--show-plot",
-        action='store_true',
+        action="store_true",
         default=False,
         help="Shows UpSet plot. Defaults to %(default)s.",
     )

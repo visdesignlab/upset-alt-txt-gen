@@ -1,14 +1,15 @@
+from alttxt.types_ import AggregateBy
+from alttxt.types_ import SortBy
+from alttxt.types_ import SortVisibleBy
 from pydantic import BaseModel
-
-from alttxt.types_ import AggregateBy, SortBy, SortVisibleBy
 
 
 class DataModel(BaseModel):
     membs: list[frozenset[str]]
     count: list[int]
-    sets: list[str]
+    sets:  list[str]
     sizes: dict[str, int]
-    devs: list[float]
+    devs:  list[float]
 
 
 class FilterModel(BaseModel):
@@ -30,6 +31,8 @@ class PlotModel(BaseModel):
 
 
 class GrammarModel(BaseModel):
+    caption: str
+    title: str
     first_aggregate_by: AggregateBy
     second_aggregate_by: AggregateBy
     first_overlap_degree: int

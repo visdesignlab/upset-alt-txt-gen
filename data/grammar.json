@@ -1,4 +1,6 @@
 {
+  "caption": "Simpson Dataset",
+  "title": "Simpson Dataset",
   "firstAggregateBy": "None",
   "firstOverlapDegree": 2,
   "secondAggregateBy": "None",

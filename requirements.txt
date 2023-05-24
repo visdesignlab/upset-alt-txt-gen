@@ -1,7 +1,11 @@
 enum34==1.1.10
+fastapi==0.95.2
+jinja2==3.1.2
 numpy==1.24.2
 pandas==2.0.1
 pydantic==1.10.6
+python-multipart==0.0.6
 pyupset==0.1.1.post7
 pdfrw2==0.5.0
 upsetplot==0.1a0
+uvicorn==0.22.0

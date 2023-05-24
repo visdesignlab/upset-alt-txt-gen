@@ -5,8 +5,8 @@ import sys
 
 from alttxt import phrases
 
-from alttxt.generic import RawData
 from alttxt.generic import Grammar
+from alttxt.generic import RawData
 
 from alttxt.models import DataModel
 from alttxt.models import GrammarModel
@@ -18,20 +18,20 @@ from pathlib import Path
 from typing import cast
 from typing import Optional
 
-from matplotlib import pyplot as plt
-from upsetplot import from_memberships
-from upsetplot import plot
+# from matplotlib import pyplot as plt
+# from upsetplot import from_memberships
+# from upsetplot import plot
 
 
-plt.rcParams["font.size"] = 8
-plt.rcParams["text.usetex"] = True
-plt.rcParams["toolbar"] = "None"
+# plt.rcParams["font.size"] = 8
+# plt.rcParams["text.usetex"] = True
+# plt.rcParams["toolbar"] = "None"
 
 
 Model = DataModel | GrammarModel
 
 
-class AltTxt:
+class AltTxtGen:
     def __init__(
         self,
         orientation: Orientation,
@@ -115,7 +115,7 @@ class AltTxt:
                 else:
                     text_desc = re.sub(
                         r"{{list_max_set_names}}",
-                        f"only {list(max_sets).pop()}",
+                        f"{list(max_sets).pop()}",
                         text_desc,
                     )
 
@@ -128,7 +128,7 @@ class AltTxt:
                 else:
                     text_desc = re.sub(
                         r"{{list_min_set_names}}",
-                        f"only {list(min_sets).pop()}",
+                        f"{list(min_sets).pop()}",
                         text_desc,
                     )
 
@@ -202,7 +202,7 @@ def main(argv: Optional[list[str]] = None) -> int:
 
     rawdata = RawData(Path(args.data)).model
     grammar = Grammar(Path(args.grammar)).model
-    alttext = AltTxt(
+    alttext = AltTxtGen(
         Orientation.VERTICAL, rawdata, grammar, args.level, args.granularity
     )
 
@@ -213,13 +213,13 @@ def main(argv: Optional[list[str]] = None) -> int:
     print(100 * "-")
     print(alttext.text)
 
-    if args.show_plot:
-        fig_1, fig_2 = plt.figure(), plt.figure()
-        membership_cardinality = from_memberships(rawdata.membs, data=rawdata.count)
-        membership_deviation = from_memberships(rawdata.membs, data=rawdata.devs)
-        plot(membership_cardinality, fig=fig_1, orientation=alttext.orientation)
-        plot(membership_deviation, fig=fig_2, orientation=alttext.orientation)
-        plt.show()
+    # if args.show_plot:
+    #     fig1, fig2 = plt.figure(), plt.figure()
+    #     membership_cardinality = from_memberships(rawdata.membs, data=rawdata.count)
+    #     membership_deviation = from_memberships(rawdata.membs, data=rawdata.devs)
+    #     plot(membership_cardinality, fig=fig1, orientation=alttext.orientation)
+    #     plot(membership_deviation, fig=fig2, orientation=alttext.orientation)
+    #     plt.show()
 
     return 0
 

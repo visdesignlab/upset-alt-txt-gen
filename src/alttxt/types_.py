@@ -61,15 +61,6 @@ class Orientation(Listable):
     VERTICAL = "vertical"
 
 
-class ChartType(Listable):
-    LINECHART = auto()
-    BARCHART = auto()
-    SCATTERPLOT = auto()
-    WHISKERBOX = auto()
-    HISTOGRAM = auto()
-    WORDCLOUD = auto()
-
-
 class Dict(dict[Any, Any]):
     def __init__(self, dict_obj):
         ...

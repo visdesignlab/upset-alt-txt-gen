@@ -1,5 +1,4 @@
-# :sparkles: upset-alt-txt-gen
-![Tests](https://github.com/visdesignlab/upset-alt-txt-gen/actions/workflows/tests.yml/badge.svg)
+# :sparkles: upset-alt-txt-gen ![Tests](https://github.com/visdesignlab/upset-alt-txt-gen/actions/workflows/tests.yml/badge.svg)
 Design experiments for generating semantically meaningful alt-text. 
 This work is adapted from:
 
@@ -30,11 +29,11 @@ To run the entire suite of tests at once, use `tox`.
 
 ## Command Line Options
 
-| Command           | Description                                                                         |
-|-------------------|-------------------------------------------------------------------------------------|
-| `-h`, `--help`        | Show information on each command.                                                   |
-| `-V`, `--version`     | Show the program version number                                                     |
-| `-D`, `--data`            | (Required) Relative path to the UpSet data file                                     |
-| `-G`, `--grammar`         | (Required) Relative path to the UpSet grammar file                                  |
-| `-l`, `--level`       | Semantic level for contextually aware alt-text. Defaults to 1. Options: `0`, `1`, `2`, `3`  |
-| `-g`, `--granularity` | Alt-text granularity/specificity. Defaults to Medium. Options: `Low`, `Medium`, `High`    |
+| Command               | Description                                                                |
+|-----------------------|----------------------------------------------------------------------------|
+| `-h`, `--help`        | Show information on each command and exit.                                 |
+| `-V`, `--version`     | Show the program version number and exit                                   |
+| `-D`, `--data`        | (Required) Relative path to data file                                      |
+| `-G`, `--grammar`     | (Required) Relative path to grammar file                                   |
+| `-l`, `--level`       | Semantic level. Defaults to 1. Options: `0`, `1`, `2`, `3`                 |
+| `-g`, `--granularity` | Alt-text granularity. Defaults to Medium. Options: `Low`, `Medium`, `High` |

@@ -206,11 +206,11 @@ def main(argv: Optional[list[str]] = None) -> int:
         Orientation.VERTICAL, rawdata, grammar, args.level, args.granularity
     )
 
-    print(100 * "-")
+    print(90 * "-")
     print(
-        f"DATASET={os.path.basename(args.data)}\tGRAMMAR={args.grammar}\t\tLEVEL={args.level.value}\t\tGRANULARITY={args.granularity.value}"
+        f"DATASET={os.path.basename(args.data)}\tGRAMMAR={args.grammar}\tLEVEL={args.level.value}\tGRANULARITY={args.granularity.value}"
     )
-    print(100 * "-")
+    print(90 * "-")
     print(alttext.text)
 
     # if args.show_plot:

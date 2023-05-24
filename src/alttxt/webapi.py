@@ -25,25 +25,25 @@ DATASETS = {
 }
 
 
-@api_router.get("/generate", status_code=200)
-def generate(
+@api_router.get("/fetch", status_code=200)
+def fetch(
     data: str,
     grammar: str,
     level: Level = Level.ONE,
     granularity: Granularity = Granularity.MEDIUM,
 ) -> dict[str, Any]:
-    """Fetch GET"""
+    """Fetch GET."""
     data_model = DATASETS[data]
     grammar_model = DATASETS[grammar]
     alttext = AltTxtGen(
         Orientation.VERTICAL, data_model, grammar_model, level, granularity
     )
     return {
-        "data": data_model,
-        "grammar": grammar_model,
+        "data": data,
+        "grammar": grammar,
         "level": level.value,
         "granularity": granularity.value,
-        "text": alttext.text,
+        "description": alttext.text,
     }
 
 

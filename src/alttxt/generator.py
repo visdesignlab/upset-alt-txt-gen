@@ -108,29 +108,60 @@ class AltTxtGen:
 
                 if len(max_sets) > 1:
                     text_desc = re.sub(
-                        r"{{list_max_set_names}}",
+                        r"{{list_max_membership}}",
                         f'{", ".join(list(max_sets)[:-1])} and {list(max_sets)[-1]}',
                         text_desc,
                     )
                 else:
                     text_desc = re.sub(
-                        r"{{list_max_set_names}}",
+                        r"{{list_max_membership}}",
                         f"{list(max_sets).pop()}",
                         text_desc,
                     )
 
                 if len(min_sets) > 1:
                     text_desc = re.sub(
-                        r"{{list_min_set_names}}",
+                        r"{{list_min_membership}}",
                         f'{", ".join(list(min_sets)[:-1])} and {list(min_sets)[-1]}',
                         text_desc,
                     )
                 else:
                     text_desc = re.sub(
-                        r"{{list_min_set_names}}",
+                        r"{{list_min_membership}}",
                         f"{list(min_sets).pop()}",
                         text_desc,
                     )
+
+                if self.granularity.value == "medium":
+                    fetch_max_set = lambda set_sizes: max(set_sizes, key=set_sizes.get)
+                    fetch_min_set = lambda set_sizes: min(set_sizes, key=set_sizes.get)
+                    max_set_size = self.data.sizes[fetch_max_set(self.data.sizes)]
+                    min_set_size = self.data.sizes[fetch_min_set(self.data.sizes)]
+
+                    text_desc = re.sub(
+                        r"{{list_max_set_name}}",
+                        f"{fetch_max_set(self.data.sizes)}",
+                        text_desc,
+                    )
+                    text_desc = re.sub(
+                        r"{{list_min_set_name}}",
+                        f"{fetch_min_set(self.data.sizes)}",
+                        text_desc,
+                    )
+
+                    text_desc = re.sub(
+                        r"{{max_set_perc}}",
+                        f"{100*max_set_size/sum(self.data.sizes.values()):.2f}%",
+                        text_desc,
+                    )
+                    text_desc = re.sub(
+                        r"{{min_set_perc}}",
+                        f"{100*min_set_size/sum(self.data.sizes.values()):.2f}%",
+                        text_desc,
+                    )
+
+                if self.granularity.value == "high":
+                    pass
 
             case Level.THREE:
                 text_desc = self.descriptions[f"level_{Level.THREE.value}"][

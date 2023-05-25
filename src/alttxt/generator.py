@@ -18,15 +18,6 @@ from pathlib import Path
 from typing import cast
 from typing import Optional
 
-# from matplotlib import pyplot as plt
-# from upsetplot import from_memberships
-# from upsetplot import plot
-
-
-# plt.rcParams["font.size"] = 8
-# plt.rcParams["text.usetex"] = True
-# plt.rcParams["toolbar"] = "None"
-
 
 Model = DataModel | GrammarModel
 
@@ -227,12 +218,6 @@ def main(argv: Optional[list[str]] = None) -> int:
         default=Granularity.MEDIUM,
         help="Alt-text granularity. Defaults to %(default)s.",
     )
-    parser.add_argument(
-        "--show-plot",
-        action="store_true",
-        default=False,
-        help="Shows UpSet plot. Defaults to %(default)s.",
-    )
 
     args = parser.parse_args(argv)
 
@@ -248,14 +233,6 @@ def main(argv: Optional[list[str]] = None) -> int:
     )
     print(90 * "-")
     print(alttext.text)
-
-    # if args.show_plot:
-    #     fig1, fig2 = plt.figure(), plt.figure()
-    #     membership_cardinality = from_memberships(rawdata.membs, data=rawdata.count)
-    #     membership_deviation = from_memberships(rawdata.membs, data=rawdata.devs)
-    #     plot(membership_cardinality, fig=fig1, orientation=alttext.orientation)
-    #     plot(membership_deviation, fig=fig2, orientation=alttext.orientation)
-    #     plt.show()
 
     return 0
 

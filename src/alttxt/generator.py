@@ -133,8 +133,13 @@ class AltTxtGen:
                     )
 
                 if self.granularity.value == "medium":
-                    fetch_max_set = lambda set_sizes: max(set_sizes, key=set_sizes.get)
-                    fetch_min_set = lambda set_sizes: min(set_sizes, key=set_sizes.get)
+
+                    def fetch_max_set(set_sizes):
+                        return max(set_sizes, key=set_sizes.get)
+
+                    def fetch_min_set(set_sizes):
+                        return min(set_sizes, key=set_sizes.get)
+
                     max_set_size = self.data.sizes[fetch_max_set(self.data.sizes)]
                     min_set_size = self.data.sizes[fetch_min_set(self.data.sizes)]
 

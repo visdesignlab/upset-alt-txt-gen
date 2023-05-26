@@ -69,7 +69,7 @@ DESCRIPTIONS = {
         "has the highest deviation from its expected cardinality with a numeric deviation "
         "of {{max_dev}}. On the contrary, the set membership comprised of "
         "{{list_min_dev_membership}} has the lowest deviation with a numeric deviation "
-        "equal to {{min_dev}}."
+        "equal to {{min_dev}}.",
     },
     "level_3": {
         "low": "",

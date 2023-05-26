@@ -157,9 +157,15 @@ class AltTxtGen:
                     )
 
                 if self.granularity.value == "high":
-                    _max_idx, _min_idx = self.data.devs.index(max(self.data.devs)), self.data.devs.index(min(self.data.devs))
-                    max_dev_set, max_dev_val = self.data.membs[_max_idx], max(self.data.devs)
-                    min_dev_set, min_dev_val = self.data.membs[_min_idx], min(self.data.devs)
+                    _max_idx, _min_idx = self.data.devs.index(
+                        max(self.data.devs)
+                    ), self.data.devs.index(min(self.data.devs))
+                    max_dev_set, max_dev_val = self.data.membs[_max_idx], max(
+                        self.data.devs
+                    )
+                    min_dev_set, min_dev_val = self.data.membs[_min_idx], min(
+                        self.data.devs
+                    )
 
                     text_desc = re.sub(
                         r"{{max_dev}}",

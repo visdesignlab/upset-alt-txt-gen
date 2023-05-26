@@ -65,7 +65,11 @@ DESCRIPTIONS = {
         "the highest unconditional frequency count totaling {{max_set_perc}} of "
         "the entire dataset. However, the single set comprised of {{list_min_set_name}} "
         "has the lowest frequency count amounting only {{min_set_perc}} of the "
-        "dataset.",
+        "dataset. Lastly, set membership comprised of {{list_max_dev_membership}} "
+        "has the highest deviation from its expected cardinality with a numeric deviation "
+        "of {{max_dev}}. On the contrary, the set membership comprised of "
+        "{{list_min_dev_membership}} has the lowest deviation with a numeric deviation "
+        "equal to {{min_dev}}."
     },
     "level_3": {
         "low": "",

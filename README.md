@@ -29,11 +29,11 @@ To run the entire suite of tests at once, use `tox`.
 
 ## Command Line Options
 
-| Command               | Description                                                                 |
-|-----------------------|-----------------------------------------------------------------------------|
-| `-h`, `--help`        | Show information on each command and exit.                                  |
-| `-V`, `--version`     | Show the program version number and exit.                                   |
-| `-D`, `--data`        | (Required) Relative path to data file.                                      |
-| `-G`, `--grammar`     | (Required) Relative path to grammar file.                                   |
-| `-l`, `--level`       | Semantic level. Defaults to 1. Options: `0`, `1`, `2`, `3`.                 |
-| `-g`, `--granularity` | Alt-text granularity. Defaults to Medium. Options: `low`, `medium`, `high`. |
+| Command               | Description                                                                   |
+|-----------------------|-------------------------------------------------------------------------------|
+| `-h`, `--help`        | Show information on each command and exit.                                    |
+| `-V`, `--version`     | Show the program version number and exit.                                     |
+| `-D`, `--data`        | (Required) Relative path to data file.                                        |
+| `-G`, `--grammar`     | (Required) Relative path to grammar file.                                     |
+| `-l`, `--level`       | Semantic level. Defaults to `1`. Options are: `0`, `1`, `2`, and `3`.         |
+| `-g`, `--granularity` | Alt-text granularity. Defaults to `medium`. Options: `low`, `medium`, `high`. |

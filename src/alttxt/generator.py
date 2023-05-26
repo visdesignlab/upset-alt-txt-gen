@@ -18,15 +18,6 @@ from pathlib import Path
 from typing import cast
 from typing import Optional
 
-# from matplotlib import pyplot as plt
-# from upsetplot import from_memberships
-# from upsetplot import plot
-
-
-# plt.rcParams["font.size"] = 8
-# plt.rcParams["text.usetex"] = True
-# plt.rcParams["toolbar"] = "None"
-
 
 Model = DataModel | GrammarModel
 
@@ -166,7 +157,46 @@ class AltTxtGen:
                     )
 
                 if self.granularity.value == "high":
-                    pass
+                    _max_idx, _min_idx = self.data.devs.index(max(self.data.devs)), self.data.devs.index(min(self.data.devs))
+                    max_dev_set, max_dev_val = self.data.membs[_max_idx], max(self.data.devs)
+                    min_dev_set, min_dev_val = self.data.membs[_min_idx], min(self.data.devs)
+
+                    text_desc = re.sub(
+                        r"{{max_dev}}",
+                        f"{max_dev_val}",
+                        text_desc,
+                    )
+                    text_desc = re.sub(
+                        r"{{min_dev}}",
+                        f"{min_dev_val}",
+                        text_desc,
+                    )
+
+                    if len(max_dev_set) > 1:
+                        text_desc = re.sub(
+                            r"{{list_max_dev_membership}}",
+                            f'{", ".join(list(max_dev_set)[:-1])} and {list(max_dev_set)[-1]}',
+                            text_desc,
+                        )
+                    else:
+                        text_desc = re.sub(
+                            r"{{list_max_dev_membership}}",
+                            f"{list(max_dev_set).pop()}",
+                            text_desc,
+                        )
+
+                    if len(min_dev_set) > 1:
+                        text_desc = re.sub(
+                            r"{{list_min_dev_membership}}",
+                            f'{", ".join(list(min_dev_set)[:-1])} and {list(min_dev_set)[-1]}',
+                            text_desc,
+                        )
+                    else:
+                        text_desc = re.sub(
+                            r"{{list_min_dev_membership}}",
+                            f"{list(min_dev_set).pop()}",
+                            text_desc,
+                        )
 
             case Level.THREE:
                 text_desc = self.descriptions[f"level_{Level.THREE.value}"][
@@ -227,12 +257,6 @@ def main(argv: Optional[list[str]] = None) -> int:
         default=Granularity.MEDIUM,
         help="Alt-text granularity. Defaults to %(default)s.",
     )
-    parser.add_argument(
-        "--show-plot",
-        action="store_true",
-        default=False,
-        help="Shows UpSet plot. Defaults to %(default)s.",
-    )
 
     args = parser.parse_args(argv)
 
@@ -248,15 +272,6 @@ def main(argv: Optional[list[str]] = None) -> int:
     )
     print(90 * "-")
     print(alttext.text)
-
-    # if args.show_plot:
-    #     fig1, fig2 = plt.figure(), plt.figure()
-    #     membership_cardinality = from_memberships(rawdata.membs, data=rawdata.count)
-    #     membership_deviation = from_memberships(rawdata.membs, data=rawdata.devs)
-    #     plot(membership_cardinality, fig=fig1, orientation=alttext.orientation)
-    #     plot(membership_deviation, fig=fig2, orientation=alttext.orientation)
-    #     plt.show()
-
     return 0
 
 

@@ -117,6 +117,7 @@ class Parser:
             membs.append(membership)
         count = list(Counter(membs).values())
         membs = list(Counter(membs).keys())
+        membs = list(filter(lambda memb: len(memb) != 0, membs))
         devs = self.__query_devs(membs, count, sets_, sizes)
         data_model = DataModel(
             membs=membs, sets=sets_, sizes=sizes, count=count, devs=devs

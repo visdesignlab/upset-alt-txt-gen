@@ -123,7 +123,10 @@ class AltTxtGen:
                         text_desc,
                     )
 
-                if self.granularity.value == "medium":
+                if (
+                    self.granularity.value == "medium"
+                    or self.granularity.value == "high"
+                ):
 
                     def fetch_max_set(set_sizes):
                         return max(set_sizes, key=set_sizes.get)
@@ -278,6 +281,7 @@ def main(argv: Optional[list[str]] = None) -> int:
     )
     print(90 * "-")
     print(alttext.text)
+
     return 0
 
 

@@ -6,8 +6,21 @@
     <link rel='stylesheet' href='{{ url_for("static", path="/css/theme.bundle.css") }}'>
   </head>
   <body>
-    <div class='container'>
-      Hello, world!
+    <div class='container mt-5'>
+      {% for i in range(3) %}
+        <div class='row'>
+          <div class='col-md-6 mx-auto'>
+            <div class='card card-sm'>
+              <div class='card-header'>
+                Header
+              </div>
+              <div class='card-body'>
+                Body
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
     </div>
     <script src='{{ url_for("static", path="/js/vendor.bundle.js") }}'></script>
     <script src='{{ url_for("static", path="/js/theme.bundle.js") }}'></script>

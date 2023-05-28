@@ -43,12 +43,12 @@ DESCRIPTIONS = {
         "Sets are {{list_set_names}}.",
     },
     "level_2": {
-        "low": "This is an upset plot. Set memberships comprised of {{list_max_membership}} "
+        "low": "This is an upset plot. Set membership comprised of {{list_max_membership}} "
         "have the highest unconditional frequency count totaling {{max_perc}} of "
         "these. In contrast, set membership consisting of {{list_min_membership}} "
         "has the lowest frequency count amounting barely {{min_perc}} of all "
         "memberships.",
-        "medium": "This is an upset plot. Set memberships comprised of {{list_max_membership}} "
+        "medium": "This is an upset plot. Set membership comprised of {{list_max_membership}} "
         "have the highest unconditional frequency count totaling {{max_perc}} of "
         "these. In contrast, set membership consisting of {{list_min_membership}} "
         "has the lowest frequency count amounting barely {{min_perc}} of all "
@@ -57,7 +57,7 @@ DESCRIPTIONS = {
         "the entire dataset. However, the single set comprised of {{list_min_set_name}} "
         "has the lowest frequency count amounting only {{min_set_perc}} of the "
         "dataset.",
-        "high": "This is an upset plot. Set memberships comprised of {{list_max_membership}} "
+        "high": "This is an upset plot. Set membership comprised of {{list_max_membership}} "
         "have the highest unconditional frequency count totaling {{max_perc}} of "
         "these. In contrast, set membership consisting of {{list_min_membership}} "
         "has the lowest frequency count amounting barely {{min_perc}} of all "

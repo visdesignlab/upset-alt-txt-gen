@@ -39,8 +39,8 @@ def fetch(
         Orientation.VERTICAL, data_model, grammar_model, level, granularity
     )
     return {
-        "data": data,
-        "grammar": grammar,
+        "data": {"name": data, "model": data_model},
+        "grammar": {"name": grammar, "model": grammar_model},
         "level": level.value,
         "granularity": granularity.value,
         "description": alttext.text,

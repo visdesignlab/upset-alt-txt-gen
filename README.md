@@ -19,7 +19,7 @@ Transactions on Visualization & Computer Graphics (Proc. IEEE VIS).
 
 To run the alt-text-gen program, run `python3 [path/to/generator.py] --data [path/to/data] --grammar [path/to/grammar]`. See [Command Line Options](#command-line-options) for more information.
 
-To run the program with the example data, run `python generator.py --data ../../data/simpson.json --grammar ../../data/grammar.json --level 2 --granularity medium` while in the `src/alttxt` directory.
+To run the program with the example data, run `python [path/to/alttxt directory] --data ../../data/simpson.json --grammar ../../data/grammar.json --level 2 --granularity medium` while in the `src/alttxt` directory.
 Level and granularity can be changed to any of the options listed in [Command Line Options](#command-line-options).
 
 ## Local Testing

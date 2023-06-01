@@ -1,12 +1,6 @@
-import argparse
-import os
 import re
-import sys
 
 from alttxt import phrases
-
-from alttxt.generic import Grammar
-from alttxt.generic import RawData
 
 from alttxt.models import DataModel
 from alttxt.models import GrammarModel
@@ -14,9 +8,7 @@ from alttxt.types_ import Granularity
 from alttxt.types_ import Level
 from alttxt.types_ import Orientation
 
-from pathlib import Path
 from typing import cast
-from typing import Optional
 
 
 Model = DataModel | GrammarModel
@@ -216,74 +208,3 @@ class AltTxtGen:
                 raise TypeError(f"Expected {Level.list()}. Got {self.level}.")
 
         return text_desc
-
-
-def main(argv: Optional[list[str]] = None) -> int:
-    argv = argv if argv is not None else sys.argv[1:]
-    parser = argparse.ArgumentParser(prog="alttxt", add_help=False)
-
-    parser.add_argument(
-        "-V",
-        "--version",
-        action="version",
-        version="%(prog)s 0.1",
-        help="Show program version number and exit.",
-    )
-    parser.add_argument(
-        "-h",
-        "--help",
-        action="help",
-        default=argparse.SUPPRESS,
-        help="Show this help message and exit.",
-    )
-    parser.add_argument(
-        "-D",
-        "--data",
-        required=True,
-        type=Path,
-        help="Relative path to data file.",
-    )
-    parser.add_argument(
-        "-G",
-        "--grammar",
-        required=True,
-        type=Path,
-        help="Relative path to grammar file.",
-    )
-    parser.add_argument(
-        "-l",
-        "--level",
-        type=Level,
-        choices=list(Level),
-        default=Level.ONE,
-        help="Semantic level. Defaults to %(default)s.",
-    )
-    parser.add_argument(
-        "-g",
-        "--granularity",
-        type=Granularity,
-        choices=list(Granularity),
-        default=Granularity.MEDIUM,
-        help="Alt-text granularity. Defaults to %(default)s.",
-    )
-
-    args = parser.parse_args(argv)
-
-    rawdata = RawData(Path(args.data)).model
-    grammar = Grammar(Path(args.grammar)).model
-    alttext = AltTxtGen(
-        Orientation.VERTICAL, rawdata, grammar, args.level, args.granularity
-    )
-
-    print(90 * "-")
-    print(
-        f"DATASET={os.path.basename(args.data)}\tGRAMMAR={args.grammar}\tLEVEL={args.level.value}\tGRANULARITY={args.granularity.value}"
-    )
-    print(90 * "-")
-    print(alttext.text)
-
-    return 0
-
-
-if __name__ == "__main__":
-    SystemExit(main())

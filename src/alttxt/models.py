@@ -1,6 +1,6 @@
-from alttxt.types_ import AggregateBy
-from alttxt.types_ import SortBy
-from alttxt.types_ import SortVisibleBy
+from alttxt.types import AggregateBy
+from alttxt.types import SortBy
+from alttxt.types import SortVisibleBy
 from pydantic import BaseModel
 
 

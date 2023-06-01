@@ -6,9 +6,9 @@ from alttxt.generic import Grammar
 from alttxt.generic import RawData
 from alttxt.generator import AltTxtGen
 
-from alttxt.types_ import Granularity
-from alttxt.types_ import Level
-from alttxt.types_ import Orientation
+from alttxt.types import Granularity
+from alttxt.types import Level
+from alttxt.types import Orientation
 
 from pathlib import Path
 from typing import Optional

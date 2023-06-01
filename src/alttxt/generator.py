@@ -4,9 +4,9 @@ from alttxt import phrases
 
 from alttxt.models import DataModel
 from alttxt.models import GrammarModel
-from alttxt.types_ import Granularity
-from alttxt.types_ import Level
-from alttxt.types_ import Orientation
+from alttxt.types import Granularity
+from alttxt.types import Level
+from alttxt.types import Orientation
 
 from typing import cast
 

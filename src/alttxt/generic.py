@@ -1,6 +1,6 @@
 from alttxt.models import DataModel
 from alttxt.models import GrammarModel
-from alttxt.types_ import FileType
+from alttxt.types import FileType
 from alttxt.parser import Parser
 from pathlib import Path
 

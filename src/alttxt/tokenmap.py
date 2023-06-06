@@ -57,7 +57,7 @@ class TokenMap:
             "x_inc": self.data.count[1] - self.data.count[0],
             "universal_set_size": sum(self.data.sizes.values()),
             "max_perc": round(100 * self.max_size / self.total_data, 2) + "%",
-            "min_perc": round(100 * self.min_size / self.total_data) + "%",
+            "min_perc": round(100 * self.min_size / self.total_data, 2) + "%",
             "list_max_memberships": self.list_max_memberships,
             "list_min_memberships": self.list_min_memberships,
             "list_max_set_name": self.max_set,
@@ -70,19 +70,21 @@ class TokenMap:
             "list_min_dev_membership": self.list_min_dev_membership,
         }
 
-
     def get_token(self, token: str) -> str:
         """
         Return the string associated with the given token.
+        Throws an exception if the given token is not mapped
         """
+        if token not in self.map:
+            raise Exception("Token not found: " + token)
+
         result = self.map[token]
-        match type(result):
-            case type(float):
-                return round(result, 2)
-            case type(function):
-                return result()
-            case _: # Default case
-                return result
+        if type(result) == float:
+            return round(result, 2)
+        elif callable(result):
+            return result()
+        else:
+            return result
     
     def list_max_dev_membership(self):
         """
@@ -135,4 +137,4 @@ class TokenMap:
         Returns a string of the set names separated by commas,
         with the last two separated by "and".
         """
-        return f'{", ".join(self.data.sets[:-1])} and {self.data.sets[-1]}'
+        return ", ".join(self.data.sets[:-1]) + " and " + self.data.sets[-1]

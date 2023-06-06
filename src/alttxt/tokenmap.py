@@ -1,3 +1,4 @@
+from email.policy import default
 from this import s
 from alttxt.models import DataModel
 from alttxt.models import GrammarModel
@@ -28,7 +29,7 @@ class TokenMap:
 
         # Computations for commonly-used values are done here
         # and stored as class attributes.
-        _max_idx = self.data.count.index( max(self.data.count) 
+        _max_idx = self.data.count.index(max(self.data.count))
         _min_idx = self.data.count.index(min(self.data.count))
         self.max_sets, self.max_size = self.data.membs[_max_idx], max(self.data.count)
         self.min_sets, self.min_size = self.data.membs[_min_idx], min(self.data.count)
@@ -53,25 +54,35 @@ class TokenMap:
             "list_set_names": self.list_set_names,
             "x_min": min(self.data.count),
             "x_max": max(self.data.count),
-            "x_inc": self.data.count[1] - self.data.count[0]
+            "x_inc": self.data.count[1] - self.data.count[0],
             "universal_set_size": sum(self.data.sizes.values()),
-            "max_perc": 100 * self.max_size / self.total_data
-            "min_perc": 100 * self.min_size / self.total_data
+            "max_perc": round(100 * self.max_size / self.total_data, 2) + "%",
+            "min_perc": round(100 * self.min_size / self.total_data) + "%",
             "list_max_memberships": self.list_max_memberships,
             "list_min_memberships": self.list_min_memberships,
             "list_max_set_name": self.max_set,
             "list_min_set_name": self.min_set,
-            "max_set_perc": 100 * self.max_set_size / self.total_set_size,
-            "min_set_perc": 100 * self.min_set_size / self.total_set_size,
+            "max_set_perc": round(100 * self.max_set_size / self.total_set_size, 2) + "%",
+            "min_set_perc": round(100 * self.min_set_size / self.total_set_size, 2) + "%",
             "max_dev": max(self.data.devs),
             "min_dev": min(self.data.devs),
             "list_max_dev_membership": self.list_max_dev_membership,
             "list_min_dev_membership": self.list_min_dev_membership,
         }
 
+
     def get_token(self, token: str) -> str:
-        ## DEV NOTE: This should format floats to 2 decimal places
-        return ""
+        """
+        Return the string associated with the given token.
+        """
+        result = self.map[token]
+        match type(result):
+            case type(float):
+                return round(result, 2)
+            case type(function):
+                return result()
+            case _: # Default case
+                return result
     
     def list_max_dev_membership(self):
         """

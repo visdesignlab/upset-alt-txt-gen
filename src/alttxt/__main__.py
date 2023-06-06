@@ -13,6 +13,7 @@ from alttxt.types import Orientation
 from pathlib import Path
 from typing import Optional
 
+# Entry point for the program
 def main(argv: Optional[list[str]] = None) -> int:
     argv = argv if argv is not None else sys.argv[1:]
     parser = argparse.ArgumentParser(prog="alttxt", add_help=False)

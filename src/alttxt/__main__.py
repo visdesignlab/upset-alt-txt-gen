@@ -5,6 +5,7 @@ import sys
 from alttxt.generic import Grammar
 from alttxt.generic import RawData
 from alttxt.generator import AltTxtGen
+from alttxt.tokenmap import TokenMap
 
 from alttxt.types import Granularity
 from alttxt.types import Level
@@ -67,8 +68,9 @@ def main(argv: Optional[list[str]] = None) -> int:
 
     rawdata = RawData(Path(args.data)).model
     grammar = Grammar(Path(args.grammar)).model
+    tokenMap = TokenMap(rawdata, grammar, Orientation.VERTICAL)
     alttext = AltTxtGen(
-        Orientation.VERTICAL, rawdata, grammar, args.level, args.granularity
+        args.level, args.granularity, tokenMap
     )
 
     print(90 * "-")

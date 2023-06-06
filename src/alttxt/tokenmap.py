@@ -1,8 +1,8 @@
-from email.policy import default
-from this import s
 from alttxt.models import DataModel
 from alttxt.models import GrammarModel
-from typing import cast
+
+from alttxt.types import Orientation
+
 
 class TokenMap:
     """
@@ -16,7 +16,7 @@ class TokenMap:
     it is not responsible for the actual substitution of tokens
     or the overall generation of the text description.
     """
-    def __init___(self, data: DataModel, grammar: GrammarModel) -> None:
+    def __init__(self, data: DataModel, grammar: GrammarModel, orientation: Orientation )-> None:
         """
         Initialize the Grammar class. Note that internal values 
         are not recomputed if the data or grammar are changed.
@@ -56,14 +56,14 @@ class TokenMap:
             "x_max": max(self.data.count),
             "x_inc": self.data.count[1] - self.data.count[0],
             "universal_set_size": sum(self.data.sizes.values()),
-            "max_perc": round(100 * self.max_size / self.total_data, 2) + "%",
-            "min_perc": round(100 * self.min_size / self.total_data, 2) + "%",
-            "list_max_memberships": self.list_max_memberships,
-            "list_min_memberships": self.list_min_memberships,
+            "min_perc": str(round(100 * self.min_size / self.total_data, 2)) + "%",
+            "max_perc": str(round(100 * self.max_size / self.total_data, 2)) + "%",
+            "list_max_membership": self.list_max_membership,
+            "list_min_membership": self.list_min_membership,
             "list_max_set_name": self.max_set,
             "list_min_set_name": self.min_set,
-            "max_set_perc": round(100 * self.max_set_size / self.total_set_size, 2) + "%",
-            "min_set_perc": round(100 * self.min_set_size / self.total_set_size, 2) + "%",
+            "max_set_perc": str(round(100 * self.max_set_size / self.total_set_size, 2)) + "%",
+            "min_set_perc": str(round(100 * self.min_set_size / self.total_set_size, 2)) + "%",
             "max_dev": max(self.data.devs),
             "min_dev": min(self.data.devs),
             "list_max_dev_membership": self.list_max_dev_membership,
@@ -73,18 +73,24 @@ class TokenMap:
     def get_token(self, token: str) -> str:
         """
         Return the string associated with the given token.
-        Throws an exception if the given token is not mapped
+        If the token is unmapped, does not substitute it.
+        If the mapped value is not a string, float, int, or function,
+        raises an exception.
         """
         if token not in self.map:
-            raise Exception("Token not found: " + token)
+            return "{{" + token + "}}"
 
         result = self.map[token]
         if type(result) == float:
-            return round(result, 2)
+            return str(round(result, 2))
+        elif type(result) == int:
+            return str(result)
+        elif type(result) == str:
+            return result
         elif callable(result):
             return result()
         else:
-            return result
+            raise Exception("Invalid token type: " + str(type(result)))
     
     def list_max_dev_membership(self):
         """
@@ -112,23 +118,23 @@ class TokenMap:
         else:
             return list(min_dev_set)[0]
 
-    def list_max_memberships(self) -> str:
+    def list_max_membership(self) -> str:
         """
         Returns a string of the set names with the maximum number of
         memberships, separated by commas, with the last two separated by "and".
         """
-        if self.max_sets > 1:
-            return ", ".join(list(self.max_sets)[:-1]) + "and" + list(self.max_sets)[-1]
+        if len(self.max_sets) > 1:
+            return ", ".join(list(self.max_sets)[:-1]) + " and " + list(self.max_sets)[-1]
         else:
             return list(self.max_sets)[0]
 
-    def list_min_memberships(self) -> str:
+    def list_min_membership(self) -> str:
         """
         Returns a string of the set names with the minimum number of
         memberships, separated by commas, with the last two separated by "and".
         """
-        if self.min_sets > 1:
-            return ", ".join(list(self.min_sets)[:-1]) + "and" + list(self.min_sets)[-1]
+        if len(self.min_sets) > 1:
+            return ", ".join(list(self.min_sets)[:-1]) + " and " + list(self.min_sets)[-1]
         else:
             return list(self.min_sets)[0]
 

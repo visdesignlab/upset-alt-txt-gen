@@ -3,6 +3,8 @@ from alttxt.models import GrammarModel
 
 from alttxt.types import Orientation
 
+from pprint import pprint
+
 
 class TokenMap:
     """
@@ -52,9 +54,10 @@ class TokenMap:
             "title": self.grammar.title,
             "total": len(self.data.sets),
             "list_set_names": self.list_set_names,
-            "x_min": min(self.data.count),
-            "x_max": max(self.data.count),
+            "min_size": min(self.data.count),
+            "max_size": max(self.data.count),
             "x_inc": self.data.count[1] - self.data.count[0],
+            # Total number of elements in all sets, counting duplicates multiple times
             "universal_set_size": sum(self.data.sizes.values()),
             "min_perc": str(round(100 * self.min_size / self.total_data, 2)) + "%",
             "max_perc": str(round(100 * self.max_size / self.total_data, 2)) + "%",

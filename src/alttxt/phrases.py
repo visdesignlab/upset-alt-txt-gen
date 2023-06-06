@@ -26,7 +26,7 @@ DESCRIPTIONS = {
         "of {{total}} co-occuring sets are displayed. They read from left "
         "to right as: {{list_set_names}}. Visually, the plot is comprised of "
         "three components. Component 1 -- interlocking set sizes representing "
-        "{{caption}} are plotted on the x-axis from {{x_min}} to {{x_max}}. "
+        "{{caption}} are plotted on the y-axis from {{min_size}} to {{max_size}}. "
         "Underneath is a graphical table of set membership showing a total of "
         "{{total}} {{caption}} observed across {{universal_set_size}} different "
         "patterns.",
@@ -34,7 +34,7 @@ DESCRIPTIONS = {
         "of {{total}} co-occuring sets are displayed. They read from left "
         "to right as: {{list_set_names}}. Visually, the plot is comprised of "
         "three components. Component 1 -- interlocking set sizes representing "
-        "{{caption}} are plotted on the y-axis from {{y_min}} to {{y_max}}. "
+        "{{caption}} are plotted on the y-axis from {{min_size}} to {{max_size}}. "
         "Underneath is a graphical table of set membership showing a total of "
         "{{total}} {{caption}} observed across {{universal_set_size}} different "
         "patterns. To the left is a smaller bar chart showing the unconditional "

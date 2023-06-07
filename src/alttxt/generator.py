@@ -59,15 +59,18 @@ class AltTxtGen:
         Replace tokens in the text with their corresponding values,
         as defined in self.map.
         """
-        tokens = re.split(r"{{|}}", text)
-        isToken = text.lstrip().startswith("{{")
-        result = list()
+        while "{{" in text:
+            tokens = re.split(r"{{|}}", text)
+            isToken = text.lstrip().startswith("{{")
+            result = list()
 
-        for token in tokens:
-            if isToken:
-                result.append(self.map.get_token(token))
-            else:
-                result.append(token)
-            isToken = not isToken
+            for token in tokens:
+                if isToken:
+                    result.append(self.map.get_token(token))
+                else:
+                    result.append(token)
+                isToken = not isToken
+            
+            text = "".join(result)
 
-        return "".join(result)
+        return text

@@ -59,6 +59,22 @@ class AltTxtGen:
         Replace tokens in the text with their corresponding values,
         as defined in self.map.
         """
+        # First, loop until all non-terminals are replaced.
+        while "[[" in text:
+            tokens = re.split(r"\[\[|\]\]", text)
+            isToken = text.lstrip().startswith("[[")
+            result = list()
+
+            for token in tokens:
+                if isToken:
+                    result.append(self.descriptions["symbols"][token])
+                else:
+                    result.append(token)
+                isToken = not isToken
+            
+            text = "".join(result)
+
+        # Now, loop and replace all terminals.
         while "{{" in text:
             tokens = re.split(r"{{|}}", text)
             isToken = text.lstrip().startswith("{{")

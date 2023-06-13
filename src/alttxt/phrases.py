@@ -29,11 +29,7 @@ DESCRIPTIONS = {
         "high": "[[l1_low_desc]]. [[l1_med_desc]]. [[l1_high_desc]]",
     },
     "level_2": {
-        "low": "This is an upset plot. Set membership comprised of {{list_max_membership}} "
-        "have the highest unconditional frequency count totaling {{max_perc}} of "
-        "these. In contrast, set membership consisting of {{list_min_membership}} "
-        "has the lowest frequency count amounting barely {{min_perc}} of all "
-        "memberships.",
+        "low": "[[UpSet]]. ",
         "medium": "This is an upset plot. Set membership comprised of {{list_max_membership}} "
         "have the highest unconditional frequency count totaling {{max_perc}} of "
         "these. In contrast, set membership consisting of {{list_min_membership}} "
@@ -58,8 +54,10 @@ DESCRIPTIONS = {
         "equal to {{min_dev}}.",
     },
     "symbols": {
+        # "This is an UpSet plot"
+        "UpSet": "this is an UpSet plot",
         # Basic description of an UpSet plot
-        "l0_low_desc": "this is an UpSet plot, a data visualization tool "
+        "l0_low_desc": "[[UpSet]], a data visualization tool "
         "which uses a matrix to display the mathematical properties of intersecting sets",
         # Explanation of rows, columns, and matrix entries
         "l0_med_desc": "the rows of the matrix represent sets or set intersections. "
@@ -91,6 +89,16 @@ DESCRIPTIONS = {
         # Intersections are sorted by
         "sort_by": "intersections are sorted by {{sort}}",
         # Number of visualized variables and their names
-        "list_vars": "{{var_count}} variables are visualized- {{list_var_names}}"
+        "list_vars": "{{var_count}} variables are visualized- {{list_var_names}}",
+        # Listing the biggest and smallest few intersections
+        "multi_max_min_card": "set membership comprised of {{list_max_membership}} "
+        "have the highest unconditional frequency count totaling {{max_perc}} of "
+        "these. In contrast, set membership consisting of {{list_min_membership}} "
+        "has the lowest frequency count amounting barely {{min_perc}} of all memberships",
+        # Max and min set
+        "max_min_set": "the singleton set comprised of {{list_max_set_name}} has "
+        "the highest unconditional frequency count totaling {{max_set_perc}} of "
+        "the entire dataset. However, the single set comprised of {{list_min_set_name}} "
+        "has the lowest frequency count amounting only {{min_set_perc}} of the dataset",
     },
 }

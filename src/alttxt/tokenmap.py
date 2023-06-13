@@ -52,7 +52,7 @@ class TokenMap:
         self.map = {
             "caption": self.grammar.caption,
             "title": self.grammar.title,
-            "total": len(self.data.sets),
+            "set_count": len(self.data.sets),
             "list_set_names": self.list_set_names,
             "min_size": min(self.data.count),
             "max_size": max(self.data.count),

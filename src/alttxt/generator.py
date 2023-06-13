@@ -88,5 +88,7 @@ class AltTxtGen:
                 isToken = not isToken
             
             text = "".join(result)
+        
+        #TODO: Capitalize first letter of each sentence.
 
         return text

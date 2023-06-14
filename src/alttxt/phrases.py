@@ -28,34 +28,34 @@ DESCRIPTIONS = {
         "medium": "[[l1_low_desc]]. [[l1_med_desc]].",
         "high": "[[l1_low_desc]]. [[l1_med_desc]]. [[l1_high_desc]]",
     },
+    # L2 splits generation by sort and aggregation
+    # The phrases are designed so that the aggregation can be appended to the sort
     "level_2": {
-        "low": "[[UpSet]]. ",
-        "medium": "This is an upset plot. Set membership comprised of {{list_max_membership}} "
-        "have the highest unconditional frequency count totaling {{max_perc}} of "
-        "these. In contrast, set membership consisting of {{list_min_membership}} "
-        "has the lowest frequency count amounting barely {{min_perc}} of all "
-        "memberships. The singleton set comprised of {{list_max_set_name}} has "
-        "the highest unconditional frequency count totaling {{max_set_perc}} of "
-        "the entire dataset. However, the single set comprised of {{list_min_set_name}} "
-        "has the lowest frequency count amounting only {{min_set_perc}} of the "
-        "dataset.",
-        "high": "This is an upset plot. Set membership comprised of {{list_max_membership}} "
-        "have the highest unconditional frequency count totaling {{max_perc}} of "
-        "these. In contrast, set membership consisting of {{list_min_membership}} "
-        "has the lowest frequency count amounting barely {{min_perc}} of all "
-        "memberships. The singleton set comprised of {{list_max_set_name}} has "
-        "the highest unconditional frequency count totaling {{max_set_perc}} of "
-        "the entire dataset. However, the single set comprised of {{list_min_set_name}} "
-        "has the lowest frequency count amounting only {{min_set_perc}} of the "
-        "dataset. Lastly, set membership comprised of {{list_max_dev_membership}} "
-        "has the highest deviation from its expected cardinality with a numeric deviation "
-        "of {{max_dev}}. On the contrary, the set membership comprised of "
-        "{{list_min_dev_membership}} has the lowest deviation with a numeric deviation "
-        "equal to {{min_dev}}.",
+        "sort": {
+            "cardinality": "[[InUpSet]], [[sort_set_info]]. [[int_max_min_set]]. "
+            "The average cardinality is {{avg_card}}, with a 25th percentile of "
+            "{{25perc_card}} and a 75th percentile of {{75perc_card}}. ",
+            "degree:": "[[InUpSet]], [[sort_set_info]]. There are {{list_degree_info}}. ",
+        },
+        "aggregation": {
+            "set": "intersections are aggregated by set. "
+            "There are {{list_set_info}}.",
+            "degree": "intersections are aggregated by degree. "
+            "There are {{list_degree_info}}.",
+            "deviation": "intersections are aggregated by deviation. "
+            "{{count_pos_dev}} have a positive deviation, with a total "
+            "cardinality of {{pos_dev_card}}. {{count_neg_dev}} have a "
+            "negative deviation, with a total cardinality of {{neg_dev_card}}. "
+            "The aggregation of positive deviations has an overall deviation of "
+            "{{pos_dev_dev}}, while the aggregation of negative deviations "
+            "has an overall deviation of {{neg_dev_dev}}.",
+        },
     },
     "symbols": {
         # "This is an UpSet plot"
         "UpSet": "this is an UpSet plot",
+        # Another title for an UpSet plot
+        "InUpSet": "in this UpSet plot",
         # Basic description of an UpSet plot
         "l0_low_desc": "[[UpSet]], a data visualization tool "
         "which uses a matrix to display the mathematical properties of intersecting sets",
@@ -90,15 +90,24 @@ DESCRIPTIONS = {
         "sort_by": "intersections are sorted by {{sort}}",
         # Number of visualized variables and their names
         "list_vars": "{{var_count}} variables are visualized- {{list_var_names}}",
-        # Listing the biggest and smallest few intersections
+        # Number of sets, non-empty intersections, and sort type
+        "sort_set_info": "{{set_count}} sets are visualized, with {{pop_intersect_count}} non-empty intersections,"
+        "sorted by {{sort_type}}",
+        # Largest 10 intersections and 10th percentile of intersections
+        "int_max_min_set": "the largest 10 intersections are {{list_max_10int}}. "
+        "{{10perc_int_count}} sets fall below the 10th percentile for cardinality, "
+        "having less than {{10perc_int}} members",
+
+        ## Artifacts from Filemon- unused currently but may be re-added ##
+        # Listing the biggest and smallest sets
         "multi_max_min_card": "set membership comprised of {{list_max_membership}} "
-        "have the highest unconditional frequency count totaling {{max_perc}} of "
-        "these. In contrast, set membership consisting of {{list_min_membership}} "
-        "has the lowest frequency count amounting barely {{min_perc}} of all memberships",
-        # Max and min set
-        "max_min_set": "the singleton set comprised of {{list_max_set_name}} has "
-        "the highest unconditional frequency count totaling {{max_set_perc}} of "
-        "the entire dataset. However, the single set comprised of {{list_min_set_name}} "
-        "has the lowest frequency count amounting only {{min_set_perc}} of the dataset",
+        "have the highest total cardinality, totaling {{max_perc}} of these. "
+        "In contrast, set membership consisting of {{list_min_membership}} "
+        "has the lowest cardinality, amounting barely {{min_perc}} of all memberships",
+        # Max and min singleton set
+        "max_min_card": "the singleton set comprised of {{list_max_set_name}} has "
+        "the highest cardinality, totaling {{max_set_perc}} of the entire dataset. "
+        "However, the singleton set comprised of {{list_min_set_name}} "
+        "has the lowest cardinality, amounting only {{min_set_perc}} of the dataset",
     },
 }

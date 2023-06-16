@@ -32,23 +32,26 @@ DESCRIPTIONS = {
     # The phrases are designed so that the aggregation can be appended to the sort
     "level_2": {
         "sort": {
-            "cardinality": "[[InUpSet]], [[sort_set_info]]. [[int_max_min_set]]. "
+            "Cardinality": "[[InUpSet]], [[sort_set_info]]. [[int_max_min_set]]. "
             "The average cardinality is {{avg_card}}, with a 25th percentile of "
             "{{25perc_card}} and a 75th percentile of {{75perc_card}}. ",
-            "degree:": "[[InUpSet]], [[sort_set_info]]. There are {{list_degree_info}}. ",
+            "Degree:": "[[InUpSet]], [[sort_set_info]]. There are {{list_degree_info}}. ",
         },
         "aggregation": {
-            "set": "intersections are aggregated by set. "
+            "Sets": "intersections are aggregated by set. "
             "There are {{list_set_info}}.",
-            "degree": "intersections are aggregated by degree. "
+            "Degree": "intersections are aggregated by degree. "
             "There are {{list_degree_info}}.",
-            "deviation": "intersections are aggregated by deviation. "
+            "Deviations": "intersections are aggregated by deviation. "
             "{{count_pos_dev}} have a positive deviation, with a total "
             "cardinality of {{pos_dev_card}}. {{count_neg_dev}} have a "
             "negative deviation, with a total cardinality of {{neg_dev_card}}. "
             "The aggregation of positive deviations has an overall deviation of "
             "{{pos_dev_dev}}, while the aggregation of negative deviations "
             "has an overall deviation of {{neg_dev_dev}}.",
+            "Overlaps": "intersections are aggregated by overlaps of degree {{agg_degree}}. "
+            "There are {{list_overlap_info}}",
+            "None": "intersections are not aggregated. There are {{list_set_info}}.",
         },
     },
     "symbols": {

@@ -1,6 +1,7 @@
 import re
 
 from alttxt import phrases
+from alttxt.models import GrammarModel
 
 from alttxt.types import Granularity
 from alttxt.types import Level
@@ -13,11 +14,13 @@ class AltTxtGen:
         level: Level,
         granularity: Granularity,
         map: TokenMap,
+        grammar: GrammarModel,
     ) -> None:
         self.descriptions = phrases.DESCRIPTIONS
         self.granularity = granularity
         self.level = level
         self.map = map
+        self.grammar = grammar
 
     def quantiles(self) -> list[list[float]]:
         quants: list[list[float]] = []
@@ -27,28 +30,24 @@ class AltTxtGen:
     def text(self) -> str:
         text_desc = ""
 
-        # Get the description template for the level and granularity
+        # Get the description template for the level, granularity, sort, and aggregation
         match self.level:
+            # L0 and L1 don't care about sort/aggregation
             case Level.ZERO:
-                text_desc = self.descriptions[f"level_{Level.ZERO.value}"][
+                text_desc = self.descriptions["level_0"][
                     self.granularity.value
                 ]
 
             case Level.ONE:
-                text_desc = self.descriptions[f"level_{Level.ONE.value}"][
+                text_desc = self.descriptions["level_1"][
                     self.granularity.value
                 ]
 
             case Level.TWO:
-                text_desc = self.descriptions[f"level_{Level.TWO.value}"][
-                    self.granularity.value
-                ]
-
-            case Level.THREE:
-                text_desc = self.descriptions[f"level_{Level.THREE.value}"][
-                    self.granularity.value
-                ]
-
+                # L2 cares about sort
+                text_desc = self.descriptions["level_2"]["sort"][self.grammar["sort_by"]]
+                # And aggregation
+                text_desc += self.descriptions["level_2"]["aggregation"][self.grammar["first_aggregate_by"]]
             case _:
                 raise TypeError(f"Expected {Level.list()}. Got {self.level}.")
 
@@ -58,6 +57,8 @@ class AltTxtGen:
         """
         Replace tokens in the text with their corresponding values,
         as defined in self.map.
+        Non-terminals, evaluated by the phrases mapping, are replaced first.
+        Next, terminals are evaluated by the token map.
         """
         # First, loop until all non-terminals are replaced.
         while "[[" in text:

@@ -70,7 +70,7 @@ def main(argv: Optional[list[str]] = None) -> int:
     grammar = Grammar(Path(args.grammar)).model
     tokenMap = TokenMap(rawdata, grammar, Orientation.VERTICAL)
     alttext = AltTxtGen(
-        args.level, args.granularity, tokenMap
+        args.level, args.granularity, tokenMap, grammar
     )
 
     print(90 * "-")

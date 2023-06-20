@@ -31,8 +31,9 @@ class PlotModel(BaseModel):
 
 
 class GrammarModel(BaseModel):
-    caption: str
-    title: str
+    # TODO: Uncomment these if re-added
+    #caption: str
+    #title: str
     first_aggregate_by: AggregateBy
     second_aggregate_by: AggregateBy
     first_overlap_degree: int

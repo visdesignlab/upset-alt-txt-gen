@@ -131,8 +131,10 @@ class Parser:
         return DataModel(membs=[], sets=[], sizes={}, count=[], devs=[])
 
     def __parse_grammar(self, grammar: dict[str, Any]) -> Model:
-        caption = grammar["caption"]
-        title = grammar["title"]
+        # Currently removed as they don't exist in the grammar exports from multinet
+        # TODO: Re-add title when it is added to the grammar export. Caption likely won't be
+        #caption = grammar["caption"]
+        #title = grammar["title"]
         first_aggregate_by = AggregateBy(grammar["firstAggregateBy"])
         second_aggregate_by = AggregateBy(grammar["secondAggregateBy"])
 
@@ -169,8 +171,8 @@ class Parser:
         )
 
         grammar_model = GrammarModel(
-            caption=caption,
-            title=title,
+            #caption=caption,
+            #title=title,
             first_aggregate_by=first_aggregate_by,
             second_aggregate_by=second_aggregate_by,
             first_overlap_degree=first_overlap_degree,

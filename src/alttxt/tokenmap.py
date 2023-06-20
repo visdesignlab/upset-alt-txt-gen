@@ -50,8 +50,6 @@ class TokenMap:
         # Since functions are only executed on run, they can be used to
         # optimize by moving expensive tokens into fuctions.
         self.map = {
-            "caption": self.grammar.caption,
-            "title": self.grammar.title,
             "set_count": len(self.data.sets),
             "list_set_names": self.list_set_names,
             "min_size": min(self.data.count),
@@ -71,6 +69,7 @@ class TokenMap:
             "min_dev": min(self.data.devs),
             "list_max_dev_membership": self.list_max_dev_membership,
             "list_min_dev_membership": self.list_min_dev_membership,
+            "list_set_info": self.list_set_info,
         }
 
     def get_token(self, token: str) -> str:
@@ -95,6 +94,14 @@ class TokenMap:
         else:
             raise Exception("Invalid token type: " + str(type(result)))
     
+    def list_set_info(self):
+        """
+        Return a string containing a series of sentences with 
+        information about each set. Length varies depending on
+        the number of sets. For use when the plot is aggregated by set
+        """
+        pprint(self.data)
+
     def list_max_dev_membership(self):
         """
         Return the union of sets that has the highest deviation

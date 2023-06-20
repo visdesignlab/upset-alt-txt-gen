@@ -1,3 +1,6 @@
+from alttxt.types import AggregateBy
+from alttxt.types import SortBy
+
 """
 The context-free grammar which the alt text is generated from-
 not to be confused with the JSON export of the data, which is
@@ -32,26 +35,27 @@ DESCRIPTIONS = {
     # The phrases are designed so that the aggregation can be appended to the sort
     "level_2": {
         "sort": {
-            "Cardinality": "[[InUpSet]], [[sort_set_info]]. [[int_max_min_set]]. "
+            SortBy.CARDINALITY: "[[InUpSet]], [[sort_set_info]]. [[int_max_min_set]]. "
             "The average cardinality is {{avg_card}}, with a 25th percentile of "
             "{{25perc_card}} and a 75th percentile of {{75perc_card}}. ",
-            "Degree:": "[[InUpSet]], [[sort_set_info]]. There are {{list_degree_info}}. ",
+            SortBy.DEGREE: "[[InUpSet]], [[sort_set_info]]. There are {{list_degree_info}}. ",
+            SortBy.DEVIATION: "[[InUpSet]], [[sort_set_info]]. There are {{list_deviation_info}}. ",
         },
         "aggregation": {
-            "Sets": "intersections are aggregated by set. "
+            AggregateBy.SETS: "intersections are aggregated by set. "
             "There are {{list_set_info}}.",
-            "Degree": "intersections are aggregated by degree. "
+            AggregateBy.DEGREE: "intersections are aggregated by degree. "
             "There are {{list_degree_info}}.",
-            "Deviations": "intersections are aggregated by deviation. "
+            AggregateBy.DEVIATION: "intersections are aggregated by deviation. "
             "{{count_pos_dev}} have a positive deviation, with a total "
             "cardinality of {{pos_dev_card}}. {{count_neg_dev}} have a "
             "negative deviation, with a total cardinality of {{neg_dev_card}}. "
             "The aggregation of positive deviations has an overall deviation of "
             "{{pos_dev_dev}}, while the aggregation of negative deviations "
             "has an overall deviation of {{neg_dev_dev}}.",
-            "Overlaps": "intersections are aggregated by overlaps of degree {{agg_degree}}. "
+            AggregateBy.OVERLAP: "intersections are aggregated by overlaps of degree {{agg_degree}}. "
             "There are {{list_overlap_info}}",
-            "None": "intersections are not aggregated. There are {{list_set_info}}.",
+            AggregateBy.NONE: "intersections are not aggregated. There are {{list_set_info}}.",
         },
     },
     "symbols": {

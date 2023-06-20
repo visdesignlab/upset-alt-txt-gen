@@ -4,7 +4,15 @@ from alttxt.types import FileType
 from alttxt.parser import Parser
 from pathlib import Path
 
+"""
+This file specifies the constructors for the data models,
+objects which hold data parsed from files.
+Models.py defines the fields necessary for each model.
 
+Each constructor takes a file path and returns a model.
+The 'model' property is used to make the data immutable after
+it has been parsed.
+"""
 Model = DataModel | GrammarModel
 
 

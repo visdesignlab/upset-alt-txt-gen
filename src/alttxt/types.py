@@ -36,20 +36,35 @@ class Level(Listable):
 
 
 class AggregateBy(Listable):
+    """
+    Enum for the different aggregation options.
+    Strings need to be kept up-to-date with any changes
+    to the MultiNet implementation's export format.
+    """
     DEGREE = "Degree"
     SETS = "Sets"
-    DEVIATION = "Deviation"
-    OVERLAPS = "Overlaps"
+    DEVIATION = "Deviations"
+    OVERLAP = "Overlaps"
     NONE = "None"
 
 
 class SortBy(Listable):
+    """
+    Enum for the different sorting options.
+    Strings need to be kept up-to-date with any changes
+    to the MultiNet implementation's export format.
+    """
     DEGREE = "Degree"
     CARDINALITY = "Cardinality"
     DEVIATION = "Deviation"
 
 
 class SortVisibleBy(Listable):
+    """
+    Enum for the different sorting options.
+    Strings need to be kept up-to-date with any changes
+    to the MultiNet implementation's export format.
+    """
     ALPHABETICAL = "Alphabetical"
     ASCENDING = "Ascending"
     DESCENDING = "Descending"

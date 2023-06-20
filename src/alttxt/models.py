@@ -2,14 +2,20 @@ from alttxt.types import AggregateBy
 from alttxt.types import SortBy
 from alttxt.types import SortVisibleBy
 from pydantic import BaseModel
+from typing import Any
 
 
 class DataModel(BaseModel):
+    """
+    For holding data from the "rawData" and "processedData" fields
+    of the JSON data file.
+    """
     membs: list[frozenset[str]]
     count: list[int]
     sets: list[str]
     sizes: dict[str, int]
     devs: list[float]
+    subsets: list[dict[str, Any]]
 
 
 class FilterModel(BaseModel):

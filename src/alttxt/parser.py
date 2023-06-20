@@ -1,4 +1,5 @@
 import json
+from pprint import pprint
 
 from alttxt.types import AggregateBy
 from alttxt.types import FileType
@@ -20,6 +21,9 @@ Model = DataModel | GrammarModel
 
 
 class Parser:
+    """
+    Handles parsing of data files into objects.
+    """
     def __init__(self, file_path: Path, file_type: FileType) -> None:
         self._data = self.load_file(file_path, file_type)
 
@@ -33,7 +37,7 @@ class Parser:
             case FileType.RAWDATA:
                 with open(file_path) as f:
                     rawdata = json.load(f)
-                    parsed_data = self.__parse_rawdata(rawdata)
+                    parsed_data = self.__parse_data(rawdata)
 
             case FileType.GRAMMAR:
                 with open(file_path) as f:
@@ -98,39 +102,78 @@ class Parser:
         # return data_model
         return DataModel(membs=[], sets=[], sizes={}, count=[], devs=[])
 
-    def __parse_rawdata(self, rawdata: dict[str, dict[str, Any]]) -> Model:
+    def __parse_data(self, data: dict[str, dict[str, Any]]) -> Model:
+        """
+        Responsible for parsing the data from the JSON export 
+        from the UpSet Multinet implementation.
+
+        Not all data from the data JSON file is parsed and accessible.
+        Current data parsed:
+        - set sizes and names
+        - set membership of items
+        - deviations from expected set membership
+        - Information about sets/intersections/aggregations:
+          - name
+          - cardinality
+          - deviation
+          - description
+        """
+        # Dictionary mapping set names to their sizes
         sizes: dict[str, int] = {}
+        
+        # Dictionary mapping sets/intersections/aggregations to information about them
+        subsets: list[dict[str, Any]]
+        for item in data["processedData"]["values"]:
+            info = dict()
+            info["name"] = item["elementName"]
+            info["card"] = item["size"]
+            info["dev"] = item["deviation"]
+            info["desc"] = item["description"]
+            subsets.append(info)
+
+        # List of set names
         sets_: list[str] = []
-        for set_ in rawdata["sets"].values():
+        for set_ in data["rawdata"]["sets"].values():
             set_name = set_["elementName"]
             sizes[set_name] = set_["size"]
             sets_.append(set_name)
+
+        # List of all members (data points) of the sets
         membs = []
-        for elem in rawdata["items"].values():
+        for elem in data["items"].values():
             membership = frozenset(
                 [
                     key
                     for key, value in elem.items()
-                    if key in rawdata["setColumns"] and value == 1
+                    if key in data["setColumns"] and value == 1
                 ]
             )
             if len(membership):
                 membs.append(membership)
+
+        # List of the number of sets each member is in
         count = list(Counter(membs).values())
         membs = list(Counter(membs).keys())
+        # Initialize deviations
         devs = self.__query_devs(membs, count, sets_, sizes)
         data_model = DataModel(
-            membs=membs, sets=sets_, sizes=sizes, count=count, devs=devs
+            membs=membs, sets=sets_, sizes=sizes, count=count, devs=devs, subsets=subsets
         )
         return data_model
 
+    # Theoretically will parse matrix data; unimplemented
     def __parse_matdata(self, matdata: list[str]) -> Model:
         return DataModel(membs=[], sets=[], sizes={}, count=[], devs=[])
 
+    # Theoretically will parse table data; unimplemented
     def __parse_tbldata(self, tbldata: list[str]) -> Model:
         return DataModel(membs=[], sets=[], sizes={}, count=[], devs=[])
 
     def __parse_grammar(self, grammar: dict[str, Any]) -> Model:
+        """
+        Parses the state data from the JSON export from the UpSet Multinet implementation 
+        into a GrammarModel. 
+        """
         # Currently removed as they don't exist in the grammar exports from multinet
         # TODO: Re-add title when it is added to the grammar export. Caption likely won't be
         #caption = grammar["caption"]

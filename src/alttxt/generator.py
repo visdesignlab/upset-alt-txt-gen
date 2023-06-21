@@ -1,3 +1,4 @@
+from pprint import pprint
 import re
 
 from alttxt import phrases
@@ -60,15 +61,21 @@ class AltTxtGen:
         Non-terminals, evaluated by the phrases mapping, are replaced first.
         Next, terminals are evaluated by the token map.
         """
+        text = text.strip()
+
         # First, loop until all non-terminals are replaced.
         while "[[" in text:
             tokens = re.split(r"\[\[|\]\]", text)
-            isToken = text.lstrip().startswith("[[")
+            isToken = text.startswith("[[")
             result = list()
+
+            # Bugfix for empty first token throwing off count
+            if tokens[0] == "":
+                tokens = tokens[1:]
 
             for token in tokens:
                 if isToken:
-                    result.append(self.descriptions["symbols"][token])
+                    result.append(self.descriptions["symbols"].get(token, ""))
                 else:
                     result.append(token)
                 isToken = not isToken
@@ -80,6 +87,10 @@ class AltTxtGen:
             tokens = re.split(r"{{|}}", text)
             isToken = text.lstrip().startswith("{{")
             result = list()
+
+            # Bugfix for empty first token throwing off count
+            if tokens[0] == "":
+                tokens = tokens[1:]
 
             for token in tokens:
                 if isToken:

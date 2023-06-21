@@ -25,9 +25,16 @@ class Parser:
     Handles parsing of data files into objects.
     """
     def __init__(self, file_path: Path, file_type: FileType) -> None:
+        # Default message for when a field cannot be found by the parser
+        self.default_field = "(field not available)"
+        
+        # Now load the file and parse the data
         self._data = self.load_file(file_path, file_type)
 
     def load_file(self, file_path: Path, file_type: FileType) -> Model:
+        """
+        Parses a data file into a model based on file type
+        """
         match file_type:
             case FileType.SETDATA:
                 with open(file_path) as f:
@@ -37,12 +44,12 @@ class Parser:
             case FileType.RAWDATA:
                 with open(file_path) as f:
                     rawdata = json.load(f)
-                    parsed_data = self.__parse_data(rawdata)
+                    parsed_data = self.parse_data(rawdata)
 
             case FileType.GRAMMAR:
                 with open(file_path) as f:
                     grammar = json.load(f)
-                    parsed_data = self.__parse_grammar(grammar)
+                    parsed_data = self.parse_grammar(grammar)
 
             case FileType.MATDATA:
                 with open(file_path) as f:
@@ -59,7 +66,7 @@ class Parser:
 
         return parsed_data
 
-    def __query_devs(
+    def query_devs(
         self,
         membs: list[frozenset[str]],
         count: list[int],
@@ -84,6 +91,7 @@ class Parser:
         devs = list(map(lambda dev: round(100 * dev, 1), devs))
         return devs
 
+    # Not sure what this was for; will likely remove
     def __parse_setdata(self, setdata: list[str]) -> Model:
         # parse_line = lambda line: re.sub(r'\[|\]|\(|\)', '', line).split(', ')
         # parse_sets = list(map(parse_line, setdata))
@@ -102,7 +110,7 @@ class Parser:
         # return data_model
         return DataModel(membs=[], sets=[], sizes={}, count=[], devs=[])
 
-    def __parse_data(self, data: dict[str, dict[str, Any]]) -> Model:
+    def parse_data(self, data: dict[str, dict[str, Any]]) -> Model:
         """
         Responsible for parsing the data from the JSON export 
         from the UpSet Multinet implementation.
@@ -121,31 +129,31 @@ class Parser:
         # Dictionary mapping set names to their sizes
         sizes: dict[str, int] = {}
         
-        # Dictionary mapping sets/intersections/aggregations to information about them
-        subsets: list[dict[str, Any]]
-        for item in data["processedData"]["values"]:
+        # Dictionary mapping sets/intersections/aggregations to information about them        
+        subsets: list[dict[str, Any]] = []
+        for item in data["processedData"]["values"].values():
             info = dict()
-            info["name"] = item["elementName"]
-            info["card"] = item["size"]
-            info["dev"] = item["deviation"]
-            info["desc"] = item["description"]
+            info["name"] = item.get("elementName", self.default_field)
+            info["card"] = item.get("size", self.default_field)
+            info["dev"] = item.get("deviation", self.default_field)
+            info["desc"] = item.get("description", self.default_field)
             subsets.append(info)
 
         # List of set names
         sets_: list[str] = []
-        for set_ in data["rawdata"]["sets"].values():
+        for set_ in data["rawData"]["sets"].values():
             set_name = set_["elementName"]
             sizes[set_name] = set_["size"]
             sets_.append(set_name)
 
         # List of all members (data points) of the sets
         membs = []
-        for elem in data["items"].values():
+        for elem in data["rawData"]["items"].values():
             membership = frozenset(
                 [
                     key
                     for key, value in elem.items()
-                    if key in data["setColumns"] and value == 1
+                    if key in data["rawData"]["setColumns"] and value == 1
                 ]
             )
             if len(membership):
@@ -155,21 +163,13 @@ class Parser:
         count = list(Counter(membs).values())
         membs = list(Counter(membs).keys())
         # Initialize deviations
-        devs = self.__query_devs(membs, count, sets_, sizes)
+        devs = self.query_devs(membs, count, sets_, sizes)
         data_model = DataModel(
             membs=membs, sets=sets_, sizes=sizes, count=count, devs=devs, subsets=subsets
         )
         return data_model
 
-    # Theoretically will parse matrix data; unimplemented
-    def __parse_matdata(self, matdata: list[str]) -> Model:
-        return DataModel(membs=[], sets=[], sizes={}, count=[], devs=[])
-
-    # Theoretically will parse table data; unimplemented
-    def __parse_tbldata(self, tbldata: list[str]) -> Model:
-        return DataModel(membs=[], sets=[], sizes={}, count=[], devs=[])
-
-    def __parse_grammar(self, grammar: dict[str, Any]) -> Model:
+    def parse_grammar(self, grammar: dict[str, Any]) -> Model:
         """
         Parses the state data from the JSON export from the UpSet Multinet implementation 
         into a GrammarModel. 

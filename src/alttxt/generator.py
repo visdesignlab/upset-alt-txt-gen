@@ -46,9 +46,9 @@ class AltTxtGen:
 
             case Level.TWO:
                 # L2 cares about sort
-                text_desc = self.descriptions["level_2"]["sort"][self.grammar["sort_by"]]
+                text_desc = self.descriptions["level_2"]["sort"][self.grammar.sort_by]
                 # And aggregation
-                text_desc += self.descriptions["level_2"]["aggregation"][self.grammar["first_aggregate_by"]]
+                text_desc += self.descriptions["level_2"]["aggregation"][self.grammar.first_aggregate_by]
             case _:
                 raise TypeError(f"Expected {Level.list()}. Got {self.level}.")
 
@@ -94,7 +94,7 @@ class AltTxtGen:
 
             for token in tokens:
                 if isToken:
-                    result.append(self.map.get_token(token))
+                    result.append(str(self.map.get_token(token)))
                 else:
                     result.append(token)
                 isToken = not isToken

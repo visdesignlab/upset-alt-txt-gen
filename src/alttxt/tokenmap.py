@@ -1,3 +1,4 @@
+from typing import Any
 from alttxt.models import DataModel
 from alttxt.models import GrammarModel
 
@@ -70,6 +71,11 @@ class TokenMap:
             "list_max_dev_membership": self.list_max_dev_membership,
             "list_min_dev_membership": self.list_min_dev_membership,
             "list_set_info": self.list_set_info,
+            "avg_card": self.avg_card,
+            "25perc_card": self.perc_card_25,
+            "75perc_card": self.perc_card_75,
+            "pop_intersect_count": len(self.subsets),
+            "sort_type": self.grammar.sort_by,
         }
 
     def get_token(self, token: str) -> str:
@@ -94,6 +100,38 @@ class TokenMap:
         else:
             raise Exception("Invalid token type: " + str(type(result)))
     
+    def sort_by_card(self) -> list:
+        """
+        Returns the list of subsets from self.data.subsets,
+        sorted by cardinality
+        """
+        return sorted(self.data, key=lambda x: self.data.subsets[x]["card"], reverse=True)
+
+    def perc_card_25(self) -> str:
+        """
+        Returns the 25th percentile of set cardinalities
+        """
+        return str(self.data.subsets[self.sort_by_card()[int(len(self.data.subsets) * 0.25)]]["card"])
+
+    def perc_card_75(self) -> str:
+        """
+        Returns the 75th percentile of set cardinalities
+        """
+        return str(self.data.subsets[self.sort_by_card()[int(len(self.data.subsets) * 0.75)]]["card"])
+
+    def avg_card(self) -> str:
+        """
+        Returns the average cardinality of all set intersections,
+        rounded to an int
+        """
+        count: int = 0
+        total: int = 0
+        for intersection in self.data.subsets:
+            total += intersection["card"]
+            count += 1
+        
+        return str(int(total / count))
+
     def list_set_info(self):
         """
         Return a string containing a series of sentences with 

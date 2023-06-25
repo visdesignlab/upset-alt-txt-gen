@@ -2,7 +2,7 @@ from typing import Any
 from alttxt.models import DataModel
 from alttxt.models import GrammarModel
 
-from alttxt.types import Orientation
+from alttxt.types import AggregateBy, Orientation
 
 from pprint import pprint
 
@@ -76,7 +76,12 @@ class TokenMap:
             "75perc_card": self.perc_card_75,
             "pop_intersect_count": len(self.subsets),
             "sort_type": self.grammar.sort_by,
+            "list_degree_info": self.list_degree_info,
         }
+
+    ###############################
+    #       Public methods        #
+    ###############################
 
     def get_token(self, token: str) -> str:
         """
@@ -100,12 +105,84 @@ class TokenMap:
         else:
             raise Exception("Invalid token type: " + str(type(result)))
     
+    ###############################
+    #           Helpers           #
+    ###############################
+
     def sort_by_card(self) -> list:
         """
         Returns the list of subsets from self.data.subsets,
         sorted by cardinality
         """
         return sorted(self.data, key=lambda x: self.data.subsets[x]["card"], reverse=True)
+
+    def count_degrees(self, max_degree: int) -> list[int]:
+        """
+        Returns information about how many set intersections have
+        a given degree. The index of the returned list is the degree,
+        and the value is the number of intersections with that degree.
+        
+        The unincluded subset is the only one with degree 0, 
+        so the 0 index is always 1.
+
+        This function only works if the data is not aggregated. 
+        If called with data that has been aggregated, it will raise
+        Params:
+            max_degree: The maximum degree to count to.
+            Intersections with a degree greater than this are ignored.
+            The returned list will have length max_degree + 1. Since
+            the list is initialized with all 0s, all degree counts are accurate,
+            but far more may be included than necessary.
+        """
+        if self.grammar.first_aggregate_by != AggregateBy.NONE:
+            raise Exception("Cannot count degrees on aggregated data")
+
+        result: list[int] = [0] * (max_degree + 1) # Add 1 so that max_degree is included
+        result[0] = 1
+
+        for subset in self.data.subsets:
+            if subset["name"] == "Unincluded":
+                continue
+            # Since the name contains a list of sets separated by spaces, 
+            # the number of spaces + 1 is the degree
+            degree = subset["name"].count(" ") + 1
+            if degree > max_degree:
+                continue
+            result[degree] += 1
+        
+        return result
+
+    ###############################
+    #       Token functions       #
+    ###############################
+
+    def list_degree_info(self) -> str:
+        """
+        Returns a string describing the degree of each set.
+        If sets are not aggregated, this simply counts the number
+        of subsets with each degree, to a maximum degree of 50.
+        If sets are aggregated by degree, this returns information
+        about each degree aggregate: the degree, the number of sets,
+        If sets are aggregated by anything else, an error is raised,
+        as the processed data does not contain rich information about
+        degree in other cases.
+        """
+        result = ""
+
+        if self.grammar.first_aggregate_by == AggregateBy.NONE:
+            for degree, count in enumerate(self.count_degrees(50)):
+                if count == 0:
+                    continue
+                result += f"{count} subsets with degree {degree}, "
+
+        elif self.grammar.first_aggregate_by == AggregateBy.DEGREE:
+            for agg in self.data.subsets:
+                result += f"{agg['count']} subsets of degree {agg['name'].split(' ')[1]} "
+                "with total cardinality {agg['card']} and deviation {agg['dev']}; "
+        else:
+            raise Exception("Cannot list degree info for data aggregated by anything other than degree")
+
+        return result[:-2] # Remove trailing comma and space
 
     def perc_card_25(self) -> str:
         """

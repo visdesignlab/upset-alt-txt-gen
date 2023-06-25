@@ -133,10 +133,16 @@ class Parser:
         subsets: list[dict[str, Any]] = []
         for item in data["processedData"]["values"].values():
             info = dict()
+            # Name of the set/intersection/aggregation- often a list of set names
             info["name"] = item.get("elementName", self.default_field)
+            # Cardinality
             info["card"] = item.get("size", self.default_field)
+            # Deviation
             info["dev"] = item.get("deviation", self.default_field)
+            # Description- only available for aggregations
             info["desc"] = item.get("description", self.default_field)
+            # Count of set intersections in an aggregation- only available for aggregations
+            info["membs"] = len(item.get("items", self.default_field).get("values", self.default_field))
             subsets.append(info)
 
         # List of set names

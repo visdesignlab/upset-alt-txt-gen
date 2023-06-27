@@ -44,7 +44,7 @@ class Parser:
             case FileType.RAWDATA:
                 with open(file_path) as f:
                     rawdata = json.load(f)
-                    parsed_data = self.parse_data(rawdata)
+                    parsed_data = self.parse_data_no_agg(rawdata)
 
             case FileType.GRAMMAR:
                 with open(file_path) as f:
@@ -110,10 +110,11 @@ class Parser:
         # return data_model
         return DataModel(membs=[], sets=[], sizes={}, count=[], devs=[])
 
-    def parse_data(self, data: dict[str, dict[str, Any]]) -> Model:
+    def parse_data_no_agg(self, data: dict[str, dict[str, Any]]) -> Model:
         """
-        Responsible for parsing the data from the JSON export 
-        from the UpSet Multinet implementation.
+        Responsible for parsing non-aggregated data from the JSON export 
+        from the UpSet Multinet implementation. Other functions in this
+        class should be implemented to parse aggregated data.
 
         Not all data from the data JSON file is parsed and accessible.
         Current data parsed:
@@ -133,17 +134,12 @@ class Parser:
         subsets: list[dict[str, Any]] = []
         for item in data["processedData"]["values"].values():
             info = dict()
-            # Name of the set/intersection/aggregation- often a list of set names
+            # Name of the set/intersection/aggregation- a list of set names in the case of intersections
             info["name"] = item.get("elementName", self.default_field)
             # Cardinality
             info["card"] = item.get("size", self.default_field)
             # Deviation
             info["dev"] = item.get("deviation", self.default_field)
-            # Description- only available for aggregations
-            info["desc"] = item.get("description", self.default_field)
-            # Count of set intersections in an aggregation- only available for aggregations
-            if AggregateBy(data["firstAggregateBy"]) != AggregateBy.NONE:
-                info["membs"] = len(item.get("items", self.default_field).get("values", self.default_field))
             subsets.append(info)
 
         # List of set names

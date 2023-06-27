@@ -91,11 +91,13 @@ class TokenMap:
         """
         Return the string associated with the given token.
         If the token is unmapped, does not substitute it.
+        Instead, returns it with curly braces around it.
         If the mapped value is not a string, float, int, or function,
         raises an exception.
         """
         if token not in self.map:
-            return "{{" + token + "}}"
+            # Substitute single curly braces so that the while loop doesn't go forever
+            return "{" + token + "}"
 
         result = self.map[token]
         if type(result) == float:

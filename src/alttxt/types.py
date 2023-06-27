@@ -8,15 +8,6 @@ class Listable(Enum):
     def list(cls) -> list[Enum]:
         return list(v.value for v in cls)
 
-
-class FileType(Listable):
-    SETDATA = auto()
-    RAWDATA = auto()
-    MATDATA = auto()
-    TBLDATA = auto()
-    GRAMMAR = auto()
-
-
 class Granularity(Listable):
     LOW = "low"
     MEDIUM = "medium"

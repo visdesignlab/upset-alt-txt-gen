@@ -1,8 +1,8 @@
 import json
 from pprint import pprint
+from threading import ExceptHookArgs
 
 from alttxt.types import AggregateBy
-from alttxt.types import FileType
 from alttxt.types import SortBy
 from alttxt.types import SortVisibleBy
 
@@ -31,40 +31,20 @@ class Parser:
         # Now load the file and parse the data
         self._data = self.load_file(file_path, file_type)
 
-    def load_file(self, file_path: Path, file_type: FileType) -> Model:
+    def load_file(self, file_path: Path) -> Model:
         """
-        Parses a data file into a model based on file type
+        Parses a data file into a model. The data file must be
+        a JSON export from Multinet containing both state and data.
         """
-        match file_type:
-            case FileType.SETDATA:
-                with open(file_path) as f:
-                    setdata = f.read().splitlines()
-                    parsed_data = self.__parse_setdata(setdata)
+        with open(file_path) as f:
+            data = json.load(f)
+            # Currently aggregated data is unsupported.
+            # When support is added, this should change to a match statement
+            # which feeds the data to different functions based on the aggregation type
+            if AggregateBy(data["firstAggregateBy"]) != AggregateBy.NONE:
+                raise Exception(f"Cannot parse aggregated data from file '{file_path}', please provide non-aggregated data.")
 
-            case FileType.RAWDATA:
-                with open(file_path) as f:
-                    rawdata = json.load(f)
-                    parsed_data = self.parse_data_no_agg(rawdata)
-
-            case FileType.GRAMMAR:
-                with open(file_path) as f:
-                    grammar = json.load(f)
-                    parsed_data = self.parse_grammar(grammar)
-
-            case FileType.MATDATA:
-                with open(file_path) as f:
-                    matdata = json.load(f)
-                    parsed_data = self.__parse_matdata(matdata)
-
-            case FileType.TBLDATA:
-                with open(file_path) as f:
-                    tbldata = json.load(f)
-                    parsed_data = self.__parse_tbldata(tbldata)
-
-            case _:
-                raise TypeError(f"Expected {FileType.list()}. Got {file_type}.")
-
-        return parsed_data
+            return self.parse_data_no_agg(data)
 
     def query_devs(
         self,
@@ -90,25 +70,6 @@ class Parser:
             devs[i] -= residue
         devs = list(map(lambda dev: round(100 * dev, 1), devs))
         return devs
-
-    # Not sure what this was for; will likely remove
-    def __parse_setdata(self, setdata: list[str]) -> Model:
-        # parse_line = lambda line: re.sub(r'\[|\]|\(|\)', '', line).split(', ')
-        # parse_sets = list(map(parse_line, setdata))
-        # sets, count = [], []
-        # for parse_set in parse_sets:
-        #     new_set = set()
-        #     for element in parse_set[:-1]:
-        #         if 'Not in' not in element:
-        #             element = element.split(' ').pop()
-        #             new_set.add(element)
-        #     sets.append(new_set)
-        #     count.append(parse_set[-1])
-        #     sizes: dict[str, int] = {}
-        #     stdev = self.__query_devs(sets, count, sizes)
-        #     data_model = DataModel(sets=sets, sizes=count, count=count, devs=stdev)
-        # return data_model
-        return DataModel(membs=[], sets=[], sizes={}, count=[], devs=[])
 
     def parse_data_no_agg(self, data: dict[str, dict[str, Any]]) -> Model:
         """

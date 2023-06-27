@@ -142,7 +142,8 @@ class Parser:
             # Description- only available for aggregations
             info["desc"] = item.get("description", self.default_field)
             # Count of set intersections in an aggregation- only available for aggregations
-            info["membs"] = len(item.get("items", self.default_field).get("values", self.default_field))
+            if AggregateBy(data["firstAggregateBy"]) != AggregateBy.NONE:
+                info["membs"] = len(item.get("items", self.default_field).get("values", self.default_field))
             subsets.append(info)
 
         # List of set names

@@ -1,3 +1,4 @@
+from enum import Enum
 from typing import Any
 from alttxt.models import DataModel
 from alttxt.models import GrammarModel
@@ -74,8 +75,11 @@ class TokenMap:
             "avg_card": self.avg_card,
             "25perc_card": self.perc_card_25,
             "75perc_card": self.perc_card_75,
-            "pop_intersect_count": len(self.subsets),
+            # Counts populated intersections for non-aggregated data;
+            # otherwise, counts populated aggregates
+            "pop_intersect_count": len(self.data.subsets),
             "sort_type": self.grammar.sort_by,
+            # Errors on aggregated plots
             "list_degree_info": self.list_degree_info,
         }
 
@@ -102,6 +106,8 @@ class TokenMap:
             return result
         elif callable(result):
             return result()
+        elif issubclass(type(result), Enum):
+            return str(result.value)
         else:
             raise Exception("Invalid token type: " + str(type(result)))
     
@@ -109,12 +115,15 @@ class TokenMap:
     #           Helpers           #
     ###############################
 
-    def sort_by_card(self) -> list:
+    def sort_subsets_by_key(self, key: str) -> list:
         """
         Returns the list of subsets from self.data.subsets,
-        sorted by cardinality
+        sorted by a specified key. The key must be a valid field
+        in the dict or an error will be raised.
+        Params:
+          key: The key to sort by. Must be a valid string.
         """
-        return sorted(self.data, key=lambda x: self.data.subsets[x]["card"], reverse=True)
+        return sorted(self.data.subsets, key=lambda x: x[key], reverse=True)
 
     def count_degrees(self, max_degree: int) -> list[int]:
         """
@@ -126,7 +135,7 @@ class TokenMap:
         so the 0 index is always 1.
 
         This function only works if the data is not aggregated. 
-        If called with data that has been aggregated, it will raise
+        If called with data that has been aggregated, it will raise.
         Params:
             max_degree: The maximum degree to count to.
             Intersections with a degree greater than this are ignored.
@@ -151,6 +160,17 @@ class TokenMap:
             result[degree] += 1
         
         return result
+
+    def get_subset_percentile(self, field: str, perc: int) -> Any:
+        """
+        Gets a percentile value for a specific field in this.data.subsets.
+        Params:
+          field: The field to get the percentile of.
+          perc: The percentile to get. Must be between 0 and 100.
+        """
+        set_sort = self.sort_subsets_by_key(field)
+        index = int(len(set_sort) * perc / 100)
+        return set_sort[index][field]
 
     ###############################
     #       Token functions       #
@@ -188,13 +208,13 @@ class TokenMap:
         """
         Returns the 25th percentile of set cardinalities
         """
-        return str(self.data.subsets[self.sort_by_card()[int(len(self.data.subsets) * 0.25)]]["card"])
+        return self.get_subset_percentile("card", 25)
 
     def perc_card_75(self) -> str:
         """
         Returns the 75th percentile of set cardinalities
         """
-        return str(self.data.subsets[self.sort_by_card()[int(len(self.data.subsets) * 0.75)]]["card"])
+        return self.get_subset_percentile("card", 75)
 
     def avg_card(self) -> str:
         """

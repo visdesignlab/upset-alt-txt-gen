@@ -158,9 +158,8 @@ class TokenMap:
         for subset in self.data.subsets:
             if subset["name"] == "Unincluded":
                 continue
-            # Since the name contains a list of sets separated by spaces, 
-            # the number of spaces + 1 is the degree
-            degree = subset["name"].count(" ") + 1
+            
+            degree = subset["degree"]
             if degree > max_degree:
                 continue
             result[degree] += 1

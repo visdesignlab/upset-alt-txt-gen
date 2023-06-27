@@ -101,6 +101,13 @@ class Parser:
             info["card"] = item.get("size", self.default_field)
             # Deviation
             info["dev"] = item.get("deviation", self.default_field)
+            # Degree. This will be replaced when degree is added to the JSON export
+            # Current implementation is bugged if set names include spaces,
+            # but it's the only way to get set degree until added to the JSON
+            if info["name"] == self.default_field:
+                info["degree"] = None
+            else:
+                info["degree"] = info["name"].count(" ") + 1
             subsets.append(info)
 
         # List of set names

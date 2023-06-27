@@ -41,6 +41,11 @@ DESCRIPTIONS = {
             SortBy.DEGREE: "[[InUpSet]], [[sort_set_info]]. There are {{list_degree_info}}. ",
             SortBy.DEVIATION: "[[InUpSet]], [[sort_set_info]]. There are {{list_deviation_info}}. ",
         },
+        # Aggregation info is on hold for the summer. I initially created these to describe aggregations,
+        # but since only the multinet UpSet implementation supports aggregations, these are currently unused.
+        # Note that the current Parser.py implementation only supports parsing non-aggregated JSON. The format
+        # of the processedData field in the JSON changes when aggregation is introduced, so the parser also
+        # needs to be updated when these are re-added.
         "aggregation": {
             AggregateBy.SETS: "intersections are aggregated by set. "
             "There are {{list_set_info}}.",
@@ -98,12 +103,12 @@ DESCRIPTIONS = {
         # Number of visualized variables and their names
         "list_vars": "{{var_count}} variables are visualized- {{list_var_names}}",
         # Number of sets, non-empty intersections, and sort type
-        "sort_set_info": "{{set_count}} sets are visualized, with {{pop_intersect_count}} non-empty intersections,"
+        "sort_set_info": "{{set_count}} sets are visualized, with {{pop_intersect_count}} non-empty intersections, "
         "sorted by {{sort_type}}",
         # Largest 10 intersections and 10th percentile of intersections
         "int_max_min_set": "the largest 10 intersections are {{list_max_10int}}. "
-        "{{10perc_int_count}} sets fall below the 10th percentile for cardinality, "
-        "having less than {{10perc_int}} members",
+        "The 90th percentile for cardinality is {{90perc_card}}, and the 10th percentile "
+        "is {{10perc_card}}. ",
 
         ## Artifacts from Filemon- unused currently but may be re-added ##
         # Listing the biggest and smallest sets

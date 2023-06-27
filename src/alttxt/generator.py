@@ -31,7 +31,7 @@ class AltTxtGen:
     def text(self) -> str:
         text_desc = ""
 
-        # Get the description template for the level, granularity, sort, and aggregation
+        # Get the description template for the level, granularity, and sort
         match self.level:
             # L0 and L1 don't care about sort/aggregation
             case Level.ZERO:
@@ -45,10 +45,8 @@ class AltTxtGen:
                 ]
 
             case Level.TWO:
-                # L2 cares about sort
+                # L2 cares only about sort; aggregations are not implemented
                 text_desc = self.descriptions["level_2"]["sort"][self.grammar.sort_by]
-                # And aggregation
-                text_desc += self.descriptions["level_2"]["aggregation"][self.grammar.first_aggregate_by]
             case _:
                 raise TypeError(f"Expected {Level.list()}. Got {self.level}.")
 

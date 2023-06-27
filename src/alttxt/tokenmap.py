@@ -79,8 +79,11 @@ class TokenMap:
             # otherwise, counts populated aggregates
             "pop_intersect_count": len(self.data.subsets),
             "sort_type": self.grammar.sort_by,
-            # Errors on aggregated plots
+            # Currently raises an exception on aggregated plots
             "list_degree_info": self.list_degree_info,
+            # 10 largest intersections by cardinality
+            "list_max_10int": self.max_n_intersections(10),
+            # Number of intersections below the 10th percentile
         }
 
     ###############################
@@ -117,15 +120,16 @@ class TokenMap:
     #           Helpers           #
     ###############################
 
-    def sort_subsets_by_key(self, key: str) -> list:
+    def sort_subsets_by_key(self, key: str, descending: bool = True) -> list:
         """
         Returns the list of subsets from self.data.subsets,
         sorted by a specified key. The key must be a valid field
         in the dict or an error will be raised.
         Params:
           key: The key to sort by. Must be a valid string.
+          descending: Whether to sort in descending order
         """
-        return sorted(self.data.subsets, key=lambda x: x[key], reverse=True)
+        return sorted(self.data.subsets, key=lambda x: x[key], reverse=descending)
 
     def count_degrees(self, max_degree: int) -> list[int]:
         """
@@ -177,6 +181,26 @@ class TokenMap:
     ###############################
     #       Token functions       #
     ###############################
+
+    def max_n_intersections(self, n: int) -> str:
+        """
+        Returns a string listing the n largest intersections
+        by cardinality 
+        Params:
+          n: Number of sets to list
+        """
+        sort = self.sort_subsets_by_key("card", True)
+        result = ""
+        for i in range(0, n):
+            if n >= len(sort):
+                break
+
+            result += f"{sort[i]['name']}, "
+            if i == n - 2:
+                result += "and "
+
+        # Trim the trailing ', '
+        return result[:-2]
 
     def list_degree_info(self) -> str:
         """

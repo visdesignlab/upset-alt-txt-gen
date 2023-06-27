@@ -163,9 +163,9 @@ class TokenMap:
         of subsets with each degree, to a maximum degree of 50.
         If sets are aggregated by degree, this returns information
         about each degree aggregate: the degree, the number of sets,
-        If sets are aggregated by anything else, an error is raised,
-        as the processed data does not contain rich information about
-        degree in other cases.
+        If sets are aggregated by anything else, a warning message is returned,
+        as the implementation currently does not support listing degree info
+        for non-degree aggregation types.
         """
         result = ""
 
@@ -180,7 +180,7 @@ class TokenMap:
                 result += f"{agg['count']} subsets of degree {agg['name'].split(' ')[1]} "
                 "with total cardinality {agg['card']} and deviation {agg['dev']}; "
         else:
-            raise Exception("Cannot list degree info for data aggregated by anything other than degree")
+            return "(Cannot list degree info for non-degree aggregation types)"
 
         return result[:-2] # Remove trailing comma and space
 
@@ -215,7 +215,7 @@ class TokenMap:
         information about each set. Length varies depending on
         the number of sets. For use when the plot is aggregated by set
         """
-        pprint(self.data)
+        pass
 
     def list_max_dev_membership(self):
         """

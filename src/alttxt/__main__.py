@@ -42,13 +42,6 @@ def main(argv: Optional[list[str]] = None) -> int:
         help="Relative path to data file.",
     )
     parser.add_argument(
-        "-G",
-        "--grammar",
-        required=True,
-        type=Path,
-        help="Relative path to grammar file.",
-    )
-    parser.add_argument(
         "-l",
         "--level",
         type=Level,
@@ -67,8 +60,9 @@ def main(argv: Optional[list[str]] = None) -> int:
 
     args = parser.parse_args(argv)
 
+    
     rawdata = RawData(Path(args.data)).model
-    grammar = Grammar(Path(args.grammar)).model
+    grammar = Grammar(Path(args.data)).model
     tokenMap = TokenMap(rawdata, grammar, Orientation.VERTICAL)
     alttext = AltTxtGen(
         args.level, args.granularity, tokenMap, grammar
@@ -76,7 +70,7 @@ def main(argv: Optional[list[str]] = None) -> int:
 
     print(90 * "-")
     print(
-        f"DATASET={os.path.basename(args.data)}\tGRAMMAR={args.grammar}\tLEVEL={args.level.value}\tGRANULARITY={args.granularity.value}"
+        f"DATASET={os.path.basename(args.data)}\tLEVEL={args.level.value}\tGRANULARITY={args.granularity.value}"
     )
     print(90 * "-")
     print(alttext.text)

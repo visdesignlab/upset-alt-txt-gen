@@ -83,7 +83,10 @@ class TokenMap:
             "list_degree_info": self.list_degree_info,
             # 10 largest intersections by cardinality
             "list_max_10int": self.max_n_intersections(10),
-            # Number of intersections below the 10th percentile
+            # 90th percentile for cardinality
+            "90perc_card": self.get_subset_percentile("card", 90),
+            # 10th percentile for cardinality
+            "10perc_card": self.get_subset_percentile("card", 10),
         }
 
     ###############################

@@ -1,7 +1,8 @@
+from pprint import pprint
 from alttxt.models import DataModel
 from alttxt.models import GrammarModel
-from alttxt.types import FileType
 from alttxt.parser import Parser
+from alttxt.types import ParseType
 from pathlib import Path
 
 """
@@ -12,13 +13,16 @@ Models.py defines the fields necessary for each model.
 Each constructor takes a file path and returns a model.
 The 'model' property is used to make the data immutable after
 it has been parsed.
+
+Currently, only DataModel and GrammarModel are used-
+the others will likely be removed
 """
 Model = DataModel | GrammarModel
 
 
 class SetData:
     def __init__(self, file_path: Path) -> None:
-        self.data = Parser(file_path, FileType.SETDATA)._data
+        self.data = Parser(file_path).data
 
     @property
     def model(self) -> Model:
@@ -27,7 +31,7 @@ class SetData:
 
 class RawData:
     def __init__(self, file_path: Path) -> None:
-        self.data = Parser(file_path, FileType.RAWDATA)._data
+        self.data = Parser(file_path, ParseType.DATA).data
 
     @property
     def model(self) -> Model:
@@ -36,7 +40,7 @@ class RawData:
 
 class MatData:
     def __init__(self, file_path: Path) -> None:
-        self.data = Parser(file_path, FileType.MATDATA)._data
+        self.data = Parser(file_path).data
 
     @property
     def model(self) -> Model:
@@ -45,7 +49,7 @@ class MatData:
 
 class TblData:
     def __init__(self, file_path: Path) -> None:
-        self.data = Parser(file_path, FileType.TBLDATA)._data
+        self.data = Parser(file_path).data
 
     @property
     def model(self) -> Model:
@@ -54,7 +58,7 @@ class TblData:
 
 class Grammar:
     def __init__(self, file_path: Path) -> None:
-        self.grammar = Parser(file_path, FileType.GRAMMAR)._data
+        self.grammar = Parser(file_path, ParseType.GRAMMAR).data
 
     @property
     def model(self) -> Model:

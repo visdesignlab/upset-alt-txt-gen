@@ -65,6 +65,13 @@ class Orientation(Listable):
     HORIZONTAL = "horizontal"
     VERTICAL = "vertical"
 
+class ParseType(Listable):
+    """
+    Enum for the different parsing options
+    """
+    GRAMMAR = "grammar"
+    DATA = "data"
+
 
 class Dict(dict[Any, Any]):
     def __init__(self, dict_obj):

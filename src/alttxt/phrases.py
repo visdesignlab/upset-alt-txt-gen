@@ -31,8 +31,7 @@ DESCRIPTIONS = {
         "medium": "[[l1_low_desc]]. [[l1_med_desc]].",
         "high": "[[l1_low_desc]]. [[l1_med_desc]]. [[l1_high_desc]]",
     },
-    # L2 splits generation by sort and aggregation
-    # The phrases are designed so that the aggregation can be appended to the sort
+    # L2 splits generation by sort- verbosity is TBA
     "level_2": {
         "sort": {
             SortBy.CARDINALITY: "[[InUpSet]], [[sort_set_info]]. [[int_max_min_set]]. "

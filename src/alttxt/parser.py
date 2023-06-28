@@ -1,10 +1,10 @@
 import json
 from pprint import pprint
-from threading import ExceptHookArgs
 
 from alttxt.types import AggregateBy
 from alttxt.types import SortBy
 from alttxt.types import SortVisibleBy
+from alttxt.types import ParseType
 
 from alttxt.models import BookmarkedIntersectionModel
 from alttxt.models import DataModel
@@ -24,16 +24,16 @@ class Parser:
     """
     Handles parsing of data files into objects.
     """
-    def __init__(self, file_path: Path, file_type: FileType) -> None:
+    def __init__(self, file_path: Path, ptype: ParseType) -> None:
         # Default message for when a field cannot be found by the parser
         self.default_field = "(field not available)"
         
         # Now load the file and parse the data
-        self._data = self.load_file(file_path, file_type)
+        self.data = self.load_file(file_path, ptype)
 
-    def load_file(self, file_path: Path) -> Model:
+    def load_file(self, file_path: Path, ptype: ParseType) -> Model:
         """
-        Parses a data file into a model. The data file must be
+        Parses a data file into a DataModel and GrammarModel. The data file must be
         a JSON export from Multinet containing both state and data.
         """
         with open(file_path) as f:
@@ -43,8 +43,11 @@ class Parser:
             # which feeds the data to different functions based on the aggregation type
             if AggregateBy(data["firstAggregateBy"]) != AggregateBy.NONE:
                 raise Exception(f"Cannot parse aggregated data from file '{file_path}', please provide non-aggregated data.")
-
-            return self.parse_data_no_agg(data)
+            
+            if ptype == ParseType.DATA:
+                return self.parse_data_no_agg(data)
+            elif ptype == ParseType.GRAMMAR:
+                return self.parse_grammar(data)
 
     def query_devs(
         self,

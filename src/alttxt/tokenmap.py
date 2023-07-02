@@ -71,7 +71,6 @@ class TokenMap:
             "min_dev": min(self.data.devs),
             "list_max_dev_membership": self.list_max_dev_membership,
             "list_min_dev_membership": self.list_min_dev_membership,
-            "list_set_info": self.list_set_info,
             "avg_card": self.avg_card,
             "25perc_card": self.perc_card_25,
             "75perc_card": self.perc_card_75,
@@ -87,6 +86,10 @@ class TokenMap:
             "90perc_card": self.get_subset_percentile("card", 90),
             # 10th percentile for cardinality
             "10perc_card": self.get_subset_percentile("card", 10),
+            # Total number of attributes
+            "var_count": len(self.grammar.visible_atts),
+            # List of attribute names
+            "list_var_names": ", ".join(self.grammar.visible_atts),
         }
 
     ###############################
@@ -256,14 +259,6 @@ class TokenMap:
             count += 1
         
         return str(int(total / count))
-
-    def list_set_info(self):
-        """
-        Return a string containing a series of sentences with 
-        information about each set. Length varies depending on
-        the number of sets. For use when the plot is aggregated by set
-        """
-        pass
 
     def list_max_dev_membership(self):
         """

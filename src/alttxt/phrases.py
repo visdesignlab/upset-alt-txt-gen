@@ -38,7 +38,12 @@ DESCRIPTIONS = {
             "The average cardinality is {{avg_card}}, with a 25th percentile of "
             "{{25perc_card}} and a 75th percentile of {{75perc_card}}. ",
             SortBy.DEGREE: "[[InUpSet]], [[sort_set_info]]. There are {{list_degree_info}}. ",
-            SortBy.DEVIATION: "[[InUpSet]], [[sort_set_info]]. There are {{list_deviation_info}}. ",
+            SortBy.DEVIATION: "[[InUpSet]], [[sort_set_info]]. "
+            "{{pos_dev_count}} intersections have a positive deviation, with a total "
+            "cardinality of {{pos_dev_card}}. {{neg_dev_count}} have a "
+            "negative deviation, with a total cardinality of {{neg_dev_card}}. "
+            "The average positive deviation is {{avg_pos_dev}}, and the average "
+            "negative deviation is {{avg_neg_dev}}.",
         },
         # Aggregation info is on hold for the summer. I initially created these to describe aggregations,
         # but since only the multinet UpSet implementation supports aggregations, these are currently unused.
@@ -79,16 +84,16 @@ DESCRIPTIONS = {
         "l0_high_desc": "the first column shows which set intersection is visualized in that row. "
         "The second column shows the cardinality of each intersection. The third column shows "
         "the deviation of each set intersection, which represents how unexpected the cardinality "
-        "of an intersection is given the size of its constituent sets. The remaining {{col_count}} columns "
+        "of an intersection is given the size of its constituent sets. The remaining {{var_count}} columns "
         "show the average and quartiles of each variable from the dataset",
         # Title, caption, set list
-        "l1_low_desc": "[[title_capt]]. [[set_list]]",
+        "l1_low_desc": "[[title]]. [[set_list]]",
         # Number of non-empty intersections, max/min intersection size, and universal set size
         "l1_med_desc": "[[pop_intersections]]. [[max_min]], and [[universal_set_size]]",
         # Sort order and variable list
         "l1_high_desc": "[[sort_by]]. [[list_vars]]",
         # Title and caption
-        "title_capt": "this UpSet plot is titled {{title}} and captioned {{caption}}",
+        "title": "this UpSet plot is titled {{title}}",
         # Count and list set names
         "set_list": "{{set_count}} sets are displayed- {{list_set_names}}",
         # Number of non-empty intersections
@@ -98,7 +103,7 @@ DESCRIPTIONS = {
         # Total number of items in all sets
         "universal_set_size": "a total of {{universal_set_size}} items are represented in all sets",
         # Intersections are sorted by
-        "sort_by": "intersections are sorted by {{sort}}",
+        "sort_by": "intersections are sorted by {{sort_type}}",
         # Number of visualized variables and their names
         "list_vars": "{{var_count}} variables are visualized- {{list_var_names}}",
         # Number of sets, non-empty intersections, and sort type
@@ -107,7 +112,7 @@ DESCRIPTIONS = {
         # Largest 10 intersections and 10th percentile of intersections
         "int_max_min_set": "the largest 10 intersections are {{list_max_10int}}. "
         "The 90th percentile for cardinality is {{90perc_card}}, and the 10th percentile "
-        "is {{10perc_card}}. ",
+        "is {{10perc_card}}",
 
         ## Artifacts from Filemon- unused currently but may be re-added ##
         # Listing the biggest and smallest sets

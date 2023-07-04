@@ -102,8 +102,8 @@ class Parser:
             info["name"] = item.get("elementName", self.default_field)
             # Cardinality
             info["card"] = item.get("size", self.default_field)
-            # Deviation
-            info["dev"] = item.get("deviation", self.default_field)
+            # Deviation - rounded to 2 decimals
+            info["dev"] = round(item.get("deviation", self.default_field), 2)
             # Degree. This will be replaced when degree is added to the JSON export
             # Current implementation is bugged if set names include spaces,
             # but it's the only way to get set degree until added to the JSON

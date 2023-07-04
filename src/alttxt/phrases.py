@@ -34,9 +34,10 @@ DESCRIPTIONS = {
     # L2 splits generation by sort- verbosity is TBA
     "level_2": {
         "sort": {
-            SortBy.CARDINALITY: "[[InUpSet]], [[sort_set_info]]. [[int_max_min_set]]. "
-            "The average cardinality is {{avg_card}}, with a 25th percentile of "
-            "{{25perc_card}} and a 75th percentile of {{75perc_card}}. ",
+            SortBy.CARDINALITY: "[[InUpSet]], [[sort_set_info]]. [[largest_10_int]]. "
+            "The average cardinality is {{avg_card}}, with a 10th percentile of {{10perc_card}}, " 
+            "25th percentile of {{25perc_card}}, 75th percentile of {{75perc_card}}, "
+            "and a 90th percentile of {{90perc_card}}. ",
             SortBy.DEGREE: "[[InUpSet]], [[sort_set_info]]. There are {{list_degree_info}}. ",
             SortBy.DEVIATION: "[[InUpSet]], [[sort_set_info]]. "
             "{{pos_dev_count}} intersections have a positive deviation, with a total "
@@ -110,9 +111,7 @@ DESCRIPTIONS = {
         "sort_set_info": "{{set_count}} sets are visualized, with {{pop_intersect_count}} non-empty intersections, "
         "sorted by {{sort_type}}",
         # Largest 10 intersections and 10th percentile of intersections
-        "int_max_min_set": "the largest 10 intersections are {{list_max_10int}}. "
-        "The 90th percentile for cardinality is {{90perc_card}}, and the 10th percentile "
-        "is {{10perc_card}}",
+        "largest_10_int": "the largest 10 intersections are {{list_max_10int}}. ",
 
         ## Artifacts from Filemon- unused currently but may be re-added ##
         # Listing the biggest and smallest sets

@@ -52,10 +52,7 @@ class TokenMap:
         # Since functions are only executed on run, they can be used to
         # optimize by moving expensive tokens into fuctions.
         self.map = {
-            "set_count": len(self.data.sets),
-            "list_set_names": self.list_set_names,
-            "min_size": min(self.data.count),
-            "max_size": max(self.data.count),
+            ### Tokens from Filemon- I did not write these ###
             "x_inc": self.data.count[1] - self.data.count[0],
             # Total number of elements in all sets, counting duplicates multiple times
             "universal_set_size": sum(self.data.sizes.values()),
@@ -71,16 +68,31 @@ class TokenMap:
             "min_dev": min(self.data.devs),
             "list_max_dev_membership": self.list_max_dev_membership,
             "list_min_dev_membership": self.list_min_dev_membership,
+
+            ### Tokens from me ###
+            # Number of sets
+            "set_count": len(self.data.sets),
+            # List of set names
+            "list_set_names": self.list_set_names,
+            # Cardinality of the largest set/intersection
+            "min_size": min(self.data.count),
+            # Cardinality of the smallest set/intersection
+            "max_size": max(self.data.count),
+            # Average cardinality of all intersections
             "avg_card": self.avg_card,
-            "25perc_card": self.perc_card_25,
-            "75perc_card": self.perc_card_75,
+            # 25th percentile for cardinality
+            "25perc_card": self.get_subset_percentile("card", 25),
+            # 75th percentile for cardinality
+            "75perc_card": self.get_subset_percentile("card", 75),
             # Counts populated intersections for non-aggregated data;
             # otherwise, counts populated aggregates
             "pop_intersect_count": len(self.data.subsets),
+            # Sort type for intersections
             "sort_type": self.grammar.sort_by,
             # Currently raises an exception on aggregated plots
-            "list_degree_info": self.list_degree_info,
-            # 10 largest intersections by cardinality
+            "list_degree_info": self.degrees_info,
+            # 10 largest intersections by cardinality- 
+            # includes name, cardinality, deviation
             "list_max_10int": self.max_n_intersections(10),
             # 90th percentile for cardinality
             "90perc_card": self.get_subset_percentile("card", 90),
@@ -123,7 +135,7 @@ class TokenMap:
             raise Exception("Invalid token type: " + str(type(result)))
     
     ###############################
-    #           Helpers           #
+    #         Multi-Purpose       #
     ###############################
 
     def sort_subsets_by_key(self, key: str, descending: bool = True) -> list:
@@ -179,7 +191,7 @@ class TokenMap:
           field: The field to get the percentile of.
           perc: The percentile to get. Must be between 0 and 100.
         """
-        set_sort = self.sort_subsets_by_key(field)
+        set_sort = self.sort_subsets_by_key(field, False)
         index = int(len(set_sort) * perc / 100)
         return set_sort[index][field]
 
@@ -190,7 +202,7 @@ class TokenMap:
     def max_n_intersections(self, n: int) -> str:
         """
         Returns a string listing the n largest intersections
-        by cardinality 
+        by cardinality, including their name, cardinality, and deviation
         Params:
           n: Number of sets to list
         """
@@ -200,18 +212,16 @@ class TokenMap:
             if n >= len(sort):
                 break
 
-            result += f"{sort[i]['name']}, "
+            result += f"{sort[i]['name']} (cardinality {sort[i]['card']}, deviation {sort[i]['dev']}), "
             if i == n - 2:
                 result += "and "
 
         # Trim the trailing ', '
         return result[:-2]
 
-    def list_degree_info(self) -> str:
+    def degrees_info(self) -> str:
         """
-        Returns a string describing the degree of each set.
-        If sets are not aggregated, this simply counts the number
-        of subsets with each degree, to a maximum degree of 50.
+        Returns a string describing the number of subsets with each degree,
         If sets are aggregated by degree, this returns information
         about each degree aggregate: the degree, the number of sets,
         If sets are aggregated by anything else, a warning message is returned,
@@ -220,32 +230,12 @@ class TokenMap:
         """
         result = ""
 
-        if self.grammar.first_aggregate_by == AggregateBy.NONE:
-            for degree, count in enumerate(self.count_degrees(50)):
-                if count == 0:
-                    continue
-                result += f"{count} subsets with degree {degree}, "
-
-        elif self.grammar.first_aggregate_by == AggregateBy.DEGREE:
-            for agg in self.data.subsets:
-                result += f"{agg['count']} subsets of degree {agg['name'].split(' ')[1]} "
-                "with total cardinality {agg['card']} and deviation {agg['dev']}; "
-        else:
-            return "(Cannot list degree info for non-degree aggregation types)"
-
+        for degree, count in enumerate(self.count_degrees(50)):
+            if count == 0:
+                continue
+            result += f"{count} subsets with degree {degree}, "
+        
         return result[:-2] # Remove trailing comma and space
-
-    def perc_card_25(self) -> str:
-        """
-        Returns the 25th percentile of set cardinalities
-        """
-        return self.get_subset_percentile("card", 25)
-
-    def perc_card_75(self) -> str:
-        """
-        Returns the 75th percentile of set cardinalities
-        """
-        return self.get_subset_percentile("card", 75)
 
     def avg_card(self) -> str:
         """

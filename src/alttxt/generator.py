@@ -98,7 +98,18 @@ class AltTxtGen:
                 isToken = not isToken
             
             text = "".join(result)
-        
-        #TODO: Capitalize first letter of each sentence.
 
-        return text
+        return self.cap_sentences(text)
+
+    def cap_sentences(self, text: str) -> str:
+        """
+        Capitalize the first letter of each sentence in the provided string.
+        Not the most robust implementation; may produce incorrect capitalizations
+        after abbreviations, etc.
+        """
+        match = re.compile(r'((?<=[\.\?!]\s)(\w+)|(^\w+))')
+
+        def cap(match):
+            return match.group().capitalize()
+
+        return match.sub(cap, text)

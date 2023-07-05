@@ -114,6 +114,8 @@ class TokenMap:
             "avg_pos_dev": self.dev_info()["pos_avg"],
             # Average negative deviation
             "avg_neg_dev": self.dev_info()["neg_avg"],
+            # Sizes of visible sets, listed
+            "list_set_sizes": self.set_sizes,
         }
 
     ###############################
@@ -255,6 +257,23 @@ class TokenMap:
     ###############################
     #       Token functions       #
     ###############################
+
+    def set_sizes(self) -> str:
+        """
+        Returns string listing the size of each visible set.
+        String is formatted as follows:
+          "Set1: 10, Set2: 20, Set3: 30"
+        """
+        result = ""
+
+        for setID in self.grammar.visible_sets:
+            # Trim "Set_" from the setID if extant to make it match up with the name field
+            set_name = setID[4:] if setID.startswith("Set_") else setID
+            if set_name in self.data.sizes.keys():
+                result += f"{set_name}: {self.data.sizes[set_name]}, "
+
+        # Trim the trailing ', '
+        return result[:-2]
 
     def max_n_intersections(self, n: int) -> str:
         """

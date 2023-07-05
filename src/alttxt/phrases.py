@@ -96,7 +96,7 @@ DESCRIPTIONS = {
         # Title and caption
         "title": "this UpSet plot is titled {{title}}",
         # Count and list set names
-        "set_list": "{{set_count}} sets are displayed- {{list_set_names}}",
+        "set_list": "{{set_count}} sets are displayed- their names and sizes are: {{list_set_sizes}}",
         # Number of non-empty intersections
         "pop_intersections": "{{pop_intersect_count}} non-empty set intersections are visualized",
         # Set intersection size range
@@ -109,7 +109,7 @@ DESCRIPTIONS = {
         "list_vars": "{{var_count}} variables are visualized- {{list_var_names}}",
         # Number of sets, non-empty intersections, and sort type
         "sort_set_info": "{{set_count}} sets are visualized, with {{pop_intersect_count}} non-empty intersections, "
-        "sorted by {{sort_type}}",
+        "sorted by {{sort_type}}. Set names and sizes are: {{list_set_sizes}}",
         # Largest 10 intersections and 10th percentile of intersections
         "largest_10_int": "the largest 10 intersections are {{list_max_10int}}",
         # Average and 10th, 25th, 75th, and 90th percentile cardinalities

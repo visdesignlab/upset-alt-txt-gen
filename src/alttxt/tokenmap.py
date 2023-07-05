@@ -102,6 +102,18 @@ class TokenMap:
             "var_count": len(self.grammar.visible_atts),
             # List of attribute names
             "list_var_names": ", ".join(self.grammar.visible_atts),
+            # Number of intersections with positive deviation
+            "pos_dev_count": self.dev_info()["pos_count"],
+            # Number of intersections with negative deviation
+            "neg_dev_count": self.dev_info()["neg_count"],
+            # Total cardinality of positive deviation intersections
+            "pos_dev_card": self.dev_info()["pos_card_total"],
+            # Total cardinality of negative deviation intersections
+            "neg_dev_card": self.dev_info()["neg_card_total"],
+            # Average positive deviation
+            "avg_pos_dev": self.dev_info()["pos_avg"],
+            # Average negative deviation
+            "avg_neg_dev": self.dev_info()["neg_avg"],
         }
 
     ###############################
@@ -135,7 +147,7 @@ class TokenMap:
             raise Exception("Invalid token type: " + str(type(result)))
     
     ###############################
-    #         Multi-Purpose       #
+    #           Helpers           #
     ###############################
 
     def sort_subsets_by_key(self, key: str, descending: bool = True) -> list:
@@ -194,6 +206,51 @@ class TokenMap:
         set_sort = self.sort_subsets_by_key(field, False)
         index = int(len(set_sort) * perc / 100)
         return set_sort[index][field]
+
+    def dev_info(self) -> dict[str, float]:
+        """
+        Returns a dictionary containing information about deviation.
+        These overarching values are gathered only from non-empty intersections
+        whose deviation is not 0.
+        Dictionary keys:
+            "pos_count": number of intersections with positive deviation
+            "neg_count": number of intersections with negative deviation
+            "pos_avg": average positive deviation
+            "neg_avg": average negative deviation
+            "pos_card_total": total cardinality of positive deviations
+            "neg_card_total": total cardinality of negative deviations
+            "pos_card_avg": average cardinality of positive deviations
+            "neg_card_avg": average cardinality of negative deviations
+        """
+        pos_count = 0
+        neg_count = 0
+        pos_dev_total = 0
+        neg_dev_total = 0
+        pos_card_total = 0
+        neg_card_total = 0
+
+        for subset in self.data.subsets:
+            if subset["dev"] > 0:
+                pos_count += 1
+                pos_dev_total += subset["dev"]
+                pos_card_total += subset["card"]
+            elif subset["dev"] < 0:
+                neg_count += 1
+                neg_dev_total += subset["dev"]
+                neg_card_total += subset["card"]
+
+        return {
+            "pos_count": pos_count,
+            "neg_count": neg_count,
+            "pos_avg": pos_dev_total / pos_count if pos_count > 0 else 0,
+            "neg_avg": neg_dev_total / neg_count if neg_count > 0 else 0,
+            "pos_card_total": pos_card_total,
+            "neg_card_total": neg_card_total,
+            "pos_card_avg": pos_card_total / pos_count if pos_count > 0 else 0,
+            "neg_card_avg": neg_card_total / neg_count if neg_count > 0 else 0,
+        }
+
+
 
     ###############################
     #       Token functions       #

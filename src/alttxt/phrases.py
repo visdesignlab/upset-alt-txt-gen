@@ -33,19 +33,18 @@ DESCRIPTIONS = {
     },
     # L2 splits generation by sort- verbosity is TBA
     "level_2": {
-        "sort": {
-            SortBy.CARDINALITY: "[[InUpSet]], [[sort_set_info]]. [[largest_10_int]]. "
-            "The average cardinality is {{avg_card}}, with a 10th percentile of {{10perc_card}}, " 
-            "25th percentile of {{25perc_card}}, 75th percentile of {{75perc_card}}, "
-            "and a 90th percentile of {{90perc_card}}. ",
-            SortBy.DEGREE: "[[InUpSet]], [[sort_set_info]]. There are {{list_degree_info}}. ",
-            SortBy.DEVIATION: "[[InUpSet]], [[sort_set_info]]. "
-            "{{pos_dev_count}} intersections have a positive deviation, with a total "
-            "cardinality of {{pos_dev_card}}. {{neg_dev_count}} have a "
-            "negative deviation, with a total cardinality of {{neg_dev_card}}. "
-            "The average positive deviation is {{avg_pos_dev}}, and the average "
-            "negative deviation is {{avg_neg_dev}}.",
-        },
+        "low": {
+            SortBy.CARDINALITY: "",
+            SortBy.DEGREE: "",
+            SortBy.DEVIATION: "",
+            },
+        "medium": {
+                SortBy.CARDINALITY: "[[InUpSet]], [[sort_set_info]]. [[largest_10_int]]. [[card_percs]].",
+                SortBy.DEGREE: "[[InUpSet]], [[sort_set_info]]. [[degree_info]].",
+                SortBy.DEVIATION: "[[InUpSet]], [[sort_set_info]]. [[deviation_info]]",
+            },
+        "high": "[[InUpset]], [[sort_set_info]]. [[largest_10_int]]. [[card_percs]]. [[degree_info]]. [[deviation_info]]",
+        
         # Aggregation info is on hold for the summer. I initially created these to describe aggregations,
         # but since only the multinet UpSet implementation supports aggregations, these are currently unused.
         # Note that the current Parser.py implementation only supports parsing non-aggregated JSON. The format
@@ -67,6 +66,7 @@ DESCRIPTIONS = {
             "There are {{list_overlap_info}}",
             AggregateBy.NONE: "intersections are not aggregated. There are {{list_set_info}}.",
         },
+    # L3 note: observe which sets are not present in many large intersections
     },
     "symbols": {
         # "This is an UpSet plot"
@@ -111,7 +111,19 @@ DESCRIPTIONS = {
         "sort_set_info": "{{set_count}} sets are visualized, with {{pop_intersect_count}} non-empty intersections, "
         "sorted by {{sort_type}}",
         # Largest 10 intersections and 10th percentile of intersections
-        "largest_10_int": "the largest 10 intersections are {{list_max_10int}}. ",
+        "largest_10_int": "the largest 10 intersections are {{list_max_10int}}",
+        # Average and 10th, 25th, 75th, and 90th percentile cardinalities
+        "card_percs": "the average cardinality is {{avg_card}}, with a 10th percentile of {{10perc_card}}, "
+        "25th percentile of {{25perc_card}}, 75th percentile of {{75perc_card}}, "
+        "and 90th percentile of {{90perc_card}}",
+        # Degree info list,
+        "degree_info": "there are {{list_degree_info}}",
+        # Deviation info, split by positive and negative deviations
+        "deviation_info": "{{pos_dev_count}} intersections have a positive deviation, with a total "
+        "cardinality of {{pos_dev_card}}. {{neg_dev_count}} have a "
+        "negative deviation, with a total cardinality of {{neg_dev_card}}. "
+        "The average positive deviation is {{avg_pos_dev}}, and the average "
+        "negative deviation is {{avg_neg_dev}}",
 
         ## Artifacts from Filemon- unused currently but may be re-added ##
         # Listing the biggest and smallest sets

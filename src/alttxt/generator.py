@@ -45,8 +45,13 @@ class AltTxtGen:
                 ]
 
             case Level.TWO:
-                # L2 cares only about sort; aggregations are not implemented
-                text_desc = self.descriptions["level_2"]["sort"][self.grammar.sort_by]
+                # Only low and medium care about sort; high is always the same
+                if self.granularity != Granularity.HIGH:
+                    text_desc = self.descriptions["level_2"]\
+                        [self.granularity.value][self.grammar.sort_by]
+                else:
+                    text_desc = self.descriptions["level_2"]["high"]
+                
             case _:
                 raise TypeError(f"Expected {Level.list()}. Got {self.level}.")
 

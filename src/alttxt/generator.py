@@ -104,7 +104,8 @@ class AltTxtGen:
             
             text = "".join(result)
 
-        return self.cap_sentences(text)
+        # Capitalize the first letter of each sentence, and add a period to the end
+        return self.cap_sentences(text) + "."
 
     def cap_sentences(self, text: str) -> str:
         """

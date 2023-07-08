@@ -38,10 +38,6 @@ class TokenMap:
         self.max_sets, self.max_size = self.data.membs[_max_idx], max(self.data.count)
         self.min_sets, self.min_size = self.data.membs[_min_idx], min(self.data.count)
         self.total_data = sum(self.data.count)
-        self.max_set = max(self.data.sizes, key=self.data.sizes.get)
-        self.min_set = min(self.data.sizes, key=self.data.sizes.get)
-        self.max_set_size = self.data.sizes[self.max_set]
-        self.min_set_size = self.data.sizes[self.min_set]
         self.total_set_size = sum(self.data.sizes.values())
 
         # This defines the mapping of tokens to strings/functions
@@ -60,10 +56,6 @@ class TokenMap:
             "max_perc": str(round(100 * self.max_size / self.total_data, 2)) + "%",
             "list_max_membership": self.list_max_membership,
             "list_min_membership": self.list_min_membership,
-            "list_max_set_name": self.max_set,
-            "list_min_set_name": self.min_set,
-            "max_set_perc": str(round(100 * self.max_set_size / self.total_set_size, 2)) + "%",
-            "min_set_perc": str(round(100 * self.min_set_size / self.total_set_size, 2)) + "%",
             "max_dev": max(self.data.devs),
             "min_dev": min(self.data.devs),
             "list_max_dev_membership": self.list_max_dev_membership,
@@ -184,8 +176,8 @@ class TokenMap:
         if self.grammar.first_aggregate_by != AggregateBy.NONE:
             raise Exception("Cannot count degrees on aggregated data")
 
-        result: list[int] = [0] * (max_degree + 1) # Add 1 so that max_degree is included
-        result[0] = 1
+        degree_count: list[int] = [0] * (max_degree + 1) # Add 1 so that max_degree is included
+        degree_count[0] = 1
 
         for subset in self.data.subsets:
             if subset["name"] == "Unincluded":
@@ -194,9 +186,9 @@ class TokenMap:
             degree = subset["degree"]
             if degree > max_degree:
                 continue
-            result[degree] += 1
+            degree_count[degree] += 1
         
-        return result
+        return degree_count
 
     def get_subset_percentile(self, field: str, perc: int) -> Any:
         """

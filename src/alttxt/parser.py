@@ -4,7 +4,6 @@ from pprint import pprint
 from alttxt.types import AggregateBy
 from alttxt.types import SortBy
 from alttxt.types import SortVisibleBy
-from alttxt.types import ParseType
 
 from alttxt.models import BookmarkedIntersectionModel
 from alttxt.models import DataModel
@@ -16,39 +15,46 @@ from pathlib import Path
 from collections import Counter
 from typing import Any
 
-
-Model = DataModel | GrammarModel
-
-
 class Parser:
     """
     Handles parsing of data files into objects.
     """
-    def __init__(self, file_path: Path, ptype: ParseType) -> None:
+    def __init__(self, file_path: Path) -> None:
         # Default message for when a field cannot be found by the parser
         self.default_field = "(field not available)"
         
         # Now load the file and parse the data
-        self.data = self.load_file(file_path, ptype)
+        self.data: dict[str, dict[str, Any]] = self.load_data(file_path)
 
-    def load_file(self, file_path: Path, ptype: ParseType) -> Model:
+    def get_grammar(self) -> GrammarModel:
         """
-        Parses a data file into a DataModel and GrammarModel. The data file must be
-        a JSON export from Multinet containing both state and data.
+        Parses the grammar data from the JSON export from the UpSet Multinet implementation 
+        into a GrammarModel. 
+        """
+        return self.parse_grammar(self.data)
+    
+    def get_data(self) -> DataModel:
+        """
+        Parses the data from the JSON export from the UpSet Multinet implementation 
+        into a DataModel. 
+        """
+        return self.parse_data_no_agg(self.data)
+
+    def load_data(self, file_path: Path) -> dict[str, dict[str, Any]]:
+        """
+        Loads a data file into JSON to be parsed. 
+        Raises an exception if the file is aggregated.
         """
         with open(file_path) as f:
-            data = json.load(f)
+            data: dict[str, dict[str, Any]] = json.load(f)
             # Currently aggregated data is unsupported.
             # When support is added, this should change to a match statement
             # which feeds the data to different functions based on the aggregation type
             if AggregateBy(data["firstAggregateBy"]) != AggregateBy.NONE:
                 raise Exception(f"Cannot parse aggregated data from file '{file_path}', please provide non-aggregated data.")
             
-            if ptype == ParseType.DATA:
-                return self.parse_data_no_agg(data)
-            elif ptype == ParseType.GRAMMAR:
-                return self.parse_grammar(data)
-
+            return data
+        
     def query_devs(
         self,
         membs: list[frozenset[str]],
@@ -74,7 +80,7 @@ class Parser:
         devs = list(map(lambda dev: round(100 * dev, 1), devs))
         return devs
 
-    def parse_data_no_agg(self, data: dict[str, dict[str, Any]]) -> Model:
+    def parse_data_no_agg(self, data: dict[str, dict[str, Any]]) -> DataModel:
         """
         Responsible for parsing non-aggregated data from the JSON export 
         from the UpSet Multinet implementation. Other functions in this
@@ -143,7 +149,7 @@ class Parser:
         )
         return data_model
 
-    def parse_grammar(self, grammar: dict[str, Any]) -> Model:
+    def parse_grammar(self, grammar: dict[str, Any]) -> GrammarModel:
         """
         Parses the state data from the JSON export from the UpSet Multinet implementation 
         into a GrammarModel. 

@@ -1,11 +1,12 @@
 import argparse
+from lib2to3.pgen2 import grammar
 import os
 from pprint import pprint
 import sys
 
-from alttxt.generic import Grammar
-from alttxt.generic import RawData
 from alttxt.generator import AltTxtGen
+from alttxt.models import DataModel, GrammarModel
+from alttxt.parser import Parser
 from alttxt.tokenmap import TokenMap
 
 from alttxt.types import Granularity
@@ -61,9 +62,12 @@ def main(argv: Optional[list[str]] = None) -> int:
     args = parser.parse_args(argv)
 
     
-    rawdata = RawData(Path(args.data)).model
-    grammar = Grammar(Path(args.data)).model
-    tokenMap = TokenMap(rawdata, grammar, Orientation.VERTICAL)
+    upset_parser: Parser = Parser(Path(args.data))
+    grammar: GrammarModel = upset_parser.get_grammar()
+    data: DataModel = upset_parser.get_data()
+
+    tokenMap = TokenMap(data, grammar, Orientation.VERTICAL)
+    
     alttext = AltTxtGen(
         args.level, args.granularity, tokenMap, grammar
     )

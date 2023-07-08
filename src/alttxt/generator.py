@@ -29,7 +29,7 @@ class AltTxtGen:
 
     @property
     def text(self) -> str:
-        text_desc = ""
+        text_desc: str = ""
 
         # Get the description template for the level, granularity, and sort
         match self.level:

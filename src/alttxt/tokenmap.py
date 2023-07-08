@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Any
+from typing import Any, Callable, Tuple
 from alttxt.models import DataModel
 from alttxt.models import GrammarModel
 
@@ -47,7 +47,7 @@ class TokenMap:
         # whereas more complex tokens are done in functions.
         # Since functions are only executed on run, they can be used to
         # optimize by moving expensive tokens into fuctions.
-        self.map = {
+        self.map: dict[str, str | float | int | Callable[[], str] | Enum] = {
             ### Tokens from Filemon- I did not write these ###
             "x_inc": self.data.count[1] - self.data.count[0],
             # Total number of elements in all sets, counting duplicates multiple times
@@ -81,8 +81,10 @@ class TokenMap:
             "pop_intersect_count": len(self.data.subsets),
             # Sort type for intersections
             "sort_type": self.grammar.sort_by,
-            # Currently raises an exception on aggregated plots
-            "list_degree_info": self.degrees_info,
+            # Number of intersections of each degree
+            "list_degree_count": self.degree_count,
+            # Number of intersections of each degree, their average cardinality, and their average deviation
+            "list_degree_info": self.degree_str,
             # 10 largest intersections by cardinality- 
             # includes name, cardinality, deviation
             "list_max_10int": self.max_n_intersections(10),
@@ -126,7 +128,7 @@ class TokenMap:
             # Substitute single curly braces so that the while loop doesn't go forever
             return "{" + token + "}"
 
-        result = self.map[token]
+        result: Any = self.map[token]
         if type(result) == float:
             return str(round(result, 2))
         elif type(result) == int:
@@ -155,40 +157,59 @@ class TokenMap:
         """
         return sorted(self.data.subsets, key=lambda x: x[key], reverse=descending)
 
-    def count_degrees(self, max_degree: int) -> list[int]:
+    def degree_info(self, max_degree: int) -> Tuple[list[int], list[float], list[float]]:
         """
-        Returns information about how many set intersections have
-        a given degree. The index of the returned list is the degree,
-        and the value is the number of intersections with that degree.
+        Returns information about intersections of degrees up to max_degree.
+        The information, in order, is:
+            - The number of intersections of each degree
+            - The average cardinality of intersections of each degree
+            - The average deviation of intersections of each degree
         
-        The unincluded subset is the only one with degree 0, 
-        so the 0 index is always 1.
-
         This function only works if the data is not aggregated. 
-        If called with data that has been aggregated, it will raise.
         Params:
             max_degree: The maximum degree to count to.
             Intersections with a degree greater than this are ignored.
-            The returned list will have length max_degree + 1. Since
-            the list is initialized with all 0s, all degree counts are accurate,
+            The returned lists will have length max_degree + 1. Since
+            the lists are initialized with all 0s, all degree counts are accurate,
             but far more may be included than necessary.
+        Returns:
+            A tuple containing the three lists, 
+            where the list index corresponds to the degree.
+            For the first list, 
+            the value at an index is the number of intersections with that degree.
+            For the second list, 
+            the value at an index is the average cardinality of intersections with that degree.
+            For the third list, 
+            the value at an index is the average deviation of intersections with that degree.
         """
-        if self.grammar.first_aggregate_by != AggregateBy.NONE:
-            raise Exception("Cannot count degrees on aggregated data")
 
-        degree_count: list[int] = [0] * (max_degree + 1) # Add 1 so that max_degree is included
+        # 1 is added to each so that the max degree is included
+        card: list[float] = [0.0] * (max_degree + 1)
+        dev: list[float] = [0.0] * (max_degree + 1)
+        degree_count: list[int] = [0] * (max_degree + 1)
         degree_count[0] = 1
 
+        # Total all three values
         for subset in self.data.subsets:
             if subset["name"] == "Unincluded":
-                continue
+                card[0] += subset["card"]
+                dev[0] += subset["dev"]
             
             degree = subset["degree"]
             if degree > max_degree:
                 continue
             degree_count[degree] += 1
+            card[degree] += subset["card"]
+            dev[degree] += subset["dev"]
         
-        return degree_count
+        # Convert totals to averages
+        for i in range(1, max_degree + 1):
+            if degree_count[i] != 0:
+                card[i] /= degree_count[i]
+                dev[i] /= degree_count[i]
+            # No need for else since the lists are initialized with 0s            
+
+        return degree_count, card, dev
 
     def get_subset_percentile(self, field: str, perc: int) -> Any:
         """
@@ -287,23 +308,36 @@ class TokenMap:
         # Trim the trailing ', '
         return result[:-2]
 
-    def degrees_info(self) -> str:
+    def degree_count(self) -> str:
         """
-        Returns a string describing the number of subsets with each degree,
-        If sets are aggregated by degree, this returns information
-        about each degree aggregate: the degree, the number of sets,
-        If sets are aggregated by anything else, a warning message is returned,
-        as the implementation currently does not support listing degree info
-        for non-degree aggregation types.
-        """
-        result = ""
+        Returns a string describing the number of subsets with each degree.
 
-        for degree, count in enumerate(self.count_degrees(50)):
+        """
+        result: str = ""
+
+        for degree, count in enumerate(self.degree_info(20)[0]):
             if count == 0:
                 continue
             result += f"{count} subsets with degree {degree}, "
         
         return result[:-2] # Remove trailing comma and space
+
+    def degree_str(self) -> str:
+        """
+        Returns a string describing the number of intersections of each degree,
+        their average cardinality, and their average deviation.
+        Maximum degree listed is 20.
+        """
+        result: str = ""
+        count, card, dev = self.degree_info(20)
+
+        # Start at 1 to skip the 0-degree/unincluded intersection
+        for i in range(1, len(count)):
+            if count[i] == 0:
+                continue
+            result += f"{count[i]} subsets with degree {i} (cardinality {round(card[i], 2)}, deviation {round(dev[i], 2)}), "
+        
+        return result[:-2]
 
     def avg_card(self) -> str:
         """

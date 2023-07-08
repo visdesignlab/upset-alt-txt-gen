@@ -117,7 +117,8 @@ DESCRIPTIONS = {
         "25th percentile of {{25perc_card}}, 75th percentile of {{75perc_card}}, "
         "and 90th percentile of {{90perc_card}}",
         # Degree info list,
-        "degree_info": "there are {{list_degree_info}}",
+        "degree_info": "number of intersections of each degree, their average cardinality, "
+        "and their average deviation are as follows: {{list_degree_info}}",
         # Deviation info, split by positive and negative deviations
         "deviation_info": "{{pos_dev_count}} intersections have a positive deviation, with a total "
         "cardinality of {{pos_dev_card}}. {{neg_dev_count}} have a "

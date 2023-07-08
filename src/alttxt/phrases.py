@@ -43,7 +43,7 @@ DESCRIPTIONS = {
                 SortBy.DEGREE: "[[InUpSet]], [[sort_set_info]]. [[degree_info]].",
                 SortBy.DEVIATION: "[[InUpSet]], [[sort_set_info]]. [[deviation_info]]",
             },
-        "high": "[[InUpset]], [[sort_set_info]]. [[largest_10_int]]. [[card_percs]]. [[degree_info]]. [[deviation_info]]",
+        "high": "[[InUpSet]], [[sort_set_info]]. [[largest_10_int]]. [[card_percs]]. [[degree_info]]. [[deviation_info]]",
         
         # Aggregation info is on hold for the summer. I initially created these to describe aggregations,
         # but since only the multinet UpSet implementation supports aggregations, these are currently unused.

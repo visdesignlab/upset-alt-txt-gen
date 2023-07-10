@@ -124,7 +124,9 @@ DESCRIPTIONS = {
         "cardinality of {{pos_dev_card}}. {{neg_dev_count}} have a "
         "negative deviation, with a total cardinality of {{neg_dev_card}}. "
         "The average positive deviation is {{avg_pos_dev}}, and the average "
-        "negative deviation is {{avg_neg_dev}}",
+        "negative deviation is {{avg_neg_dev}}. [[dev_outliers]]",
+        # Outliers for deviation
+        "dev_outliers": "the largest 10 absolute deviations are {{list10_dev_outliers}}",
 
         ## Artifacts from Filemon- unused currently but may be re-added ##
         # Listing the biggest and smallest sets

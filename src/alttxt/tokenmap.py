@@ -1,4 +1,5 @@
 from enum import Enum
+import re
 from typing import Any, Callable, Tuple
 from alttxt.models import DataModel
 from alttxt.models import GrammarModel
@@ -110,6 +111,8 @@ class TokenMap:
             "avg_neg_dev": self.dev_info()["neg_avg"],
             # Sizes of visible sets, listed
             "list_set_sizes": self.set_sizes,
+            # 10 largest deviations, listed
+            "list10_dev_outliers": self.dev_outliers(10),
         }
 
     ###############################
@@ -265,11 +268,30 @@ class TokenMap:
             "neg_card_avg": neg_card_total / neg_count if neg_count > 0 else 0,
         }
 
-
-
     ###############################
     #       Token functions       #
     ###############################
+
+    def dev_outliers(self, n: int) -> str:
+        """
+        Returns a string listing the n largest intersections by absolute deviation,
+        including the set name and its deviation
+        """
+        pos_sort: list[dict[str, Any]] = self.sort_subsets_by_key("dev", True)
+        neg_sort: list[dict[str, Any]] = self.sort_subsets_by_key("dev", False)
+
+        result: str = ""
+        for i in range(0, n):
+            if abs(pos_sort[0]["dev"]) >= abs(neg_sort[0]["dev"]):
+                next_int: dict[str, Any] = pos_sort.pop(0)
+            else:
+                next_int: dict[str, Any] = neg_sort.pop(0)
+
+            result += f"{next_int['name']} (deviation {next_int['dev']}), "
+
+        # Trim the trailing ', '
+        return result[:-2]
+            
 
     def set_sizes(self) -> str:
         """

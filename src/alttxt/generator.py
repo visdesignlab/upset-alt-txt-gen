@@ -68,8 +68,8 @@ class AltTxtGen:
 
         # First, loop until all non-terminals are replaced.
         while "[[" in text:
-            tokens = re.split(r"\[\[|\]\]", text)
-            isToken = text.startswith("[[")
+            tokens: list[str] = re.split(r"\[\[|\]\]", text)
+            isToken: bool = text.startswith("[[")
             result = list()
 
             # Bugfix for empty first token throwing off count

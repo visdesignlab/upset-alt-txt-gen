@@ -3,8 +3,9 @@ import re
 from typing import Any, Callable, Tuple
 from alttxt.models import DataModel
 from alttxt.models import GrammarModel
+from alttxt.models import Subset
 
-from alttxt.types import AggregateBy, Orientation
+from alttxt.types import AggregateBy, Orientation, SubsetField
 
 from pprint import pprint
 
@@ -56,9 +57,9 @@ class TokenMap:
             # Average cardinality of all intersections
             "avg_card": self.avg_card,
             # 25th percentile for cardinality
-            "25perc_card": self.get_subset_percentile("card", 25),
+            "25perc_card": self.get_subset_percentile(SubsetField.CARDINALITY, 25),
             # 75th percentile for cardinality
-            "75perc_card": self.get_subset_percentile("card", 75),
+            "75perc_card": self.get_subset_percentile(SubsetField.CARDINALITY, 75),
             # Counts populated intersections 
             "pop_intersect_count": len(self.data.subsets),
             # Sort type for intersections
@@ -73,9 +74,9 @@ class TokenMap:
             # Largest 5 intersections by cardinality, including name, cardinality, deviation
             "list_max_5int": self.max_n_intersections(5),
             # 90th percentile for cardinality
-            "90perc_card": self.get_subset_percentile("card", 90),
+            "90perc_card": self.get_subset_percentile(SubsetField.CARDINALITY, 90),
             # 10th percentile for cardinality
-            "10perc_card": self.get_subset_percentile("card", 10),
+            "10perc_card": self.get_subset_percentile(SubsetField.CARDINALITY, 10),
             # Total number of attributes
             "var_count": len(self.grammar.visible_atts),
             # List of attribute names
@@ -132,16 +133,16 @@ class TokenMap:
     #           Helpers           #
     ###############################
 
-    def sort_subsets_by_key(self, key: str, descending: bool = True) -> list:
+    def sort_subsets_by_key(self, key: SubsetField, descending: bool = True) -> list[Subset]:
         """
         Returns the list of subsets from self.data.subsets,
         sorted by a specified key. The key must be a valid field
         in the dict or an error will be raised.
         Params:
-          key: The key to sort by. Must be a valid string.
+          key: The key to sort by. Must be a valid field in the Subset class.
           descending: Whether to sort in descending order
         """
-        return sorted(self.data.subsets, key=lambda x: x[key], reverse=descending)
+        return sorted(self.data.subsets, key=lambda x: getattr(x, key.value), reverse=descending)
 
     def degree_info(self, max_degree: int) -> Tuple[list[int], list[float], list[float]]:
         """
@@ -177,16 +178,16 @@ class TokenMap:
 
         # Total all three values
         for subset in self.data.subsets:
-            if subset["name"] == "Unincluded":
-                card[0] += subset["card"]
-                dev[0] += subset["dev"]
+            if subset.name == "Unincluded":
+                card[0] += subset.size
+                dev[0] += subset.dev
             
-            degree = subset["degree"]
+            degree = subset.degree
             if degree > max_degree:
                 continue
             degree_count[degree] += 1
-            card[degree] += subset["card"]
-            dev[degree] += subset["dev"]
+            card[degree] += subset.size
+            dev[degree] += subset.dev
         
         # Convert totals to averages
         for i in range(1, max_degree + 1):
@@ -197,7 +198,7 @@ class TokenMap:
 
         return degree_count, card, dev
 
-    def get_subset_percentile(self, field: str, perc: int) -> Any:
+    def get_subset_percentile(self, field: SubsetField, perc: int) -> Any:
         """
         Gets a percentile value for a specific field in this.data.subsets.
         Params:
@@ -206,7 +207,7 @@ class TokenMap:
         """
         set_sort = self.sort_subsets_by_key(field, False)
         index = int(len(set_sort) * perc / 100)
-        return set_sort[index][field]
+        return getattr(set_sort[index], field.value)
 
     def dev_info(self) -> dict[str, float]:
         """
@@ -231,14 +232,14 @@ class TokenMap:
         neg_card_total = 0
 
         for subset in self.data.subsets:
-            if subset["dev"] > 0:
+            if subset.dev > 0:
                 pos_count += 1
-                pos_dev_total += subset["dev"]
-                pos_card_total += subset["card"]
-            elif subset["dev"] < 0:
+                pos_dev_total += subset.dev
+                pos_card_total += subset.size
+            elif subset.dev < 0:
                 neg_count += 1
-                neg_dev_total += subset["dev"]
-                neg_card_total += subset["card"]
+                neg_dev_total += subset.dev
+                neg_card_total += subset.size
 
         return {
             "pos_count": pos_count,
@@ -260,17 +261,17 @@ class TokenMap:
         Returns a string listing the n largest intersections by absolute deviation,
         including the set name and its deviation
         """
-        pos_sort: list[dict[str, Any]] = self.sort_subsets_by_key("dev", True)
-        neg_sort: list[dict[str, Any]] = self.sort_subsets_by_key("dev", False)
+        pos_sort: list[Subset] = self.sort_subsets_by_key(SubsetField.DEVIATION, True)
+        neg_sort: list[Subset] = self.sort_subsets_by_key(SubsetField.DEVIATION, False)
 
         result: str = ""
         for i in range(0, n):
-            if abs(pos_sort[0]["dev"]) >= abs(neg_sort[0]["dev"]):
-                next_int: dict[str, Any] = pos_sort.pop(0)
+            if abs(pos_sort[0].dev) >= abs(neg_sort[0].dev):
+                next_int: Subset = pos_sort.pop(0)
             else:
-                next_int: dict[str, Any] = neg_sort.pop(0)
+                next_int: Subset = neg_sort.pop(0)
 
-            result += f"{next_int['name']} (deviation {next_int['dev']}), "
+            result += f"{next_int.name} (deviation {next_int.dev}), "
 
         # Trim the trailing ', '
         return result[:-2]
@@ -300,13 +301,13 @@ class TokenMap:
         Params:
           n: Number of sets to list
         """
-        sort = self.sort_subsets_by_key("card", True)
+        sort = self.sort_subsets_by_key(SubsetField.CARDINALITY, True)
         result = ""
         for i in range(0, n):
             if n >= len(sort):
                 break
 
-            result += f"{sort[i]['name']} (cardinality {sort[i]['card']}, deviation {sort[i]['dev']}), "
+            result += f"{sort[i].name} (cardinality {sort[i].size}, deviation {sort[i].dev}), "
             if i == n - 2:
                 result += "and "
 
@@ -352,7 +353,7 @@ class TokenMap:
         count: int = 0
         total: int = 0
         for intersection in self.data.subsets:
-            total += intersection["card"]
+            total += intersection.size
             count += 1
         
         return str(int(total / count))

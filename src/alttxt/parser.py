@@ -5,7 +5,7 @@ from alttxt.types import AggregateBy
 from alttxt.types import SortBy
 from alttxt.types import SortVisibleBy
 
-from alttxt.models import BookmarkedIntersectionModel
+from alttxt.models import BookmarkedIntersectionModel, Subset
 from alttxt.models import DataModel
 from alttxt.models import FilterModel
 from alttxt.models import GrammarModel
@@ -76,23 +76,22 @@ class Parser:
         sizes: dict[str, int] = {}
         
         # Dictionary mapping sets/intersections/aggregations to information about them        
-        subsets: list[dict[str, Any]] = []
+        subsets: list[Subset] = []
         for item in data["processedData"]["values"].values():
-            info = dict()
             # Name of the set/intersection/aggregation- a list of set names in the case of intersections
-            info["name"] = item.get("elementName", self.default_field)
+            name = item.get("elementName", self.default_field)
             # Cardinality
-            info["card"] = item.get("size", self.default_field)
+            size = item.get("size", self.default_field)
             # Deviation - rounded to 2 decimals
-            info["dev"] = round(item.get("deviation", self.default_field), 2)
+            dev = round(item.get("deviation", self.default_field), 2)
             # Degree. This will be replaced when degree is added to the JSON export
             # Current implementation is bugged if set names include spaces,
             # but it's the only way to get set degree until added to the JSON
-            if info["name"] == self.default_field:
-                info["degree"] = None
+            if name == self.default_field:
+                degree = -1
             else:
-                info["degree"] = info["name"].count(" ") + 1
-            subsets.append(info)
+                degree = name.count(" ") + 1
+            subsets.append(Subset(name=name, size=size, dev=dev, degree=degree))
 
         # List of set names
         sets_: list[str] = []

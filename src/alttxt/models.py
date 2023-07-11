@@ -5,6 +5,18 @@ from pydantic import BaseModel
 from typing import Any
 
 
+class Subset(BaseModel):
+    """
+    This represents a single intersection between two sets,
+    which is displayed as a row in the UpSet plot.
+    Any field changes/additions need to be reflected in the
+    SubsetField enum in types.py.
+    """
+    name: str
+    size: int # Cardinality
+    dev: float # Deviation
+    degree: int # Set to -1 if parser fails to find degree
+
 class DataModel(BaseModel):
     """
     For holding data from the "rawData" and "processedData" fields
@@ -14,7 +26,7 @@ class DataModel(BaseModel):
     count: list[int]
     sets: list[str]
     sizes: dict[str, int]
-    subsets: list[dict[str, Any]]
+    subsets: list[Subset]
 
 
 class FilterModel(BaseModel):

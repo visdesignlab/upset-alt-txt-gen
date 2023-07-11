@@ -25,6 +25,18 @@ class Level(Listable):
     def __str__(self) -> str:
         return self.value
 
+class SubsetField(Listable):
+    """
+    Enum for the different attributes of the subset class,
+    used for sort functions and similar which need to
+    take an attribute as a parameter to sort by.
+    Any changes to the Subset class need to be reflected here.
+    """
+    NAME = "name"
+    CARDINALITY = "size"
+    DEVIATION = "dev"
+    DEGREE = "degree"
+
 
 class AggregateBy(Listable):
     """

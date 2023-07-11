@@ -41,9 +41,9 @@ DESCRIPTIONS = {
         "medium": {
                 SortBy.CARDINALITY: "[[InUpSet]], [[sort_set_info]]. [[largest_10_int]]. [[card_percs]].",
                 SortBy.DEGREE: "[[InUpSet]], [[sort_set_info]]. [[degree_info]].",
-                SortBy.DEVIATION: "[[InUpSet]], [[sort_set_info]]. [[deviation_info]]",
+                SortBy.DEVIATION: "[[InUpSet]], [[sort_set_info]]. [[deviation_info]]. [[dev_outliers]].",
             },
-        "high": "[[InUpSet]], [[sort_set_info]]. [[largest_10_int]]. [[card_percs]]. [[degree_info]]. [[deviation_info]]",
+        "high": "[[InUpSet]], [[sort_set_info]]. [[largest_10_int]]. [[card_percs]]. [[degree_info]]. [[deviation_info]]. [[dev_outliers]].",
         
         # Aggregation info is on hold for the summer. I initially created these to describe aggregations,
         # but since only the multinet UpSet implementation supports aggregations, these are currently unused.
@@ -124,7 +124,7 @@ DESCRIPTIONS = {
         "cardinality of {{pos_dev_card}}. {{neg_dev_count}} have a "
         "negative deviation, with a total cardinality of {{neg_dev_card}}. "
         "The average positive deviation is {{avg_pos_dev}}, and the average "
-        "negative deviation is {{avg_neg_dev}}. [[dev_outliers]]",
+        "negative deviation is {{avg_neg_dev}}",
         # Outliers for deviation
         "dev_outliers": "the largest 10 absolute deviations are {{list10_dev_outliers}}",
 

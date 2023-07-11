@@ -4,7 +4,7 @@ import re
 from alttxt import phrases
 from alttxt.models import GrammarModel
 
-from alttxt.types import Granularity, Level
+from alttxt.types import Verbosity, Level
 from alttxt.tokenmap import TokenMap
 
 
@@ -12,12 +12,12 @@ class AltTxtGen:
     def __init__(
         self,
         level: Level,
-        granularity: Granularity,
+        verbosity: Verbosity,
         map: TokenMap,
         grammar: GrammarModel,
     ) -> None:
         self.descriptions = phrases.DESCRIPTIONS
-        self.granularity = granularity
+        self.verbosity = verbosity
         self.level = level
         self.map = map
         self.grammar = grammar
@@ -30,24 +30,24 @@ class AltTxtGen:
     def text(self) -> str:
         text_desc: str = ""
 
-        # Get the description template for the level, granularity, and sort
+        # Get the description template for the level, verbosity, and sort
         match self.level:
             # L0 and L1 don't care about sort/aggregation
             case Level.ZERO:
                 text_desc = self.descriptions["level_0"][
-                    self.granularity.value
+                    self.verbosity.value
                 ]
 
             case Level.ONE:
                 text_desc = self.descriptions["level_1"][
-                    self.granularity.value
+                    self.verbosity.value
                 ]
 
             case Level.TWO:
                 # Only low and medium care about sort; high is always the same
-                if self.granularity != Granularity.HIGH:
+                if self.verbosity != Verbosity.HIGH:
                     text_desc = self.descriptions["level_2"]\
-                        [self.granularity.value][self.grammar.sort_by]
+                        [self.verbosity.value][self.grammar.sort_by]
                 else:
                     text_desc = self.descriptions["level_2"]["high"]
                 

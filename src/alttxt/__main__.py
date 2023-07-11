@@ -9,7 +9,7 @@ from alttxt.models import DataModel, GrammarModel
 from alttxt.parser import Parser
 from alttxt.tokenmap import TokenMap
 
-from alttxt.types import Granularity
+from alttxt.types import Verbosity
 from alttxt.types import Level
 from alttxt.types import Orientation
 
@@ -52,11 +52,11 @@ def main(argv: Optional[list[str]] = None) -> int:
     )
     parser.add_argument(
         "-g",
-        "--granularity",
-        type=Granularity,
-        choices=list(Granularity),
-        default=Granularity.MEDIUM,
-        help="Alt-text granularity. Defaults to %(default)s.",
+        "--verbosity",
+        type=Verbosity,
+        choices=list(Verbosity),
+        default=Verbosity.MEDIUM,
+        help="Alt-text verbosity. Defaults to %(default)s.",
     )
 
     args = parser.parse_args(argv)
@@ -69,12 +69,12 @@ def main(argv: Optional[list[str]] = None) -> int:
     tokenMap = TokenMap(data, grammar, Orientation.VERTICAL)
     
     alttext = AltTxtGen(
-        args.level, args.granularity, tokenMap, grammar
+        args.level, args.verbosity, tokenMap, grammar
     )
 
     print(90 * "-")
     print(
-        f"DATASET={os.path.basename(args.data)}\tLEVEL={args.level.value}\tGRANULARITY={args.granularity.value}"
+        f"DATASET={os.path.basename(args.data)}\tLEVEL={args.level.value}\tGRANULARITY={args.verbosity.value}"
     )
     print(90 * "-")
     print(alttext.text)

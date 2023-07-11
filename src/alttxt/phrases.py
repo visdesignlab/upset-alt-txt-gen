@@ -7,8 +7,8 @@ also referred to as a grammar.
 
 Syntax:
 The "level_x" keys denote the semantic level of the contained descriptions.
-Within the level keys, the "low", "medium", and "high" keys denote the granularity, 
-AKA verbosity, of the contained grammar. These level/granularity combinations
+Within the level keys, the "low", "medium", and "high" keys denote the verbosity, 
+AKA verbosity, of the contained grammar. These level/verbosity combinations
 are used as start symbols, with the specific combination being chosen by command-line args.
 Each starting phrase contains a variety of symbols. Terminal symbols are enclosed in {{}}.
 Non-terminal symbols are enclosed in [[]]. Terminal symbols are evaluated by the TokenMap

@@ -8,7 +8,7 @@ class Listable(Enum):
     def list(cls) -> list[Enum]:
         return list(v.value for v in cls)
 
-class Granularity(Listable):
+class Verbosity(Listable):
     LOW = "low"
     MEDIUM = "medium"
     HIGH = "high"

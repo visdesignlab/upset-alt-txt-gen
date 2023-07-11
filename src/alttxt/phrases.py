@@ -43,29 +43,7 @@ DESCRIPTIONS = {
                 SortBy.DEGREE: "[[InUpSet]], [[sort_set_info]]. [[set_names_sizes]]. [[degree_info]].",
                 SortBy.DEVIATION: "[[InUpSet]], [[sort_set_info]]. [[set_names_sizes]]. [[deviation_info]]. [[dev_outliers]].",
             },
-        "high": "[[InUpSet]], [[sort_set_info]]. [[set_names_sizes]]. [[largest_10_int]]. [[card_percs]]. [[degree_info]]. [[deviation_info]]. [[dev_outliers]].",
-        
-        # Aggregation info is on hold for the summer. I initially created these to describe aggregations,
-        # but since only the multinet UpSet implementation supports aggregations, these are currently unused.
-        # Note that the current Parser.py implementation only supports parsing non-aggregated JSON. The format
-        # of the processedData field in the JSON changes when aggregation is introduced, so the parser also
-        # needs to be updated when these are re-added.
-        "aggregation": {
-            AggregateBy.SETS: "intersections are aggregated by set. "
-            "There are {{list_set_info}}.",
-            AggregateBy.DEGREE: "intersections are aggregated by degree. "
-            "There are {{list_degree_info}}.",
-            AggregateBy.DEVIATION: "intersections are aggregated by deviation. "
-            "{{count_pos_dev}} have a positive deviation, with a total "
-            "cardinality of {{pos_dev_card}}. {{count_neg_dev}} have a "
-            "negative deviation, with a total cardinality of {{neg_dev_card}}. "
-            "The aggregation of positive deviations has an overall deviation of "
-            "{{pos_dev_dev}}, while the aggregation of negative deviations "
-            "has an overall deviation of {{neg_dev_dev}}.",
-            AggregateBy.OVERLAP: "intersections are aggregated by overlaps of degree {{agg_degree}}. "
-            "There are {{list_overlap_info}}",
-            AggregateBy.NONE: "intersections are not aggregated. There are {{list_set_info}}.",
-        },
+        "high": "[[InUpSet]], [[sort_set_info]]. [[set_names_sizes]]. [[largest_10_int]]. [[card_percs]]. [[degree_info]]. [[deviation_info]]. [[dev_outliers]].",    
     # L3 note: observe which sets are not present in many large intersections
     },
     "symbols": {

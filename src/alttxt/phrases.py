@@ -1,4 +1,3 @@
-from alttxt.types import AggregateBy
 from alttxt.types import SortBy
 
 """

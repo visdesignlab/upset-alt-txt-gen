@@ -1,15 +1,8 @@
 import json
 from pprint import pprint
 
-from alttxt.types import AggregateBy
-from alttxt.types import SortBy
-from alttxt.types import SortVisibleBy
-
-from alttxt.models import BookmarkedIntersectionModel, Subset
-from alttxt.models import DataModel
-from alttxt.models import FilterModel
-from alttxt.models import GrammarModel
-from alttxt.models import PlotModel
+from alttxt.types import AggregateBy, SortBy, SortVisibleBy
+from alttxt.models import BookmarkedIntersectionModel, Subset, DataModel, FilterModel, GrammarModel, PlotModel
 
 from pathlib import Path
 from collections import Counter

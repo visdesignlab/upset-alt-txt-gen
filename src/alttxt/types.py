@@ -1,5 +1,5 @@
 import re
-from enum import auto, Enum
+from enum import Enum
 from typing import Any
 
 

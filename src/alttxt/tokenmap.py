@@ -1,11 +1,6 @@
-from enum import Enum
-import re
 from typing import Any, Callable, Tuple
-from alttxt.models import DataModel
-from alttxt.models import GrammarModel
-from alttxt.models import Subset
-
-from alttxt.types import AggregateBy, Orientation, SubsetField
+from alttxt.models import DataModel, GrammarModel, Subset
+from alttxt.types import Orientation, SubsetField
 
 from pprint import pprint
 

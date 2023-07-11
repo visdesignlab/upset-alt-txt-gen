@@ -4,8 +4,7 @@ import re
 from alttxt import phrases
 from alttxt.models import GrammarModel
 
-from alttxt.types import Granularity
-from alttxt.types import Level
+from alttxt.types import Granularity, Level
 from alttxt.tokenmap import TokenMap
 
 

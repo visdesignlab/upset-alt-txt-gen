@@ -21,7 +21,7 @@ class TokenMap:
     it is not responsible for the actual substitution of tokens
     or the overall generation of the text description.
     """
-    def __init__(self, data: DataModel, grammar: GrammarModel, orientation: Orientation )-> None:
+    def __init__(self, data: DataModel, grammar: GrammarModel, orientation: Orientation ) -> None:
         """
         Initialize the Grammar class. Note that internal values 
         are not recomputed if the data or grammar are changed.
@@ -31,15 +31,7 @@ class TokenMap:
         """
         self.data = data
         self.grammar = grammar
-
-        # Computations for commonly-used values are done here
-        # and stored as class attributes.
-        _max_idx = self.data.count.index(max(self.data.count))
-        _min_idx = self.data.count.index(min(self.data.count))
-        self.max_sets, self.max_size = self.data.membs[_max_idx], max(self.data.count)
-        self.min_sets, self.min_size = self.data.membs[_min_idx], min(self.data.count)
-        self.total_data = sum(self.data.count)
-        self.total_set_size = sum(self.data.sizes.values())
+        self.orientation = orientation
 
         # This defines the mapping of tokens to strings/functions
         # As with the rest of this class, the curly braces surrounding
@@ -48,21 +40,9 @@ class TokenMap:
         # whereas more complex tokens are done in functions.
         # Since functions are only executed on run, they can be used to
         # optimize by moving expensive tokens into fuctions.
-        self.map: dict[str, str | float | int | Callable[[], str] | Enum] = {
-            ### Tokens from Filemon- I did not write these ###
-            "x_inc": self.data.count[1] - self.data.count[0],
-            # Total number of elements in all sets, counting duplicates multiple times
+        self.map: dict[str, str | float | int | Callable[[], str]] = {
+            # Total number of elements in all sets, duplicates appear to be counted
             "universal_set_size": sum(self.data.sizes.values()),
-            "min_perc": str(round(100 * self.min_size / self.total_data, 2)) + "%",
-            "max_perc": str(round(100 * self.max_size / self.total_data, 2)) + "%",
-            "list_max_membership": self.list_max_membership,
-            "list_min_membership": self.list_min_membership,
-            "max_dev": max(self.data.devs),
-            "min_dev": min(self.data.devs),
-            "list_max_dev_membership": self.list_max_dev_membership,
-            "list_min_dev_membership": self.list_min_dev_membership,
-
-            ### Tokens from me ###
             # Number of sets
             "set_count": len(self.data.sets),
             # Number of visible sets
@@ -82,7 +62,7 @@ class TokenMap:
             # Counts populated intersections 
             "pop_intersect_count": len(self.data.subsets),
             # Sort type for intersections
-            "sort_type": self.grammar.sort_by,
+            "sort_type": self.grammar.sort_by.value,
             # Number of intersections of each degree
             "list_degree_count": self.degree_count,
             # Number of intersections of each degree, their average cardinality, and their average deviation
@@ -145,8 +125,6 @@ class TokenMap:
             return result
         elif callable(result):
             return result()
-        elif issubclass(type(result), Enum):
-            return str(result.value)
         else:
             raise Exception("Invalid token type: " + str(type(result)))
     
@@ -378,52 +356,6 @@ class TokenMap:
             count += 1
         
         return str(int(total / count))
-
-    def list_max_dev_membership(self):
-        """
-        Return the union of sets that has the highest deviation
-        from its expected cardinality
-        """
-        _max_dev_idx = self.data.devs.index(self.map["max_dev"])
-        max_dev_set = self.data.membs[_max_dev_idx]
-        
-        if len(max_dev_set) > 1:
-            return ", ".join(list(max_dev_set)[:-1]) + " and " + list(max_dev_set)[-1]
-        else:
-            return list(max_dev_set)[0]
-
-    def list_min_dev_membership(self):
-        """
-        Return the union of sets that has the lowest deviation
-        from its expected cardinality
-        """
-        _min_dev_idx = self.data.devs.index(self.map["min_dev"])
-        min_dev_set = self.data.membs[_min_dev_idx]
-    
-        if len(min_dev_set) > 1:
-            return ", ".join(list(min_dev_set)[:-1]) + " and " + list(min_dev_set)[-1]
-        else:
-            return list(min_dev_set)[0]
-
-    def list_max_membership(self) -> str:
-        """
-        Returns a string of the set names with the maximum number of
-        memberships, separated by commas, with the last two separated by "and".
-        """
-        if len(self.max_sets) > 1:
-            return ", ".join(list(self.max_sets)[:-1]) + " and " + list(self.max_sets)[-1]
-        else:
-            return list(self.max_sets)[0]
-
-    def list_min_membership(self) -> str:
-        """
-        Returns a string of the set names with the minimum number of
-        memberships, separated by commas, with the last two separated by "and".
-        """
-        if len(self.min_sets) > 1:
-            return ", ".join(list(self.min_sets)[:-1]) + " and " + list(self.min_sets)[-1]
-        else:
-            return list(self.min_sets)[0]
 
     def list_set_names(self) -> str:
         """

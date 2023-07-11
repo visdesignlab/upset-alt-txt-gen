@@ -54,31 +54,6 @@ class Parser:
                 raise Exception(f"Cannot parse aggregated data from file '{file_path}', please provide non-aggregated data.")
             
             return data
-        
-    def query_devs(
-        self,
-        membs: list[frozenset[str]],
-        count: list[int],
-        sets: list[str],
-        sizes: dict[str, int],
-    ) -> list[float]:
-        """
-        Computes the `disproportionality` w.r.t. expected `count`.
-        Assumes marginal independence of the sets. Weakly adapted
-        from Lex et al `UpSet: Visualizing Intersecting Sets`.
-        """
-        devs = [0.0] * len(membs)
-        nval = sum(count)
-        for i, membership in enumerate(membs):
-            devs[i] = count[i] / nval
-            residue = 1.0
-            for set_ in membership:
-                residue *= sizes[set_] / nval
-            for set_ in filter(lambda set_: set_ not in membership, sets):
-                residue *= 1 - sizes[set_] / nval
-            devs[i] -= residue
-        devs = list(map(lambda dev: round(100 * dev, 1), devs))
-        return devs
 
     def parse_data_no_agg(self, data: dict[str, dict[str, Any]]) -> DataModel:
         """
@@ -122,12 +97,12 @@ class Parser:
         # List of set names
         sets_: list[str] = []
         for set_ in data["rawData"]["sets"].values():
-            set_name = set_["elementName"]
+            set_name: str = set_["elementName"]
             sizes[set_name] = set_["size"]
             sets_.append(set_name)
 
         # List of all members (data points) of the sets
-        membs = []
+        membs: list[frozenset[str]] = []
         for elem in data["rawData"]["items"].values():
             membership = frozenset(
                 [
@@ -143,9 +118,8 @@ class Parser:
         count = list(Counter(membs).values())
         membs = list(Counter(membs).keys())
         # Initialize deviations
-        devs = self.query_devs(membs, count, sets_, sizes)
         data_model = DataModel(
-            membs=membs, sets=sets_, sizes=sizes, count=count, devs=devs, subsets=subsets
+            membs=membs, sets=sets_, sizes=sizes, count=count, subsets=subsets
         )
         return data_model
 

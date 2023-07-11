@@ -130,17 +130,5 @@ DESCRIPTIONS = {
         "negative deviation is {{avg_neg_dev}}",
         # Outliers for deviation
         "dev_outliers": "the largest 10 absolute deviations are {{list10_dev_outliers}}",
-
-        ## Artifacts from Filemon- unused currently but may be re-added ##
-        # Listing the biggest and smallest sets
-        "multi_max_min_card": "set membership comprised of {{list_max_membership}} "
-        "have the highest total cardinality, totaling {{max_perc}} of these. "
-        "In contrast, set membership consisting of {{list_min_membership}} "
-        "has the lowest cardinality, amounting barely {{min_perc}} of all memberships",
-        # Max and min singleton set
-        "max_min_card": "the singleton set comprised of {{list_max_set_name}} has "
-        "the highest cardinality, totaling {{max_set_perc}} of the entire dataset. "
-        "However, the singleton set comprised of {{list_min_set_name}} "
-        "has the lowest cardinality, amounting only {{min_set_perc}} of the dataset",
     },
 }

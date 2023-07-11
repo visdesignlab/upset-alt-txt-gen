@@ -14,7 +14,6 @@ class DataModel(BaseModel):
     count: list[int]
     sets: list[str]
     sizes: dict[str, int]
-    devs: list[float]
     subsets: list[dict[str, Any]]
 
 

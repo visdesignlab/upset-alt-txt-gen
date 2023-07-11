@@ -37,7 +37,7 @@ class PlotModel(BaseModel):
 
 
 class GrammarModel(BaseModel):
-    # TODO: Uncomment these if re-added
+    # TODO: Uncomment these if added to the JSON export
     #caption: str
     #title: str
     first_aggregate_by: AggregateBy

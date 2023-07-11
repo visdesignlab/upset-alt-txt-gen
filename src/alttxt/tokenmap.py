@@ -65,6 +65,8 @@ class TokenMap:
             ### Tokens from me ###
             # Number of sets
             "set_count": len(self.data.sets),
+            # Number of visible sets
+            "visible_set_count": len(self.grammar.visible_sets),
             # List of set names
             "list_set_names": self.list_set_names,
             # Cardinality of the largest set/intersection
@@ -77,8 +79,7 @@ class TokenMap:
             "25perc_card": self.get_subset_percentile("card", 25),
             # 75th percentile for cardinality
             "75perc_card": self.get_subset_percentile("card", 75),
-            # Counts populated intersections for non-aggregated data;
-            # otherwise, counts populated aggregates
+            # Counts populated intersections 
             "pop_intersect_count": len(self.data.subsets),
             # Sort type for intersections
             "sort_type": self.grammar.sort_by,
@@ -89,6 +90,8 @@ class TokenMap:
             # 10 largest intersections by cardinality- 
             # includes name, cardinality, deviation
             "list_max_10int": self.max_n_intersections(10),
+            # Largest 5 intersections by cardinality, including name, cardinality, deviation
+            "list_max_5int": self.max_n_intersections(5),
             # 90th percentile for cardinality
             "90perc_card": self.get_subset_percentile("card", 90),
             # 10th percentile for cardinality
@@ -113,6 +116,8 @@ class TokenMap:
             "list_set_sizes": self.set_sizes,
             # 10 largest deviations, listed
             "list10_dev_outliers": self.dev_outliers(10),
+            # 5 largest deviations, listed
+            "list5_dev_outliers": self.dev_outliers(5),
         }
 
     ###############################

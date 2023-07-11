@@ -34,16 +34,16 @@ DESCRIPTIONS = {
     # L2 splits generation by sort- verbosity is TBA
     "level_2": {
         "low": {
-            SortBy.CARDINALITY: "",
-            SortBy.DEGREE: "",
-            SortBy.DEVIATION: "",
+            SortBy.CARDINALITY: "[[InUpSet]], [[sort_set_info]]. The largest 5 intersections are {{list_max_5int}}.",
+            SortBy.DEGREE: "[[InUpSet]], [[sort_set_info]]. There are {{list_degree_count}}.",
+            SortBy.DEVIATION: "[[InUpSet]], [[sort_set_info]]. The largest 5 absolute deviations are {{list5_dev_outliers}}.",
             },
         "medium": {
-                SortBy.CARDINALITY: "[[InUpSet]], [[sort_set_info]]. [[largest_10_int]]. [[card_percs]].",
-                SortBy.DEGREE: "[[InUpSet]], [[sort_set_info]]. [[degree_info]].",
-                SortBy.DEVIATION: "[[InUpSet]], [[sort_set_info]]. [[deviation_info]]. [[dev_outliers]].",
+                SortBy.CARDINALITY: "[[InUpSet]], [[sort_set_info]]. [[set_names_sizes]]. [[largest_10_int]]. [[card_percs]].",
+                SortBy.DEGREE: "[[InUpSet]], [[sort_set_info]]. [[set_names_sizes]]. [[degree_info]].",
+                SortBy.DEVIATION: "[[InUpSet]], [[sort_set_info]]. [[set_names_sizes]]. [[deviation_info]]. [[dev_outliers]].",
             },
-        "high": "[[InUpSet]], [[sort_set_info]]. [[largest_10_int]]. [[card_percs]]. [[degree_info]]. [[deviation_info]]. [[dev_outliers]].",
+        "high": "[[InUpSet]], [[sort_set_info]]. [[set_names_sizes]]. [[largest_10_int]]. [[card_percs]]. [[degree_info]]. [[deviation_info]]. [[dev_outliers]].",
         
         # Aggregation info is on hold for the summer. I initially created these to describe aggregations,
         # but since only the multinet UpSet implementation supports aggregations, these are currently unused.
@@ -96,7 +96,7 @@ DESCRIPTIONS = {
         # Title and caption
         "title": "this UpSet plot is titled {{title}}",
         # Count and list set names
-        "set_list": "{{set_count}} sets are displayed- their names and sizes are: {{list_set_sizes}}",
+        "set_list": "{{visible_set_count}} sets are displayed- their names and sizes are: {{list_set_sizes}}",
         # Number of non-empty intersections
         "pop_intersections": "{{pop_intersect_count}} non-empty set intersections are visualized",
         # Set intersection size range
@@ -108,8 +108,11 @@ DESCRIPTIONS = {
         # Number of visualized variables and their names
         "list_vars": "{{var_count}} variables are visualized- {{list_var_names}}",
         # Number of sets, non-empty intersections, and sort type
-        "sort_set_info": "{{set_count}} sets are visualized, with {{pop_intersect_count}} non-empty intersections, "
-        "sorted by {{sort_type}}. Set names and sizes are: {{list_set_sizes}}",
+        "sort_set_info": "{{visible_set_count}} sets are displayed out of {{set_count}} total, "
+        "with {{pop_intersect_count}} non-empty intersections, "
+        "sorted by {{sort_type}}",
+        # Number of sets and their sizes
+        "set_names_sizes": "set names and sizes are: {{list_set_sizes}}",
         # Largest 10 intersections and 10th percentile of intersections
         "largest_10_int": "the largest 10 intersections are {{list_max_10int}}",
         # Average and 10th, 25th, 75th, and 90th percentile cardinalities

@@ -1,15 +1,30 @@
-from alttxt.types_ import AggregateBy
-from alttxt.types_ import SortBy
-from alttxt.types_ import SortVisibleBy
+from alttxt.types import AggregateBy, SortBy, SortVisibleBy
 from pydantic import BaseModel
+from typing import Any
 
+
+class Subset(BaseModel):
+    """
+    This represents a single intersection between two sets,
+    which is displayed as a row in the UpSet plot.
+    Any field changes/additions need to be reflected in the
+    SubsetField enum in types.py.
+    """
+    name: str
+    size: int # Cardinality
+    dev: float # Deviation
+    degree: int # Set to -1 if parser fails to find degree
 
 class DataModel(BaseModel):
+    """
+    For holding data from the "rawData" and "processedData" fields
+    of the JSON data file.
+    """
     membs: list[frozenset[str]]
     count: list[int]
     sets: list[str]
     sizes: dict[str, int]
-    devs: list[float]
+    subsets: list[Subset]
 
 
 class FilterModel(BaseModel):
@@ -31,8 +46,9 @@ class PlotModel(BaseModel):
 
 
 class GrammarModel(BaseModel):
-    caption: str
-    title: str
+    # TODO: Uncomment these if added to the JSON export
+    #caption: str
+    #title: str
     first_aggregate_by: AggregateBy
     second_aggregate_by: AggregateBy
     first_overlap_degree: int

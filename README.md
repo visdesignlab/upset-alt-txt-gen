@@ -19,12 +19,12 @@ Transactions on Visualization & Computer Graphics (Proc. IEEE VIS).
 
 To run the alt-text-gen program, run `python3 [path/to/generator.py] --data [path/to/data] --grammar [path/to/grammar]`. See [Command Line Options](#command-line-options) for more information.
 
-To run the program with the example data, run `python [path/to/alttxt directory] --data ../../data/simpson.json --grammar ../../data/grammar.json --level 2 --granularity medium` while in the `src/alttxt` directory.
+To run the program with the example data, run `python [path/to/alttxt directory] --data ../../data/movie_data_card_sort.json --level 2 --verbosity medium` while in the `src/alttxt` directory.
 Level and granularity can be changed to any of the options listed in [Command Line Options](#command-line-options).
 
 ## Local Testing
 
-Local testing can be done using the `tox` command.
+Local testing can be done using the `tox` command. Tests have not been updated to match the latest updates to the repository, and updating them is currently on hold, as deployment is a priority over robustness.
 
 - Linting: To run the linting tests, run `tox -e lint`
 - Type: To run the type tests, run `tox -e type`
@@ -42,4 +42,4 @@ To run the entire suite of tests at once, use `tox`.
 | `-D`, `--data`        | (Required) Relative path to data file.                                        |
 | `-G`, `--grammar`     | (Required) Relative path to grammar file.                                     |
 | `-l`, `--level`       | Semantic level. Defaults to `1`. Options are: `0`, `1`, `2`, and `3`.         |
-| `-g`, `--granularity` | Alt-text granularity. Defaults to `medium`. Options: `low`, `medium`, `high`. |
+| `-g`, `--verbosity`   | Alt-text verbosity. Defaults to `medium`. Options: `low`, `medium`, `high`.   |

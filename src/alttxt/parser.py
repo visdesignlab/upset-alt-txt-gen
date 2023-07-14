@@ -11,13 +11,20 @@ from typing import Any
 class Parser:
     """
     Handles parsing of data files into objects.
+    Params:
+    - data: Path to the data file to be parsed, or a dictionary containing the data parsed from JSON.
     """
-    def __init__(self, file_path: Path) -> None:
+    def __init__(self, data: Path | dict[str, dict[str, Any]]) -> None:
         # Default message for when a field cannot be found by the parser
         self.default_field = "(field not available)"
         
         # Now load the file and parse the data
-        self.data: dict[str, dict[str, Any]] = self.load_data(file_path)
+        if type(data) is Path:
+            self.data: dict[str, dict[str, Any]] = self.load_data(data)
+        elif type(data) is dict[str, dict[str, Any]]:
+            self.data = data
+        else:
+            raise Exception(f"Invalid data format: {type(data)} should be Path or dict[str, dict[str, Any]]")
 
     def get_grammar(self) -> GrammarModel:
         """

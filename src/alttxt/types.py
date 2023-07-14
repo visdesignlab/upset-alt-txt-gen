@@ -1,5 +1,5 @@
 import re
-from enum import auto, Enum
+from enum import Enum
 from typing import Any
 
 
@@ -8,16 +8,7 @@ class Listable(Enum):
     def list(cls) -> list[Enum]:
         return list(v.value for v in cls)
 
-
-class FileType(Listable):
-    SETDATA = auto()
-    RAWDATA = auto()
-    MATDATA = auto()
-    TBLDATA = auto()
-    GRAMMAR = auto()
-
-
-class Granularity(Listable):
+class Verbosity(Listable):
     LOW = "low"
     MEDIUM = "medium"
     HIGH = "high"
@@ -30,27 +21,53 @@ class Level(Listable):
     ZERO = "0"
     ONE = "1"
     TWO = "2"
-    THREE = "3"
 
     def __str__(self) -> str:
         return self.value
 
+class SubsetField(Listable):
+    """
+    Enum for the different attributes of the subset class,
+    used for sort functions and similar which need to
+    take an attribute as a parameter to sort by.
+    Any changes to the Subset class need to be reflected here.
+    """
+    NAME = "name"
+    CARDINALITY = "size"
+    DEVIATION = "dev"
+    DEGREE = "degree"
+
 
 class AggregateBy(Listable):
+    """
+    Enum for the different aggregation options.
+    Strings need to be kept up-to-date with any changes
+    to the MultiNet implementation's export format.
+    """
     DEGREE = "Degree"
     SETS = "Sets"
-    DEVIATION = "Deviation"
-    OVERLAPS = "Overlaps"
+    DEVIATION = "Deviations"
+    OVERLAP = "Overlaps"
     NONE = "None"
 
 
 class SortBy(Listable):
+    """
+    Enum for the different sorting options.
+    Strings need to be kept up-to-date with any changes
+    to the MultiNet implementation's export format.
+    """
     DEGREE = "Degree"
     CARDINALITY = "Cardinality"
     DEVIATION = "Deviation"
 
 
 class SortVisibleBy(Listable):
+    """
+    Enum for the different sorting options.
+    Strings need to be kept up-to-date with any changes
+    to the MultiNet implementation's export format.
+    """
     ALPHABETICAL = "Alphabetical"
     ASCENDING = "Ascending"
     DESCENDING = "Descending"

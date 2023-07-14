@@ -9,7 +9,6 @@ src/alttxt.egg-info/
 src/alttxt/__pycache__/
 tests/__pycache__/
 build/
-.vs/
-env/
-dist/
-
+/.vs
+/dist
+/env

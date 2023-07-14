@@ -1,138 +1,129 @@
 import json
+from pprint import pprint
 
-from alttxt.types_ import AggregateBy
-from alttxt.types_ import FileType
-from alttxt.types_ import SortBy
-from alttxt.types_ import SortVisibleBy
-
-from alttxt.models import BookmarkedIntersectionModel
-from alttxt.models import DataModel
-from alttxt.models import FilterModel
-from alttxt.models import GrammarModel
-from alttxt.models import PlotModel
+from alttxt.types import AggregateBy, SortBy, SortVisibleBy
+from alttxt.models import BookmarkedIntersectionModel, Subset, DataModel, FilterModel, GrammarModel, PlotModel
 
 from pathlib import Path
 from collections import Counter
 from typing import Any
 
-
-Model = DataModel | GrammarModel
-
-
 class Parser:
-    def __init__(self, file_path: Path, file_type: FileType) -> None:
-        self._data = self.load_file(file_path, file_type)
+    """
+    Handles parsing of data files into objects.
+    """
+    def __init__(self, file_path: Path) -> None:
+        # Default message for when a field cannot be found by the parser
+        self.default_field = "(field not available)"
+        
+        # Now load the file and parse the data
+        self.data: dict[str, dict[str, Any]] = self.load_data(file_path)
 
-    def load_file(self, file_path: Path, file_type: FileType) -> Model:
-        match file_type:
-            case FileType.SETDATA:
-                with open(file_path) as f:
-                    setdata = f.read().splitlines()
-                    parsed_data = self.__parse_setdata(setdata)
-
-            case FileType.RAWDATA:
-                with open(file_path) as f:
-                    rawdata = json.load(f)
-                    parsed_data = self.__parse_rawdata(rawdata)
-
-            case FileType.GRAMMAR:
-                with open(file_path) as f:
-                    grammar = json.load(f)
-                    parsed_data = self.__parse_grammar(grammar)
-
-            case FileType.MATDATA:
-                with open(file_path) as f:
-                    matdata = json.load(f)
-                    parsed_data = self.__parse_matdata(matdata)
-
-            case FileType.TBLDATA:
-                with open(file_path) as f:
-                    tbldata = json.load(f)
-                    parsed_data = self.__parse_tbldata(tbldata)
-
-            case _:
-                raise TypeError(f"Expected {FileType.list()}. Got {file_type}.")
-
-        return parsed_data
-
-    def __query_devs(
-        self,
-        membs: list[frozenset[str]],
-        count: list[int],
-        sets: list[str],
-        sizes: dict[str, int],
-    ) -> list[float]:
+    def get_grammar(self) -> GrammarModel:
         """
-        Computes the `disproportionality` w.r.t. expected `count`.
-        Assumes marginal independence of the sets. Weakly adapted
-        from Lex et al `UpSet: Visualizing Intersecting Sets`.
+        Parses the grammar data from the JSON export from the UpSet Multinet implementation 
+        into a GrammarModel. 
         """
-        devs = [0.0] * len(membs)
-        nval = sum(count)
-        for i, membership in enumerate(membs):
-            devs[i] = count[i] / nval
-            residue = 1.0
-            for set_ in membership:
-                residue *= sizes[set_] / nval
-            for set_ in filter(lambda set_: set_ not in membership, sets):
-                residue *= 1 - sizes[set_] / nval
-            devs[i] -= residue
-        devs = list(map(lambda dev: round(100 * dev, 1), devs))
-        return devs
+        return self.parse_grammar(self.data)
+    
+    def get_data(self) -> DataModel:
+        """
+        Parses the data from the JSON export from the UpSet Multinet implementation 
+        into a DataModel. 
+        """
+        return self.parse_data_no_agg(self.data)
 
-    def __parse_setdata(self, setdata: list[str]) -> Model:
-        # parse_line = lambda line: re.sub(r'\[|\]|\(|\)', '', line).split(', ')
-        # parse_sets = list(map(parse_line, setdata))
-        # sets, count = [], []
-        # for parse_set in parse_sets:
-        #     new_set = set()
-        #     for element in parse_set[:-1]:
-        #         if 'Not in' not in element:
-        #             element = element.split(' ').pop()
-        #             new_set.add(element)
-        #     sets.append(new_set)
-        #     count.append(parse_set[-1])
-        #     sizes: dict[str, int] = {}
-        #     stdev = self.__query_devs(sets, count, sizes)
-        #     data_model = DataModel(sets=sets, sizes=count, count=count, devs=stdev)
-        # return data_model
-        return DataModel(membs=[], sets=[], sizes={}, count=[], devs=[])
+    def load_data(self, file_path: Path) -> dict[str, dict[str, Any]]:
+        """
+        Loads a data file into JSON to be parsed. 
+        Raises an exception if the file is aggregated.
+        """
+        with open(file_path) as f:
+            data: dict[str, dict[str, Any]] = json.load(f)
+            # Currently aggregated data is unsupported.
+            # When support is added, this should change to a match statement
+            # which feeds the data to different functions based on the aggregation type
+            if AggregateBy(data["firstAggregateBy"]) != AggregateBy.NONE:
+                raise Exception(f"Cannot parse aggregated data from file '{file_path}', please provide non-aggregated data.")
+            
+            return data
 
-    def __parse_rawdata(self, rawdata: dict[str, dict[str, Any]]) -> Model:
+    def parse_data_no_agg(self, data: dict[str, dict[str, Any]]) -> DataModel:
+        """
+        Responsible for parsing non-aggregated data from the JSON export 
+        from the UpSet Multinet implementation. Other functions in this
+        class should be implemented to parse aggregated data.
+
+        Not all data from the data JSON file is parsed and accessible.
+        Current data parsed:
+        - set sizes and names
+        - set membership of items
+        - deviations from expected set membership
+        - Information about sets/intersections/aggregations:
+          - name
+          - cardinality
+          - deviation
+          - description
+        """
+        # Dictionary mapping set names to their sizes
         sizes: dict[str, int] = {}
+        
+        # Dictionary mapping sets/intersections/aggregations to information about them        
+        subsets: list[Subset] = []
+        for item in data["processedData"]["values"].values():
+            # Name of the set/intersection/aggregation- a list of set names in the case of intersections
+            name = item.get("elementName", self.default_field)
+            # Cardinality
+            size = item.get("size", self.default_field)
+            # Deviation - rounded to 2 decimals
+            dev = round(item.get("deviation", self.default_field), 2)
+            # Degree. This will be replaced when degree is added to the JSON export
+            # Current implementation is bugged if set names include spaces,
+            # but it's the only way to get set degree until added to the JSON
+            if name == self.default_field:
+                degree = -1
+            else:
+                degree = name.count(" ") + 1
+            subsets.append(Subset(name=name, size=size, dev=dev, degree=degree))
+
+        # List of set names
         sets_: list[str] = []
-        for set_ in rawdata["sets"].values():
-            set_name = set_["elementName"]
+        for set_ in data["rawData"]["sets"].values():
+            set_name: str = set_["elementName"]
             sizes[set_name] = set_["size"]
             sets_.append(set_name)
-        membs = []
-        for elem in rawdata["items"].values():
+
+        # List of all members (data points) of the sets
+        membs: list[frozenset[str]] = []
+        for elem in data["rawData"]["items"].values():
             membership = frozenset(
                 [
                     key
                     for key, value in elem.items()
-                    if key in rawdata["setColumns"] and value == 1
+                    if key in data["rawData"]["setColumns"] and value == 1
                 ]
             )
             if len(membership):
                 membs.append(membership)
+
+        # List of the number of sets each member is in
         count = list(Counter(membs).values())
         membs = list(Counter(membs).keys())
-        devs = self.__query_devs(membs, count, sets_, sizes)
+        # Initialize deviations
         data_model = DataModel(
-            membs=membs, sets=sets_, sizes=sizes, count=count, devs=devs
+            membs=membs, sets=sets_, sizes=sizes, count=count, subsets=subsets
         )
         return data_model
 
-    def __parse_matdata(self, matdata: list[str]) -> Model:
-        return DataModel(membs=[], sets=[], sizes={}, count=[], devs=[])
-
-    def __parse_tbldata(self, tbldata: list[str]) -> Model:
-        return DataModel(membs=[], sets=[], sizes={}, count=[], devs=[])
-
-    def __parse_grammar(self, grammar: dict[str, Any]) -> Model:
-        caption = grammar["caption"]
-        title = grammar["title"]
+    def parse_grammar(self, grammar: dict[str, Any]) -> GrammarModel:
+        """
+        Parses the state data from the JSON export from the UpSet Multinet implementation 
+        into a GrammarModel. 
+        """
+        # Currently removed as they don't exist in the grammar exports from multinet
+        # TODO: Re-add title when it is added to the grammar export. Caption likely won't be
+        #caption = grammar["caption"]
+        #title = grammar["title"]
         first_aggregate_by = AggregateBy(grammar["firstAggregateBy"])
         second_aggregate_by = AggregateBy(grammar["secondAggregateBy"])
 
@@ -169,8 +160,8 @@ class Parser:
         )
 
         grammar_model = GrammarModel(
-            caption=caption,
-            title=title,
+            #caption=caption,
+            #title=title,
             first_aggregate_by=first_aggregate_by,
             second_aggregate_by=second_aggregate_by,
             first_overlap_degree=first_overlap_degree,

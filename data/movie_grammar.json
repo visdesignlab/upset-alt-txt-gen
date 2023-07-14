@@ -1,0 +1,52 @@
+{
+  "firstAggregateBy": "None",
+  "firstOverlapDegree": 2,
+  "secondAggregateBy": "None",
+  "secondOverlapDegree": 2,
+  "sortVisibleBy": "Alphabetical",
+  "sortBy": "Cardinality",
+  "filters": {
+    "maxVisible": 3,
+    "minVisible": 0,
+    "hideEmpty": true
+  },
+  "visibleSets": [
+    "Set_Thriller",
+    "Set_War",
+    "Set_Western",
+    "Set_Action",
+    "Set_Adventure",
+    "Set_Children"
+  ],
+  "visibleAttributes": [
+    "AvgRating",
+    "Watches",
+    "ReleaseDate"
+  ],
+  "bookmarkedIntersections": [],
+  "collapsed": [],
+  "plots": {
+    "scatterplots": [],
+    "histograms": [],
+    "wordClouds": []
+  },
+  "allSets": [
+    "Set_Thriller",
+    "Set_War",
+    "Set_Western",
+    "Set_Action",
+    "Set_Adventure",
+    "Set_Children",
+    "Set_Comedy",
+    "Set_Crime",
+    "Set_Documentary",
+    "Set_Drama",
+    "Set_Fantasy",
+    "Set_Noir",
+    "Set_Horror",
+    "Set_Musical",
+    "Set_Mystery",
+    "Set_Romance",
+    "Set_SciFi"
+  ]
+}

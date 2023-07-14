@@ -51,7 +51,7 @@ def main(argv: Optional[list[str]] = None) -> int:
         help="Semantic level. Defaults to %(default)s.",
     )
     parser.add_argument(
-        "-g",
+        "-v",
         "--verbosity",
         type=Verbosity,
         choices=list(Verbosity),

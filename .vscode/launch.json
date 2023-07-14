@@ -10,7 +10,7 @@
             "request": "launch",
             "module": "alttxt",
             "justMyCode": true,
-            "args": ["--data", "D:\\SYS\\Program Files\\Visual Studio\\alttxt\\data\\movie_data_card_sort.json", "--level", "2", "--granularity", "high"]
+            "args": ["--data", "D:\\SYS\\Program Files\\Visual Studio\\alttxt\\data\\movie_data_card_sort.json", "--level", "2", "--verbosity", "high"]
         }
     ]
 }

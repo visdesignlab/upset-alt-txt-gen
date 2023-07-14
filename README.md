@@ -40,5 +40,5 @@ To run the entire suite of tests at once, use `tox`.
 | `-h`, `--help`        | Show information on each command and exit.                                    |
 | `-V`, `--version`     | Show the program version number and exit.                                     |
 | `-D`, `--data`        | (Required) Relative path to data file.                                        |
-| `-l`, `--level`       | Semantic level. Defaults to `1`. Options are: `0`, `1`, `2`, and `3`.         |
+| `-l`, `--level`       | Semantic level. Defaults to `1`. Options are: `0`, `1`, and `2`. `3` TBA      |
 | `-v`, `--verbosity`   | Alt-text verbosity. Defaults to `medium`. Options: `low`, `medium`, `high`.   |

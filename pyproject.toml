@@ -21,3 +21,10 @@ warn_return_any = true
 warn_unreachable = false
 warn_unused_configs = true
 no_implicit_reexport = true
+
+[tool.poetry]
+name = "upset-alttxt"
+version = "1.0.0"
+description = "Generates alt text for UpSet plots"
+authors = ["Nate Lanza", "Filemon Mateus"]
+readme = "README.md"

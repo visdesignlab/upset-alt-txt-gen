@@ -1,0 +1,33 @@
+name: Publish Python distributions to TestPyPI
+on: push
+
+jobs:
+  build-and-publish:
+    name: Build and publish to TestPyPI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+      - name: Install pypa/build
+        run: >-
+          python3 -m
+          pip install
+          build
+          --user
+      - name: Build a binary wheel and a source tarball
+        run: >-
+          python3 -m
+          build
+          --sdist
+          --wheel
+          --outdir dist/
+          src/
+      - name: Publish distribution to Test PyPI
+        # TODO: Change version number each release
+        uses: pypa/gh-action-pypi-publish@release/v1.0.0
+        with:
+          password: ${{ secrets.NATES_PYPI_TOKEN }}
+          repository-url: https://test.pypi.org/legacy/

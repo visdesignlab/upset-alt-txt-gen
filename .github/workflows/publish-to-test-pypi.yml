@@ -27,7 +27,7 @@ jobs:
           --sdist
           --wheel
           --outdir dist/
-          src/
+          .
       - name: Publish distribution to Test PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:

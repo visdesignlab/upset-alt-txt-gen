@@ -7,4 +7,3 @@ python-multipart==0.0.6
 pyupset==0.1.1.post7
 pdfrw2==0.5.0
 upsetplot==0.1a0
-uvicorn==0.22.0

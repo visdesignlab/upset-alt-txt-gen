@@ -19,9 +19,9 @@ class Parser:
         self.default_field = "(field not available)"
         
         # Now load the file and parse the data
-        if type(data) is Path:
+        if isinstance(data, Path):
             self.data: dict[str, dict[str, Any]] = self.load_data(data)
-        elif type(data) is dict[str, dict[str, Any]]:
+        elif isinstance(data, dict):
             self.data = data
         else:
             raise Exception(f"Invalid data format: {type(data)} should be Path or dict[str, dict[str, Any]]")

@@ -1,7 +1,5 @@
-from alttxt.types import AggregateBy, SortBy, SortVisibleBy
+from alttxt.enums import AggregateBy, SortBy, SortVisibleBy
 from pydantic import BaseModel
-from typing import Any
-
 
 class Subset(BaseModel):
     """
@@ -20,11 +18,11 @@ class DataModel(BaseModel):
     For holding data from the "rawData" and "processedData" fields
     of the JSON data file.
     """
-    membs: list[frozenset[str]]
-    count: list[int]
-    sets: list[str]
-    sizes: dict[str, int]
-    subsets: list[Subset]
+    membs: list # of frozenset[str]
+    count: list # of int
+    sets: list # of str
+    sizes: dict # str -> int
+    subsets: list # of Subset
 
 
 class FilterModel(BaseModel):
@@ -40,9 +38,9 @@ class BookmarkedIntersectionModel(BaseModel):
 
 
 class PlotModel(BaseModel):
-    scatterplots: list[float]
-    histograms: list[float]
-    wordclouds: list[float]
+    scatterplots: list # of float
+    histograms: list # of float
+    wordclouds: list # of float
 
 
 class GrammarModel(BaseModel):
@@ -56,8 +54,8 @@ class GrammarModel(BaseModel):
     sort_visible_by: SortVisibleBy
     sort_by: SortBy
     filters: FilterModel
-    collapsed: list[str]
-    visible_sets: list[str]
-    visible_atts: list[str]
+    collapsed: list # of str
+    visible_sets: list # of str
+    visible_atts: list # of str
     plots: PlotModel
-    bookmarked_intersections: list[BookmarkedIntersectionModel]
+    bookmarked_intersections: list # of BookmarkedIntersectionModel

@@ -11,8 +11,8 @@ Transactions on Visualization & Computer Graphics (Proc. IEEE VIS).
 ## Local Deployment
 
 1. Clone the repository using `git clone` or download and extract the zip file.
-2. Ensure you have python version >= 3.10 installed.
-3. Open a terminal in the repository directory and create and activate a python virtual environment running at least Python 3.10. For information on how to do this, navigate [here](https://docs.python.org/3/library/venv.html).
+2. Ensure you have python version >= 3.8.10 installed.
+3. Open a terminal in the repository directory and create and activate a python virtual environment running at least Python 3.8.10. For information on how to do this, navigate [here](https://docs.python.org/3/library/venv.html).
 4. Install the required dependencies using `pip install -r requirements.txt`.
 5. (Optional) Install the required development dependencies using `pip install -r requirements-dev.txt`. These are only required if you plan on running the tests or linting.
 6. Install the alttxt module in development mode with `pip install -e .`

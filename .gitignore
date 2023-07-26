@@ -12,3 +12,4 @@ build/
 /.vs
 /dist
 /env
+src/upset_alttxt.egg-info

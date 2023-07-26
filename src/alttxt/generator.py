@@ -4,7 +4,7 @@ import re
 from alttxt import phrases
 from alttxt.models import GrammarModel
 
-from alttxt.types import Verbosity, Level
+from alttxt.enums import Verbosity, Level
 from alttxt.tokenmap import TokenMap
 
 
@@ -22,37 +22,32 @@ class AltTxtGen:
         self.map = map
         self.grammar = grammar
 
-    def quantiles(self) -> list[list[float]]:
+    def quantiles(self) -> "list[list[float]]":
         quants: list[list[float]] = []
         return quants
 
     @property
     def text(self) -> str:
         text_desc: str = ""
-
+            
         # Get the description template for the level, verbosity, and sort
-        match self.level:
-            # L0 and L1 don't care about sort/aggregation
-            case Level.ZERO:
-                text_desc = self.descriptions["level_0"][
-                    self.verbosity.value
-                ]
+        # L0 and L1 don't care about sort/aggregation
+        if self.level == Level.ZERO:
+            text_desc = self.descriptions["level_0"][self.verbosity.value]
 
-            case Level.ONE:
-                text_desc = self.descriptions["level_1"][
-                    self.verbosity.value
-                ]
+        elif self.level == Level.ONE:
+            text_desc = self.descriptions["level_1"][self.verbosity.value]
 
-            case Level.TWO:
-                # Only low and medium care about sort; high is always the same
-                if self.verbosity != Verbosity.HIGH:
-                    text_desc = self.descriptions["level_2"]\
-                        [self.verbosity.value][self.grammar.sort_by]
-                else:
-                    text_desc = self.descriptions["level_2"]["high"]
-                
-            case _:
-                raise TypeError(f"Expected {Level.list()}. Got {self.level}.")
+        elif self.level == Level.TWO:
+            # Only low and medium care about sort; high is always the same
+            if self.verbosity != Verbosity.HIGH:
+                text_desc = self.descriptions["level_2"]\
+                    [self.verbosity.value][self.grammar.sort_by]
+            else:
+                text_desc = self.descriptions["level_2"]["high"]
+        else:
+            raise TypeError(f"Expected {Level.list()}. Got {self.level}.")
+
 
         return self.replaceTokens(text_desc)
 

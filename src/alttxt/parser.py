@@ -1,12 +1,12 @@
 import json
-from pprint import pprint
 
-from alttxt.types import AggregateBy, SortBy, SortVisibleBy
+from alttxt.enums import AggregateBy, SortBy, SortVisibleBy
 from alttxt.models import BookmarkedIntersectionModel, Subset, DataModel, FilterModel, GrammarModel, PlotModel
 
 from pathlib import Path
 from collections import Counter
 from typing import Any
+from typing import Union
 
 class Parser:
     """
@@ -14,7 +14,7 @@ class Parser:
     Params:
     - data: Path to the data file to be parsed, or a dictionary containing the data parsed from JSON.
     """
-    def __init__(self, data: Path | dict[str, dict[str, Any]]) -> None:
+    def __init__(self, data: "Union[Path, dict[str, dict[str, Any]]]") -> None:
         # Default message for when a field cannot be found by the parser
         self.default_field = "(field not available)"
         
@@ -40,7 +40,7 @@ class Parser:
         """
         return self.parse_data_no_agg(self.data)
 
-    def load_data(self, file_path: Path) -> dict[str, dict[str, Any]]:
+    def load_data(self, file_path: Path) -> "dict[str, dict[str, Any]]":
         """
         Loads a data file into JSON to be parsed. 
         Raises an exception if the file is aggregated.
@@ -55,7 +55,7 @@ class Parser:
             
             return data
 
-    def parse_data_no_agg(self, data: dict[str, dict[str, Any]]) -> DataModel:
+    def parse_data_no_agg(self, data: "dict[str, dict[str, Any]]") -> DataModel:
         """
         Responsible for parsing non-aggregated data from the JSON export 
         from the UpSet Multinet implementation. Other functions in this
@@ -122,7 +122,7 @@ class Parser:
         )
         return data_model
 
-    def parse_grammar(self, grammar: dict[str, Any]) -> GrammarModel:
+    def parse_grammar(self, grammar: "dict[str, Any]") -> GrammarModel:
         """
         Parses the state data from the JSON export from the UpSet Multinet implementation 
         into a GrammarModel. 

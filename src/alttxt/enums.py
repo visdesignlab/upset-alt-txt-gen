@@ -1,11 +1,8 @@
-import re
 from enum import Enum
-from typing import Any
-
 
 class Listable(Enum):
     @classmethod
-    def list(cls) -> list[Enum]:
+    def list(cls) -> "list[Enum]":
         return list(v.value for v in cls)
 
 class Verbosity(Listable):
@@ -76,17 +73,3 @@ class SortVisibleBy(Listable):
 class Orientation(Listable):
     HORIZONTAL = "horizontal"
     VERTICAL = "vertical"
-
-
-class Dict(dict[Any, Any]):
-    def __init__(self, dict_obj):
-        ...
-
-    def __getattr__(self, attr):
-        return self[self.snake_case(attr)]
-
-    def __setattr__(self, attr, value):
-        self[self.snake_case(attr)] = value
-
-    def snake_case(self, attr):
-        return re.sub(r"(?<!^)(?=[A-Z])", "_", attr).lower()

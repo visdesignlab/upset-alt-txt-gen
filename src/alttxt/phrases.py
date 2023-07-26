@@ -1,4 +1,4 @@
-from alttxt.types import SortBy
+from alttxt.enums import SortBy
 
 """
 The context-free grammar which the alt text is generated from-

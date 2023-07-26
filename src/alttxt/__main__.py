@@ -9,15 +9,15 @@ from alttxt.models import DataModel, GrammarModel
 from alttxt.parser import Parser
 from alttxt.tokenmap import TokenMap
 
-from alttxt.types import Verbosity
-from alttxt.types import Level
-from alttxt.types import Orientation
+from alttxt.enums import Verbosity
+from alttxt.enums import Level
+from alttxt.enums import Orientation
 
 from pathlib import Path
 from typing import Optional
 
 # Entry point for the program
-def main(argv: Optional[list[str]] = None) -> int:
+def main(argv: Optional["list[str]"] = None) -> int:
     argv = argv if argv is not None else sys.argv[1:]
     parser = argparse.ArgumentParser(prog="alttxt", add_help=False)
 

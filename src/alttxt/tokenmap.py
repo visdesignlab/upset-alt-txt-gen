@@ -1,8 +1,6 @@
-from typing import Any, Callable, Tuple
+from typing import Any, Callable, Tuple, Union
 from alttxt.models import DataModel, GrammarModel, Subset
-from alttxt.types import Orientation, SubsetField
-
-from pprint import pprint
+from alttxt.enums import Orientation, SubsetField
 
 
 class TokenMap:
@@ -36,7 +34,7 @@ class TokenMap:
         # whereas more complex tokens are done in functions.
         # Since functions are only executed on run, they can be used to
         # optimize by moving expensive tokens into fuctions.
-        self.map: dict[str, str | float | int | Callable[[], str]] = {
+        self.map: dict[str, Union[str, float, int, Callable[[], str]]] = {
             # Total number of elements in all sets, duplicates appear to be counted
             "universal_set_size": sum(self.data.sizes.values()),
             # Number of sets
@@ -128,7 +126,7 @@ class TokenMap:
     #           Helpers           #
     ###############################
 
-    def sort_subsets_by_key(self, key: SubsetField, descending: bool = True) -> list[Subset]:
+    def sort_subsets_by_key(self, key: SubsetField, descending: bool = True) -> "list[Subset]":
         """
         Returns the list of subsets from self.data.subsets,
         sorted by a specified key. The key must be a valid field
@@ -139,7 +137,7 @@ class TokenMap:
         """
         return sorted(self.data.subsets, key=lambda x: getattr(x, key.value), reverse=descending)
 
-    def degree_info(self, max_degree: int) -> Tuple[list[int], list[float], list[float]]:
+    def degree_info(self, max_degree: int) -> "Tuple[list[int], list[float], list[float]]":
         """
         Returns information about intersections of degrees up to max_degree.
         The information, in order, is:
@@ -204,7 +202,7 @@ class TokenMap:
         index = int(len(set_sort) * perc / 100)
         return getattr(set_sort[index], field.value)
 
-    def dev_info(self) -> dict[str, float]:
+    def dev_info(self) -> "dict[str, float]":
         """
         Returns a dictionary containing information about deviation.
         These overarching values are gathered only from non-empty intersections

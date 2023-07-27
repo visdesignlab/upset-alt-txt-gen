@@ -9,7 +9,7 @@ from alttxt.models import DataModel, GrammarModel
 from alttxt.parser import Parser
 from alttxt.tokenmap import TokenMap
 
-from alttxt.enums import Verbosity
+from alttxt.enums import Explanation, Verbosity
 from alttxt.enums import Level
 from alttxt.enums import Orientation
 
@@ -58,6 +58,14 @@ def main(argv: Optional["list[str]"] = None) -> int:
         default=Verbosity.MEDIUM,
         help="Alt-text verbosity. Defaults to %(default)s.",
     )
+    parser.add_argument(
+        "-e",
+        "--explain-upset",
+        type=Explanation,
+        choices=list(Explanation),
+        default=Explanation.NONE,
+        help="Explain what an upset plot is; detail level varies. Defaults to %(default)s.",
+    )
 
     args = parser.parse_args(argv)
 
@@ -68,8 +76,9 @@ def main(argv: Optional["list[str]"] = None) -> int:
 
     tokenMap = TokenMap(data, grammar, Orientation.VERTICAL)
     
+    pprint(args)
     alttext = AltTxtGen(
-        args.level, args.verbosity, tokenMap, grammar
+        args.level, args.verbosity, args.explain_upset, tokenMap, grammar
     )
 
     print(90 * "-")

@@ -43,18 +43,23 @@ DESCRIPTIONS: "dict[str, Any]" = {
     # L2 splits generation by sort- verbosity is TBA
     "level_2": {
         "low": {
-            SortBy.CARDINALITY: "[[InUpSet]], [[sort_set_info]]. The largest 5 intersections are {{list_max_5int}}.",
-            SortBy.DEGREE: "[[InUpSet]], [[sort_set_info]]. There are {{list_degree_count}}.",
-            SortBy.DEVIATION: "[[InUpSet]], [[sort_set_info]]. The largest 5 absolute deviations are {{list5_dev_outliers}}.",
+            SortBy.CARDINALITY: "The largest 5 intersections are {{list_max_5int}}. [[card_percs]].",
+            SortBy.DEGREE: "There are {{list_degree_count}}.",
+            SortBy.DEVIATION: "[[deviation_info]].",
             },
         "medium": {
-                SortBy.CARDINALITY: "[[InUpSet]], [[sort_set_info]]. [[set_names_sizes]]. [[largest_10_int]]. [[card_percs]].",
-                SortBy.DEGREE: "[[InUpSet]], [[sort_set_info]]. [[set_names_sizes]]. [[degree_info]].",
-                SortBy.DEVIATION: "[[InUpSet]], [[sort_set_info]]. [[set_names_sizes]]. [[deviation_info]]. [[dev_outliers]].",
+                SortBy.CARDINALITY: "The largest 10 intersections are {{list_max_10int}}. [[card_percs]].",
+                SortBy.DEGREE: "[[degree_info]].",
+                SortBy.DEVIATION: "[[deviation_info]]. The largest 5 absolute deviations are {{list5_dev_outliers}}.",
             },
-        "high": "[[InUpSet]], [[sort_set_info]]. [[set_names_sizes]]. [[largest_10_int]]. [[card_percs]]. [[degree_info]]. [[deviation_info]]. [[dev_outliers]].",    
+        "high": {
+                SortBy.CARDINALITY: "In order of cardinality, the intersections are: {{list_all_int}}. [[card_percs]].",
+                SortBy.DEGREE: "[[degree_info]].",
+                SortBy.DEVIATION: "[[deviation_info]]. The largest 10 absolute deviations are {{list10_dev_outliers}}.",
+        },    
     # L3 note: observe which sets are not present in many large intersections
     },
+    # These are all of the non-terminal symbols that are used in the grammar
     "symbols": {
         # "This is an UpSet plot"
         "UpSet": "this is an UpSet plot",
@@ -63,12 +68,12 @@ DESCRIPTIONS: "dict[str, Any]" = {
         # Learn more about UpSet
         "learn_more": "to learn about UpSet plots, visit upset.app",
         # Title, caption, set list
-        "l1_low_desc": "[[title]]. The dataset contains {{set count}} total sets, "
+        "l1_low_desc": "[[title]]. The dataset contains {{set_count}} total sets, "
         "with {{universal_set_size}} elements. {{visible_set_count}} sets are shown in the plot",
         # Number of non-empty intersections, max/min intersection size, and universal set size
-        "l1_med_desc": ": {{list_set_names}}. [[pop_intersections]]",
+        "l1_med_desc": ": {{list_visible_set_names}}. [[pop_intersections]]",
         # Sort order and variable list
-        "l1_high_desc": "[[max_min]]. [[sort_by]]",
+        "l1_high_desc": "[[max_min]]. [[sort_by]]. [[set_names_sizes]].",
         # Title and caption
         "title": "this UpSet plot shows {{title}}",
         # Count and list set names
@@ -92,9 +97,8 @@ DESCRIPTIONS: "dict[str, Any]" = {
         # Largest 10 intersections and 10th percentile of intersections
         "largest_10_int": "the largest 10 intersections are {{list_max_10int}}",
         # Average and 10th, 25th, 75th, and 90th percentile cardinalities
-        "card_percs": "the average cardinality is {{avg_card}}, with a 10th percentile of {{10perc_card}}, "
-        "25th percentile of {{25perc_card}}, 75th percentile of {{75perc_card}}, "
-        "and 90th percentile of {{90perc_card}}",
+        "card_percs": "the average intersection size is {{avg_card}}. "
+        "The 90th percentile is {{90perc_card}}, and the 10th percentile is {{10perc_card}}",
         # Degree info list,
         "degree_info": "number of intersections of each degree, their average cardinality, "
         "and their average deviation are as follows: {{list_degree_info}}",
@@ -104,7 +108,5 @@ DESCRIPTIONS: "dict[str, Any]" = {
         "negative deviation, with a total cardinality of {{neg_dev_card}}. "
         "The average positive deviation is {{avg_pos_dev}}, and the average "
         "negative deviation is {{avg_neg_dev}}",
-        # Outliers for deviation
-        "dev_outliers": "the largest 10 absolute deviations are {{list10_dev_outliers}}",
     },
 }

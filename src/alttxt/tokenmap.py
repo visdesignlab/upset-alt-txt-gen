@@ -43,6 +43,8 @@ class TokenMap:
             "visible_set_count": len(self.grammar.visible_sets),
             # List of set names
             "list_set_names": self.list_set_names,
+            # List of visible set names
+            "list_visible_set_names": self.list_visible_set_names,
             # Cardinality of the largest set/intersection
             "min_size": min(self.data.count),
             # Cardinality of the smallest set/intersection
@@ -66,6 +68,8 @@ class TokenMap:
             "list_max_10int": self.max_n_intersections(10),
             # Largest 5 intersections by cardinality, including name, cardinality, deviation
             "list_max_5int": self.max_n_intersections(5),
+            # List all intersections in order of cardinality, including name, cardinality, deviation
+            "list_all_int": self.max_n_intersections(len(self.data.subsets)),
             # 90th percentile for cardinality
             "90perc_card": self.get_subset_percentile(SubsetField.CARDINALITY, 90),
             # 10th percentile for cardinality
@@ -294,10 +298,10 @@ class TokenMap:
         Params:
           n: Number of sets to list
         """
-        sort = self.sort_subsets_by_key(SubsetField.CARDINALITY, True)
-        result = ""
+        sort: list[Subset] = self.sort_subsets_by_key(SubsetField.CARDINALITY, True)
+        result: str = ""
         for i in range(0, n):
-            if n >= len(sort):
+            if i >= len(sort):
                 break
 
             result += f"{sort[i].name} (cardinality {sort[i].size}, deviation {sort[i].dev}), "
@@ -357,3 +361,10 @@ class TokenMap:
         with the last two separated by "and".
         """
         return ", ".join(self.data.sets[:-1]) + " and " + self.data.sets[-1]
+    
+    def list_visible_set_names(self) -> str:
+        """
+        Returns a string of the visible set names separated by commas,
+        with the last two separated by "and".
+        """
+        return ", ".join(self.grammar.visible_sets[:-1]) + " and " + self.grammar.visible_sets[-1]

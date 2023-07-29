@@ -68,7 +68,6 @@ def main(argv: Optional["list[str]"] = None) -> int:
     )
 
     args = parser.parse_args(argv)
-
     
     upset_parser: Parser = Parser(Path(args.data))
     grammar: GrammarModel = upset_parser.get_grammar()
@@ -82,7 +81,7 @@ def main(argv: Optional["list[str]"] = None) -> int:
 
     print(90 * "-")
     print(
-        f"DATASET={os.path.basename(args.data)}\tLEVEL={args.level.value}\tGRANULARITY={args.verbosity.value}\tEXPLAIN_UPSET={args.explain_upset.value}"
+        f"DATASET={os.path.basename(args.data)}\tLEVEL={args.level.value}\tVERBOSITY={args.verbosity.value}\tEXPLAIN_UPSET={args.explain_upset.value}"
     )
     print(90 * "-")
     print(alttext.text)

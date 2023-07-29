@@ -41,12 +41,9 @@ class AltTxtGen:
             text_desc += self.descriptions["level_1"][self.verbosity.value]
 
         elif self.level == Level.TWO:
-            # Only low and medium care about sort; high is always the same
-            if self.verbosity != Verbosity.HIGH:
-                text_desc += self.descriptions["level_2"]\
+            # L2 splits generation by sort type of the plot
+            text_desc += self.descriptions["level_2"]\
                     [self.verbosity.value][self.grammar.sort_by]
-            else:
-                text_desc += self.descriptions["level_2"]["high"]
         else:
             raise TypeError(f"Expected {Level.list()}. Got {self.level}.")
 

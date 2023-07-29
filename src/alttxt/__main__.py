@@ -76,14 +76,13 @@ def main(argv: Optional["list[str]"] = None) -> int:
 
     tokenMap = TokenMap(data, grammar, Orientation.VERTICAL)
     
-    pprint(args)
     alttext = AltTxtGen(
         args.level, args.verbosity, args.explain_upset, tokenMap, grammar
     )
 
     print(90 * "-")
     print(
-        f"DATASET={os.path.basename(args.data)}\tLEVEL={args.level.value}\tGRANULARITY={args.verbosity.value}"
+        f"DATASET={os.path.basename(args.data)}\tLEVEL={args.level.value}\tGRANULARITY={args.verbosity.value}\tEXPLAIN_UPSET={args.explain_upset.value}"
     )
     print(90 * "-")
     print(alttext.text)

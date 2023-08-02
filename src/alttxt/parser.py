@@ -77,20 +77,15 @@ class Parser:
         
         # Dictionary mapping sets/intersections/aggregations to information about them        
         subsets: list[Subset] = []
-        for item in data["processedData"]["values"].values():
+        for item in data["accessibleProcessedData"]["values"].values():
             # Name of the set/intersection/aggregation- a list of set names in the case of intersections
-            name = item.get("elementName", self.default_field)
+            name: str = item.get("elementName", self.default_field)
             # Cardinality
-            size = item.get("size", self.default_field)
+            size: int = int(item.get("size", self.default_field))
             # Deviation - rounded to 2 decimals
-            dev = round(item.get("deviation", self.default_field), 2)
-            # Degree. This will be replaced when degree is added to the JSON export
-            # Current implementation is bugged if set names include spaces,
-            # but it's the only way to get set degree until added to the JSON
-            if name == self.default_field:
-                degree = -1
-            else:
-                degree = name.count(" ") + 1
+            dev: float = round(item.get("deviation", self.default_field), 2)
+            # Degree
+            degree: int = int(item.get("degree", self.default_field))
             subsets.append(Subset(name=name, size=size, dev=dev, degree=degree))
 
         # List of set names
@@ -98,6 +93,10 @@ class Parser:
         for set_ in data["rawData"]["sets"].values():
             set_name: str = set_["elementName"]
             sizes[set_name] = set_["size"]
+            
+            # Remove the 'Set_' prefix from the set name, if extant- must be done after prev steps
+            if set_name.startswith("Set_"):
+                set_name = set_name[4:]
             sets_.append(set_name)
 
         # List of all members (data points) of the sets
@@ -153,9 +152,9 @@ class Parser:
             wordclouds=grammar["plots"]["wordClouds"],
         )
 
-        collapsed = grammar["collapsed"]
-        visible_sets = grammar["visibleSets"]
-        visible_atts = grammar["visibleAttributes"]
+        collapsed: list[str] = grammar["collapsed"]
+        visible_sets: list[str] = grammar["visibleSets"]
+        visible_atts: list[str] = grammar["visibleAttributes"]
 
         bookmarked_intersections = list(
             map(
@@ -165,6 +164,11 @@ class Parser:
                 grammar["bookmarkedIntersections"],
             )
         )
+
+        # Remove the 'Set_' prefix from each visible set name, if extant
+        for i in range(len(visible_sets)):
+            if visible_sets[i].startswith("Set_"):
+                visible_sets[i] = visible_sets[i][4:]
 
         grammar_model = GrammarModel(
             #caption=caption,

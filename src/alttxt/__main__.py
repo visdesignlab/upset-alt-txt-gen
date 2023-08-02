@@ -1,5 +1,4 @@
 import argparse
-from lib2to3.pgen2 import grammar
 import os
 from pprint import pprint
 import sys
@@ -9,9 +8,8 @@ from alttxt.models import DataModel, GrammarModel
 from alttxt.parser import Parser
 from alttxt.tokenmap import TokenMap
 
-from alttxt.enums import Verbosity
+from alttxt.enums import Explanation, Verbosity
 from alttxt.enums import Level
-from alttxt.enums import Orientation
 
 from pathlib import Path
 from typing import Optional
@@ -58,23 +56,38 @@ def main(argv: Optional["list[str]"] = None) -> int:
         default=Verbosity.MEDIUM,
         help="Alt-text verbosity. Defaults to %(default)s.",
     )
+    parser.add_argument(
+        "-e",
+        "--explain-upset",
+        type=Explanation,
+        choices=list(Explanation),
+        default=Explanation.NONE,
+        help="Explain what an upset plot is; detail level varies. Defaults to %(default)s.",
+    )
+    parser.add_argument(
+        "-t",
+        "--title",
+        type=str,
+        default=None,
+        help="Title of the plot. Defaults to %(default)s.",
+    )
 
-    args = parser.parse_args(argv)
-
+    args: argparse.Namespace = parser.parse_args(argv)
     
     upset_parser: Parser = Parser(Path(args.data))
     grammar: GrammarModel = upset_parser.get_grammar()
     data: DataModel = upset_parser.get_data()
+    title: str = args.title
 
-    tokenMap = TokenMap(data, grammar, Orientation.VERTICAL)
+    tokenMap = TokenMap(data, grammar, title)
     
     alttext = AltTxtGen(
-        args.level, args.verbosity, tokenMap, grammar
+        args.level, args.verbosity, args.explain_upset, tokenMap, grammar
     )
 
     print(90 * "-")
     print(
-        f"DATASET={os.path.basename(args.data)}\tLEVEL={args.level.value}\tGRANULARITY={args.verbosity.value}"
+        f"DATASET={os.path.basename(args.data)}\tLEVEL={args.level.value}\tVERBOSITY={args.verbosity.value}\tEXPLAIN_UPSET={args.explain_upset.value}\tTITLE={title}"
     )
     print(90 * "-")
     print(alttext.text)

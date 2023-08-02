@@ -6,6 +6,9 @@ class Listable(Enum):
         return list(v.value for v in cls)
 
 class Verbosity(Listable):
+    """
+    Various available verbosity levels.
+    """
     LOW = "low"
     MEDIUM = "medium"
     HIGH = "high"
@@ -13,9 +16,19 @@ class Verbosity(Listable):
     def __str__(self) -> str:
         return self.value
 
+class Explanation(Listable):
+    """
+    3 possible levels for the -explain-upset flag.
+    """
+    NONE = "none"
+    SIMPLE = "simple"
+    FULL = "full"
 
 class Level(Listable):
-    ZERO = "0"
+    """
+    Various available semantic content levels.
+    3 is TBA.
+    """
     ONE = "1"
     TWO = "2"
 
@@ -68,8 +81,3 @@ class SortVisibleBy(Listable):
     ALPHABETICAL = "Alphabetical"
     ASCENDING = "Ascending"
     DESCENDING = "Descending"
-
-
-class Orientation(Listable):
-    HORIZONTAL = "horizontal"
-    VERTICAL = "vertical"

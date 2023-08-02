@@ -4,47 +4,51 @@ import re
 from alttxt import phrases
 from alttxt.models import GrammarModel
 
-from alttxt.enums import Verbosity, Level
+from alttxt.enums import Explanation, Verbosity, Level
 from alttxt.tokenmap import TokenMap
 
+from typing import Any
 
 class AltTxtGen:
     def __init__(
         self,
         level: Level,
         verbosity: Verbosity,
+        explain: Explanation,
         map: TokenMap,
         grammar: GrammarModel,
     ) -> None:
-        self.descriptions = phrases.DESCRIPTIONS
-        self.verbosity = verbosity
-        self.level = level
-        self.map = map
-        self.grammar = grammar
-
-    def quantiles(self) -> "list[list[float]]":
-        quants: list[list[float]] = []
-        return quants
+        """
+        Params:
+        - level: The semantic level of the explanation to generate
+        - verbosity: The verbosity of the explanation to generate
+        - explain: How much of the UpSet explanation 
+            (describing what an UpSet plot is) to include
+        - map: The token map to use for replacing tokens in the description
+        - grammar: The grammar model to use for generating the description
+        """
+        self.descriptions: "dict[str, Any]" = phrases.DESCRIPTIONS
+        self.verbosity: Verbosity = verbosity
+        self.level: Level = level
+        self.explain: Explanation = explain
+        self.map: TokenMap = map
+        self.grammar: GrammarModel = grammar
 
     @property
     def text(self) -> str:
-        text_desc: str = ""
+        # Start with the UpSet explanation, if any
+        text_desc: str = self.descriptions["upset_desc"][self.explain]
             
         # Get the description template for the level, verbosity, and sort
         # L0 and L1 don't care about sort/aggregation
-        if self.level == Level.ZERO:
-            text_desc = self.descriptions["level_0"][self.verbosity.value]
 
-        elif self.level == Level.ONE:
-            text_desc = self.descriptions["level_1"][self.verbosity.value]
+        if self.level == Level.ONE:
+            text_desc += self.descriptions["level_1"][self.verbosity.value]
 
         elif self.level == Level.TWO:
-            # Only low and medium care about sort; high is always the same
-            if self.verbosity != Verbosity.HIGH:
-                text_desc = self.descriptions["level_2"]\
+            # L2 splits generation by sort type of the plot
+            text_desc += self.descriptions["level_2"]\
                     [self.verbosity.value][self.grammar.sort_by]
-            else:
-                text_desc = self.descriptions["level_2"]["high"]
         else:
             raise TypeError(f"Expected {Level.list()}. Got {self.level}.")
 

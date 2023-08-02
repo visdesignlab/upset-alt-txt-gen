@@ -1,4 +1,5 @@
-from alttxt.enums import SortBy
+from alttxt.enums import SortBy, Explanation
+from typing import Any
 
 """
 The context-free grammar which the alt text is generated from-
@@ -19,63 +20,69 @@ technically be terminal, as long as their mapping doesn't contain any values tha
 to be computed by the TokenMap. Note that when feeding symbols to both the TokenMap 
 and the grammar, the symbols must be stripped of their enclosing brackets.
 """
-DESCRIPTIONS = {
-    "level_0": {
-        "low": "[[l0_low_desc]].",
-        "medium": "[[l0_low_desc]]. [[l0_med_desc]].",
-        "high": "[[l0_low_desc]]. [[l0_med_desc]]. [[l0_high_desc]].",
+DESCRIPTIONS: "dict[str, Any]" = {
+    # Various levels of "explain upset"
+    "upset_desc": {
+        Explanation.NONE: "",
+        Explanation.SIMPLE: "[[UpSet]]. [[learn_more]]. ",
+        Explanation.FULL: "[[UpSet]], a data visualization that uses a matrix "
+        "to display the size of intersecting sets, similar to a venn diagram. "
+        "The rows of the matrix represent set intersections. "
+        "The columns of the matrix correspond to sets. "
+        "The intersecting sets in a particular row are indicated by whether "
+        "the cell corresponding to a set is filled in. For example, "
+        "for three sets A, B, and C, the row corresponding to "
+        "the intersection of A and C has A and C filled in. "
+        "Next to each row is a horizontal bar that visualizes the size of the intersection. [[learn_more]]. ",
     },
     "level_1": {
         "low": "[[l1_low_desc]].",
-        "medium": "[[l1_low_desc]]. [[l1_med_desc]].",
-        "high": "[[l1_low_desc]]. [[l1_med_desc]]. [[l1_high_desc]]",
+        "medium": "[[l1_low_desc]][[l1_med_desc]].",
+        "high": "[[l1_low_desc]][[l1_med_desc]]. [[l1_high_desc]].",
     },
     # L2 splits generation by sort- verbosity is TBA
     "level_2": {
         "low": {
-            SortBy.CARDINALITY: "[[InUpSet]], [[sort_set_info]]. The largest 5 intersections are {{list_max_5int}}.",
-            SortBy.DEGREE: "[[InUpSet]], [[sort_set_info]]. There are {{list_degree_count}}.",
-            SortBy.DEVIATION: "[[InUpSet]], [[sort_set_info]]. The largest 5 absolute deviations are {{list5_dev_outliers}}.",
+            SortBy.CARDINALITY: "The largest 5 intersections, with their respective sizes and deviations, "
+            "are {{list_max_5int}}. [[card_percs]].",
+            SortBy.DEGREE: "There are {{list_degree_count}}.",
+            SortBy.DEVIATION: "[[deviation_info]].",
             },
         "medium": {
-                SortBy.CARDINALITY: "[[InUpSet]], [[sort_set_info]]. [[set_names_sizes]]. [[largest_10_int]]. [[card_percs]].",
-                SortBy.DEGREE: "[[InUpSet]], [[sort_set_info]]. [[set_names_sizes]]. [[degree_info]].",
-                SortBy.DEVIATION: "[[InUpSet]], [[sort_set_info]]. [[set_names_sizes]]. [[deviation_info]]. [[dev_outliers]].",
+                SortBy.CARDINALITY: "The largest 10 intersections, with their respective sizes and deviations, "
+                "are {{list_max_10int}}. [[card_percs]].",
+                SortBy.DEGREE: "[[degree_info]].",
+                SortBy.DEVIATION: "[[deviation_info]]. The largest 5 absolute deviations are {{list5_dev_outliers}}.",
             },
-        "high": "[[InUpSet]], [[sort_set_info]]. [[set_names_sizes]]. [[largest_10_int]]. [[card_percs]]. [[degree_info]]. [[deviation_info]]. [[dev_outliers]].",    
+        "high": {
+                SortBy.CARDINALITY: "In order of cardinality, the intersections (with their respective sizes and deviations) "
+                "are: {{list_all_int}}. [[card_percs]].",
+                SortBy.DEGREE: "[[degree_info]].",
+                SortBy.DEVIATION: "[[deviation_info]]. The largest 10 absolute deviations are {{list10_dev_outliers}}.",
+        },    
     # L3 note: observe which sets are not present in many large intersections
     },
+    # These are all of the non-terminal symbols that are used in the grammar
     "symbols": {
         # "This is an UpSet plot"
         "UpSet": "this is an UpSet plot",
         # Another title for an UpSet plot
         "InUpSet": "in this UpSet plot",
-        # Basic description of an UpSet plot
-        "l0_low_desc": "[[UpSet]], a data visualization tool "
-        "which uses a matrix to display the mathematical properties of intersecting sets",
-        # Explanation of rows, columns, and matrix entries
-        "l0_med_desc": "the rows of the matrix represent sets or set intersections. "
-        "The columns of the matrix are properties of intersections and variables in the dataset. "
-        "Each entry in the matrix shows a property of the corresponding set intersection, or "
-        "the distribution of a certain variable from the dataset in the corresponding intersection",
-        # Column descriptions
-        "l0_high_desc": "the first column shows which set intersection is visualized in that row. "
-        "The second column shows the cardinality of each intersection. The third column shows "
-        "the deviation of each set intersection, which represents how unexpected the cardinality "
-        "of an intersection is given the size of its constituent sets. The remaining {{var_count}} columns "
-        "show the average and quartiles of each variable from the dataset",
+        # Learn more about UpSet
+        "learn_more": "to learn about UpSet plots, visit upset.app",
         # Title, caption, set list
-        "l1_low_desc": "[[title]]. [[set_list]]",
+        "l1_low_desc": "[[title]]. The dataset contains {{set_count}} total sets, "
+        "with {{universal_set_size}} elements. {{visible_set_count}} sets are shown in the plot",
         # Number of non-empty intersections, max/min intersection size, and universal set size
-        "l1_med_desc": "[[pop_intersections]]. [[max_min]], and [[universal_set_size]]",
+        "l1_med_desc": ": {{list_visible_set_names}}. [[pop_intersections]]",
         # Sort order and variable list
-        "l1_high_desc": "[[sort_by]]. [[list_vars]]",
+        "l1_high_desc": "[[max_min]]. [[sort_by]]. [[set_names_sizes]].",
         # Title and caption
-        "title": "this UpSet plot is titled {{title}}",
+        "title": "this UpSet plot {{title}}",
         # Count and list set names
         "set_list": "{{visible_set_count}} sets are displayed- their names and sizes are: {{list_set_sizes}}",
         # Number of non-empty intersections
-        "pop_intersections": "{{pop_intersect_count}} non-empty set intersections are visualized",
+        "pop_intersections": "{{pop_intersect_count}} non-empty intersections are shown",
         # Set intersection size range
         "max_min": "set intersections range in size from {{min_size}} to {{max_size}}",
         # Total number of items in all sets
@@ -93,9 +100,8 @@ DESCRIPTIONS = {
         # Largest 10 intersections and 10th percentile of intersections
         "largest_10_int": "the largest 10 intersections are {{list_max_10int}}",
         # Average and 10th, 25th, 75th, and 90th percentile cardinalities
-        "card_percs": "the average cardinality is {{avg_card}}, with a 10th percentile of {{10perc_card}}, "
-        "25th percentile of {{25perc_card}}, 75th percentile of {{75perc_card}}, "
-        "and 90th percentile of {{90perc_card}}",
+        "card_percs": "the average intersection size is {{avg_card}}. "
+        "The 90th percentile is {{90perc_card}}, and the 10th percentile is {{10perc_card}}",
         # Degree info list,
         "degree_info": "number of intersections of each degree, their average cardinality, "
         "and their average deviation are as follows: {{list_degree_info}}",
@@ -105,7 +111,5 @@ DESCRIPTIONS = {
         "negative deviation, with a total cardinality of {{neg_dev_card}}. "
         "The average positive deviation is {{avg_pos_dev}}, and the average "
         "negative deviation is {{avg_neg_dev}}",
-        # Outliers for deviation
-        "dev_outliers": "the largest 10 absolute deviations are {{list10_dev_outliers}}",
     },
 }

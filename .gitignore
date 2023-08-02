@@ -13,3 +13,4 @@ build/
 /dist
 /env
 src/upset_alttxt.egg-info
+.vscode/

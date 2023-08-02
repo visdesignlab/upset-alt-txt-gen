@@ -81,8 +81,3 @@ class SortVisibleBy(Listable):
     ALPHABETICAL = "Alphabetical"
     ASCENDING = "Ascending"
     DESCENDING = "Descending"
-
-
-class Orientation(Listable):
-    HORIZONTAL = "horizontal"
-    VERTICAL = "vertical"

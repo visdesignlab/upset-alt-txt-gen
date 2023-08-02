@@ -18,16 +18,21 @@ class AltTxtGen:
         map: TokenMap,
         grammar: GrammarModel,
     ) -> None:
+        """
+        Params:
+        - level: The semantic level of the explanation to generate
+        - verbosity: The verbosity of the explanation to generate
+        - explain: How much of the UpSet explanation 
+            (describing what an UpSet plot is) to include
+        - map: The token map to use for replacing tokens in the description
+        - grammar: The grammar model to use for generating the description
+        """
         self.descriptions: "dict[str, Any]" = phrases.DESCRIPTIONS
         self.verbosity: Verbosity = verbosity
         self.level: Level = level
         self.explain: Explanation = explain
         self.map: TokenMap = map
         self.grammar: GrammarModel = grammar
-
-    def quantiles(self) -> "list[list[float]]":
-        quants: list[list[float]] = []
-        return quants
 
     @property
     def text(self) -> str:

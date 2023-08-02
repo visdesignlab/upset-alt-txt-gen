@@ -29,11 +29,11 @@ DESCRIPTIONS: "dict[str, Any]" = {
         "to display the size of intersecting sets, similar to a venn diagram. "
         "The rows of the matrix represent set intersections. "
         "The columns of the matrix correspond to sets. "
-        "The sets that intersect in a particular row are indicated by whether "
+        "The intersecting sets in a particular row are indicated by whether "
         "the cell corresponding to a set is filled in. For example, "
         "for three sets A, B, and C, the row corresponding to "
         "the intersection of A and C has A and C filled in. "
-        "Next to each row is a bar that visualizes the size of the intersection. [[learn_more]]. ",
+        "Next to each row is a horizontal bar that visualizes the size of the intersection. [[learn_more]]. ",
     },
     "level_1": {
         "low": "[[l1_low_desc]].",
@@ -78,7 +78,7 @@ DESCRIPTIONS: "dict[str, Any]" = {
         # Sort order and variable list
         "l1_high_desc": "[[max_min]]. [[sort_by]]. [[set_names_sizes]].",
         # Title and caption
-        "title": "this UpSet plot shows {{title}}",
+        "title": "this UpSet plot is titled: {{title}}",
         # Count and list set names
         "set_list": "{{visible_set_count}} sets are displayed- their names and sizes are: {{list_set_sizes}}",
         # Number of non-empty intersections

@@ -280,7 +280,7 @@ class TokenMap:
         String is formatted as follows:
           "Set1: 10, Set2: 20, Set3: 30"
         """
-        result = ""
+        result: str = ""
 
         for setID in self.grammar.visible_sets:
             # Trim "Set_" from the setID if extant to make it match up with the name field

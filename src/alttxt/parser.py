@@ -79,11 +79,11 @@ class Parser:
         subsets: list[Subset] = []
         for item in data["processedData"]["values"].values():
             # Name of the set/intersection/aggregation- a list of set names in the case of intersections
-            name = item.get("elementName", self.default_field)
+            name: str = item.get("elementName", self.default_field)
             # Cardinality
-            size = item.get("size", self.default_field)
+            size: int = int(item.get("size", self.default_field))
             # Deviation - rounded to 2 decimals
-            dev = round(item.get("deviation", self.default_field), 2)
+            dev: float = round(item.get("deviation", self.default_field), 2)
             # Degree. This will be replaced when degree is added to the JSON export
             # Current implementation is bugged if set names include spaces,
             # but it's the only way to get set degree until added to the JSON
@@ -157,9 +157,9 @@ class Parser:
             wordclouds=grammar["plots"]["wordClouds"],
         )
 
-        collapsed = grammar["collapsed"]
-        visible_sets = grammar["visibleSets"]
-        visible_atts = grammar["visibleAttributes"]
+        collapsed: list[str] = grammar["collapsed"]
+        visible_sets: list[str] = grammar["visibleSets"]
+        visible_atts: list[str] = grammar["visibleAttributes"]
 
         bookmarked_intersections = list(
             map(

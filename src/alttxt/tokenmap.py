@@ -268,7 +268,7 @@ class TokenMap:
             else:
                 next_int: Subset = neg_sort.pop(0)
 
-            result += f"{next_int.name} (deviation {next_int.dev}), "
+            result += f"{next_int.name} ({next_int.dev}), "
 
         # Trim the trailing ', '
         return result[:-2]
@@ -338,7 +338,7 @@ class TokenMap:
         for i in range(1, len(count)):
             if count[i] == 0:
                 continue
-            result += f"{count[i]} subsets with degree {i} (cardinality {round(card[i], 2)}, deviation {round(dev[i], 2)}), "
+            result += f"{count[i]} subsets with degree {i} ({round(card[i], 2)}, {round(dev[i], 2)}), "
         
         return result[:-2]
 

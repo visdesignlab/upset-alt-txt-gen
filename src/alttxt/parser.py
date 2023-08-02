@@ -170,6 +170,11 @@ class Parser:
             )
         )
 
+        # Remove the 'Set_' prefix from each visible set name, if extant
+        for i in range(len(visible_sets)):
+            if visible_sets[i].startswith("Set_"):
+                visible_sets[i] = visible_sets[i][4:]
+
         grammar_model = GrammarModel(
             #caption=caption,
             #title=title,

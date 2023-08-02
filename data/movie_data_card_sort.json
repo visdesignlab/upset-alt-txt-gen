@@ -117205,6 +117205,7 @@
   "accessibleProcessedData": {
     "values": {
       "Subset_Unincluded": {
+        "elementName": "Unincluded",
         "type": "Subset",
         "size": 2569,
         "deviation": 3.778855136391457,
@@ -117234,6 +117235,7 @@
             "third": 1997
           }
         },
+        "degree": 0,
         "setMembership": {
           "Set_Thriller": "No",
           "Set_War": "No",
@@ -117244,6 +117246,7 @@
         }
       },
       "Subset_Thriller": {
+        "elementName": "Just Thriller",
         "type": "Subset",
         "size": 349,
         "deviation": -0.06300775937493203,
@@ -117273,6 +117276,7 @@
             "third": 1997
           }
         },
+        "degree": 1,
         "setMembership": {
           "Set_Thriller": "Yes",
           "Set_War": "No",
@@ -117283,6 +117287,7 @@
         }
       },
       "Subset_Action": {
+        "elementName": "Just Action",
         "type": "Subset",
         "size": 218,
         "deviation": -3.669159671059875,
@@ -117312,6 +117317,7 @@
             "third": 1996
           }
         },
+        "degree": 1,
         "setMembership": {
           "Set_Thriller": "No",
           "Set_War": "No",
@@ -117322,6 +117328,7 @@
         }
       },
       "Subset_Children": {
+        "elementName": "Just Children",
         "type": "Subset",
         "size": 160,
         "deviation": -0.19051920958502722,
@@ -117351,6 +117358,7 @@
             "third": 1997
           }
         },
+        "degree": 1,
         "setMembership": {
           "Set_Thriller": "No",
           "Set_War": "No",
@@ -117361,6 +117369,7 @@
         }
       },
       "Subset_Thriller_Action": {
+        "elementName": "Thriller & Action",
         "type": "Subset",
         "size": 104,
         "deviation": 1.3314170597814943,
@@ -117390,6 +117399,7 @@
             "third": 1998
           }
         },
+        "degree": 2,
         "setMembership": {
           "Set_Thriller": "Yes",
           "Set_War": "No",
@@ -117400,6 +117410,7 @@
         }
       },
       "Subset_Action_Adventure": {
+        "elementName": "Action & Adventure",
         "type": "Subset",
         "size": 90,
         "deviation": 1.5880190573031083,
@@ -117429,6 +117440,7 @@
             "third": 1995
           }
         },
+        "degree": 2,
         "setMembership": {
           "Set_Thriller": "No",
           "Set_War": "No",
@@ -117439,6 +117451,7 @@
         }
       },
       "Subset_War": {
+        "elementName": "Just War",
         "type": "Subset",
         "size": 88,
         "deviation": -0.11887955914173069,
@@ -117468,6 +117481,7 @@
             "third": 1995
           }
         },
+        "degree": 1,
         "setMembership": {
           "Set_Thriller": "No",
           "Set_War": "Yes",
@@ -117478,6 +117492,7 @@
         }
       },
       "Subset_Adventure_Children": {
+        "elementName": "Adventure & Children",
         "type": "Subset",
         "size": 75,
         "deviation": 1.5926002615602424,
@@ -117507,6 +117522,7 @@
             "third": 1996
           }
         },
+        "degree": 2,
         "setMembership": {
           "Set_Thriller": "No",
           "Set_War": "No",
@@ -117517,6 +117533,7 @@
         }
       },
       "Subset_Adventure": {
+        "elementName": "Just Adventure",
         "type": "Subset",
         "size": 66,
         "deviation": -3.204148972588915,
@@ -117546,6 +117563,7 @@
             "third": 1991.75
           }
         },
+        "degree": 1,
         "setMembership": {
           "Set_Thriller": "No",
           "Set_War": "No",
@@ -117556,6 +117574,7 @@
         }
       },
       "Subset_Western": {
+        "elementName": "Just Western",
         "type": "Subset",
         "size": 52,
         "deviation": 0.22726236693489976,
@@ -117585,6 +117604,7 @@
             "third": 1979.75
           }
         },
+        "degree": 1,
         "setMembership": {
           "Set_Thriller": "No",
           "Set_War": "No",
@@ -117595,6 +117615,7 @@
         }
       },
       "Subset_War_Action": {
+        "elementName": "War & Action",
         "type": "Subset",
         "size": 34,
         "deviation": 0.5206590484650806,
@@ -117624,6 +117645,7 @@
             "third": 1993
           }
         },
+        "degree": 2,
         "setMembership": {
           "Set_Thriller": "No",
           "Set_War": "Yes",
@@ -117634,6 +117656,7 @@
         }
       },
       "Subset_Thriller_Action Adventure": {
+        "elementName": "Thriller & Action & Adventure",
         "type": "Subset",
         "size": 23,
         "deviation": 0.48644229557660357,
@@ -117663,6 +117686,7 @@
             "third": 1997
           }
         },
+        "degree": 3,
         "setMembership": {
           "Set_Thriller": "Yes",
           "Set_War": "No",
@@ -117673,6 +117697,7 @@
         }
       },
       "Subset_Western_Action": {
+        "elementName": "Western & Action",
         "type": "Subset",
         "size": 8,
         "deviation": 0.040555879651136995,
@@ -117702,6 +117727,7 @@
             "third": 1994.5
           }
         },
+        "degree": 2,
         "setMembership": {
           "Set_Thriller": "No",
           "Set_War": "No",
@@ -117712,6 +117738,7 @@
         }
       },
       "Subset_Thriller_Adventure": {
+        "elementName": "Thriller & Adventure",
         "type": "Subset",
         "size": 7,
         "deviation": -0.5312286128774829,
@@ -117741,6 +117768,7 @@
             "third": 1992.5
           }
         },
+        "degree": 2,
         "setMembership": {
           "Set_Thriller": "Yes",
           "Set_War": "No",
@@ -117751,6 +117779,7 @@
         }
       },
       "Subset_War_Action Adventure": {
+        "elementName": "War & Action & Adventure",
         "type": "Subset",
         "size": 7,
         "deviation": 0.15236976715517384,
@@ -117780,6 +117809,7 @@
             "third": 1989
           }
         },
+        "degree": 3,
         "setMembership": {
           "Set_Thriller": "No",
           "Set_War": "Yes",
@@ -117790,6 +117820,7 @@
         }
       },
       "Subset_Action_Children": {
+        "elementName": "Action & Children",
         "type": "Subset",
         "size": 6,
         "deviation": -0.48703515732222136,
@@ -117819,6 +117850,7 @@
             "third": 1994.75
           }
         },
+        "degree": 2,
         "setMembership": {
           "Set_Thriller": "No",
           "Set_War": "No",
@@ -117829,6 +117861,7 @@
         }
       },
       "Subset_Action_Adventure Children": {
+        "elementName": "Action & Adventure & Children",
         "type": "Subset",
         "size": 6,
         "deviation": 0.1040863609898805,
@@ -117858,6 +117891,7 @@
             "third": 1997
           }
         },
+        "degree": 3,
         "setMembership": {
           "Set_Thriller": "No",
           "Set_War": "No",
@@ -117868,6 +117902,7 @@
         }
       },
       "Subset_War_Adventure": {
+        "elementName": "War & Adventure",
         "type": "Subset",
         "size": 4,
         "deviation": -0.08448761266100786,
@@ -117897,6 +117932,7 @@
             "third": 1962.25
           }
         },
+        "degree": 2,
         "setMembership": {
           "Set_Thriller": "No",
           "Set_War": "Yes",
@@ -117907,6 +117943,7 @@
         }
       },
       "Subset_Thriller_War": {
+        "elementName": "Thriller & War",
         "type": "Subset",
         "size": 3,
         "deviation": -0.26880411498499274,
@@ -117936,6 +117973,7 @@
             "third": 1974.5
           }
         },
+        "degree": 2,
         "setMembership": {
           "Set_Thriller": "Yes",
           "Set_War": "Yes",
@@ -117946,6 +117984,7 @@
         }
       },
       "Subset_Thriller_War Action": {
+        "elementName": "Thriller & War & Action",
         "type": "Subset",
         "size": 3,
         "deviation": 0.02575979894313831,
@@ -117975,6 +118014,7 @@
             "third": 1997
           }
         },
+        "degree": 3,
         "setMembership": {
           "Set_Thriller": "Yes",
           "Set_War": "Yes",
@@ -117985,6 +118025,7 @@
         }
       },
       "Subset_Western_Adventure": {
+        "elementName": "Western & Adventure",
         "type": "Subset",
         "size": 3,
         "deviation": -0.010148502365101075,
@@ -118014,6 +118055,7 @@
             "third": 1992.5
           }
         },
+        "degree": 2,
         "setMembership": {
           "Set_Thriller": "No",
           "Set_War": "No",
@@ -118024,6 +118066,7 @@
         }
       },
       "Subset_Western_Children": {
+        "elementName": "Western & Children",
         "type": "Subset",
         "size": 2,
         "deviation": -0.02533511868116653,
@@ -118053,6 +118096,7 @@
             "third": 1978
           }
         },
+        "degree": 2,
         "setMembership": {
           "Set_Thriller": "No",
           "Set_War": "No",
@@ -118063,6 +118107,7 @@
         }
       },
       "Subset_Thriller_Western Action": {
+        "elementName": "Thriller & Western & Action",
         "type": "Subset",
         "size": 1,
         "deviation": 0.00174519411886439,
@@ -118092,6 +118137,7 @@
             "third": 1973
           }
         },
+        "degree": 3,
         "setMembership": {
           "Set_Thriller": "Yes",
           "Set_War": "No",
@@ -118102,6 +118148,7 @@
         }
       },
       "Subset_Western_Action Adventure": {
+        "elementName": "Western & Action & Adventure",
         "type": "Subset",
         "size": 1,
         "deviation": 0.012745472432108497,
@@ -118131,6 +118178,7 @@
             "third": 1995
           }
         },
+        "degree": 3,
         "setMembership": {
           "Set_Thriller": "No",
           "Set_War": "No",
@@ -118141,6 +118189,7 @@
         }
       },
       "Subset_War_Children": {
+        "elementName": "War & Children",
         "type": "Subset",
         "size": 1,
         "deviation": -0.13908077379576328,
@@ -118170,6 +118219,7 @@
             "third": 1998
           }
         },
+        "degree": 2,
         "setMembership": {
           "Set_Thriller": "No",
           "Set_War": "Yes",
@@ -118180,6 +118230,7 @@
         }
       },
       "Subset_War_Western": {
+        "elementName": "War & Western",
         "type": "Subset",
         "size": 1,
         "deviation": -0.016760860295627386,
@@ -118209,6 +118260,7 @@
             "third": 1994
           }
         },
+        "degree": 2,
         "setMembership": {
           "Set_Thriller": "No",
           "Set_War": "Yes",

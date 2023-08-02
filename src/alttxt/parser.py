@@ -77,20 +77,15 @@ class Parser:
         
         # Dictionary mapping sets/intersections/aggregations to information about them        
         subsets: list[Subset] = []
-        for item in data["processedData"]["values"].values():
+        for item in data["accessibleProcessedData"]["values"].values():
             # Name of the set/intersection/aggregation- a list of set names in the case of intersections
             name: str = item.get("elementName", self.default_field)
             # Cardinality
             size: int = int(item.get("size", self.default_field))
             # Deviation - rounded to 2 decimals
             dev: float = round(item.get("deviation", self.default_field), 2)
-            # Degree. This will be replaced when degree is added to the JSON export
-            # Current implementation is bugged if set names include spaces,
-            # but it's the only way to get set degree until added to the JSON
-            if name == self.default_field:
-                degree = -1
-            else:
-                degree: int = name.count(" ") + 1
+            # Degree
+            degree: int = int(item.get("degree", self.default_field))
             subsets.append(Subset(name=name, size=size, dev=dev, degree=degree))
 
         # List of set names

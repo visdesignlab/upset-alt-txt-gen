@@ -32,7 +32,7 @@ DESCRIPTIONS: "dict[str, Any]" = {
         "The sets that intersect in a particular row are indicated by whether "
         "the cell corresponding to a set is filled in. For example, "
         "for three sets A, B, and C, the row corresponding to "
-        "the intersection of A and C is filled in or lists A and C. "
+        "the intersection of A and C has A and C filled in. "
         "Next to each row is a bar that visualizes the size of the intersection. [[learn_more]]. ",
     },
     "level_1": {
@@ -43,17 +43,20 @@ DESCRIPTIONS: "dict[str, Any]" = {
     # L2 splits generation by sort- verbosity is TBA
     "level_2": {
         "low": {
-            SortBy.CARDINALITY: "The largest 5 intersections are {{list_max_5int}}. [[card_percs]].",
+            SortBy.CARDINALITY: "The largest 5 intersections, with their respective sizes and deviations, "
+            "are {{list_max_5int}}. [[card_percs]].",
             SortBy.DEGREE: "There are {{list_degree_count}}.",
             SortBy.DEVIATION: "[[deviation_info]].",
             },
         "medium": {
-                SortBy.CARDINALITY: "The largest 10 intersections are {{list_max_10int}}. [[card_percs]].",
+                SortBy.CARDINALITY: "The largest 10 intersections, with their respective sizes and deviations, "
+                "are {{list_max_10int}}. [[card_percs]].",
                 SortBy.DEGREE: "[[degree_info]].",
                 SortBy.DEVIATION: "[[deviation_info]]. The largest 5 absolute deviations are {{list5_dev_outliers}}.",
             },
         "high": {
-                SortBy.CARDINALITY: "In order of cardinality, the intersections are: {{list_all_int}}. [[card_percs]].",
+                SortBy.CARDINALITY: "In order of cardinality, the intersections (with their respective sizes and deviations) "
+                "are: {{list_all_int}}. [[card_percs]].",
                 SortBy.DEGREE: "[[degree_info]].",
                 SortBy.DEVIATION: "[[deviation_info]]. The largest 10 absolute deviations are {{list10_dev_outliers}}.",
         },    

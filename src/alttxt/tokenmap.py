@@ -304,7 +304,7 @@ class TokenMap:
             if i >= len(sort):
                 break
 
-            result += f"{sort[i].name} (cardinality {sort[i].size}, deviation {sort[i].dev}), "
+            result += f"{sort[i].name} ({sort[i].size}, {sort[i].dev}), "
             if i == n - 2:
                 result += "and "
 

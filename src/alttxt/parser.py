@@ -90,7 +90,7 @@ class Parser:
             if name == self.default_field:
                 degree = -1
             else:
-                degree = name.count(" ") + 1
+                degree: int = name.count(" ") + 1
             subsets.append(Subset(name=name, size=size, dev=dev, degree=degree))
 
         # List of set names
@@ -98,6 +98,10 @@ class Parser:
         for set_ in data["rawData"]["sets"].values():
             set_name: str = set_["elementName"]
             sizes[set_name] = set_["size"]
+            
+            # Remove the 'Set_' prefix from the set name, if extant- must be done after prev steps
+            if set_name.startswith("Set_"):
+                set_name = set_name[4:]
             sets_.append(set_name)
 
         # List of all members (data points) of the sets

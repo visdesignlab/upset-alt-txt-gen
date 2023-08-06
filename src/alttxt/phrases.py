@@ -55,7 +55,7 @@ DESCRIPTIONS: "dict[str, Any]" = {
                 SortBy.DEVIATION: "[[deviation_info]]. The largest 5 absolute deviations are {{list5_dev_outliers}}.",
             },
         "high": {
-                SortBy.SIZE: "In order of cardinality, the intersections (with their respective sizes and deviations) "
+                SortBy.SIZE: "In order of size, the intersections (with their respective sizes and deviations) "
                 "are: {{list_all_int}}. [[card_percs]].",
                 SortBy.DEGREE: "[[degree_info]].",
                 SortBy.DEVIATION: "[[deviation_info]]. The largest 10 absolute deviations are {{list10_dev_outliers}}.",
@@ -103,12 +103,12 @@ DESCRIPTIONS: "dict[str, Any]" = {
         "card_percs": "the average intersection size is {{avg_card}}. "
         "The 90th percentile is {{90perc_card}}, and the 10th percentile is {{10perc_card}}",
         # Degree info list,
-        "degree_info": "number of intersections of each degree, their average cardinality, "
+        "degree_info": "number of intersections of each degree, their average size, "
         "and their average deviation are as follows: {{list_degree_info}}",
         # Deviation info, split by positive and negative deviations
         "deviation_info": "{{pos_dev_count}} intersections have a positive deviation, with a total "
-        "cardinality of {{pos_dev_card}}. {{neg_dev_count}} have a "
-        "negative deviation, with a total cardinality of {{neg_dev_card}}. "
+        "size of {{pos_dev_card}}. {{neg_dev_count}} have a "
+        "negative deviation, with a total size of {{neg_dev_card}}. "
         "The average positive deviation is {{avg_pos_dev}}, and the average "
         "negative deviation is {{avg_neg_dev}}",
     },

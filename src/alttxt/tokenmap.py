@@ -48,15 +48,15 @@ class TokenMap:
             "list_set_names": self.list_set_names,
             # List of visible set names
             "list_visible_set_names": self.list_visible_set_names,
-            # Cardinality of the largest set/intersection
+            # size of the largest set/intersection
             "min_size": min(self.data.count),
-            # Cardinality of the smallest set/intersection
+            # size of the smallest set/intersection
             "max_size": max(self.data.count),
-            # Average cardinality of all intersections
+            # Average size of all intersections
             "avg_card": self.avg_card,
-            # 25th percentile for cardinality
+            # 25th percentile for size
             "25perc_card": self.get_subset_percentile(SubsetField.SIZE, 25),
-            # 75th percentile for cardinality
+            # 75th percentile for size
             "75perc_card": self.get_subset_percentile(SubsetField.SIZE, 75),
             # Counts populated intersections 
             "pop_intersect_count": len(self.data.subsets),
@@ -64,18 +64,18 @@ class TokenMap:
             "sort_type": self.grammar.sort_by.value,
             # Number of intersections of each degree
             "list_degree_count": self.degree_count,
-            # Number of intersections of each degree, their average cardinality, and their average deviation
+            # Number of intersections of each degree, their average size, and their average deviation
             "list_degree_info": self.degree_str,
-            # 10 largest intersections by cardinality- 
-            # includes name, cardinality, deviation
+            # 10 largest intersections by size- 
+            # includes name, size, deviation
             "list_max_10int": self.max_n_intersections(10),
-            # Largest 5 intersections by cardinality, including name, cardinality, deviation
+            # Largest 5 intersections by size, including name, size, deviation
             "list_max_5int": self.max_n_intersections(5),
-            # List all intersections in order of cardinality, including name, cardinality, deviation
+            # List all intersections in order of size, including name, size, deviation
             "list_all_int": self.max_n_intersections(len(self.data.subsets)),
-            # 90th percentile for cardinality
+            # 90th percentile for size
             "90perc_card": self.get_subset_percentile(SubsetField.SIZE, 90),
-            # 10th percentile for cardinality
+            # 10th percentile for size
             "10perc_card": self.get_subset_percentile(SubsetField.SIZE, 10),
             # Total number of attributes
             "var_count": len(self.grammar.visible_atts),
@@ -85,9 +85,9 @@ class TokenMap:
             "pos_dev_count": self.dev_info()["pos_count"],
             # Number of intersections with negative deviation
             "neg_dev_count": self.dev_info()["neg_count"],
-            # Total cardinality of positive deviation intersections
+            # Total size of positive deviation intersections
             "pos_dev_card": self.dev_info()["pos_card_total"],
-            # Total cardinality of negative deviation intersections
+            # Total size of negative deviation intersections
             "neg_dev_card": self.dev_info()["neg_card_total"],
             # Average positive deviation
             "avg_pos_dev": self.dev_info()["pos_avg"],
@@ -149,7 +149,7 @@ class TokenMap:
         Returns information about intersections of degrees up to max_degree.
         The information, in order, is:
             - The number of intersections of each degree
-            - The average cardinality of intersections of each degree
+            - The average size of intersections of each degree
             - The average deviation of intersections of each degree
         
         This function only works if the data is not aggregated. 
@@ -165,7 +165,7 @@ class TokenMap:
             For the first list, 
             the value at an index is the number of intersections with that degree.
             For the second list, 
-            the value at an index is the average cardinality of intersections with that degree.
+            the value at an index is the average size of intersections with that degree.
             For the third list, 
             the value at an index is the average deviation of intersections with that degree.
         """
@@ -219,10 +219,10 @@ class TokenMap:
             "neg_count": number of intersections with negative deviation
             "pos_avg": average positive deviation
             "neg_avg": average negative deviation
-            "pos_card_total": total cardinality of positive deviations
-            "neg_card_total": total cardinality of negative deviations
-            "pos_card_avg": average cardinality of positive deviations
-            "neg_card_avg": average cardinality of negative deviations
+            "pos_card_total": total size of positive deviations
+            "neg_card_total": total size of negative deviations
+            "pos_card_avg": average size of positive deviations
+            "neg_card_avg": average size of negative deviations
         """
         pos_count = 0
         neg_count = 0
@@ -297,7 +297,7 @@ class TokenMap:
     def max_n_intersections(self, n: int) -> str:
         """
         Returns a string listing the n largest intersections
-        by cardinality, including their name, cardinality, and deviation
+        by size, including their name, size, and deviation
         Params:
           n: Number of sets to list
         """
@@ -331,7 +331,7 @@ class TokenMap:
     def degree_str(self) -> str:
         """
         Returns a string describing the number of intersections of each degree,
-        their average cardinality, and their average deviation.
+        their average size, and their average deviation.
         Maximum degree listed is 20.
         """
         result: str = ""
@@ -347,7 +347,7 @@ class TokenMap:
 
     def avg_card(self) -> str:
         """
-        Returns the average cardinality of all set intersections,
+        Returns the average size of all set intersections,
         rounded to an int
         """
         count: int = 0

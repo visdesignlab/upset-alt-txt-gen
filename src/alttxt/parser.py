@@ -68,7 +68,7 @@ class Parser:
         - deviations from expected set membership
         - Information about sets/intersections/aggregations:
           - name
-          - cardinality
+          - size
           - deviation
           - description
         """
@@ -80,7 +80,7 @@ class Parser:
         for item in data["accessibleProcessedData"]["values"].values():
             # Name of the set/intersection/aggregation- a list of set names in the case of intersections
             name: str = item.get("elementName", self.default_field)
-            # Cardinality
+            # size
             size: int = int(item.get("size", self.default_field))
             # Deviation - rounded to 2 decimals
             dev: float = round(item.get("deviation", self.default_field), 2)

@@ -9,7 +9,7 @@ class Subset(BaseModel):
     SubsetField enum in types.py.
     """
     name: str
-    size: int # Cardinality
+    size: int # size
     dev: float # Deviation
     degree: int # Set to -1 if parser fails to find degree
 

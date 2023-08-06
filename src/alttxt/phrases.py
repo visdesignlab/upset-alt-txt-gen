@@ -43,19 +43,19 @@ DESCRIPTIONS: "dict[str, Any]" = {
     # L2 splits generation by sort- verbosity is TBA
     "level_2": {
         "low": {
-            SortBy.CARDINALITY: "The largest 5 intersections, with their respective sizes and deviations, "
+            SortBy.SIZE: "The largest 5 intersections, with their respective sizes and deviations, "
             "are {{list_max_5int}}. [[card_percs]].",
             SortBy.DEGREE: "There are {{list_degree_count}}.",
             SortBy.DEVIATION: "[[deviation_info]].",
             },
         "medium": {
-                SortBy.CARDINALITY: "The largest 10 intersections, with their respective sizes and deviations, "
+                SortBy.SIZE: "The largest 10 intersections, with their respective sizes and deviations, "
                 "are {{list_max_10int}}. [[card_percs]].",
                 SortBy.DEGREE: "[[degree_info]].",
                 SortBy.DEVIATION: "[[deviation_info]]. The largest 5 absolute deviations are {{list5_dev_outliers}}.",
             },
         "high": {
-                SortBy.CARDINALITY: "In order of cardinality, the intersections (with their respective sizes and deviations) "
+                SortBy.SIZE: "In order of cardinality, the intersections (with their respective sizes and deviations) "
                 "are: {{list_all_int}}. [[card_percs]].",
                 SortBy.DEGREE: "[[degree_info]].",
                 SortBy.DEVIATION: "[[deviation_info]]. The largest 10 absolute deviations are {{list10_dev_outliers}}.",

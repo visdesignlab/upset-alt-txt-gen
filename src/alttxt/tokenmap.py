@@ -55,9 +55,9 @@ class TokenMap:
             # Average cardinality of all intersections
             "avg_card": self.avg_card,
             # 25th percentile for cardinality
-            "25perc_card": self.get_subset_percentile(SubsetField.CARDINALITY, 25),
+            "25perc_card": self.get_subset_percentile(SubsetField.SIZE, 25),
             # 75th percentile for cardinality
-            "75perc_card": self.get_subset_percentile(SubsetField.CARDINALITY, 75),
+            "75perc_card": self.get_subset_percentile(SubsetField.SIZE, 75),
             # Counts populated intersections 
             "pop_intersect_count": len(self.data.subsets),
             # Sort type for intersections
@@ -74,9 +74,9 @@ class TokenMap:
             # List all intersections in order of cardinality, including name, cardinality, deviation
             "list_all_int": self.max_n_intersections(len(self.data.subsets)),
             # 90th percentile for cardinality
-            "90perc_card": self.get_subset_percentile(SubsetField.CARDINALITY, 90),
+            "90perc_card": self.get_subset_percentile(SubsetField.SIZE, 90),
             # 10th percentile for cardinality
-            "10perc_card": self.get_subset_percentile(SubsetField.CARDINALITY, 10),
+            "10perc_card": self.get_subset_percentile(SubsetField.SIZE, 10),
             # Total number of attributes
             "var_count": len(self.grammar.visible_atts),
             # List of attribute names
@@ -301,7 +301,7 @@ class TokenMap:
         Params:
           n: Number of sets to list
         """
-        sort: list[Subset] = self.sort_subsets_by_key(SubsetField.CARDINALITY, True)
+        sort: list[Subset] = self.sort_subsets_by_key(SubsetField.SIZE, True)
         result: str = ""
         for i in range(0, n):
             if i >= len(sort):

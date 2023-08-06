@@ -44,19 +44,19 @@ DESCRIPTIONS: "dict[str, Any]" = {
     "level_2": {
         "low": {
             SortBy.SIZE: "The largest 5 intersections, with their respective sizes and deviations, "
-            "are {{list_max_5int}}. [[card_percs]].",
+            "are {{list_max_5int}}. [[size_percs]].",
             SortBy.DEGREE: "There are {{list_degree_count}}.",
             SortBy.DEVIATION: "[[deviation_info]].",
             },
         "medium": {
                 SortBy.SIZE: "The largest 10 intersections, with their respective sizes and deviations, "
-                "are {{list_max_10int}}. [[card_percs]].",
+                "are {{list_max_10int}}. [[size_percs]].",
                 SortBy.DEGREE: "[[degree_info]].",
                 SortBy.DEVIATION: "[[deviation_info]]. The largest 5 absolute deviations are {{list5_dev_outliers}}.",
             },
         "high": {
                 SortBy.SIZE: "In order of size, the intersections (with their respective sizes and deviations) "
-                "are: {{list_all_int}}. [[card_percs]].",
+                "are: {{list_all_int}}. [[size_percs]].",
                 SortBy.DEGREE: "[[degree_info]].",
                 SortBy.DEVIATION: "[[deviation_info]]. The largest 10 absolute deviations are {{list10_dev_outliers}}.",
         },    
@@ -99,16 +99,16 @@ DESCRIPTIONS: "dict[str, Any]" = {
         "set_names_sizes": "set names and sizes are: {{list_set_sizes}}",
         # Largest 10 intersections and 10th percentile of intersections
         "largest_10_int": "the largest 10 intersections are {{list_max_10int}}",
-        # Average and 10th, 25th, 75th, and 90th percentile cardinalities
-        "card_percs": "the average intersection size is {{avg_card}}. "
-        "The 90th percentile is {{90perc_card}}, and the 10th percentile is {{10perc_card}}",
+        # Average and 10th, 25th, 75th, and 90th percentile sizeinalities
+        "size_percs": "the average intersection size is {{avg_size}}. "
+        "The 90th percentile is {{90perc_size}}, and the 10th percentile is {{10perc_size}}",
         # Degree info list,
         "degree_info": "number of intersections of each degree, their average size, "
         "and their average deviation are as follows: {{list_degree_info}}",
         # Deviation info, split by positive and negative deviations
         "deviation_info": "{{pos_dev_count}} intersections have a positive deviation, with a total "
-        "size of {{pos_dev_card}}. {{neg_dev_count}} have a "
-        "negative deviation, with a total size of {{neg_dev_card}}. "
+        "size of {{pos_dev_size}}. {{neg_dev_count}} have a "
+        "negative deviation, with a total size of {{neg_dev_size}}. "
         "The average positive deviation is {{avg_pos_dev}}, and the average "
         "negative deviation is {{avg_neg_dev}}",
     },

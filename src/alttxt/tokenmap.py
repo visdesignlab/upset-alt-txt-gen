@@ -53,11 +53,11 @@ class TokenMap:
             # size of the smallest set/intersection
             "max_size": max(self.data.count),
             # Average size of all intersections
-            "avg_card": self.avg_card,
+            "avg_size": self.avg_size,
             # 25th percentile for size
-            "25perc_card": self.get_subset_percentile(SubsetField.SIZE, 25),
+            "25perc_size": self.get_subset_percentile(SubsetField.SIZE, 25),
             # 75th percentile for size
-            "75perc_card": self.get_subset_percentile(SubsetField.SIZE, 75),
+            "75perc_size": self.get_subset_percentile(SubsetField.SIZE, 75),
             # Counts populated intersections 
             "pop_intersect_count": len(self.data.subsets),
             # Sort type for intersections
@@ -74,9 +74,9 @@ class TokenMap:
             # List all intersections in order of size, including name, size, deviation
             "list_all_int": self.max_n_intersections(len(self.data.subsets)),
             # 90th percentile for size
-            "90perc_card": self.get_subset_percentile(SubsetField.SIZE, 90),
+            "90perc_size": self.get_subset_percentile(SubsetField.SIZE, 90),
             # 10th percentile for size
-            "10perc_card": self.get_subset_percentile(SubsetField.SIZE, 10),
+            "10perc_size": self.get_subset_percentile(SubsetField.SIZE, 10),
             # Total number of attributes
             "var_count": len(self.grammar.visible_atts),
             # List of attribute names
@@ -86,9 +86,9 @@ class TokenMap:
             # Number of intersections with negative deviation
             "neg_dev_count": self.dev_info()["neg_count"],
             # Total size of positive deviation intersections
-            "pos_dev_card": self.dev_info()["pos_card_total"],
+            "pos_dev_size": self.dev_info()["pos_size_total"],
             # Total size of negative deviation intersections
-            "neg_dev_card": self.dev_info()["neg_card_total"],
+            "neg_dev_size": self.dev_info()["neg_size_total"],
             # Average positive deviation
             "avg_pos_dev": self.dev_info()["pos_avg"],
             # Average negative deviation
@@ -171,7 +171,7 @@ class TokenMap:
         """
 
         # 1 is added to each so that the max degree is included
-        card: list[float] = [0.0] * (max_degree + 1)
+        size: list[float] = [0.0] * (max_degree + 1)
         dev: list[float] = [0.0] * (max_degree + 1)
         degree_count: list[int] = [0] * (max_degree + 1)
         degree_count[0] = 1
@@ -179,24 +179,24 @@ class TokenMap:
         # Total all three values
         for subset in self.data.subsets:
             if subset.name == "Unincluded":
-                card[0] += subset.size
+                size[0] += subset.size
                 dev[0] += subset.dev
             
             degree = subset.degree
             if degree > max_degree:
                 continue
             degree_count[degree] += 1
-            card[degree] += subset.size
+            size[degree] += subset.size
             dev[degree] += subset.dev
         
         # Convert totals to averages
         for i in range(1, max_degree + 1):
             if degree_count[i] != 0:
-                card[i] /= degree_count[i]
+                size[i] /= degree_count[i]
                 dev[i] /= degree_count[i]
             # No need for else since the lists are initialized with 0s            
 
-        return degree_count, card, dev
+        return degree_count, size, dev
 
     def get_subset_percentile(self, field: SubsetField, perc: int) -> Any:
         """
@@ -219,37 +219,37 @@ class TokenMap:
             "neg_count": number of intersections with negative deviation
             "pos_avg": average positive deviation
             "neg_avg": average negative deviation
-            "pos_card_total": total size of positive deviations
-            "neg_card_total": total size of negative deviations
-            "pos_card_avg": average size of positive deviations
-            "neg_card_avg": average size of negative deviations
+            "pos_size_total": total size of positive deviations
+            "neg_size_total": total size of negative deviations
+            "pos_size_avg": average size of positive deviations
+            "neg_size_avg": average size of negative deviations
         """
         pos_count = 0
         neg_count = 0
         pos_dev_total = 0
         neg_dev_total = 0
-        pos_card_total = 0
-        neg_card_total = 0
+        pos_size_total = 0
+        neg_size_total = 0
 
         for subset in self.data.subsets:
             if subset.dev > 0:
                 pos_count += 1
                 pos_dev_total += subset.dev
-                pos_card_total += subset.size
+                pos_size_total += subset.size
             elif subset.dev < 0:
                 neg_count += 1
                 neg_dev_total += subset.dev
-                neg_card_total += subset.size
+                neg_size_total += subset.size
 
         return {
             "pos_count": pos_count,
             "neg_count": neg_count,
             "pos_avg": pos_dev_total / pos_count if pos_count > 0 else 0,
             "neg_avg": neg_dev_total / neg_count if neg_count > 0 else 0,
-            "pos_card_total": pos_card_total,
-            "neg_card_total": neg_card_total,
-            "pos_card_avg": pos_card_total / pos_count if pos_count > 0 else 0,
-            "neg_card_avg": neg_card_total / neg_count if neg_count > 0 else 0,
+            "pos_size_total": pos_size_total,
+            "neg_size_total": neg_size_total,
+            "pos_size_avg": pos_size_total / pos_count if pos_count > 0 else 0,
+            "neg_size_avg": neg_size_total / neg_count if neg_count > 0 else 0,
         }
 
     ###############################
@@ -335,17 +335,17 @@ class TokenMap:
         Maximum degree listed is 20.
         """
         result: str = ""
-        count, card, dev = self.degree_info(20)
+        count, size, dev = self.degree_info(20)
 
         # Start at 1 to skip the 0-degree/unincluded intersection
         for i in range(1, len(count)):
             if count[i] == 0:
                 continue
-            result += f"{count[i]} subsets with degree {i} ({round(card[i], 2)}, {round(dev[i], 2)}), "
+            result += f"{count[i]} subsets with degree {i} ({round(size[i], 2)}, {round(dev[i], 2)}), "
         
         return result[:-2]
 
-    def avg_card(self) -> str:
+    def avg_size(self) -> str:
         """
         Returns the average size of all set intersections,
         rounded to an int

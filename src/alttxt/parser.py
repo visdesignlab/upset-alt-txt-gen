@@ -171,8 +171,6 @@ class Parser:
                 visible_sets[i] = visible_sets[i][4:]
 
         grammar_model = GrammarModel(
-            #caption=caption,
-            #title=title,
             first_aggregate_by=first_aggregate_by,
             second_aggregate_by=second_aggregate_by,
             first_overlap_degree=first_overlap_degree,

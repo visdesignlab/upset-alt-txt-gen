@@ -1,6 +1,5 @@
 import argparse
 import os
-from pprint import pprint
 import sys
 
 from alttxt.generator import AltTxtGen

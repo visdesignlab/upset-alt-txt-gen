@@ -205,7 +205,7 @@ class TokenMap:
           field: The field to get the percentile of.
           perc: The percentile to get. Must be between 0 and 100.
         """
-        set_sort = self.sort_subsets_by_key(field, False)
+        set_sort: list[Subset] = self.sort_subsets_by_key(field, False)
         index = int(len(set_sort) * perc / 100)
         return getattr(set_sort[index], field.value)
 
@@ -224,12 +224,12 @@ class TokenMap:
             "pos_size_avg": average size of positive deviations
             "neg_size_avg": average size of negative deviations
         """
-        pos_count = 0
-        neg_count = 0
-        pos_dev_total = 0
-        neg_dev_total = 0
-        pos_size_total = 0
-        neg_size_total = 0
+        pos_count: int = 0
+        neg_count: int = 0
+        pos_dev_total: int = 0
+        neg_dev_total: int = 0
+        pos_size_total: int = 0
+        neg_size_total: int = 0
 
         for subset in self.data.subsets:
             if subset.dev > 0:
@@ -287,7 +287,7 @@ class TokenMap:
 
         for setID in self.grammar.visible_sets:
             # Trim "Set_" from the setID if extant to make it match up with the name field
-            set_name = setID[4:] if setID.startswith("Set_") else setID
+            set_name: str = setID[4:] if setID.startswith("Set_") else setID
             if set_name in self.data.sizes.keys():
                 result += f"{set_name}: {self.data.sizes[set_name]}, "
 

@@ -1,5 +1,5 @@
-from pprint import pprint
 import re
+from typing import Pattern
 
 from alttxt import phrases
 from alttxt.models import GrammarModel
@@ -85,9 +85,9 @@ class AltTxtGen:
 
         # Now, loop and replace all terminals.
         while "{{" in text:
-            tokens = re.split(r"{{|}}", text)
-            isToken = text.lstrip().startswith("{{")
-            result = list()
+            tokens: list[str] = re.split(r"{{|}}", text)
+            isToken: bool = text.lstrip().startswith("{{")
+            result: list[str] = list()
 
             # Bugfix for empty first token throwing off count
             if tokens[0] == "":
@@ -111,9 +111,9 @@ class AltTxtGen:
         Not the most robust implementation; may produce incorrect capitalizations
         after abbreviations, etc.
         """
-        match = re.compile(r'((?<=[\.\?!]\s)(\w+)|(^\w+))')
+        match: Pattern[str] = re.compile(r'((?<=[\.\?!]\s)(\w+)|(^\w+))')
 
-        def cap(match):
+        def cap(match) -> str:
             return match.group().capitalize()
 
         return match.sub(cap, text)

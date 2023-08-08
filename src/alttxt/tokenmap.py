@@ -48,35 +48,35 @@ class TokenMap:
             "list_set_names": self.list_set_names,
             # List of visible set names
             "list_visible_set_names": self.list_visible_set_names,
-            # Cardinality of the largest set/intersection
+            # size of the largest set/intersection
             "min_size": min(self.data.count),
-            # Cardinality of the smallest set/intersection
+            # size of the smallest set/intersection
             "max_size": max(self.data.count),
-            # Average cardinality of all intersections
-            "avg_card": self.avg_card,
-            # 25th percentile for cardinality
-            "25perc_card": self.get_subset_percentile(SubsetField.CARDINALITY, 25),
-            # 75th percentile for cardinality
-            "75perc_card": self.get_subset_percentile(SubsetField.CARDINALITY, 75),
+            # Average size of all intersections
+            "avg_size": self.avg_size,
+            # 25th percentile for size
+            "25perc_size": self.get_subset_percentile(SubsetField.SIZE, 25),
+            # 75th percentile for size
+            "75perc_size": self.get_subset_percentile(SubsetField.SIZE, 75),
             # Counts populated intersections 
             "pop_intersect_count": len(self.data.subsets),
             # Sort type for intersections
             "sort_type": self.grammar.sort_by.value,
             # Number of intersections of each degree
             "list_degree_count": self.degree_count,
-            # Number of intersections of each degree, their average cardinality, and their average deviation
+            # Number of intersections of each degree, their average size, and their average deviation
             "list_degree_info": self.degree_str,
-            # 10 largest intersections by cardinality- 
-            # includes name, cardinality, deviation
+            # 10 largest intersections by size- 
+            # includes name, size, deviation
             "list_max_10int": self.max_n_intersections(10),
-            # Largest 5 intersections by cardinality, including name, cardinality, deviation
+            # Largest 5 intersections by size, including name, size, deviation
             "list_max_5int": self.max_n_intersections(5),
-            # List all intersections in order of cardinality, including name, cardinality, deviation
+            # List all intersections in order of size, including name, size, deviation
             "list_all_int": self.max_n_intersections(len(self.data.subsets)),
-            # 90th percentile for cardinality
-            "90perc_card": self.get_subset_percentile(SubsetField.CARDINALITY, 90),
-            # 10th percentile for cardinality
-            "10perc_card": self.get_subset_percentile(SubsetField.CARDINALITY, 10),
+            # 90th percentile for size
+            "90perc_size": self.get_subset_percentile(SubsetField.SIZE, 90),
+            # 10th percentile for size
+            "10perc_size": self.get_subset_percentile(SubsetField.SIZE, 10),
             # Total number of attributes
             "var_count": len(self.grammar.visible_atts),
             # List of attribute names
@@ -85,10 +85,10 @@ class TokenMap:
             "pos_dev_count": self.dev_info()["pos_count"],
             # Number of intersections with negative deviation
             "neg_dev_count": self.dev_info()["neg_count"],
-            # Total cardinality of positive deviation intersections
-            "pos_dev_card": self.dev_info()["pos_card_total"],
-            # Total cardinality of negative deviation intersections
-            "neg_dev_card": self.dev_info()["neg_card_total"],
+            # Total size of positive deviation intersections
+            "pos_dev_size": self.dev_info()["pos_size_total"],
+            # Total size of negative deviation intersections
+            "neg_dev_size": self.dev_info()["neg_size_total"],
             # Average positive deviation
             "avg_pos_dev": self.dev_info()["pos_avg"],
             # Average negative deviation
@@ -149,7 +149,7 @@ class TokenMap:
         Returns information about intersections of degrees up to max_degree.
         The information, in order, is:
             - The number of intersections of each degree
-            - The average cardinality of intersections of each degree
+            - The average size of intersections of each degree
             - The average deviation of intersections of each degree
         
         This function only works if the data is not aggregated. 
@@ -165,13 +165,13 @@ class TokenMap:
             For the first list, 
             the value at an index is the number of intersections with that degree.
             For the second list, 
-            the value at an index is the average cardinality of intersections with that degree.
+            the value at an index is the average size of intersections with that degree.
             For the third list, 
             the value at an index is the average deviation of intersections with that degree.
         """
 
         # 1 is added to each so that the max degree is included
-        card: list[float] = [0.0] * (max_degree + 1)
+        size: list[float] = [0.0] * (max_degree + 1)
         dev: list[float] = [0.0] * (max_degree + 1)
         degree_count: list[int] = [0] * (max_degree + 1)
         degree_count[0] = 1
@@ -179,24 +179,24 @@ class TokenMap:
         # Total all three values
         for subset in self.data.subsets:
             if subset.name == "Unincluded":
-                card[0] += subset.size
+                size[0] += subset.size
                 dev[0] += subset.dev
             
             degree = subset.degree
             if degree > max_degree:
                 continue
             degree_count[degree] += 1
-            card[degree] += subset.size
+            size[degree] += subset.size
             dev[degree] += subset.dev
         
         # Convert totals to averages
         for i in range(1, max_degree + 1):
             if degree_count[i] != 0:
-                card[i] /= degree_count[i]
+                size[i] /= degree_count[i]
                 dev[i] /= degree_count[i]
             # No need for else since the lists are initialized with 0s            
 
-        return degree_count, card, dev
+        return degree_count, size, dev
 
     def get_subset_percentile(self, field: SubsetField, perc: int) -> Any:
         """
@@ -205,7 +205,7 @@ class TokenMap:
           field: The field to get the percentile of.
           perc: The percentile to get. Must be between 0 and 100.
         """
-        set_sort = self.sort_subsets_by_key(field, False)
+        set_sort: list[Subset] = self.sort_subsets_by_key(field, False)
         index = int(len(set_sort) * perc / 100)
         return getattr(set_sort[index], field.value)
 
@@ -219,37 +219,37 @@ class TokenMap:
             "neg_count": number of intersections with negative deviation
             "pos_avg": average positive deviation
             "neg_avg": average negative deviation
-            "pos_card_total": total cardinality of positive deviations
-            "neg_card_total": total cardinality of negative deviations
-            "pos_card_avg": average cardinality of positive deviations
-            "neg_card_avg": average cardinality of negative deviations
+            "pos_size_total": total size of positive deviations
+            "neg_size_total": total size of negative deviations
+            "pos_size_avg": average size of positive deviations
+            "neg_size_avg": average size of negative deviations
         """
-        pos_count = 0
-        neg_count = 0
-        pos_dev_total = 0
-        neg_dev_total = 0
-        pos_card_total = 0
-        neg_card_total = 0
+        pos_count: int = 0
+        neg_count: int = 0
+        pos_dev_total: int = 0
+        neg_dev_total: int = 0
+        pos_size_total: int = 0
+        neg_size_total: int = 0
 
         for subset in self.data.subsets:
             if subset.dev > 0:
                 pos_count += 1
                 pos_dev_total += subset.dev
-                pos_card_total += subset.size
+                pos_size_total += subset.size
             elif subset.dev < 0:
                 neg_count += 1
                 neg_dev_total += subset.dev
-                neg_card_total += subset.size
+                neg_size_total += subset.size
 
         return {
             "pos_count": pos_count,
             "neg_count": neg_count,
             "pos_avg": pos_dev_total / pos_count if pos_count > 0 else 0,
             "neg_avg": neg_dev_total / neg_count if neg_count > 0 else 0,
-            "pos_card_total": pos_card_total,
-            "neg_card_total": neg_card_total,
-            "pos_card_avg": pos_card_total / pos_count if pos_count > 0 else 0,
-            "neg_card_avg": neg_card_total / neg_count if neg_count > 0 else 0,
+            "pos_size_total": pos_size_total,
+            "neg_size_total": neg_size_total,
+            "pos_size_avg": pos_size_total / pos_count if pos_count > 0 else 0,
+            "neg_size_avg": neg_size_total / neg_count if neg_count > 0 else 0,
         }
 
     ###############################
@@ -287,7 +287,7 @@ class TokenMap:
 
         for setID in self.grammar.visible_sets:
             # Trim "Set_" from the setID if extant to make it match up with the name field
-            set_name = setID[4:] if setID.startswith("Set_") else setID
+            set_name: str = setID[4:] if setID.startswith("Set_") else setID
             if set_name in self.data.sizes.keys():
                 result += f"{set_name}: {self.data.sizes[set_name]}, "
 
@@ -297,11 +297,11 @@ class TokenMap:
     def max_n_intersections(self, n: int) -> str:
         """
         Returns a string listing the n largest intersections
-        by cardinality, including their name, cardinality, and deviation
+        by size, including their name, size, and deviation
         Params:
           n: Number of sets to list
         """
-        sort: list[Subset] = self.sort_subsets_by_key(SubsetField.CARDINALITY, True)
+        sort: list[Subset] = self.sort_subsets_by_key(SubsetField.SIZE, True)
         result: str = ""
         for i in range(0, n):
             if i >= len(sort):
@@ -331,23 +331,23 @@ class TokenMap:
     def degree_str(self) -> str:
         """
         Returns a string describing the number of intersections of each degree,
-        their average cardinality, and their average deviation.
+        their average size, and their average deviation.
         Maximum degree listed is 20.
         """
         result: str = ""
-        count, card, dev = self.degree_info(20)
+        count, size, dev = self.degree_info(20)
 
         # Start at 1 to skip the 0-degree/unincluded intersection
         for i in range(1, len(count)):
             if count[i] == 0:
                 continue
-            result += f"{count[i]} subsets with degree {i} ({round(card[i], 2)}, {round(dev[i], 2)}), "
+            result += f"{count[i]} subsets with degree {i} ({round(size[i], 2)}, {round(dev[i], 2)}), "
         
         return result[:-2]
 
-    def avg_card(self) -> str:
+    def avg_size(self) -> str:
         """
-        Returns the average cardinality of all set intersections,
+        Returns the average size of all set intersections,
         rounded to an int
         """
         count: int = 0

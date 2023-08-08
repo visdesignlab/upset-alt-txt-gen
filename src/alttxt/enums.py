@@ -43,7 +43,7 @@ class SubsetField(Listable):
     Any changes to the Subset class need to be reflected here.
     """
     NAME = "name"
-    CARDINALITY = "size"
+    SIZE = "size"
     DEVIATION = "dev"
     DEGREE = "degree"
 
@@ -68,7 +68,7 @@ class SortBy(Listable):
     to the MultiNet implementation's export format.
     """
     DEGREE = "Degree"
-    CARDINALITY = "Cardinality"
+    SIZE = "Size"
     DEVIATION = "Deviation"
 
 

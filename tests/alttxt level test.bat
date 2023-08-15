@@ -2,6 +2,15 @@
 
 cd ../
 
+rem // Aggregated data, should throw error
+"venv\Scripts\python.exe" "src\alttxt" --data "data\agg_test.json" --level 1 --verbosity low
+rem // Bad aggregation, should throw error
+"venv\Scripts\python.exe" "src\alttxt" --data "data\bad_agg_test.json" --level 1 --verbosity low
+rem // Bad json, should throw error
+"venv\Scripts\python.exe" "src\alttxt" --data "data\bad.json" --level 1 --verbosity low
+rem // No json, should throw error
+"venv\Scripts\python.exe" "src\alttxt" --data "README.md" --level 1 --verbosity low
+
 rem // Low verbosity L1, explain simple, card sort
 "venv\Scripts\python.exe" "src\alttxt" --data "data\movie_data_card_sort.json" --level 1 --verbosity low --explain-upset simple --title "A test plot"
 rem // Low verbosity L1, explain full, card sort

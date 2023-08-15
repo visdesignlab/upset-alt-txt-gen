@@ -25,6 +25,12 @@ class Parser:
             self.data = data
         else:
             raise Exception(f"Invalid data format: {type(data)} should be Path or dict[str, dict[str, Any]]")
+        
+        # Currently aggregated data is unsupported.
+        # When support is added, this should change to a match statement
+        # which feeds the data to different functions based on the aggregation type
+        if AggregateBy(self.data["firstAggregateBy"]) != AggregateBy.NONE:
+            raise Exception(f"Cannot parse aggregated data, please provide non-aggregated data.")
 
     def get_grammar(self) -> GrammarModel:
         """
@@ -46,14 +52,7 @@ class Parser:
         Raises an exception if the file is aggregated.
         """
         with open(file_path) as f:
-            data: dict[str, dict[str, Any]] = json.load(f)
-            # Currently aggregated data is unsupported.
-            # When support is added, this should change to a match statement
-            # which feeds the data to different functions based on the aggregation type
-            if AggregateBy(data["firstAggregateBy"]) != AggregateBy.NONE:
-                raise Exception(f"Cannot parse aggregated data from file '{file_path}', please provide non-aggregated data.")
-            
-            return data
+            return json.load(f)
 
     def parse_data_no_agg(self, data: "dict[str, dict[str, Any]]") -> DataModel:
         """

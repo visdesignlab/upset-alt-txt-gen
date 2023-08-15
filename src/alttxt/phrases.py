@@ -76,7 +76,7 @@ DESCRIPTIONS: "dict[str, Any]" = {
         # Number of non-empty intersections, max/min intersection size, and universal set size
         "l1_med_desc": ": {{list_visible_set_names}}. [[pop_intersections]]",
         # Sort order and variable list
-        "l1_high_desc": "[[max_min]]. [[sort_by]]. [[set_names_sizes]].",
+        "l1_high_desc": "[[max_min]]. [[sort_by]]. [[set_names_sizes]]",
         # Title and caption
         "title": "this UpSet plot {{title}}",
         # Count and list set names

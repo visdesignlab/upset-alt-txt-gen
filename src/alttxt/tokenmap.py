@@ -284,12 +284,11 @@ class TokenMap:
           "Set1: 10, Set2: 20, Set3: 30"
         """
         result: str = ""
-
-        for setID in self.grammar.visible_sets:
+        for setID, size in sorted(self.data.sizes.items(), key=lambda x: x[1], reverse=True):
             # Trim "Set_" from the setID if extant to make it match up with the name field
             set_name: str = setID[4:] if setID.startswith("Set_") else setID
-            if set_name in self.data.sizes.keys():
-                result += f"{set_name}: {self.data.sizes[set_name]}, "
+            if set_name in self.grammar.visible_sets:
+                result += f"{set_name}: {size}, "
 
         # Trim the trailing ', '
         return result[:-2]

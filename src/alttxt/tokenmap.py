@@ -198,17 +198,6 @@ class TokenMap:
 
         return degree_count, size, dev
 
-    def get_subset_percentile(self, field: SubsetField, perc: int) -> Any:
-        """
-        Gets a percentile value for a specific field in this.data.subsets.
-        Params:
-          field: The field to get the percentile of.
-          perc: The percentile to get. Must be between 0 and 100.
-        """
-        set_sort: list[Subset] = self.sort_subsets_by_key(field, False)
-        index = int(len(set_sort) * perc / 100)
-        return getattr(set_sort[index], field.value)
-
     def dev_info(self) -> "dict[str, float]":
         """
         Returns a dictionary containing information about deviation.
@@ -255,6 +244,17 @@ class TokenMap:
     ###############################
     #       Token functions       #
     ###############################
+
+    def get_subset_percentile(self, field: SubsetField, perc: int) -> str:
+        """
+        Gets a percentile value for a specific field in this.data.subsets.
+        Params:
+          field: The field to get the percentile of.
+          perc: The percentile to get. Must be between 0 and 100.
+        """
+        set_sort: list[Subset] = self.sort_subsets_by_key(field, False)
+        index = int(len(set_sort) * perc / 100)
+        return str(getattr(set_sort[index], field.value))
 
     def dev_outliers(self, n: int) -> str:
         """

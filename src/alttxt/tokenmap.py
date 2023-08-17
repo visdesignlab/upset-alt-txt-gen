@@ -144,7 +144,8 @@ class TokenMap:
           key: The key to sort by. Must be a valid field in the Subset class.
           descending: Whether to sort in descending order
         """
-        return sorted(self.data.subsets, key=lambda x: getattr(x, key.value), reverse=descending)
+        return sorted(self.data.subsets, key=lambda x:
+                       getattr(x, key.value), reverse=descending)
 
     def degree_info(self, max_degree: int) -> "Tuple[list[int], list[float], list[float], list[int]]":
         """
@@ -382,4 +383,5 @@ class TokenMap:
         Returns a string of the visible set names separated by commas,
         with the last two separated by "and".
         """
-        return ", ".join(self.grammar.visible_sets[:-1]) + " and " + self.grammar.visible_sets[-1]
+        return ", ".join(self.grammar.visible_sets[:-1]) + " and " \
+                + self.grammar.visible_sets[-1]

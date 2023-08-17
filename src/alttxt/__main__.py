@@ -91,7 +91,8 @@ def main(argv: Optional["list[str]"] = None) -> int:
 
     print(90 * "-")
     print(
-        f"DATASET={os.path.basename(args.data)}\tLEVEL={args.level.value}\tVERBOSITY={args.verbosity.value}\tEXPLAIN_UPSET={args.explain_upset.value}\tTITLE={title}"
+        f"DATASET={os.path.basename(args.data)}\tLEVEL={args.level.value}\t"
+        "VERBOSITY={args.verbosity.value}\tEXPLAIN_UPSET={args.explain_upset.value}\tTITLE={title}"
     )
     print(90 * "-")
     print(alttext.text)

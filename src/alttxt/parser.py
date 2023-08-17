@@ -1,7 +1,8 @@
 import json
 
 from alttxt.enums import AggregateBy, SortBy, SortVisibleBy
-from alttxt.models import BookmarkedIntersectionModel, Subset, DataModel, FilterModel, GrammarModel, PlotModel
+from alttxt.models import BookmarkedIntersectionModel, Subset, \
+        DataModel, FilterModel, GrammarModel, PlotModel
 
 from pathlib import Path
 from collections import Counter
@@ -12,7 +13,8 @@ class Parser:
     """
     Handles parsing of data files into objects.
     Params:
-    - data: Path to the data file to be parsed, or a dictionary containing the data parsed from JSON.
+    - data: Path to the data file to be parsed, 
+            or a dictionary containing the data parsed from JSON.
     """
     def __init__(self, data: "Union[Path, dict[str, dict[str, Any]]]") -> None:
         # Default message for when a field cannot be found by the parser
@@ -24,7 +26,8 @@ class Parser:
         elif isinstance(data, dict):
             self.data = data
         else:
-            raise Exception(f"Invalid data format: {type(data)} should be Path or dict[str, dict[str, Any]]")
+            raise Exception(f"Invalid data format: {type(data)} "
+                            "should be Path or dict[str, dict[str, Any]]")
         
         # Currently aggregated data is unsupported.
         # When support is added, this should change to a match statement
@@ -77,7 +80,8 @@ class Parser:
         # Dictionary mapping sets/intersections/aggregations to information about them        
         subsets: list[Subset] = []
         for item in data["accessibleProcessedData"]["values"].values():
-            # Name of the set/intersection/aggregation- a list of set names in the case of intersections
+            # Name of the set/intersection/aggregation- 
+            # a list of set names in the case of intersections
             name: str = item.get("elementName", self.default_field)
             # size
             size: int = int(item.get("size", self.default_field))
@@ -93,7 +97,8 @@ class Parser:
             set_name: str = set_["elementName"]
             sizes[set_name] = set_["size"]
             
-            # Remove the 'Set_' prefix from the set name, if extant- must be done after prev steps
+            # Remove the 'Set_' prefix from the set name, if extant- 
+            # must be done after prev steps
             if set_name.startswith("Set_"):
                 set_name = set_name[4:]
             sets_.append(set_name)

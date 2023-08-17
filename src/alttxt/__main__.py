@@ -73,9 +73,14 @@ def main(argv: Optional["list[str]"] = None) -> int:
 
     args: argparse.Namespace = parser.parse_args(argv)
     
-    upset_parser: Parser = Parser(Path(args.data))
-    grammar: GrammarModel = upset_parser.get_grammar()
-    data: DataModel = upset_parser.get_data()
+    try:
+      upset_parser: Parser = Parser(Path(args.data))
+      grammar: GrammarModel = upset_parser.get_grammar()
+      data: DataModel = upset_parser.get_data()
+    except Exception as e:
+      print(f"Exception while parsing: {str(e)}")
+      return 1
+      
     title: str = args.title
 
     tokenMap = TokenMap(data, grammar, title)
@@ -86,7 +91,8 @@ def main(argv: Optional["list[str]"] = None) -> int:
 
     print(90 * "-")
     print(
-        f"DATASET={os.path.basename(args.data)}\tLEVEL={args.level.value}\tVERBOSITY={args.verbosity.value}\tEXPLAIN_UPSET={args.explain_upset.value}\tTITLE={title}"
+        f"DATASET={os.path.basename(args.data)}\tLEVEL={args.level.value}\t"
+        "VERBOSITY={args.verbosity.value}\tEXPLAIN_UPSET={args.explain_upset.value}\tTITLE={title}"
     )
     print(90 * "-")
     print(alttext.text)

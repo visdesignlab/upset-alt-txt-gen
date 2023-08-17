@@ -65,9 +65,11 @@ class TokenMap:
             # Number of intersections of each degree
             "list_degree_count": self.degree_count,
             # Number of intersections of each degree, their average size, and their average deviation
-            "list_degree_info": self.degree_str,
-            # 10 largest intersections by size- 
-            # includes name, size, deviation
+            "list_degree_info": self.degree_str(False),
+            # Number of intersections of each degree, their average size, 
+            # their average deviation, and their total size
+            "list_degree_info_verbose": self.degree_str(True),
+            # 10 largest intersections by size- includes name, size, deviation
             "list_max_10int": self.max_n_intersections(10),
             # Largest 5 intersections by size, including name, size, deviation
             "list_max_5int": self.max_n_intersections(5),
@@ -144,7 +146,7 @@ class TokenMap:
         """
         return sorted(self.data.subsets, key=lambda x: getattr(x, key.value), reverse=descending)
 
-    def degree_info(self, max_degree: int) -> "Tuple[list[int], list[float], list[float]]":
+    def degree_info(self, max_degree: int) -> "Tuple[list[int], list[float], list[float], list[int]]":
         """
         Returns information about intersections of degrees up to max_degree.
         The information, in order, is:
@@ -160,7 +162,7 @@ class TokenMap:
             the lists are initialized with all 0s, all degree counts are accurate,
             but far more may be included than necessary.
         Returns:
-            A tuple containing the three lists, 
+            A tuple containing the four lists, 
             where the list index corresponds to the degree.
             For the first list, 
             the value at an index is the number of intersections with that degree.
@@ -168,35 +170,38 @@ class TokenMap:
             the value at an index is the average size of intersections with that degree.
             For the third list, 
             the value at an index is the average deviation of intersections with that degree.
+            For the fourth list,
+            the value at an index is the total size of intersections with that degree.
         """
 
         # 1 is added to each so that the max degree is included
-        size: list[float] = [0.0] * (max_degree + 1)
-        dev: list[float] = [0.0] * (max_degree + 1)
+        total_sizes: list[int] = [0] * (max_degree + 1)
+        devs: list[float] = [0.0] * (max_degree + 1)
         degree_count: list[int] = [0] * (max_degree + 1)
         degree_count[0] = 1
 
         # Total all three values
         for subset in self.data.subsets:
             if subset.name == "Unincluded":
-                size[0] += subset.size
-                dev[0] += subset.dev
+                total_sizes[0] += subset.size
+                devs[0] += subset.dev
             
             degree = subset.degree
             if degree > max_degree:
                 continue
             degree_count[degree] += 1
-            size[degree] += subset.size
-            dev[degree] += subset.dev
+            total_sizes[degree] += subset.size
+            devs[degree] += subset.dev
         
         # Convert totals to averages
+        avg_sizes: list[float] = [0.0] * (max_degree + 1)
         for i in range(1, max_degree + 1):
             if degree_count[i] != 0:
-                size[i] /= degree_count[i]
-                dev[i] /= degree_count[i]
-            # No need for else since the lists are initialized with 0s            
+                avg_sizes[i] = float(total_sizes[i]) / float(degree_count[i])
+                devs[i] /= degree_count[i]
+            # No need for else clause since the lists are initialized with 0s            
 
-        return degree_count, size, dev
+        return degree_count, avg_sizes, devs, total_sizes
 
     def dev_info(self) -> "dict[str, float]":
         """
@@ -327,20 +332,28 @@ class TokenMap:
         
         return result[:-2] # Remove trailing comma and space
 
-    def degree_str(self) -> str:
+    def degree_str(self, verbose = False) -> str:
         """
         Returns a string describing the number of intersections of each degree,
-        their average size, and their average deviation.
+        their average size, and if verbose, their average deviation and total size.
         Maximum degree listed is 20.
+
+        Params:
+            verbose: Whether to include average deviation and total size for each degree
         """
         result: str = ""
-        count, size, dev = self.degree_info(20)
+        counts, avg_sizes, devs, total_sizes \
+                = self.degree_info(20)
 
         # Start at 1 to skip the 0-degree/unincluded intersection
-        for i in range(1, len(count)):
-            if count[i] == 0:
+        for i in range(1, len(counts)):
+            if counts[i] == 0:
                 continue
-            result += f"{count[i]} subsets with degree {i} ({round(size[i], 2)}, {round(dev[i], 2)}), "
+
+            result += f"{counts[i]} subsets with degree {i} ({round(avg_sizes[i], 2)}"
+            if verbose:
+                result += f", {round(devs[i], 2)}, {total_sizes[i]}"
+            result += "), "
         
         return result[:-2]
 

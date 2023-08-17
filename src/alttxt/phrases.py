@@ -57,7 +57,7 @@ DESCRIPTIONS: "dict[str, Any]" = {
         "high": {
                 SortBy.SIZE: "In order of size, the intersections (with their respective sizes and deviations) "
                 "are: {{list_all_int}}. [[size_percs]].",
-                SortBy.DEGREE: "[[degree_info]].",
+                SortBy.DEGREE: "[[degree_info_verbose]].",
                 SortBy.DEVIATION: "[[deviation_info]]. The largest 10 absolute deviations are {{list10_dev_outliers}}.",
         },    
     # L3 note: observe which sets are not present in many large intersections
@@ -103,8 +103,11 @@ DESCRIPTIONS: "dict[str, Any]" = {
         "size_percs": "the average intersection size is {{avg_size}}. "
         "The 90th percentile is {{90perc_size}}, and the 10th percentile is {{10perc_size}}",
         # Degree info list,
-        "degree_info": "number of intersections of each degree, their average size, "
-        "and their average deviation are as follows: {{list_degree_info}}",
+        "degree_info": "number of intersections of each degree and their average size "
+        "are as follows: {{list_degree_info}}",
+        # Degree info list, with total size
+        "degree_info_verbose": "number of intersections of each degree, their average size, "
+        "their average deviation, and their total size are as follows: {{list_degree_info_verbose}}",
         # Deviation info, split by positive and negative deviations
         "deviation_info": "{{pos_dev_count}} intersections have a positive deviation, with a total "
         "size of {{pos_dev_size}}. {{neg_dev_count}} have a "

@@ -14,13 +14,15 @@ Transactions on Visualization & Computer Graphics (Proc. IEEE VIS).
 2. Ensure you have python version >= 3.8.10 installed.
 3. Open a terminal in the repository directory and create and activate a python virtual environment running at least Python 3.8.10. For information on how to do this, navigate [here](https://docs.python.org/3/library/venv.html).
 4. Install the required dependencies using `pip install -r requirements.txt`.
-5. (Optional) Install the required development dependencies using `pip install -r requirements-dev.txt`. These are only required if you plan on running the tests or linting.
+5. (Optional) Install the required development dependencies using `pip install -r requirements_dev.txt`. These are only required if you plan on running the tests or linting.
 6. Install the alttxt module in development mode with `pip install -e .`
 
-To run the alt-text-gen program, run `python3 [path/to/generator.py] --data [path/to/data] --grammar [path/to/grammar]`. See [Command Line Options](#command-line-options) for more information.
 
-To run the program with the example data, run `python [path/to/alttxt directory] --data ../../data/movie_data_card_sort.json --level 2 --verbosity medium` while in the `src/alttxt` directory.
+To run the program with the example data, run `python [path/to/alttxt directory] --data ../../data/movie_data_card_sort.json --level 2 --verbosity medium`
 Level and granularity can be changed to any of the options listed in [Command Line Options](#command-line-options).
+Here is an example command: 
+    For unix/macOS: `python3 src/alttxt --data data/movie_data_dev_sort.json --level 2 --verbosity medium`
+    For Windows: `python src/alttxt --data data/movie_data_dev_sort.json --level 2 --verbosity medium`
 
 ## Local Testing
 
@@ -40,7 +42,7 @@ To run the entire suite of tests at once, use `tox`.
 | `-h`, `--help`         | Show information on each command and exit.                                                      |
 | `-V`, `--version`      | Show the program version number and exit.                                                       |
 | `-D`, `--data`         | (Required) Relative path to data file.                                                          |
-| `-l`, `--level`        | Semantic level. Defaults to `1`. Options are: `0`, `1`, and `2`. `3` TBA.                       |
+| `-l`, `--level`        | Semantic level. Defaults to `1`. Options are: `1`, `2`, and `3`. `4` TBA.                       |
 | `-v`, `--verbosity`    | Alt-text verbosity. Defaults to `medium`. Options: `low`, `medium`, `high`.                     |
 | `-e`, `--explain-upset`| Whether to explain UpSet plots generally. Defaults to `none`. Options: `none`, `simple`, `full`.|
 | `-t`, `--title`        | A title for the plot; used in some generations. Defaults to `has no title`.                     |

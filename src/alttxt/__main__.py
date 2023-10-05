@@ -44,7 +44,7 @@ def main(argv: Optional["list[str]"] = None) -> int:
         "--level",
         type=Level,
         choices=list(Level),
-        default=Level.ONE,
+        default=Level.DEFAULT,
         help="Semantic level. Defaults to %(default)s.",
     )
     parser.add_argument(

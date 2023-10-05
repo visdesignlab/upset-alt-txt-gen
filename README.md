@@ -18,11 +18,11 @@ Transactions on Visualization & Computer Graphics (Proc. IEEE VIS).
 6. Install the alttxt module in development mode with `pip install -e .`
 
 
-To run the program with the example data, run `python [path/to/alttxt directory] --data ../../data/movie_data_card_sort.json --level 2 --verbosity medium`
+To run the program with the example data, run `python [path/to/alttxt directory] --data ../../data/movie_data_card_sort.json --verbosity medium`
 Level and granularity can be changed to any of the options listed in [Command Line Options](#command-line-options).
 Here is an example command: 
-    For unix/macOS: `python3 src/alttxt --data data/movie_data_dev_sort.json --level 2 --verbosity medium`
-    For Windows: `python src/alttxt --data data/movie_data_dev_sort.json --level 2 --verbosity medium`
+    For unix/macOS: `python3 src/alttxt --data data/movie_data_dev_sort.json --verbosity medium`
+    For Windows: `python src/alttxt --data data/movie_data_dev_sort.json --verbosity medium`
 
 ## Local Testing
 
@@ -42,7 +42,7 @@ To run the entire suite of tests at once, use `tox`.
 | `-h`, `--help`         | Show information on each command and exit.                                                      |
 | `-V`, `--version`      | Show the program version number and exit.                                                       |
 | `-D`, `--data`         | (Required) Relative path to data file.                                                          |
-| `-l`, `--level`        | Semantic level. Defaults to `1`. Options are: `1`, `2`, and `3`. `4` TBA.                       |
+| `-l`, `--level`        | Semantic level. Defaults to a combination of all levels. Options are: `1`, `2`.                 |
 | `-v`, `--verbosity`    | Alt-text verbosity. Defaults to `medium`. Options: `low`, `medium`, `high`.                     |
 | `-e`, `--explain-upset`| Whether to explain UpSet plots generally. Defaults to `none`. Options: `none`, `simple`, `full`.|
 | `-t`, `--title`        | A title for the plot; used in some generations. Defaults to `has no title`.                     |

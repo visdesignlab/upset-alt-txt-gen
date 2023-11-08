@@ -31,6 +31,7 @@ class Level(Listable):
     """
     ONE = "1"
     TWO = "2"
+    DEFAULT = "default"
 
     def __str__(self) -> str:
         return self.value

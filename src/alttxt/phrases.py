@@ -69,9 +69,10 @@ DESCRIPTIONS: "dict[str, Any]" = {
         # Another title for an UpSet plot
         "InUpSet": "in this UpSet plot",
         # Learn more about UpSet
-        "learn_more": "to learn about UpSet plots, visit upset.app",
+        "learn_more": "to learn about UpSet plots, visit [[https://upset.app/]]",
         # Title, caption, set list
-        "l1_low_desc": "[[title]]. The dataset contains {{set_count}} total sets, "
+        # "l1_low_desc": "[[title]]. The dataset contains {{set_count}} total sets, "
+        "l1_low_desc": "[[UpSet]]. [[learn_more]]. The dataset contains {{set_count}} total sets, "
         "with {{universal_set_size}} elements. {{visible_set_count}} sets are shown in the plot",
         # Number of non-empty intersections, max/min intersection size, and universal set size
         "l1_med_desc": ": {{list_visible_set_names}}. [[pop_intersections]]",

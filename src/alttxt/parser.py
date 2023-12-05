@@ -134,6 +134,10 @@ class Parser:
         # TODO: Re-add title when it is added to the grammar export. Caption likely won't be
         #caption = grammar["caption"]
         #title = grammar["title"]
+
+        # Dictionary mapping visible set names to their sizes
+        visible_set_sizes: dict[str, int] = {}
+
         first_aggregate_by = AggregateBy(grammar["firstAggregateBy"])
         second_aggregate_by = AggregateBy(grammar["secondAggregateBy"])
 
@@ -160,6 +164,16 @@ class Parser:
         visible_sets: list[str] = grammar["visibleSets"]
         visible_atts: list[str] = grammar["visibleAttributes"]
 
+        # Iterate through the visible sets
+        for set_name in visible_sets:
+            # Check if the set name exists in the data dictionary
+            if set_name in grammar["rawData"]["sets"]:
+                # Add the set name and its size to the dictionary
+                visible_set_sizes[grammar["rawData"]["sets"][set_name]["elementName"]] = grammar["rawData"]["sets"][set_name]["size"]
+            else:
+                # If the set name is not found, you can choose to handle it as you see fit
+                print(f"Warning: Set {set_name} not found in data")
+
         bookmarked_intersections = list(
             map(
                 lambda bookmarked_intersection: BookmarkedIntersectionModel(
@@ -173,6 +187,7 @@ class Parser:
         for i in range(len(visible_sets)):
             if visible_sets[i].startswith("Set_"):
                 visible_sets[i] = visible_sets[i][4:]
+            
 
         grammar_model = GrammarModel(
             first_aggregate_by=first_aggregate_by,
@@ -185,6 +200,7 @@ class Parser:
             collapsed=collapsed,
             visible_sets=visible_sets,
             visible_atts=visible_atts,
+            visible_set_sizes=visible_set_sizes,
             plots=plots,
             bookmarked_intersections=bookmarked_intersections,
         )

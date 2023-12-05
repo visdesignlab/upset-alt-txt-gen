@@ -44,24 +44,25 @@ DESCRIPTIONS: "dict[str, Any]" = {
     },
     # L2 splits generation by sort- verbosity is TBA
     "level_2": {
-        "low": {
-            SortBy.SIZE: "The largest 5 intersections, with their respective sizes and deviations, "
-            "are {{list_max_5int}}. [[size_percs]].",
-            SortBy.DEGREE: "There are {{list_degree_count}}.",
-            SortBy.DEVIATION: "[[deviation_info]].",
-            },
-        "medium": {
-                SortBy.SIZE: "The largest 10 intersections, with their respective sizes and deviations, "
-                "are {{list_max_10int}}. [[size_percs]].",
-                SortBy.DEGREE: "[[degree_info]].",
-                SortBy.DEVIATION: "[[deviation_info]]. The largest 5 absolute deviations are {{list5_dev_outliers}}.",
-            },
-        "high": {
-                SortBy.SIZE: "In order of size, the intersections (with their respective sizes and deviations) "
-                "are: {{list_all_int}}. [[size_percs]].",
-                SortBy.DEGREE: "[[degree_info_verbose]].",
-                SortBy.DEVIATION: "[[deviation_info]]. The largest 10 absolute deviations are {{list10_dev_outliers}}.",
-        },    
+        "set_description": "[[set_description]].",
+        # "low": {
+        #     SortBy.SIZE: "The largest 5 intersections, with their respective sizes and deviations, "
+        #     "are {{list_max_5int}}. [[size_percs]].",
+        #     SortBy.DEGREE: "There are {{list_degree_count}}.",
+        #     SortBy.DEVIATION: "[[deviation_info]].",
+        #     },
+        # "medium": {
+        #         SortBy.SIZE: "The largest 10 intersections, with their respective sizes and deviations, "
+        #         "are {{list_max_10int}}. [[size_percs]].",
+        #         SortBy.DEGREE: "[[degree_info]].",
+        #         SortBy.DEVIATION: "[[deviation_info]]. The largest 5 absolute deviations are {{list5_dev_outliers}}.",
+        #     },
+        # "high": {
+        #         SortBy.SIZE: "In order of size, the intersections (with their respective sizes and deviations) "
+        #         "are: {{list_all_int}}. [[size_percs]].",
+        #         SortBy.DEGREE: "[[degree_info_verbose]].",
+        #         SortBy.DEVIATION: "[[deviation_info]]. The largest 10 absolute deviations are {{list10_dev_outliers}}.",
+        # },    
     # L3 note: observe which sets are not present in many large intersections
     },
     # These are all of the non-terminal symbols that are used in the grammar
@@ -73,9 +74,12 @@ DESCRIPTIONS: "dict[str, Any]" = {
         # Learn more about UpSet
         # "learn_more": "To learn about UpSet plots, visit <a href='https://upset.app'>upset.app</a>",
         "learn_more": "To learn about UpSet plots, visit 'https://upset.app'",
-        # Dataset prioerties
+        # Dataset properties
         "l1_desc": "{{dataset_description}}. The dataset contains {{set_count}} sets, and {{universal_set_size}} elements,"
         " of which {{visible_set_count}} are shown in the plot",
+        # Set Properties
+        "set_description": "The largest set is {{max_set_name}} with {{max_set_size}} {{set_description}}"
+        ", followed by {{list_sorted_visible_sets}}",
         # Title, caption, set list
         "l1_low_desc": "[[title]]. The dataset contains {{set_count}} total sets, "
         "with {{universal_set_size}} elements. {{visible_set_count}} sets are shown in the plot",

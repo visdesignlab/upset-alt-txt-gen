@@ -57,5 +57,6 @@ class GrammarModel(BaseModel):
     collapsed: list # of str
     visible_sets: list # of str
     visible_atts: list # of str
+    visible_set_sizes: dict # str -> int
     plots: PlotModel
     bookmarked_intersections: list # of BookmarkedIntersectionModel

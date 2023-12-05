@@ -15,7 +15,7 @@ class TokenMap:
     it is not responsible for the actual substitution of tokens
     or the overall generation of the text description.
     """
-    def __init__(self, data: DataModel, grammar: GrammarModel, title: Optional[str] = None, attribute: Optional[str] = None) -> None:
+    def __init__(self, data: DataModel, grammar: GrammarModel, title: Optional[str] = None, attribute: Optional[str] = None, set: Optional[str] = None) -> None:
         """
         Initialize the Grammar class. Note that internal values 
         are not recomputed if the data or grammar are changed.
@@ -28,6 +28,8 @@ class TokenMap:
         self.grammar: GrammarModel = grammar
         self.title: Optional[str] = title
         self.dataset_description: Optional[str] = attribute
+        self.set_description: Optional[str] = set
+
 
         # This defines the mapping of tokens to strings/functions
         # As with the rest of this class, the curly braces surrounding
@@ -41,6 +43,8 @@ class TokenMap:
             "title": f"is titled: {self.title}" if self.title else "has no title",
             # Dataset description as attribute name
             "dataset_description": f"The dataset shows attributes of {self.dataset_description}" if self.dataset_description else "",
+            # Set description as set name
+            "set_description": f"{self.set_description}" if self.set_description else "elements",
             # Total number of elements in all sets, duplicates appear to be counted
             "universal_set_size": sum(self.data.sizes.values()),
             # Number of sets
@@ -51,6 +55,14 @@ class TokenMap:
             "list_set_names": self.list_set_names,
             # List of visible set names
             "list_visible_set_names": self.list_visible_set_names,
+            # Visual set sizes, sorted
+            "sort_visible_sets": self.sort_visible_sets,
+            # List of sorted visible set names and sizes
+            "list_sorted_visible_sets": self.list_sorted_visible_sets,
+            # Largest visible set name
+            "max_set_name": self.sort_visible_sets()[0][0],
+            # Largest visible set size
+            "max_set_size": self.sort_visible_sets()[0][1],
             # size of the largest set/intersection
             "min_size": min(self.data.count),
             # size of the smallest set/intersection
@@ -388,3 +400,37 @@ class TokenMap:
         """
         return ", ".join(self.grammar.visible_sets[:-1]) + " and " \
                 + self.grammar.visible_sets[-1]
+    
+    def sort_visible_sets(self) -> dict[str, int]:
+        """
+        Returns a dictionary mapping visible set names to their sizes,
+        sorted by size in descending order.
+        """
+        return sorted(self.grammar.visible_set_sizes.items(), key=lambda item: item[1], reverse=True)
+
+    
+    def list_sorted_visible_sets(self) -> str:
+        """
+        Returns a string of the visible set names and sizes. The string should contain the 2nd largest set name with size, 
+        followed by the 3rd largest set name with size, and so on. The string should end with the smallest set name with size.
+        Example string: "[SET2name] with [set2size], [SET3name] with [set3size],.. , and [SETnname] with [setnsize]"
+        """
+        # Sort the sets by size in descending order and exclude the largest set
+        sorted_by_size = sorted(self.grammar.visible_set_sizes.items(), key=lambda item: item[1], reverse=True)[1:]
+
+        # Format the sorted sets into the desired string format
+        if len(sorted_by_size) > 1:
+            set_strings = [f"{set_name} with {size}" for set_name, size in sorted_by_size[:-1]]
+            last_set_string = f"{sorted_by_size[-1][0]} with {sorted_by_size[-1][1]}"
+            return ", ".join(set_strings) + ", and " + last_set_string
+        elif sorted_by_size:
+            # If there is only one set after excluding the largest
+            return f"{sorted_by_size[0][0]} with {sorted_by_size[0][1]}"
+        else:
+            # If there are no sets to list (empty or only one set was visible initially)
+            return "No sets to list"
+
+
+    
+    
+        

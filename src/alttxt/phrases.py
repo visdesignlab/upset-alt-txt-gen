@@ -22,7 +22,6 @@ and the grammar, the symbols must be stripped of their enclosing brackets.
 """
 DESCRIPTIONS: "dict[str, Any]" = {
     # Various levels of "explain upset"
-    "upset_desc": "[[UpSet]]. [[learn_more]]. "
 
         # Explanation.NONE: "",
         # Explanation.SIMPLE: "[[UpSet]]. [[learn_more]]. ",
@@ -35,10 +34,10 @@ DESCRIPTIONS: "dict[str, Any]" = {
         # "for three sets A, B, and C, the row corresponding to "
         # "the intersection of A and C has A and C filled in. "
         # "Next to each row is a horizontal bar that visualizes the size of the intersection. [[learn_more]]. ",
-    ,
+    
     "level_1": {
-        "upset_introduction": "[[upset_desc]]",
-        "dataset_properties": "[[l1_desc]]",
+        "upset_introduction": "[[UpSet]]. [[learn_more]]",
+        "dataset_properties": "[[l1_desc]].",
         # "low": "[[l1_low_desc]].",
         # "medium": "[[l1_low_desc]][[l1_med_desc]].",
         # "high": "[[l1_low_desc]][[l1_med_desc]]. [[l1_high_desc]].",
@@ -68,14 +67,15 @@ DESCRIPTIONS: "dict[str, Any]" = {
     # These are all of the non-terminal symbols that are used in the grammar
     "symbols": {
         # "This is an UpSet plot"
-        "UpSet": "this is an UpSet plot",
+        "UpSet": "This is an UpSet plot that visualizes set intersection",
         # Another title for an UpSet plot
         "InUpSet": "in this UpSet plot",
         # Learn more about UpSet
-        "learn_more": "to learn about UpSet plots, visit upset.app",
+        # "learn_more": "To learn about UpSet plots, visit <a href='https://upset.app'>upset.app</a>",
+        "learn_more": "To learn about UpSet plots, visit 'https://upset.app'",
         # Dataset prioerties
         "l1_desc": "{{dataset_description}}. The dataset contains {{set_count}} sets, and {{universal_set_size}} elements,"
-        " of which {{visible_set_count}} are shown in the plot.",
+        " of which {{visible_set_count}} are shown in the plot",
         # Title, caption, set list
         "l1_low_desc": "[[title]]. The dataset contains {{set_count}} total sets, "
         "with {{universal_set_size}} elements. {{visible_set_count}} sets are shown in the plot",

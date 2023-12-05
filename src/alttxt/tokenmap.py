@@ -15,7 +15,7 @@ class TokenMap:
     it is not responsible for the actual substitution of tokens
     or the overall generation of the text description.
     """
-    def __init__(self, data: DataModel, grammar: GrammarModel, title: Optional[str] = None) -> None:
+    def __init__(self, data: DataModel, grammar: GrammarModel, title: Optional[str] = None, attribute: Optional[str] = None) -> None:
         """
         Initialize the Grammar class. Note that internal values 
         are not recomputed if the data or grammar are changed.
@@ -27,6 +27,7 @@ class TokenMap:
         self.data: DataModel = data
         self.grammar: GrammarModel = grammar
         self.title: Optional[str] = title
+        self.dataset_description: Optional[str] = attribute
 
         # This defines the mapping of tokens to strings/functions
         # As with the rest of this class, the curly braces surrounding
@@ -38,6 +39,8 @@ class TokenMap:
         self.map: dict[str, Union[str, float, int, Callable[[], str]]] = {
             # Title of the plot as a phrase (with verb), with null check
             "title": f"is titled: {self.title}" if self.title else "has no title",
+            # Dataset description as attribute name
+            "dataset_description": f"The dataset shows attributes of {self.dataset_description}" if self.dataset_description else "",
             # Total number of elements in all sets, duplicates appear to be counted
             "universal_set_size": sum(self.data.sizes.values()),
             # Number of sets

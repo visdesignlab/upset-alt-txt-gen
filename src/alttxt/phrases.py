@@ -22,23 +22,26 @@ and the grammar, the symbols must be stripped of their enclosing brackets.
 """
 DESCRIPTIONS: "dict[str, Any]" = {
     # Various levels of "explain upset"
-    "upset_desc": {
-        Explanation.NONE: "",
-        Explanation.SIMPLE: "[[UpSet]]. [[learn_more]]. ",
-        Explanation.FULL: "[[UpSet]], a data visualization that uses a matrix "
-        "to display the size of intersecting sets, similar to a venn diagram. "
-        "The rows of the matrix represent set intersections. "
-        "The columns of the matrix correspond to sets. "
-        "The intersecting sets in a particular row are indicated by whether "
-        "the cell corresponding to a set is filled in. For example, "
-        "for three sets A, B, and C, the row corresponding to "
-        "the intersection of A and C has A and C filled in. "
-        "Next to each row is a horizontal bar that visualizes the size of the intersection. [[learn_more]]. ",
-    },
+    "upset_desc": "[[UpSet]]. [[learn_more]]. "
+
+        # Explanation.NONE: "",
+        # Explanation.SIMPLE: "[[UpSet]]. [[learn_more]]. ",
+        # Explanation.FULL: "[[UpSet]], a data visualization that uses a matrix "
+        # "to display the size of intersecting sets, similar to a venn diagram. "
+        # "The rows of the matrix represent set intersections. "
+        # "The columns of the matrix correspond to sets. "
+        # "The intersecting sets in a particular row are indicated by whether "
+        # "the cell corresponding to a set is filled in. For example, "
+        # "for three sets A, B, and C, the row corresponding to "
+        # "the intersection of A and C has A and C filled in. "
+        # "Next to each row is a horizontal bar that visualizes the size of the intersection. [[learn_more]]. ",
+    ,
     "level_1": {
-        "low": "[[l1_low_desc]].",
-        "medium": "[[l1_low_desc]][[l1_med_desc]].",
-        "high": "[[l1_low_desc]][[l1_med_desc]]. [[l1_high_desc]].",
+        "upset_introduction": "[[upset_desc]]",
+        "dataset_properties": "[[l1_desc]]",
+        # "low": "[[l1_low_desc]].",
+        # "medium": "[[l1_low_desc]][[l1_med_desc]].",
+        # "high": "[[l1_low_desc]][[l1_med_desc]]. [[l1_high_desc]].",
     },
     # L2 splits generation by sort- verbosity is TBA
     "level_2": {
@@ -70,6 +73,9 @@ DESCRIPTIONS: "dict[str, Any]" = {
         "InUpSet": "in this UpSet plot",
         # Learn more about UpSet
         "learn_more": "to learn about UpSet plots, visit upset.app",
+        # Dataset prioerties
+        "l1_desc": "{{dataset_description}}. The dataset contains {{set_count}} sets, and {{universal_set_size}} elements,"
+        " of which {{visible_set_count}} are shown in the plot.",
         # Title, caption, set list
         "l1_low_desc": "[[title]]. The dataset contains {{set_count}} total sets, "
         "with {{universal_set_size}} elements. {{visible_set_count}} sets are shown in the plot",

@@ -30,20 +30,22 @@ class AltTxtGen:
         self.descriptions: "dict[str, Any]" = phrases.DESCRIPTIONS
         self.verbosity: Verbosity = verbosity
         self.level: Level = level
-        self.explain: Explanation = explain
+        # self.explain: Explanation = explain
         self.map: TokenMap = map
         self.grammar: GrammarModel = grammar
 
     @property
     def text(self) -> str:
         # Start with the UpSet explanation, if any
-        text_desc: str = self.descriptions["upset_desc"][self.explain]
+        # text_desc: str = self.descriptions["upset_desc"][self.explain]
             
         # Get the description template for the level, verbosity, and sort
         # L0 and L1 don't care about sort/aggregation
 
         if self.level == Level.ONE:
-            text_desc += self.descriptions["level_1"][self.verbosity.value]
+            # text_desc += self.descriptions["level_1"][self.verbosity.value]
+            text_desc += self.descriptions["level_1"]["upset_introduction"]
+            text_desc += self.descriptions["level_1"]["dataset_properties"]
 
         elif self.level == Level.TWO:
             # L2 splits generation by sort type of the plot
@@ -52,7 +54,9 @@ class AltTxtGen:
             
         elif self.level == Level.DEFAULT:
             # Default level is combination of L1 and L2
-            text_desc += self.descriptions["level_1"][self.verbosity.value]
+            # text_desc += self.descriptions["level_1"][self.verbosity.value]
+            text_desc += self.descriptions["level_1"]["upset_introduction"]
+            text_desc += self.descriptions["level_1"]["dataset_properties"]
             text_desc += " "
             text_desc += self.descriptions["level_2"]\
                     [self.verbosity.value][self.grammar.sort_by]

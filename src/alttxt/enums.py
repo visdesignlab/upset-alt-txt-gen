@@ -68,9 +68,9 @@ class SortBy(Listable):
     Strings need to be kept up-to-date with any changes
     to the MultiNet implementation's export format.
     """
-    DEGREE = "Degree"
-    SIZE = "Size"
-    DEVIATION = "Deviation"
+    DEGREE = "degree"
+    SIZE = "size"
+    DEVIATION = "deviation"
 
 
 class SortVisibleBy(Listable):

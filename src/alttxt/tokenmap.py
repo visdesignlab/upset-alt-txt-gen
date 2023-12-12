@@ -75,6 +75,12 @@ class TokenMap:
             "75perc_size": self.get_subset_percentile(SubsetField.SIZE, 75),
             # Counts populated intersections 
             "pop_intersect_count": len(self.data.subsets),
+            # Counts non-empty visible intersections
+            "non_empty_visible_intersect_count": self.count_non_empty_visible_subsets,
+            # Counts non-empty intersections
+            "non_empty_intersect_count": self.count_non_empty_subsets,
+            "pop_non-empty_intersections": f"There are {self.count_non_empty_subsets()} non-empty intersections, all of which are shown in the plot" if self.count_non_empty_subsets() == self.count_non_empty_visible_subsets()
+            else f"There are {self.count_non_empty_subsets()} non-empty intersections, {self.count_non_empty_visible_subsets()} of which are shown in the plot",
             # Sort type for intersections
             "sort_type": self.grammar.sort_by.value,
             # Number of intersections of each degree
@@ -327,7 +333,8 @@ class TokenMap:
             if i >= len(sort):
                 break
 
-            result += f"{sort[i].name} ({sort[i].size}, {sort[i].dev}), "
+            # result += f"{sort[i].name} ({sort[i].size}, {sort[i].dev}), "
+            result += f"{sort[i].name} ({sort[i].size}), "
             if i == n - 2:
                 result += "and "
 
@@ -429,6 +436,41 @@ class TokenMap:
         else:
             # If there are no sets to list (empty or only one set was visible initially)
             return "No sets to list"
+        
+    def count_non_empty_visible_subsets(self) -> int:
+        """
+        Counts the number of subsets with a size greater than zero.
+
+        Returns:
+            int: The count of non-empty subsets.
+        """
+        non_empty_count = 0
+
+        # Iterate through each subset in the list
+        for subset in self.data.subsets:
+            # Check if the size of the subset is greater than zero
+            if subset.size > 0:
+                non_empty_count += 1
+
+        return non_empty_count
+    
+    def count_non_empty_subsets(self) -> int:
+        """
+        Counts the number of subsets with a size greater than zero.
+
+        Returns:
+            int: The count of non-empty subsets.
+        """
+        non_empty_count = 0 
+
+        # Iterate through each subset in the list
+        for subset in self.data.all_subsets:
+            # Check if the size of the subset is greater than zero
+            if subset.size > 0:
+                non_empty_count += 1
+
+        return non_empty_count
+
 
 
     

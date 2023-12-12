@@ -45,6 +45,8 @@ DESCRIPTIONS: "dict[str, Any]" = {
     # L2 splits generation by sort- verbosity is TBA
     "level_2": {
         "set_description": "[[set_description]].",
+        "intersection_description": " [[sort_by]]. {{pop_non-empty_intersections}}."
+        " The largest 5 intersections are {{list_max_5int}}.",
         # "low": {
         #     SortBy.SIZE: "The largest 5 intersections, with their respective sizes and deviations, "
         #     "are {{list_max_5int}}. [[size_percs]].",
@@ -91,14 +93,14 @@ DESCRIPTIONS: "dict[str, Any]" = {
         "title": "this UpSet plot {{title}}",
         # Count and list set names
         "set_list": "{{visible_set_count}} sets are displayed- their names and sizes are: {{list_set_sizes}}",
-        # Number of non-empty intersections
-        "pop_intersections": "{{pop_intersect_count}} non-empty intersections are shown",
+        # "pop_intersections": "There are {{pop_intersect_count}} non-empty intersections",
         # Set intersection size range
         "max_min": "set intersections range in size from {{min_size}} to {{max_size}}",
         # Total number of items in all sets
         "universal_set_size": "a total of {{universal_set_size}} items are represented in all sets",
         # Intersections are sorted by
-        "sort_by": "intersections are sorted by {{sort_type}}",
+        # "sort_by": "intersections are sorted by {{sort_type}}",
+        "sort_by": "The plot is sorted by {{sort_type}}",
         # Number of visualized variables and their names
         "list_vars": "{{var_count}} variables are visualized- {{list_var_names}}",
         # Number of sets, non-empty intersections, and sort type

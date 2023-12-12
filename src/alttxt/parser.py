@@ -79,10 +79,13 @@ class Parser:
         
         # Dictionary mapping sets/intersections/aggregations to information about them        
         subsets: list[Subset] = []
-        for item in data["accessibleProcessedData"]["values"].values():
+        data_visible_subsest = data["accessibleProcessedData"]["values"]
+        for item in data_visible_subsest.values():
             # Name of the set/intersection/aggregation- 
             # a list of set names in the case of intersections
             name: str = item.get("elementName", self.default_field)
+            if name.lower() == "unincluded":
+                name = "the Empty intersection"
             # size
             size: int = int(item.get("size", self.default_field))
             # Deviation - rounded to 2 decimals
@@ -90,6 +93,42 @@ class Parser:
             # Degree
             degree: int = int(item.get("degree", self.default_field))
             subsets.append(Subset(name=name, size=size, dev=dev, degree=degree))
+        
+        lowercase_data_visible_subsets = {k.lower(): k for k in data_visible_subsest.keys()}
+
+        all_subsets: list[Subset] = []
+        data_all_subsets = data["processedData"]["values"]
+        
+        for key, item in data_all_subsets.items():
+
+            # Convert key to lowercase for case-insensitive comparison
+            lower_key = key.lower()
+
+            if lower_key in lowercase_data_visible_subsets:
+                # Use the original case key from the visible subsets
+                original_key = lowercase_data_visible_subsets[lower_key]
+                item['elementName'] = data_visible_subsest[original_key]['elementName']
+            # Name of the set/intersection/aggregation- 
+            # a list of set names in the case of intersections
+            name: str = item.get("elementName", self.default_field)
+            if name.lower() == "unincluded":
+                name = "the Empty intersection"
+            # size
+            size: int = int(item.get("size", self.default_field))
+            # Deviation - rounded to 2 decimals
+            dev: float = round(item.get("deviation", self.default_field), 2)
+            # Degree - the degree might not be available in the raw data, handle accordingly
+            degree: int = item.get("degree")
+            if degree is not None:
+                degree = int(degree)
+            else:
+                degree = 0  # or some default value
+
+            all_subsets.append(Subset(name=name, size=size, dev=dev, degree=degree))
+
+            print(all_subsets)
+
+            
 
         # List of set names
         sets_: list[str] = []
@@ -121,7 +160,7 @@ class Parser:
         membs = list(Counter(membs).keys())
         # Initialize deviations
         data_model = DataModel(
-            membs=membs, sets=sets_, sizes=sizes, count=count, subsets=subsets
+            membs=membs, sets=sets_, sizes=sizes, count=count, subsets=subsets, all_subsets=all_subsets
         )
         return data_model
 
@@ -146,7 +185,7 @@ class Parser:
 
         sort_visible_by = SortVisibleBy(grammar["sortVisibleBy"])
 
-        sort_by = SortBy(grammar["sortBy"])
+        sort_by = SortBy(grammar["sortBy"].lower())
 
         filters = FilterModel(
             max_visible=grammar["filters"]["maxVisible"],
@@ -169,7 +208,11 @@ class Parser:
             # Check if the set name exists in the data dictionary
             if set_name in grammar["rawData"]["sets"]:
                 # Add the set name and its size to the dictionary
-                visible_set_sizes[grammar["rawData"]["sets"][set_name]["elementName"]] = grammar["rawData"]["sets"][set_name]["size"]
+                name = grammar["rawData"]["sets"][set_name]["elementName"]
+
+                if name.lower() == "unincluded":
+                    name = "the Empty intersection"
+                visible_set_sizes[name] = grammar["rawData"]["sets"][set_name]["size"]
             else:
                 # If the set name is not found, you can choose to handle it as you see fit
                 print(f"Warning: Set {set_name} not found in data")

@@ -47,28 +47,35 @@ def main(argv: Optional["list[str]"] = None) -> int:
         default=Level.DEFAULT,
         help="Semantic level. Defaults to %(default)s.",
     )
-    parser.add_argument(
-        "-v",
-        "--verbosity",
-        type=Verbosity,
-        choices=list(Verbosity),
-        default=Verbosity.MEDIUM,
-        help="Alt-text verbosity. Defaults to %(default)s.",
-    )
-    parser.add_argument(
-        "-e",
-        "--explain-upset",
-        type=Explanation,
-        choices=list(Explanation),
-        default=Explanation.NONE,
-        help="Explain what an upset plot is; detail level varies. Defaults to %(default)s.",
-    )
+    # parser.add_argument(
+    #     "-v",
+    #     "--verbosity",
+    #     type=Verbosity,
+    #     choices=list(Verbosity),
+    #     default=Verbosity.MEDIUM,
+    #     help="Alt-text verbosity. Defaults to %(default)s.",
+    # )
+    # parser.add_argument(
+    #     "-e",
+    #     "--explain-upset",
+    #     type=Explanation,
+    #     choices=list(Explanation),
+    #     default=Explanation.NONE,
+    #     help="Explain what an upset plot is; detail level varies. Defaults to %(default)s.",
+    # )
     parser.add_argument(
         "-t",
         "--title",
         type=str,
         default=None,
         help="Title of the plot. Defaults to %(default)s.",
+    )
+
+    parser.add_argument(
+        "-st",
+        "--structured",
+        action="store_true",
+        help="Alt-text structured text with appropriate headers. Returns JSON file with structured text.",
     )
 
     args: argparse.Namespace = parser.parse_args(argv)
@@ -85,8 +92,12 @@ def main(argv: Optional["list[str]"] = None) -> int:
 
     tokenMap = TokenMap(data, grammar, title)
     
+    # alttext = AltTxtGen(
+    #     args.level, args.verbosity, args.explain_upset, args.structured , tokenMap, grammar
+    # )
+
     alttext = AltTxtGen(
-        args.level, args.verbosity, args.explain_upset, tokenMap, grammar
+        args.level, args.structured , tokenMap, grammar
     )
 
     print(90 * "-")

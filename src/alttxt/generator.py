@@ -15,8 +15,9 @@ class AltTxtGen:
     def __init__(
         self,
         level: Level,
-        verbosity: Verbosity,
-        explain: Explanation,
+        # verbosity: Verbosity,
+        # explain: Explanation,
+        structured: bool,
         map: TokenMap,
         grammar: GrammarModel,
     ) -> None:
@@ -30,9 +31,10 @@ class AltTxtGen:
         - grammar: The grammar model to use for generating the description
         """
         self.descriptions: "dict[str, Any]" = phrases.DESCRIPTIONS
-        self.verbosity: Verbosity = verbosity
+        # self.verbosity: Verbosity = verbosity
         self.level: Level = level
         # self.explain: Explanation = explain
+        self.structure: bool = structured
         self.map: TokenMap = map
         self.grammar: GrammarModel = grammar
 
@@ -82,18 +84,20 @@ class AltTxtGen:
             statistical_information = self.descriptions["level_2"]["statistical_information"]
             text_desc += statistical_information
 
+            if self.structure:
             # Construct the dictionary
-            data_to_write = {
-                "upset_introduction": self.replaceTokens(introduction),
-                "dataset_properties": self.replaceTokens(dataset_properties),
-                "set_description": self.replaceTokens(set_description),
-                "intersection_description": self.replaceTokens(intersection_description),
-                "statistical_information": self.replaceTokens(statistical_information)
-            }
+                data_to_write = {
+                    "upset_introduction": self.replaceTokens(introduction),
+                    "dataset_properties": self.replaceTokens(dataset_properties),
+                    "set_description": self.replaceTokens(set_description),
+                    "intersection_description": self.replaceTokens(intersection_description),
+                    "statistical_information": self.replaceTokens(statistical_information)
+                }
 
-            # Write the dictionary to a JSON file
-            with open('structured.json', 'w') as file:
-                json.dump(data_to_write, file, indent=4)
+                # Write the dictionary to a JSON file
+                with open('structured.json', 'w') as file:
+                    json.dump(data_to_write, file, indent=4)
+
             
         else:
             raise TypeError(f"Expected {Level.list()}. Got {self.level}.")

@@ -43,6 +43,10 @@ class PlotModel(BaseModel):
     histograms: list # of float
     wordclouds: list # of float
 
+class metaDataModel(BaseModel):
+    description: str
+    sets: str
+    items: str
 
 class GrammarModel(BaseModel):
     # TODO: Uncomment these if added to the JSON export
@@ -60,4 +64,5 @@ class GrammarModel(BaseModel):
     visible_atts: list # of str
     visible_set_sizes: dict # str -> int
     plots: PlotModel
+    metaData: metaDataModel
     bookmarked_intersections: list # of BookmarkedIntersectionModel

@@ -2,7 +2,7 @@ import json
 
 from alttxt.enums import AggregateBy, SortBy, SortVisibleBy
 from alttxt.models import BookmarkedIntersectionModel, Subset, \
-        DataModel, FilterModel, GrammarModel, PlotModel
+        DataModel, FilterModel, GrammarModel, PlotModel, metaDataModel
 
 from pathlib import Path
 from collections import Counter
@@ -199,6 +199,12 @@ class Parser:
             wordclouds=grammar["plots"]["wordClouds"],
         )
 
+        metaData = metaDataModel(
+            description=grammar["metaData"]["description"],
+            sets=grammar["metaData"]["sets"],
+            items=grammar["metaData"]["items"],
+        )
+
         collapsed: list[str] = grammar["collapsed"]
         visible_sets: list[str] = grammar["visibleSets"]
         visible_atts: list[str] = grammar["visibleAttributes"]
@@ -245,6 +251,7 @@ class Parser:
             visible_atts=visible_atts,
             visible_set_sizes=visible_set_sizes,
             plots=plots,
+            metaData=metaData,
             bookmarked_intersections=bookmarked_intersections,
         )
 

@@ -42,7 +42,7 @@ class TokenMap:
             # Title of the plot as a phrase (with verb), with null check
             "title": f"is titled: {self.title}" if self.title else "has no title",
             # Dataset description as attribute name
-            "dataset_description": f"The dataset shows attributes of {self.dataset_description}" if self.dataset_description else "",
+            "dataset_description": f"The dataset shows attributes of {self.dataset_description}. " if self.dataset_description else "",
             # Set description as set name
             "set_description": f"{self.set_description}" if self.set_description else "elements",
             # Total number of elements in all sets, duplicates appear to be counted
@@ -63,12 +63,22 @@ class TokenMap:
             "max_set_name": self.sort_visible_sets()[0][0],
             # Largest visible set size
             "max_set_size": self.sort_visible_sets()[0][1],
+            # max set percentage
+            "max_set_percentage": self.calculate_max_min_set_presence(self.sort_visible_sets()[0][0]),
+            # Smallest visible set name
+            "min_set_name": self.sort_visible_sets()[-1][0],
+            # Smallest visible set size
+            "min_set_size": self.sort_visible_sets()[-1][1],
+            # min set percentage
+            "min_set_percentage": self.calculate_max_min_set_presence(self.sort_visible_sets()[-1][0]),
             # size of the largest set/intersection
             "min_size": min(self.data.count),
             # size of the smallest set/intersection
             "max_size": max(self.data.count),
             # Average size of all intersections
             "avg_size": self.avg_size,
+            # Median size of all intersections
+            "median_size": self.median_size,
             # 25th percentile for size
             "25perc_size": self.get_subset_percentile(SubsetField.SIZE, 25),
             # 75th percentile for size
@@ -79,6 +89,7 @@ class TokenMap:
             "non_empty_visible_intersect_count": self.count_non_empty_visible_subsets,
             # Counts non-empty intersections
             "non_empty_intersect_count": self.count_non_empty_subsets,
+            # Number of visible non-empty intersections
             "pop_non-empty_intersections": f"There are {self.count_non_empty_subsets()} non-empty intersections, all of which are shown in the plot" if self.count_non_empty_subsets() == self.count_non_empty_visible_subsets()
             else f"There are {self.count_non_empty_subsets()} non-empty intersections, {self.count_non_empty_visible_subsets()} of which are shown in the plot",
             # Sort type for intersections
@@ -392,6 +403,25 @@ class TokenMap:
             count += 1
         
         return str(int(total / count))
+    
+    def median_size(self) -> str:
+        """
+        Returns the median size of all set intersections,
+        rounded to an int.
+        """
+        sort: list[Subset] = self.sort_subsets_by_key(SubsetField.SIZE, False)
+        
+        # Calculate the middle index
+        mid = len(sort) // 2  # Integer division
+
+        # Check if the number of subsets is even
+        if len(sort) % 2 == 0:  # Even number of elements
+            median_val = (sort[mid - 1].size + sort[mid].size) / 2
+        else:  # Odd number of elements
+            median_val = sort[mid].size
+
+        return str(int(median_val))
+
 
     def list_set_names(self) -> str:
         """
@@ -470,6 +500,33 @@ class TokenMap:
                 non_empty_count += 1
 
         return non_empty_count
+    
+    def calculate_max_min_set_presence(self, maxmin_sized_set_name) -> str:
+        """
+        Calculate the percentage of non-empty intersections where the largest and smallest sets are present.
+        """
+        # Counters for the number of non-empty intersections including the largest and smallest sets
+        maxmin_set_count = 0
+
+        # Total number of non-empty intersections
+        total_non_empty = sum(1 for subset in self.data.all_subsets if subset.size > 0)
+
+        # Iterate through all subsets
+        for subset in self.data.all_subsets:
+            if subset.size > 0:  # Check only non-empty subsets
+                if maxmin_sized_set_name in subset.name:
+                    maxmin_set_count += 1
+
+        # Calculate percentages
+        maxmin_set_percentage = (maxmin_set_count / total_non_empty) * 100 if total_non_empty else 0
+
+        return f"{maxmin_set_percentage:.1f}%"
+
+# # Example usage
+# max_set_percentage, min_set_percentage = self.calculate_max_min_set_presence("Male", "Blue_Hair")
+# print(f"The largest set, Male, is present in {max_set_percentage:.2f}% of all non-empty intersections.")
+# print(f"The smallest set, Blue Hair, is present in {min_set_percentage:.2f}% of all non-empty intersections.")
+
 
 
 

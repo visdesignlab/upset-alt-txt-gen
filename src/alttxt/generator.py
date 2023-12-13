@@ -9,6 +9,8 @@ from alttxt.tokenmap import TokenMap
 
 from typing import Any
 
+import json
+
 class AltTxtGen:
     def __init__(
         self,
@@ -55,17 +57,43 @@ class AltTxtGen:
 
             text_desc += self.descriptions["level_2"]["set_description"]
             text_desc += self.descriptions["level_2"]["intersection_description"]
+            text_desc += self.descriptions["level_2"]["statistical_information"]
             
         elif self.level == Level.DEFAULT:
             # Default level is combination of L1 and L2
             # text_desc += self.descriptions["level_1"][self.verbosity.value]
-            text_desc += self.descriptions["level_1"]["upset_introduction"]
-            text_desc += self.descriptions["level_1"]["dataset_properties"]
+            introduction = self.descriptions["level_1"]["upset_introduction"]
+            text_desc += introduction
+            text_desc += " "
+
+            dataset_properties = self.descriptions["level_1"]["dataset_properties"]
+            text_desc += dataset_properties
             text_desc += " "
             # text_desc += self.descriptions["level_2"]\
             #         [self.verbosity.value][self.grammar.sort_by]
-            text_desc += self.descriptions["level_2"]["set_description"]
-            text_desc += self.descriptions["level_2"]["intersection_description"]
+            set_description = self.descriptions["level_2"]["set_description"]
+            text_desc += set_description
+            text_desc += " "
+
+            intersection_description = self.descriptions["level_2"]["intersection_description"]
+            text_desc += intersection_description
+            text_desc += " "
+
+            statistical_information = self.descriptions["level_2"]["statistical_information"]
+            text_desc += statistical_information
+
+            # Construct the dictionary
+            data_to_write = {
+                "upset_introduction": self.replaceTokens(introduction),
+                "dataset_properties": self.replaceTokens(dataset_properties),
+                "set_description": self.replaceTokens(set_description),
+                "intersection_description": self.replaceTokens(intersection_description),
+                "statistical_information": self.replaceTokens(statistical_information)
+            }
+
+            # Write the dictionary to a JSON file
+            with open('structured.json', 'w') as file:
+                json.dump(data_to_write, file, indent=4)
             
         else:
             raise TypeError(f"Expected {Level.list()}. Got {self.level}.")

@@ -68,6 +68,9 @@ class TokenMap:
             "min_set_size": self.sort_visible_sets()[-1][1],
             # min set percentage
             "min_set_percentage": self.calculate_max_min_set_presence(self.sort_visible_sets()[-1][0]),
+            # largest intersection name and size
+            "max_intersection_name": self.calculate_max_intersection()[0],
+            "max_intersection_size": self.calculate_max_intersection()[1],
             # size of the largest set/intersection
             "min_size": min(self.data.count),
             # size of the smallest set/intersection
@@ -87,6 +90,10 @@ class TokenMap:
             # Counts non-empty intersections
             "non_empty_intersect_count": self.count_non_empty_subsets,
             # Number of visible non-empty intersections
+            "visible_non_empty_intersect_count": self.count_non_empty_visible_subsets,
+            # Number of total non-empty intersections
+            "total_non_empty_intersect_count": self.count_non_empty_subsets,
+
             "pop_non-empty_intersections": f"There are {self.count_non_empty_subsets()} non-empty intersections, all of which are shown in the plot" if self.count_non_empty_subsets() == self.count_non_empty_visible_subsets()
             else f"There are {self.count_non_empty_subsets()} non-empty intersections, {self.count_non_empty_visible_subsets()} of which are shown in the plot",
             # Sort type for intersections
@@ -519,10 +526,22 @@ class TokenMap:
 
         return f"{maxmin_set_percentage:.1f}%"
 
-# # Example usage
-# max_set_percentage, min_set_percentage = self.calculate_max_min_set_presence("Male", "Blue_Hair")
-# print(f"The largest set, Male, is present in {max_set_percentage:.2f}% of all non-empty intersections.")
-# print(f"The smallest set, Blue Hair, is present in {min_set_percentage:.2f}% of all non-empty intersections.")
+    def calculate_max_intersection(self) -> dict[str, int]:
+        largest_size = 0
+        largest_subset = None
+
+        for subset in self.data.subsets:
+            # Assuming each 'subset' has attributes 'size' and 'set_count' or similar
+            if subset.degree > 1 and subset.size > largest_size:
+                largest_size = subset.size
+                largest_subset = subset
+
+        # 'largest_subset' now holds the subset with more than one set that has the largest size
+        if largest_subset is not None:
+            return largest_subset.name, largest_subset.size
+        else:
+            return None, 0
+
 
 
 

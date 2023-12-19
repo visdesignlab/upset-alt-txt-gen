@@ -64,6 +64,8 @@ class AltTxtGen:
         elif self.level == Level.DEFAULT:
             # Default level is combination of L1 and L2
             # text_desc += self.descriptions["level_1"][self.verbosity.value]
+            altText = self.descriptions["AltText"]
+            technique = self.descriptions["level_1"]["upset_introduction"]
             introduction = self.descriptions["level_1"]["upset_introduction"]
             text_desc += introduction
             text_desc += " "
@@ -86,7 +88,7 @@ class AltTxtGen:
 
             if self.structure:
             # Construct the dictionary
-                data_to_write = {
+                data_to_write_as_md = {
                     "upset_introduction": self.replaceTokens(introduction),
                     "dataset_properties": self.replaceTokens(dataset_properties),
                     "set_description": self.replaceTokens(set_description),
@@ -94,9 +96,20 @@ class AltTxtGen:
                     "statistical_information": self.replaceTokens(statistical_information)
                 }
 
-                # Write the dictionary to a JSON file
+                markdown_content = ""
+                for section, content in data_to_write_as_md.items():
+                    markdown_content += f"## {section}\n{content}\n\n"
+
+                final_output = {
+                    "techniqueDescription": self.replaceTokens(technique),
+                    "shortDescription": self.replaceTokens(altText),
+                    "longDescription": markdown_content
+                }
+
+                # Write the structured final output content to a file
                 with open('structured.json', 'w') as file:
-                    json.dump(data_to_write, file, indent=4)
+                    json.dump(final_output, file, indent=4)
+
 
             
         else:

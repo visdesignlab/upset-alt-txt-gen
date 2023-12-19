@@ -68,6 +68,8 @@ DESCRIPTIONS: "dict[str, Any]" = {
         # },    
     # L3 note: observe which sets are not present in many large intersections
     },
+    "AltText": "This is an UpSet plot which shows set intersection of {{visible_set_count}} sets out of {{set_count}} sets"
+    " and the largest intersection is {{max_intersection_name}} ({{max_intersection_size}}). The plot is sorted by {{sort_type}} and {{visible_non_empty_intersect_count}} non-empty intersections are shown.",
     # These are all of the non-terminal symbols that are used in the grammar
     "symbols": {
         # "This is an UpSet plot"

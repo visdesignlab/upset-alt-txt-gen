@@ -47,22 +47,7 @@ def main(argv: Optional["list[str]"] = None) -> int:
         default=Level.DEFAULT,
         help="Semantic level. Defaults to %(default)s.",
     )
-    # parser.add_argument(
-    #     "-v",
-    #     "--verbosity",
-    #     type=Verbosity,
-    #     choices=list(Verbosity),
-    #     default=Verbosity.MEDIUM,
-    #     help="Alt-text verbosity. Defaults to %(default)s.",
-    # )
-    # parser.add_argument(
-    #     "-e",
-    #     "--explain-upset",
-    #     type=Explanation,
-    #     choices=list(Explanation),
-    #     default=Explanation.NONE,
-    #     help="Explain what an upset plot is; detail level varies. Defaults to %(default)s.",
-    # )
+    
     parser.add_argument(
         "-t",
         "--title",

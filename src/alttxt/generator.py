@@ -15,8 +15,6 @@ class AltTxtGen:
     def __init__(
         self,
         level: Level,
-        # verbosity: Verbosity,
-        # explain: Explanation,
         structured: bool,
         map: TokenMap,
         grammar: GrammarModel,
@@ -31,9 +29,7 @@ class AltTxtGen:
         - grammar: The grammar model to use for generating the description
         """
         self.descriptions: "dict[str, Any]" = phrases.DESCRIPTIONS
-        # self.verbosity: Verbosity = verbosity
         self.level: Level = level
-        # self.explain: Explanation = explain
         self.structure: bool = structured
         self.map: TokenMap = map
         self.grammar: GrammarModel = grammar
@@ -48,24 +44,24 @@ class AltTxtGen:
         # L0 and L1 don't care about sort/aggregation
 
         if self.level == Level.ONE:
-            # text_desc += self.descriptions["level_1"][self.verbosity.value]
             text_desc += self.descriptions["level_1"]["upset_introduction"]
             text_desc += self.descriptions["level_1"]["dataset_properties"]
 
         elif self.level == Level.TWO:
-            # L2 splits generation by sort type of the plot
-            # text_desc += self.descriptions["level_2"]\
-            #         [self.verbosity.value][self.grammar.sort_by]
-
             text_desc += self.descriptions["level_2"]["set_description"]
             text_desc += self.descriptions["level_2"]["intersection_description"]
             text_desc += self.descriptions["level_2"]["statistical_information"]
             
         elif self.level == Level.DEFAULT:
             # Default level is combination of L1 and L2
-            # text_desc += self.descriptions["level_1"][self.verbosity.value]
+
+            # A short alternative text description
             altText = self.descriptions["AltText"]
+
+            # A short description of the technique used in plot visualization
             technique = self.descriptions["level_1"]["upset_introduction"]
+
+            # Structured text starts here
             introduction = self.descriptions["level_1"]["upset_introduction"]
             text_desc += introduction
             text_desc += " "
@@ -73,8 +69,7 @@ class AltTxtGen:
             dataset_properties = self.descriptions["level_1"]["dataset_properties"]
             text_desc += dataset_properties
             text_desc += " "
-            # text_desc += self.descriptions["level_2"]\
-            #         [self.verbosity.value][self.grammar.sort_by]
+            
             set_description = self.descriptions["level_2"]["set_description"]
             text_desc += set_description
             text_desc += " "
@@ -87,13 +82,13 @@ class AltTxtGen:
             text_desc += statistical_information
 
             if self.structure:
-            # Construct the dictionary
+            # Construct the dictionary for markdown content
                 data_to_write_as_md = {
-                    "upset_introduction": self.replaceTokens(introduction),
-                    "dataset_properties": self.replaceTokens(dataset_properties),
-                    "set_description": self.replaceTokens(set_description),
-                    "intersection_description": self.replaceTokens(intersection_description),
-                    "statistical_information": self.replaceTokens(statistical_information)
+                    "UpSet Introduction": self.replaceTokens(introduction),
+                    "Dataset Properties": self.replaceTokens(dataset_properties),
+                    "Set Properties": self.replaceTokens(set_description),
+                    "Intersection Properties": self.replaceTokens(intersection_description),
+                    "Statistical Information": self.replaceTokens(statistical_information)
                 }
 
                 markdown_content = ""

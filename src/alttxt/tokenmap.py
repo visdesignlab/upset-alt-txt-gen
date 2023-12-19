@@ -93,7 +93,7 @@ class TokenMap:
             "visible_non_empty_intersect_count": self.count_non_empty_visible_subsets,
             # Number of total non-empty intersections
             "total_non_empty_intersect_count": self.count_non_empty_subsets,
-
+            # a non terminal symbol, might move later
             "pop_non-empty_intersections": f"There are {self.count_non_empty_subsets()} non-empty intersections, all of which are shown in the plot" if self.count_non_empty_subsets() == self.count_non_empty_visible_subsets()
             else f"There are {self.count_non_empty_subsets()} non-empty intersections, {self.count_non_empty_visible_subsets()} of which are shown in the plot",
             # Sort type for intersections
@@ -527,11 +527,13 @@ class TokenMap:
         return f"{maxmin_set_percentage:.1f}%"
 
     def calculate_max_intersection(self) -> dict[str, int]:
+        """
+        Calculate the largest intersection size and name that contains more than one set.
+        """
         largest_size = 0
         largest_subset = None
 
         for subset in self.data.subsets:
-            # Assuming each 'subset' has attributes 'size' and 'set_count' or similar
             if subset.degree > 1 and subset.size > largest_size:
                 largest_size = subset.size
                 largest_subset = subset

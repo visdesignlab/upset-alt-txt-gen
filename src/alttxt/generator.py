@@ -93,7 +93,7 @@ class AltTxtGen:
 
                 markdown_content = ""
                 for section, content in data_to_write_as_md.items():
-                    markdown_content += f"## {section}\n{content}\n\n"
+                    markdown_content += f"# {section}\n{content}\n\n"
 
                 final_output = {
                     "techniqueDescription": self.replaceTokens(technique),

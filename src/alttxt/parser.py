@@ -2,7 +2,7 @@ import json
 
 from alttxt.enums import AggregateBy, SortBy, SortVisibleBy
 from alttxt.models import BookmarkedIntersectionModel, Subset, \
-        DataModel, FilterModel, GrammarModel, PlotModel, metaDataModel
+        DataModel, FilterModel, GrammarModel, PlotModel, MetaDataModel
 
 from pathlib import Path
 from collections import Counter
@@ -198,7 +198,7 @@ class Parser:
             wordclouds=grammar["plots"]["wordClouds"],
         )
 
-        metaData = metaDataModel(
+        metaData = MetaDataModel(
             description=grammar["metaData"]["description"],
             sets=grammar["metaData"]["sets"],
             items=grammar["metaData"]["items"],

@@ -43,7 +43,7 @@ class PlotModel(BaseModel):
     histograms: list # of float
     wordclouds: list # of float
 
-class metaDataModel(BaseModel):
+class MetaDataModel(BaseModel):
     description: str
     sets: str
     items: str
@@ -64,5 +64,5 @@ class GrammarModel(BaseModel):
     visible_atts: list # of str
     visible_set_sizes: dict # str -> int
     plots: PlotModel
-    metaData: metaDataModel
+    metaData: MetaDataModel
     bookmarked_intersections: list # of BookmarkedIntersectionModel

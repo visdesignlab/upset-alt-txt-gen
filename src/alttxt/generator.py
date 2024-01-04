@@ -30,7 +30,7 @@ class AltTxtGen:
         """
         self.descriptions: "dict[str, Any]" = phrases.DESCRIPTIONS
         self.level: Level = level
-        self.structure: bool = structured
+        self.structured: bool = structured
         self.map: TokenMap = map
         self.grammar: GrammarModel = grammar
 
@@ -80,7 +80,7 @@ class AltTxtGen:
             statistical_information = self.descriptions["level_2"]["statistical_information"]
             text_desc += statistical_information
 
-            if self.structure:
+            if self.structured:
             # Construct the dictionary for markdown content
                 data_to_write_as_md = {
                     "UpSet Introduction": self.replaceTokens(introduction),

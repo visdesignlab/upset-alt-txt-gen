@@ -63,7 +63,6 @@ DESCRIPTIONS: "dict[str, Any]" = {
         "title": "this UpSet plot {{title}}",
         # Count and list set names
         "set_list": "{{visible_set_count}} sets are displayed- their names and sizes are: {{list_set_sizes}}",
-        # "pop_intersections": "There are {{pop_intersect_count}} non-empty intersections",
         # Set intersection size range
         "max_min": "set intersections range in size from {{min_size}} to {{max_size}}",
         # Total number of items in all sets

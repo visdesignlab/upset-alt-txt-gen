@@ -21,8 +21,6 @@ Transactions on Visualization & Computer Graphics (Proc. IEEE VIS).
 To run the program with the example data, run `python [path/to/alttxt directory] --data ../../data/movie_data_card_sort.json --verbosity medium`
 Level and granularity can be changed to any of the options listed in [Command Line Options](#command-line-options).
 Here is an example command: 
-    <!-- For unix/macOS: `python3 src/alttxt --data data/movie_data_dev_sort.json --verbosity medium`
-    For Windows: `python src/alttxt --data data/movie_data_dev_sort.json --verbosity medium` -->
     For unix/macOS: `python3 src/alttxt --data data/movie_data_dev_sort.json`
     For Windows: `python src/alttxt --data data/movie_data_dev_sort.json`
 

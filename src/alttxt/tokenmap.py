@@ -416,7 +416,7 @@ class TokenMap:
         sort: list[Subset] = self.sort_subsets_by_key(SubsetField.SIZE, False)
         
         # Calculate the middle index
-        mid = len(sort) // 2  # Integer division
+        mid = len(sort) // 2  # Divide and get floor
 
         # Check if the number of subsets is even
         if len(sort) % 2 == 0:  # Even number of elements

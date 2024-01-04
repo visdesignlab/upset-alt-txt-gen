@@ -126,7 +126,6 @@ class Parser:
 
             all_subsets.append(Subset(name=name, size=size, dev=dev, degree=degree))
 
-            print(name)
 
             
 

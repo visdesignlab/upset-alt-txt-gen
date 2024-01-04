@@ -217,7 +217,7 @@ class Parser:
                 name = grammar["rawData"]["sets"][set_name]["elementName"]
 
                 if name.lower() == "unincluded":
-                    name = "the Empty intersection"
+                    name = "the empty intersection"
                 visible_set_sizes[name] = grammar["rawData"]["sets"][set_name]["size"]
             else:
                 # If the set name is not found, you can choose to handle it as you see fit

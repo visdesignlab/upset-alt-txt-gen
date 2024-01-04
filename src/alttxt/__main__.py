@@ -55,7 +55,6 @@ def main(argv: Optional["list[str]"] = None) -> int:
         default=None,
         help="Title of the plot. Defaults to %(default)s.",
     )
-
     parser.add_argument(
         "-st",
         "--structured",

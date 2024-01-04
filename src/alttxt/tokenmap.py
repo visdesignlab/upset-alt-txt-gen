@@ -393,19 +393,25 @@ class TokenMap:
             result += "), "
         
         return result[:-2]
-
+    
     def avg_size(self) -> str:
         """
-        Returns the average size of all set intersections,
-        rounded to an int
+        Returns the average size of all visible non-empty set intersections,
+        rounded to an int.
         """
-        count: int = 0
-        total: int = 0
+        count = 0
+        total = 0
         for intersection in self.data.subsets:
-            total += intersection.size
-            count += 1
-        
-        return str(int(total / count))
+            if intersection.size > 0:  # Check if the intersection is non-empty
+                total += intersection.size
+                count += 1
+
+        if count > 0:
+            average = total / count
+        else:
+            average = 0  # Avoid division by zero if there are no non-empty intersections
+
+        return str(int(average))
     
     def median_size(self) -> str:
         """

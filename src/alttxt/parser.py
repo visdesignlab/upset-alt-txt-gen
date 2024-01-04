@@ -198,11 +198,18 @@ class Parser:
             wordclouds=grammar["plots"]["wordClouds"],
         )
 
-        metaData = MetaDataModel(
-            description=grammar["metaData"]["description"],
-            sets=grammar["metaData"]["sets"],
-            items=grammar["metaData"]["items"],
-        )
+        if "metaData" in grammar:
+            metaData = MetaDataModel(
+                description=grammar["metaData"]["description"],
+                sets=grammar["metaData"]["sets"],
+                items=grammar["metaData"]["items"],
+            )
+        else:
+            metaData = MetaDataModel(
+                description="",
+                sets="",
+                items="",
+            )
 
         collapsed: list[str] = grammar["collapsed"]
         visible_sets: list[str] = grammar["visibleSets"]

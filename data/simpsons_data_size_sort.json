@@ -1,30 +1,21 @@
 {
-  "plots": {
-    "histograms": [],
-    "wordClouds": [],
-    "scatterplots": []
-  },
-  "metaData": {
+  "plotInformation": {
     "description": "",
     "sets": "",
     "items": ""
   },
+  "firstAggregateBy": "None",
+  "firstOverlapDegree": 2,
+  "secondAggregateBy": "None",
+  "secondOverlapDegree": 2,
+  "sortVisibleBy": "Alphabetical",
   "sortBy": "Size",
-  "allSets": [
-    "Set_School",
-    "Set_Blue_Hair",
-    "Set_Duff_Fan",
-    "Set_Evil",
-    "Set_Male",
-    "Set_Power_Plant"
-  ],
   "filters": {
-    "hideEmpty": false,
     "maxVisible": 3,
     "minVisible": 0,
+    "hideEmpty": true,
     "hideNoSet": false
   },
-  "collapsed": [],
   "visibleSets": [
     "Set_School",
     "Set_Blue_Hair",
@@ -33,15 +24,28 @@
     "Set_Male",
     "Set_Power_Plant"
   ],
-  "sortVisibleBy": "Alphabetical",
-  "firstAggregateBy": "None",
-  "secondAggregateBy": "None",
   "visibleAttributes": [
     "Age"
   ],
-  "firstOverlapDegree": 2,
-  "secondOverlapDegree": 2,
   "bookmarkedIntersections": [],
+  "collapsed": [],
+  "plots": {
+    "scatterplots": [],
+    "histograms": [],
+    "wordClouds": []
+  },
+  "allSets": [
+    "Set_School",
+    "Set_Blue_Hair",
+    "Set_Duff_Fan",
+    "Set_Evil",
+    "Set_Male",
+    "Set_Power_Plant"
+  ],
+  "altText": {
+    "verbosity": "low",
+    "explain": "full"
+  },
   "rawData": {
     "label": "Name",
     "setColumns": [
@@ -620,7 +624,7 @@
     "values": {
       "Subset_School_Male": {
         "id": "Subset_School_Male",
-        "elementName": "School Male",
+        "elementName": "School, and Male",
         "items": [
           "simpsons/40726826",
           "simpsons/40726838",
@@ -710,7 +714,7 @@
       },
       "Subset_Duff_Fan_Male Power_Plant": {
         "id": "Subset_Duff_Fan_Male Power_Plant",
-        "elementName": "Duff_Fan Male Power_Plant",
+        "elementName": "Duff Fan, Male, and Power Plant",
         "items": [
           "simpsons/40726827",
           "simpsons/40726845",
@@ -740,7 +744,7 @@
       },
       "Subset_Evil_Male": {
         "id": "Subset_Evil_Male",
-        "elementName": "Evil Male",
+        "elementName": "Evil, and Male",
         "items": [
           "simpsons/40726839",
           "simpsons/40726841"
@@ -769,7 +773,7 @@
       },
       "Subset_Evil_Male Power_Plant": {
         "id": "Subset_Evil_Male Power_Plant",
-        "elementName": "Evil Male Power_Plant",
+        "elementName": "Evil, Male, and Power Plant",
         "items": [
           "simpsons/40726831",
           "simpsons/40726837"
@@ -798,7 +802,7 @@
       },
       "Subset_Duff_Fan_Male": {
         "id": "Subset_Duff_Fan_Male",
-        "elementName": "Duff_Fan Male",
+        "elementName": "Duff Fan, and Male",
         "items": [
           "simpsons/40726830",
           "simpsons/40726832"
@@ -827,7 +831,7 @@
       },
       "Subset_Blue_Hair": {
         "id": "Subset_Blue_Hair",
-        "elementName": "Blue_Hair",
+        "elementName": "Blue Hair",
         "items": [
           "simpsons/40726828",
           "simpsons/40726842"
@@ -884,7 +888,7 @@
       },
       "Subset_School_Evil Male": {
         "id": "Subset_School_Evil Male",
-        "elementName": "School Evil Male",
+        "elementName": "School, Evil, and Male",
         "items": [
           "simpsons/40726847"
         ],
@@ -912,7 +916,7 @@
       },
       "Subset_School_Blue_Hair Male": {
         "id": "Subset_School_Blue_Hair Male",
-        "elementName": "School Blue_Hair Male",
+        "elementName": "School, Blue Hair, and Male",
         "items": [
           "simpsons/40726834"
         ],
@@ -940,7 +944,7 @@
       },
       "Subset_Duff_Fan_Evil Male": {
         "id": "Subset_Duff_Fan_Evil Male",
-        "elementName": "Duff_Fan Evil Male",
+        "elementName": "Duff Fan, Evil, and Male",
         "items": [
           "simpsons/40726836"
         ],
@@ -965,576 +969,6 @@
             "third": 46
           }
         }
-      },
-      "Subset_School_Power_Plant": {
-        "id": "Subset_School_Power_Plant",
-        "elementName": "School Power_Plant",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "Yes"
-        },
-        "deviation": -0.640869140625,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_School_Male Power_Plant": {
-        "id": "Subset_School_Male Power_Plant",
-        "elementName": "School Male Power_Plant",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "No",
-          "Set_Male": "Yes",
-          "Set_Power_Plant": "Yes"
-        },
-        "deviation": -1.922607421875,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_School_Evil": {
-        "id": "Subset_School_Evil",
-        "elementName": "School Evil",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "Yes",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        },
-        "deviation": -0.811767578125,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_School_Evil Power_Plant": {
-        "id": "Subset_School_Evil Power_Plant",
-        "elementName": "School Evil Power_Plant",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "Yes",
-          "Set_Male": "No",
-          "Set_Power_Plant": "Yes"
-        },
-        "deviation": -0.213623046875,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_School_Duff_Fan": {
-        "id": "Subset_School_Duff_Fan",
-        "elementName": "School Duff_Fan",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        },
-        "deviation": -0.811767578125,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_School_Duff_Fan Power_Plant": {
-        "id": "Subset_School_Duff_Fan Power_Plant",
-        "elementName": "School Duff_Fan Power_Plant",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "Yes"
-        },
-        "deviation": -0.213623046875,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_School_Duff_Fan Male": {
-        "id": "Subset_School_Duff_Fan Male",
-        "elementName": "School Duff_Fan Male",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "No",
-          "Set_Male": "Yes",
-          "Set_Power_Plant": "No"
-        },
-        "deviation": -2.435302734375,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_School_Duff_Fan Evil": {
-        "id": "Subset_School_Duff_Fan Evil",
-        "elementName": "School Duff_Fan Evil",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "Yes",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        },
-        "deviation": -0.2705891927083333,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_School_Blue_Hair": {
-        "id": "Subset_School_Blue_Hair",
-        "elementName": "School Blue_Hair",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        },
-        "deviation": -0.347900390625,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_School_Blue_Hair Power_Plant": {
-        "id": "Subset_School_Blue_Hair Power_Plant",
-        "elementName": "School Blue_Hair Power_Plant",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "Yes"
-        },
-        "deviation": -0.091552734375,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_School_Blue_Hair Evil": {
-        "id": "Subset_School_Blue_Hair Evil",
-        "elementName": "School Blue_Hair Evil",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "Yes",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        },
-        "deviation": -0.115966796875,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_School_Blue_Hair Duff_Fan": {
-        "id": "Subset_School_Blue_Hair Duff_Fan",
-        "elementName": "School Blue_Hair Duff_Fan",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        },
-        "deviation": -0.115966796875,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_Power_Plant": {
-        "id": "Subset_Power_Plant",
-        "elementName": "Power_Plant",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "Yes"
-        },
-        "deviation": -1.922607421875,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_Male_Power_Plant": {
-        "id": "Subset_Male_Power_Plant",
-        "elementName": "Male Power_Plant",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "No",
-          "Set_Male": "Yes",
-          "Set_Power_Plant": "Yes"
-        },
-        "deviation": -5.767822265625,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_Evil": {
-        "id": "Subset_Evil",
-        "elementName": "Evil",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "Yes",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        },
-        "deviation": -2.435302734375,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_Evil_Power_Plant": {
-        "id": "Subset_Evil_Power_Plant",
-        "elementName": "Evil Power_Plant",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "Yes",
-          "Set_Male": "No",
-          "Set_Power_Plant": "Yes"
-        },
-        "deviation": -0.640869140625,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_Duff_Fan": {
-        "id": "Subset_Duff_Fan",
-        "elementName": "Duff_Fan",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        },
-        "deviation": -2.435302734375,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_Duff_Fan_Power_Plant": {
-        "id": "Subset_Duff_Fan_Power_Plant",
-        "elementName": "Duff_Fan Power_Plant",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "Yes"
-        },
-        "deviation": -0.640869140625,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_Duff_Fan_Evil": {
-        "id": "Subset_Duff_Fan_Evil",
-        "elementName": "Duff_Fan Evil",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "Yes",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        },
-        "deviation": -0.811767578125,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_Duff_Fan_Evil Power_Plant": {
-        "id": "Subset_Duff_Fan_Evil Power_Plant",
-        "elementName": "Duff_Fan Evil Power_Plant",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "Yes",
-          "Set_Male": "No",
-          "Set_Power_Plant": "Yes"
-        },
-        "deviation": -0.213623046875,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_Blue_Hair_Power_Plant": {
-        "id": "Subset_Blue_Hair_Power_Plant",
-        "elementName": "Blue_Hair Power_Plant",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "Yes"
-        },
-        "deviation": -0.274658203125,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_Blue_Hair_Male": {
-        "id": "Subset_Blue_Hair_Male",
-        "elementName": "Blue_Hair Male",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "No",
-          "Set_Male": "Yes",
-          "Set_Power_Plant": "No"
-        },
-        "deviation": -3.131103515625,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_Blue_Hair_Male Power_Plant": {
-        "id": "Subset_Blue_Hair_Male Power_Plant",
-        "elementName": "Blue_Hair Male Power_Plant",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "No",
-          "Set_Male": "Yes",
-          "Set_Power_Plant": "Yes"
-        },
-        "deviation": -0.823974609375,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_Blue_Hair_Evil": {
-        "id": "Subset_Blue_Hair_Evil",
-        "elementName": "Blue_Hair Evil",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "Yes",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        },
-        "deviation": -0.347900390625,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_Blue_Hair_Evil Power_Plant": {
-        "id": "Subset_Blue_Hair_Evil Power_Plant",
-        "elementName": "Blue_Hair Evil Power_Plant",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "Yes",
-          "Set_Male": "No",
-          "Set_Power_Plant": "Yes"
-        },
-        "deviation": -0.091552734375,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_Blue_Hair_Evil Male": {
-        "id": "Subset_Blue_Hair_Evil Male",
-        "elementName": "Blue_Hair Evil Male",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "Yes",
-          "Set_Male": "Yes",
-          "Set_Power_Plant": "No"
-        },
-        "deviation": -1.043701171875,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_Blue_Hair_Duff_Fan": {
-        "id": "Subset_Blue_Hair_Duff_Fan",
-        "elementName": "Blue_Hair Duff_Fan",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        },
-        "deviation": -0.347900390625,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_Blue_Hair_Duff_Fan Power_Plant": {
-        "id": "Subset_Blue_Hair_Duff_Fan Power_Plant",
-        "elementName": "Blue_Hair Duff_Fan Power_Plant",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "Yes"
-        },
-        "deviation": -0.091552734375,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_Blue_Hair_Duff_Fan Male": {
-        "id": "Subset_Blue_Hair_Duff_Fan Male",
-        "elementName": "Blue_Hair Duff_Fan Male",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "No",
-          "Set_Male": "Yes",
-          "Set_Power_Plant": "No"
-        },
-        "deviation": -1.043701171875,
-        "attributes": {
-          "Age": {}
-        }
-      },
-      "Subset_Blue_Hair_Duff_Fan Evil": {
-        "id": "Subset_Blue_Hair_Duff_Fan Evil",
-        "elementName": "Blue_Hair Duff_Fan Evil",
-        "items": [],
-        "size": 0,
-        "type": "Subset",
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "Yes",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        },
-        "deviation": -0.115966796875,
-        "attributes": {
-          "Age": {}
-        }
       }
     },
     "order": [
@@ -1549,43 +983,13 @@
       "Subset_School",
       "Subset_School_Evil Male",
       "Subset_School_Blue_Hair Male",
-      "Subset_Duff_Fan_Evil Male",
-      "Subset_School_Power_Plant",
-      "Subset_School_Male Power_Plant",
-      "Subset_School_Evil",
-      "Subset_School_Evil Power_Plant",
-      "Subset_School_Duff_Fan",
-      "Subset_School_Duff_Fan Power_Plant",
-      "Subset_School_Duff_Fan Male",
-      "Subset_School_Duff_Fan Evil",
-      "Subset_School_Blue_Hair",
-      "Subset_School_Blue_Hair Power_Plant",
-      "Subset_School_Blue_Hair Evil",
-      "Subset_School_Blue_Hair Duff_Fan",
-      "Subset_Power_Plant",
-      "Subset_Male_Power_Plant",
-      "Subset_Evil",
-      "Subset_Evil_Power_Plant",
-      "Subset_Duff_Fan",
-      "Subset_Duff_Fan_Power_Plant",
-      "Subset_Duff_Fan_Evil",
-      "Subset_Duff_Fan_Evil Power_Plant",
-      "Subset_Blue_Hair_Power_Plant",
-      "Subset_Blue_Hair_Male",
-      "Subset_Blue_Hair_Male Power_Plant",
-      "Subset_Blue_Hair_Evil",
-      "Subset_Blue_Hair_Evil Power_Plant",
-      "Subset_Blue_Hair_Evil Male",
-      "Subset_Blue_Hair_Duff_Fan",
-      "Subset_Blue_Hair_Duff_Fan Power_Plant",
-      "Subset_Blue_Hair_Duff_Fan Male",
-      "Subset_Blue_Hair_Duff_Fan Evil"
+      "Subset_Duff_Fan_Evil Male"
     ]
   },
   "accessibleProcessedData": {
     "values": {
       "Subset_School_Male": {
-        "elementName": "School & Male",
+        "elementName": "School, and Male",
         "type": "Subset",
         "size": 3,
         "deviation": 5.194091796875,
@@ -1660,7 +1064,7 @@
         }
       },
       "Subset_Duff_Fan_Male Power_Plant": {
-        "elementName": "Duff_Fan & Male & Power_Plant",
+        "elementName": "Duff Fan, Male, and Power Plant",
         "type": "Subset",
         "size": 3,
         "deviation": 10.577392578125,
@@ -1685,7 +1089,7 @@
         }
       },
       "Subset_Evil_Male": {
-        "elementName": "Evil & Male",
+        "elementName": "Evil, and Male",
         "type": "Subset",
         "size": 2,
         "deviation": 1.0274251302083328,
@@ -1710,7 +1114,7 @@
         }
       },
       "Subset_Evil_Male Power_Plant": {
-        "elementName": "Evil & Male & Power_Plant",
+        "elementName": "Evil, Male, and Power Plant",
         "type": "Subset",
         "size": 2,
         "deviation": 6.410725911458333,
@@ -1735,7 +1139,7 @@
         }
       },
       "Subset_Duff_Fan_Male": {
-        "elementName": "Duff_Fan & Male",
+        "elementName": "Duff Fan, and Male",
         "type": "Subset",
         "size": 2,
         "deviation": 1.0274251302083328,
@@ -1760,7 +1164,7 @@
         }
       },
       "Subset_Blue_Hair": {
-        "elementName": "Just Blue_Hair",
+        "elementName": "Just Blue Hair",
         "type": "Subset",
         "size": 2,
         "deviation": 7.289632161458333,
@@ -1810,7 +1214,7 @@
         }
       },
       "Subset_School_Evil Male": {
-        "elementName": "School & Evil & Male",
+        "elementName": "School, Evil, and Male",
         "type": "Subset",
         "size": 1,
         "deviation": 1.7313639322916665,
@@ -1835,7 +1239,7 @@
         }
       },
       "Subset_School_Blue_Hair Male": {
-        "elementName": "School & Blue_Hair & Male",
+        "elementName": "School, Blue Hair, and Male",
         "type": "Subset",
         "size": 1,
         "deviation": 3.1229654947916665,
@@ -1860,7 +1264,7 @@
         }
       },
       "Subset_Duff_Fan_Evil Male": {
-        "elementName": "Duff_Fan & Evil & Male",
+        "elementName": "Duff Fan, Evil, and Male",
         "type": "Subset",
         "size": 1,
         "deviation": 1.7313639322916665,
@@ -1881,546 +1285,6 @@
           "Set_Duff_Fan": "Yes",
           "Set_Evil": "Yes",
           "Set_Male": "Yes",
-          "Set_Power_Plant": "No"
-        }
-      },
-      "Subset_School_Power_Plant": {
-        "elementName": "School & Power_Plant",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -0.640869140625,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 2,
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "Yes"
-        }
-      },
-      "Subset_School_Male Power_Plant": {
-        "elementName": "School & Male & Power_Plant",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -1.922607421875,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 3,
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "No",
-          "Set_Male": "Yes",
-          "Set_Power_Plant": "Yes"
-        }
-      },
-      "Subset_School_Evil": {
-        "elementName": "School & Evil",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -0.811767578125,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 2,
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "Yes",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        }
-      },
-      "Subset_School_Evil Power_Plant": {
-        "elementName": "School & Evil & Power_Plant",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -0.213623046875,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 3,
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "Yes",
-          "Set_Male": "No",
-          "Set_Power_Plant": "Yes"
-        }
-      },
-      "Subset_School_Duff_Fan": {
-        "elementName": "School & Duff_Fan",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -0.811767578125,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 2,
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        }
-      },
-      "Subset_School_Duff_Fan Power_Plant": {
-        "elementName": "School & Duff_Fan & Power_Plant",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -0.213623046875,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 3,
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "Yes"
-        }
-      },
-      "Subset_School_Duff_Fan Male": {
-        "elementName": "School & Duff_Fan & Male",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -2.435302734375,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 3,
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "No",
-          "Set_Male": "Yes",
-          "Set_Power_Plant": "No"
-        }
-      },
-      "Subset_School_Duff_Fan Evil": {
-        "elementName": "School & Duff_Fan & Evil",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -0.2705891927083333,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 3,
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "Yes",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        }
-      },
-      "Subset_School_Blue_Hair": {
-        "elementName": "School & Blue_Hair",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -0.347900390625,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 2,
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        }
-      },
-      "Subset_School_Blue_Hair Power_Plant": {
-        "elementName": "School & Blue_Hair & Power_Plant",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -0.091552734375,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 3,
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "Yes"
-        }
-      },
-      "Subset_School_Blue_Hair Evil": {
-        "elementName": "School & Blue_Hair & Evil",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -0.115966796875,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 3,
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "Yes",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        }
-      },
-      "Subset_School_Blue_Hair Duff_Fan": {
-        "elementName": "School & Blue_Hair & Duff_Fan",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -0.115966796875,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 3,
-        "setMembership": {
-          "Set_School": "Yes",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        }
-      },
-      "Subset_Power_Plant": {
-        "elementName": "Just Power_Plant",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -1.922607421875,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 1,
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "Yes"
-        }
-      },
-      "Subset_Male_Power_Plant": {
-        "elementName": "Male & Power_Plant",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -5.767822265625,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 2,
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "No",
-          "Set_Male": "Yes",
-          "Set_Power_Plant": "Yes"
-        }
-      },
-      "Subset_Evil": {
-        "elementName": "Just Evil",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -2.435302734375,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 1,
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "Yes",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        }
-      },
-      "Subset_Evil_Power_Plant": {
-        "elementName": "Evil & Power_Plant",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -0.640869140625,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 2,
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "Yes",
-          "Set_Male": "No",
-          "Set_Power_Plant": "Yes"
-        }
-      },
-      "Subset_Duff_Fan": {
-        "elementName": "Just Duff_Fan",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -2.435302734375,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 1,
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        }
-      },
-      "Subset_Duff_Fan_Power_Plant": {
-        "elementName": "Duff_Fan & Power_Plant",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -0.640869140625,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 2,
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "Yes"
-        }
-      },
-      "Subset_Duff_Fan_Evil": {
-        "elementName": "Duff_Fan & Evil",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -0.811767578125,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 2,
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "Yes",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        }
-      },
-      "Subset_Duff_Fan_Evil Power_Plant": {
-        "elementName": "Duff_Fan & Evil & Power_Plant",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -0.213623046875,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 3,
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "No",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "Yes",
-          "Set_Male": "No",
-          "Set_Power_Plant": "Yes"
-        }
-      },
-      "Subset_Blue_Hair_Power_Plant": {
-        "elementName": "Blue_Hair & Power_Plant",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -0.274658203125,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 2,
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "Yes"
-        }
-      },
-      "Subset_Blue_Hair_Male": {
-        "elementName": "Blue_Hair & Male",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -3.131103515625,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 2,
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "No",
-          "Set_Male": "Yes",
-          "Set_Power_Plant": "No"
-        }
-      },
-      "Subset_Blue_Hair_Male Power_Plant": {
-        "elementName": "Blue_Hair & Male & Power_Plant",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -0.823974609375,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 3,
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "No",
-          "Set_Male": "Yes",
-          "Set_Power_Plant": "Yes"
-        }
-      },
-      "Subset_Blue_Hair_Evil": {
-        "elementName": "Blue_Hair & Evil",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -0.347900390625,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 2,
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "Yes",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        }
-      },
-      "Subset_Blue_Hair_Evil Power_Plant": {
-        "elementName": "Blue_Hair & Evil & Power_Plant",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -0.091552734375,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 3,
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "Yes",
-          "Set_Male": "No",
-          "Set_Power_Plant": "Yes"
-        }
-      },
-      "Subset_Blue_Hair_Evil Male": {
-        "elementName": "Blue_Hair & Evil & Male",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -1.043701171875,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 3,
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "No",
-          "Set_Evil": "Yes",
-          "Set_Male": "Yes",
-          "Set_Power_Plant": "No"
-        }
-      },
-      "Subset_Blue_Hair_Duff_Fan": {
-        "elementName": "Blue_Hair & Duff_Fan",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -0.347900390625,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 2,
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "No"
-        }
-      },
-      "Subset_Blue_Hair_Duff_Fan Power_Plant": {
-        "elementName": "Blue_Hair & Duff_Fan & Power_Plant",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -0.091552734375,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 3,
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "No",
-          "Set_Male": "No",
-          "Set_Power_Plant": "Yes"
-        }
-      },
-      "Subset_Blue_Hair_Duff_Fan Male": {
-        "elementName": "Blue_Hair & Duff_Fan & Male",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -1.043701171875,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 3,
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "No",
-          "Set_Male": "Yes",
-          "Set_Power_Plant": "No"
-        }
-      },
-      "Subset_Blue_Hair_Duff_Fan Evil": {
-        "elementName": "Blue_Hair & Duff_Fan & Evil",
-        "type": "Subset",
-        "size": 0,
-        "deviation": -0.115966796875,
-        "attributes": {
-          "Age": {}
-        },
-        "degree": 3,
-        "setMembership": {
-          "Set_School": "No",
-          "Set_Blue_Hair": "Yes",
-          "Set_Duff_Fan": "Yes",
-          "Set_Evil": "Yes",
-          "Set_Male": "No",
           "Set_Power_Plant": "No"
         }
       }

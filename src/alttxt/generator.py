@@ -37,7 +37,6 @@ class AltTxtGen:
     @property
     def text(self) -> str:
         # Start with the UpSet explanation, if any
-        # text_desc: str = self.descriptions["upset_desc"][self.explain]
         text_desc: str = ""
             
         # Get the description template for the level, verbosity, and sort

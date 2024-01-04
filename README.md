@@ -45,8 +45,6 @@ To run the entire suite of tests at once, use `tox`.
 | `-V`, `--version`      | Show the program version number and exit.                                                       |
 | `-D`, `--data`         | (Required) Relative path to data file.                                                          |
 | `-l`, `--level`        | Semantic level. Defaults to a combination of all levels. Options are: `1`, `2`.                 |
-<!-- | `-v`, `--verbosity`    | Alt-text verbosity. Defaults to `medium`. Options: `low`, `medium`, `high`.                     |
-| `-e`, `--explain-upset`| Whether to explain UpSet plots generally. Defaults to `none`. Options: `none`, `simple`, `full`.| -->
 | `-st`, `--structured`  | Alt-text structured text with appropriate headers. Returns JSON file with structured text.      |
 | `-t`, `--title`        | A title for the plot; used in some generations. Defaults to `has no title`.                     |
 |------------------------|-------------------------------------------------------------------------------------------------|                     

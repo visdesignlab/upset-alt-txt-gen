@@ -77,10 +77,6 @@ def main(argv: Optional["list[str]"] = None) -> int:
 
     tokenMap = TokenMap(data, grammar, title)
     
-    # alttext = AltTxtGen(
-    #     args.level, args.verbosity, args.explain_upset, args.structured , tokenMap, grammar
-    # )
-
     alttext = AltTxtGen(
         args.level, args.structured , tokenMap, grammar
     )

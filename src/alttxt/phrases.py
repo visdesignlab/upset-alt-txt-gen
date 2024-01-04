@@ -68,7 +68,6 @@ DESCRIPTIONS: "dict[str, Any]" = {
         # Total number of items in all sets
         "universal_set_size": "a total of {{universal_set_size}} items are represented in all sets",
         # Intersections are sorted by
-        # "sort_by": "intersections are sorted by {{sort_type}}",
         "sort_by": "The plot is sorted by {{sort_type}}",
         # Number of visualized variables and their names
         "list_vars": "{{var_count}} variables are visualized- {{list_var_names}}",

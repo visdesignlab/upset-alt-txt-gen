@@ -9,12 +9,13 @@ from alttxt.tokenmap import TokenMap
 
 from typing import Any
 
+import json
+
 class AltTxtGen:
     def __init__(
         self,
         level: Level,
-        verbosity: Verbosity,
-        explain: Explanation,
+        structured: bool,
         map: TokenMap,
         grammar: GrammarModel,
     ) -> None:
@@ -28,34 +29,82 @@ class AltTxtGen:
         - grammar: The grammar model to use for generating the description
         """
         self.descriptions: "dict[str, Any]" = phrases.DESCRIPTIONS
-        self.verbosity: Verbosity = verbosity
         self.level: Level = level
-        self.explain: Explanation = explain
+        self.structured: bool = structured
         self.map: TokenMap = map
         self.grammar: GrammarModel = grammar
 
     @property
     def text(self) -> str:
         # Start with the UpSet explanation, if any
-        text_desc: str = self.descriptions["upset_desc"][self.explain]
+        text_desc: str = ""
             
         # Get the description template for the level, verbosity, and sort
         # L0 and L1 don't care about sort/aggregation
 
         if self.level == Level.ONE:
-            text_desc += self.descriptions["level_1"][self.verbosity.value]
+            text_desc += self.descriptions["level_1"]["upset_introduction"]
+            text_desc += self.descriptions["level_1"]["dataset_properties"]
 
         elif self.level == Level.TWO:
-            # L2 splits generation by sort type of the plot
-            text_desc += self.descriptions["level_2"]\
-                    [self.verbosity.value][self.grammar.sort_by]
+            text_desc += self.descriptions["level_2"]["set_description"]
+            text_desc += self.descriptions["level_2"]["intersection_description"]
+            text_desc += self.descriptions["level_2"]["statistical_information"]
             
         elif self.level == Level.DEFAULT:
             # Default level is combination of L1 and L2
-            text_desc += self.descriptions["level_1"][self.verbosity.value]
+
+            # A short alternative text description
+            altText = self.descriptions["AltText"]
+
+            # A short description of the technique used in plot visualization
+            technique = self.descriptions["level_1"]["upset_introduction"]
+
+            # Structured text starts here
+            introduction = self.descriptions["level_1"]["upset_introduction"]
+            text_desc += introduction
             text_desc += " "
-            text_desc += self.descriptions["level_2"]\
-                    [self.verbosity.value][self.grammar.sort_by]
+
+            dataset_properties = self.descriptions["level_1"]["dataset_properties"]
+            text_desc += dataset_properties
+            text_desc += " "
+            
+            set_description = self.descriptions["level_2"]["set_description"]
+            text_desc += set_description
+            text_desc += " "
+
+            intersection_description = self.descriptions["level_2"]["intersection_description"]
+            text_desc += intersection_description
+            text_desc += " "
+
+            statistical_information = self.descriptions["level_2"]["statistical_information"]
+            text_desc += statistical_information
+
+            if self.structured:
+            # Construct the dictionary for markdown content
+                data_to_write_as_md = {
+                    "UpSet Introduction": self.replaceTokens(introduction),
+                    "Dataset Properties": self.replaceTokens(dataset_properties),
+                    "Set Properties": self.replaceTokens(set_description),
+                    "Intersection Properties": self.replaceTokens(intersection_description),
+                    "Statistical Information": self.replaceTokens(statistical_information)
+                }
+
+                markdown_content = ""
+                for section, content in data_to_write_as_md.items():
+                    markdown_content += f"# {section}\n{content}\n\n"
+
+                final_output = {
+                    "techniqueDescription": self.replaceTokens(technique),
+                    "shortDescription": self.replaceTokens(altText),
+                    "longDescription": markdown_content
+                }
+
+                # Write the structured final output content to a file
+                with open('structured.json', 'w') as file:
+                    json.dump(final_output, file, indent=4)
+
+
             
         else:
             raise TypeError(f"Expected {Level.list()}. Got {self.level}.")

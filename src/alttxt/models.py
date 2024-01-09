@@ -23,6 +23,7 @@ class DataModel(BaseModel):
     sets: list # of str
     sizes: dict # str -> int
     subsets: list # of Subset
+    all_subsets: list # of All Subsets
 
 
 class FilterModel(BaseModel):
@@ -42,6 +43,10 @@ class PlotModel(BaseModel):
     histograms: list # of float
     wordclouds: list # of float
 
+class MetaDataModel(BaseModel):
+    description: str
+    sets: str
+    items: str
 
 class GrammarModel(BaseModel):
     # TODO: Uncomment these if added to the JSON export
@@ -57,5 +62,7 @@ class GrammarModel(BaseModel):
     collapsed: list # of str
     visible_sets: list # of str
     visible_atts: list # of str
+    visible_set_sizes: dict # str -> int
     plots: PlotModel
+    metaData: MetaDataModel
     bookmarked_intersections: list # of BookmarkedIntersectionModel

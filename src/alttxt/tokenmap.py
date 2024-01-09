@@ -38,6 +38,10 @@ class TokenMap:
         self.map: dict[str, Union[str, float, int, Callable[[], str]]] = {
             # Title of the plot as a phrase (with verb), with null check
             "title": f"is titled: {self.title}" if self.title else "has no title",
+            # Dataset description as attribute name
+            "dataset_description": f"The dataset shows attributes of {self.grammar.metaData.description}. " if self.grammar.metaData.description else "",
+            # Set description as set name
+            "set_description": f"{self.grammar.metaData.items}" if self.grammar.metaData.items else "elements",
             # Total number of elements in all sets, duplicates appear to be counted
             "universal_set_size": sum(self.data.sizes.values()),
             # Number of sets
@@ -48,18 +52,50 @@ class TokenMap:
             "list_set_names": self.list_set_names,
             # List of visible set names
             "list_visible_set_names": self.list_visible_set_names,
+            # Visual set sizes, sorted
+            "sort_visible_sets": self.sort_visible_sets,
+            # List of sorted visible set names and sizes
+            "list_sorted_visible_sets": self.list_sorted_visible_sets,
+            # Largest visible set name
+            "max_set_name": self.sort_visible_sets()[0][0],
+            # Largest visible set size
+            "max_set_size": self.sort_visible_sets()[0][1],
+            # max set percentage
+            "max_set_percentage": self.calculate_max_min_set_presence(self.sort_visible_sets()[0][0]),
+            # Smallest visible set name
+            "min_set_name": self.sort_visible_sets()[-1][0],
+            # Smallest visible set size
+            "min_set_size": self.sort_visible_sets()[-1][1],
+            # min set percentage
+            "min_set_percentage": self.calculate_max_min_set_presence(self.sort_visible_sets()[-1][0]),
+            # largest intersection name and size
+            "max_intersection_name": self.calculate_max_intersection()[0],
+            "max_intersection_size": self.calculate_max_intersection()[1],
             # size of the largest set/intersection
             "min_size": min(self.data.count),
             # size of the smallest set/intersection
             "max_size": max(self.data.count),
             # Average size of all intersections
             "avg_size": self.avg_size,
+            # Median size of all intersections
+            "median_size": self.median_size,
             # 25th percentile for size
             "25perc_size": self.get_subset_percentile(SubsetField.SIZE, 25),
             # 75th percentile for size
             "75perc_size": self.get_subset_percentile(SubsetField.SIZE, 75),
             # Counts populated intersections 
             "pop_intersect_count": len(self.data.subsets),
+            # Counts non-empty visible intersections
+            "non_empty_visible_intersect_count": self.count_non_empty_visible_subsets,
+            # Counts non-empty intersections
+            "non_empty_intersect_count": self.count_non_empty_subsets,
+            # Number of visible non-empty intersections
+            "visible_non_empty_intersect_count": self.count_non_empty_visible_subsets,
+            # Number of total non-empty intersections
+            "total_non_empty_intersect_count": self.count_non_empty_subsets,
+            # a non terminal symbol, might move later
+            "pop_non-empty_intersections": f"There are {self.count_non_empty_subsets()} non-empty intersections, all of which are shown in the plot" if self.count_non_empty_subsets() == self.count_non_empty_visible_subsets()
+            else f"There are {self.count_non_empty_subsets()} non-empty intersections, {self.count_non_empty_visible_subsets()} of which are shown in the plot",
             # Sort type for intersections
             "sort_type": self.grammar.sort_by.value,
             # Number of intersections of each degree
@@ -312,7 +348,7 @@ class TokenMap:
             if i >= len(sort):
                 break
 
-            result += f"{sort[i].name} ({sort[i].size}, {sort[i].dev}), "
+            result += f"{sort[i].name} ({sort[i].size}), "
             if i == n - 2:
                 result += "and "
 
@@ -357,19 +393,44 @@ class TokenMap:
             result += "), "
         
         return result[:-2]
-
+    
     def avg_size(self) -> str:
         """
-        Returns the average size of all set intersections,
-        rounded to an int
+        Returns the average size of all visible non-empty set intersections,
+        rounded to an int.
         """
-        count: int = 0
-        total: int = 0
+        count = 0
+        total = 0
         for intersection in self.data.subsets:
-            total += intersection.size
-            count += 1
+            if intersection.size > 0:  # Check if the intersection is non-empty
+                total += intersection.size
+                count += 1
+
+        if count > 0:
+            average = total / count
+        else:
+            average = 0  # Avoid division by zero if there are no non-empty intersections
+
+        return str(int(average))
+    
+    def median_size(self) -> str:
+        """
+        Returns the median size of all set intersections,
+        rounded to an int.
+        """
+        sort: list[Subset] = self.sort_subsets_by_key(SubsetField.SIZE, False)
         
-        return str(int(total / count))
+        # Calculate the middle index
+        mid = len(sort) // 2  # Divide and get floor
+
+        # Check if the number of subsets is even
+        if len(sort) % 2 == 0:  # Even number of elements
+            median_val = (sort[mid - 1].size + sort[mid].size) / 2
+        else:  # Odd number of elements
+            median_val = sort[mid].size
+
+        return str(int(median_val))
+
 
     def list_set_names(self) -> str:
         """
@@ -385,3 +446,105 @@ class TokenMap:
         """
         return ", ".join(self.grammar.visible_sets[:-1]) + " and " \
                 + self.grammar.visible_sets[-1]
+    
+    def sort_visible_sets(self) -> dict[str, int]:
+        """
+        Returns a dictionary mapping visible set names to their sizes,
+        sorted by size in descending order.
+        """
+        return sorted(self.grammar.visible_set_sizes.items(), key=lambda item: item[1], reverse=True)
+
+    
+    def list_sorted_visible_sets(self) -> str:
+        """
+        Returns a string of the visible set names and sizes. The string should contain the 2nd largest set name with size, 
+        followed by the 3rd largest set name with size, and so on. The string should end with the smallest set name with size.
+        Example string: "[SET2name] with [set2size], [SET3name] with [set3size],.. , and [SETnname] with [setnsize]"
+        """
+        # Sort the sets by size in descending order and exclude the largest set
+        sorted_by_size = sorted(self.grammar.visible_set_sizes.items(), key=lambda item: item[1], reverse=True)[1:]
+
+        # Format the sorted sets into the desired string format
+        if len(sorted_by_size) > 1:
+            set_strings = [f"{set_name} with {size}" for set_name, size in sorted_by_size[:-1]]
+            last_set_string = f"{sorted_by_size[-1][0]} with {sorted_by_size[-1][1]}"
+            return ", ".join(set_strings) + ", and " + last_set_string
+        elif sorted_by_size:
+            # If there is only one set after excluding the largest
+            return f"{sorted_by_size[0][0]} with {sorted_by_size[0][1]}"
+        else:
+            # If there are no sets to list (empty or only one set was visible initially)
+            return "No sets to list"
+        
+    def count_non_empty_visible_subsets(self) -> int:
+        """
+        Counts the number of subsets with a size greater than zero.
+
+        Returns:
+            int: The count of non-empty subsets.
+        """
+        non_empty_count = 0
+
+        # Iterate through each subset in the list
+        for subset in self.data.subsets:
+            # Check if the size of the subset is greater than zero
+            if subset.size > 0:
+                non_empty_count += 1
+
+        return non_empty_count
+    
+    def count_non_empty_subsets(self) -> int:
+        """
+        Counts the number of subsets with a size greater than zero.
+
+        Returns:
+            int: The count of non-empty subsets.
+        """
+        non_empty_count = 0 
+
+        # Iterate through each subset in the list
+        for subset in self.data.all_subsets:
+            # Check if the size of the subset is greater than zero
+            if subset.size > 0:
+                non_empty_count += 1
+
+        return non_empty_count
+    
+    def calculate_max_min_set_presence(self, maxmin_sized_set_name) -> str:
+        """
+        Calculate the percentage of non-empty intersections where the largest and smallest sets are present.
+        """
+        # Counters for the number of non-empty intersections including the largest and smallest sets
+        maxmin_set_count = 0
+
+        # Total number of non-empty intersections
+        total_non_empty = sum(1 for subset in self.data.all_subsets if subset.size > 0)
+
+        # Iterate through all subsets
+        for subset in self.data.all_subsets:
+            if subset.size > 0:  # Check only non-empty subsets
+                if maxmin_sized_set_name in subset.name:
+                    maxmin_set_count += 1
+
+        # Calculate percentages
+        maxmin_set_percentage = (maxmin_set_count / total_non_empty) * 100 if total_non_empty else 0
+
+        return f"{maxmin_set_percentage:.1f}%"
+
+    def calculate_max_intersection(self) -> dict[str, int]:
+        """
+        Calculate the largest intersection size and name that contains more than one set.
+        """
+        largest_size = 0
+        largest_subset = None
+
+        for subset in self.data.subsets:
+            if subset.degree > 1 and subset.size > largest_size:
+                largest_size = subset.size
+                largest_subset = subset
+
+        # 'largest_subset' now holds the subset with more than one set that has the largest size
+        if largest_subset is not None:
+            return largest_subset.name, largest_subset.size
+        else:
+            return None, 0

@@ -21,55 +21,37 @@ to be computed by the TokenMap. Note that when feeding symbols to both the Token
 and the grammar, the symbols must be stripped of their enclosing brackets.
 """
 DESCRIPTIONS: "dict[str, Any]" = {
-    # Various levels of "explain upset"
-    "upset_desc": {
-        Explanation.NONE: "",
-        Explanation.SIMPLE: "[[UpSet]]. [[learn_more]]. ",
-        Explanation.FULL: "[[UpSet]], a data visualization that uses a matrix "
-        "to display the size of intersecting sets, similar to a venn diagram. "
-        "The rows of the matrix represent set intersections. "
-        "The columns of the matrix correspond to sets. "
-        "The intersecting sets in a particular row are indicated by whether "
-        "the cell corresponding to a set is filled in. For example, "
-        "for three sets A, B, and C, the row corresponding to "
-        "the intersection of A and C has A and C filled in. "
-        "Next to each row is a horizontal bar that visualizes the size of the intersection. [[learn_more]]. ",
-    },
+    
     "level_1": {
-        "low": "[[l1_low_desc]].",
-        "medium": "[[l1_low_desc]][[l1_med_desc]].",
-        "high": "[[l1_low_desc]][[l1_med_desc]]. [[l1_high_desc]].",
+        "upset_introduction": "[[UpSet]]. [[learn_more]].",
+        "dataset_properties": "[[l1_desc]].",
     },
     # L2 splits generation by sort- verbosity is TBA
     "level_2": {
-        "low": {
-            SortBy.SIZE: "The largest 5 intersections, with their respective sizes and deviations, "
-            "are {{list_max_5int}}. [[size_percs]].",
-            SortBy.DEGREE: "There are {{list_degree_count}}.",
-            SortBy.DEVIATION: "[[deviation_info]].",
-            },
-        "medium": {
-                SortBy.SIZE: "The largest 10 intersections, with their respective sizes and deviations, "
-                "are {{list_max_10int}}. [[size_percs]].",
-                SortBy.DEGREE: "[[degree_info]].",
-                SortBy.DEVIATION: "[[deviation_info]]. The largest 5 absolute deviations are {{list5_dev_outliers}}.",
-            },
-        "high": {
-                SortBy.SIZE: "In order of size, the intersections (with their respective sizes and deviations) "
-                "are: {{list_all_int}}. [[size_percs]].",
-                SortBy.DEGREE: "[[degree_info_verbose]].",
-                SortBy.DEVIATION: "[[deviation_info]]. The largest 10 absolute deviations are {{list10_dev_outliers}}.",
-        },    
-    # L3 note: observe which sets are not present in many large intersections
+        "set_description": "[[set_description]].",
+        "intersection_description": "[[sort_by]]. {{pop_non-empty_intersections}}."
+        " The largest 5 intersections are {{list_max_5int}}.",
+        "statistical_information": "[[size_percs]]. [[maxmin_set_percentages_info]].",
     },
+    # L3 note: observe which sets are not present in many large intersections
+
+    "AltText": "This is an UpSet plot which shows set intersection of {{visible_set_count}} sets out of {{set_count}} sets"
+    " and the largest intersection is {{max_intersection_name}} ({{max_intersection_size}}). The plot is sorted by {{sort_type}} and {{visible_non_empty_intersect_count}} non-empty intersections are shown.",
+    
     # These are all of the non-terminal symbols that are used in the grammar
     "symbols": {
         # "This is an UpSet plot"
-        "UpSet": "this is an UpSet plot",
+        "UpSet": "This is an UpSet plot that visualizes set intersection",
         # Another title for an UpSet plot
         "InUpSet": "in this UpSet plot",
-        # Learn more about UpSet
-        "learn_more": "to learn about UpSet plots, visit upset.app",
+        # Learn more about UpSet plots
+        "learn_more": "To learn about UpSet plots, visit https://upset.app",
+        # Dataset properties
+        "l1_desc": "{{dataset_description}}The dataset contains {{set_count}} sets, and {{universal_set_size}} elements,"
+        " of which {{visible_set_count}} are shown in the plot",
+        # Set Properties
+        "set_description": "The largest set is {{max_set_name}} with {{max_set_size}} {{set_description}}"
+        ", followed by {{list_sorted_visible_sets}}",
         # Title, caption, set list
         "l1_low_desc": "[[title]]. The dataset contains {{set_count}} total sets, "
         "with {{universal_set_size}} elements. {{visible_set_count}} sets are shown in the plot",
@@ -81,14 +63,12 @@ DESCRIPTIONS: "dict[str, Any]" = {
         "title": "this UpSet plot {{title}}",
         # Count and list set names
         "set_list": "{{visible_set_count}} sets are displayed- their names and sizes are: {{list_set_sizes}}",
-        # Number of non-empty intersections
-        "pop_intersections": "{{pop_intersect_count}} non-empty intersections are shown",
         # Set intersection size range
         "max_min": "set intersections range in size from {{min_size}} to {{max_size}}",
         # Total number of items in all sets
         "universal_set_size": "a total of {{universal_set_size}} items are represented in all sets",
         # Intersections are sorted by
-        "sort_by": "intersections are sorted by {{sort_type}}",
+        "sort_by": "The plot is sorted by {{sort_type}}",
         # Number of visualized variables and their names
         "list_vars": "{{var_count}} variables are visualized- {{list_var_names}}",
         # Number of sets, non-empty intersections, and sort type
@@ -100,7 +80,7 @@ DESCRIPTIONS: "dict[str, Any]" = {
         # Largest 10 intersections and 10th percentile of intersections
         "largest_10_int": "the largest 10 intersections are {{list_max_10int}}",
         # Average and 10th, 25th, 75th, and 90th percentile sizeinalities
-        "size_percs": "the average intersection size is {{avg_size}}. "
+        "size_percs": "The average intersection size is {{avg_size}}, and the median is {{median_size}}. "
         "The 90th percentile is {{90perc_size}}, and the 10th percentile is {{10perc_size}}",
         # Degree info list,
         "degree_info": "number of intersections of each degree and their average size "
@@ -114,5 +94,7 @@ DESCRIPTIONS: "dict[str, Any]" = {
         "negative deviation, with a total size of {{neg_dev_size}}. "
         "The average positive deviation is {{avg_pos_dev}}, and the average "
         "negative deviation is {{avg_neg_dev}}",
+        "maxmin_set_percentages_info": "The largest set, {{max_set_name}}, is present in {{max_set_percentage}} of all non-empty intersections."
+        " The smallest set, {{min_set_name}}, is present in {{min_set_percentage}} of all non-empty intersections",
     },
 }

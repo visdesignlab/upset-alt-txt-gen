@@ -447,7 +447,7 @@ class TokenMap:
         return ", ".join(self.grammar.visible_sets[:-1]) + " and " \
                 + self.grammar.visible_sets[-1]
     
-    def sort_visible_sets(self) -> dict[str, int]:
+    def sort_visible_sets(self) -> "dict[str, int]":
         """
         Returns a dictionary mapping visible set names to their sizes,
         sorted by size in descending order.
@@ -531,7 +531,7 @@ class TokenMap:
 
         return f"{maxmin_set_percentage:.1f}%"
 
-    def calculate_max_intersection(self) -> dict[str, int]:
+    def calculate_max_intersection(self) -> "dict[str, int]":
         """
         Calculate the largest intersection size and name that contains more than one set.
         """

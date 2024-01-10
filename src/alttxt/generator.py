@@ -103,7 +103,6 @@ class AltTxtGen:
                 # return the structured final output as a json content
                 return final_output
 
-
             
         else:
             raise TypeError(f"Expected {Level.list()}. Got {self.level}.")

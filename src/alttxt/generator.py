@@ -100,7 +100,9 @@ class AltTxtGen:
                     "longDescription": markdown_content
                 }
 
+                # return the structured final output as a json content
                 return final_output
+
             
         else:
             raise TypeError(f"Expected {Level.list()}. Got {self.level}.")

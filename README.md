@@ -43,6 +43,6 @@ To run the entire suite of tests at once, use `tox`.
 | `-V`, `--version`      | Show the program version number and exit.                                                       |
 | `-D`, `--data`         | (Required) Relative path to data file.                                                          |
 | `-l`, `--level`        | Semantic level. Defaults to a combination of all levels. Options are: `1`, `2`.                 |
-| `-st`, `--structured`  | Alt-text structured text with appropriate headers. Returns JSON file with structured text.      |
+| `-st`, `--structured`  | Returns information in JSON format that contains structured text (long description), alt-txt (short description), and technical description of the plot making strategy                                                 |
 | `-t`, `--title`        | A title for the plot; used in some generations. Defaults to `has no title`.                     |
-|------------------------|-------------------------------------------------------------------------------------------------|                     
+|------------------------|     -------------------------------------------------------------------------------------------------|                   

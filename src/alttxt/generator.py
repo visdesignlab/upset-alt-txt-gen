@@ -100,9 +100,8 @@ class AltTxtGen:
                     "longDescription": markdown_content
                 }
 
-                # Write the structured final output content to a file
-                with open('structured.json', 'w') as file:
-                    json.dump(final_output, file, indent=4)
+                # return the structured final output as a json content
+                return final_output
 
 
             

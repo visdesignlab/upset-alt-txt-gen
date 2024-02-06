@@ -18,7 +18,7 @@ Transactions on Visualization & Computer Graphics (Proc. IEEE VIS).
 6. Install the alttxt module in development mode with `pip install -e .`
 
 
-To run the program with the example data, run `python [path/to/alttxt directory] --data ../../data/movie_data_card_sort.json --verbosity medium`
+To run the program with the example data, run `python [path/to/alttxt directory] --data ../../data/movie_data_card_sort.json`
 Level and granularity can be changed to any of the options listed in [Command Line Options](#command-line-options).
 Here is an example command: 
     For unix/macOS: `python3 src/alttxt --data data/movie_data_dev_sort.json`

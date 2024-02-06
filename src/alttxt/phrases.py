@@ -33,6 +33,9 @@ DESCRIPTIONS: "dict[str, Any]" = {
         " The largest 5 intersections are {{list_max_5int}}.",
         "statistical_information": "[[size_percs]]. [[maxmin_set_percentages_info]].",
     },
+    "level_3": {
+        "set_divergence": "The set sizes {{set_divergence}}, ranging from {{min_set_size}} to {{max_set_size}}.",
+    },
     # L3 note: observe which sets are not present in many large intersections
 
     "AltText": "This is an UpSet plot which shows set intersection of {{visible_set_count}} sets out of {{set_count}} sets"

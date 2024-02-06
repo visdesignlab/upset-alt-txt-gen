@@ -1,6 +1,6 @@
 from typing import Any, Callable, Tuple, Union, Optional
 from alttxt.models import DataModel, GrammarModel, Subset
-from alttxt.enums import SubsetField
+from alttxt.enums import SubsetField, IndividualSetSize
 
 
 class TokenMap:
@@ -68,6 +68,8 @@ class TokenMap:
             "min_set_size": self.sort_visible_sets()[-1][1],
             # min set percentage
             "min_set_percentage": self.calculate_max_min_set_presence(self.sort_visible_sets()[-1][0]),
+            # Set Divergence
+            "set_divergence": self.calculate_set_divergence,
             # largest intersection name and size
             "max_intersection_name": self.calculate_max_intersection()[0],
             "max_intersection_size": self.calculate_max_intersection()[1],
@@ -548,3 +550,23 @@ class TokenMap:
             return largest_subset.name, largest_subset.size
         else:
             return None, 0
+        
+     # Assuming this function is part of the TokenMap class or similar
+    def calculate_set_divergence(self):
+        # Assuming self.data.subsets is a list of Subset objects with a 'size' attribute
+        # First, find the max and min set sizes
+        max_set_size = self.sort_visible_sets()[0][1]
+        min_set_size = self.sort_visible_sets()[-1][1]
+        
+        # Calculate the divergence percentage
+        divergence_percentage = (min_set_size / max_set_size) * 100
+
+        # Determine the divergence category
+        if divergence_percentage < 26.67:
+            return IndividualSetSize.DIVERGINGALOT.value
+        elif 26.68 <= divergence_percentage <= 53.34:
+            return IndividualSetSize.DIVERGING.value
+        elif 53.35 <= divergence_percentage <= 79.99:
+            return IndividualSetSize.DIVERGINGABIT.value
+        else: # divergence_percentage >= 80
+            return IndividualSetSize.IDENTICAL.value

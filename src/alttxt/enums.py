@@ -82,3 +82,27 @@ class SortVisibleBy(Listable):
     ALPHABETICAL = "Alphabetical"
     ASCENDING = "Ascending"
     DESCENDING = "Descending"
+
+class IntersectionType(Listable):
+    """
+    Enum for the different intersection size options.
+    Strings need to be kept up-to-date with any changes
+    to the MultiNet implementation's export format.
+    """
+    INDIVIDUAL = "individual"
+    LOWSET = "low"
+    MEDIUMSET = "medium"
+    HIGHORDER = "high"
+    ALL = "all"
+    EMPTY = "empty"
+
+class IndividualSetSize(Listable):
+    """
+    Enum for the different individual set size comparison options.
+    Strings need to be kept up-to-date with any changes
+    to the MultiNet implementation's export format.
+    """
+    IDENTICAL = "identical"
+    DIVERGINGABIT = "roughly equal"
+    DIVERGING = "diverging"
+    DIVERGINGALOT = "diverge a lot"

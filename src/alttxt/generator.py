@@ -79,6 +79,10 @@ class AltTxtGen:
 
             statistical_information = self.descriptions["level_2"]["statistical_information"]
             text_desc += statistical_information
+            text_desc += " "
+
+            set_divergence = self.descriptions["level_3"]["set_divergence"]
+            text_desc += set_divergence
 
             if self.structured:
             # Construct the dictionary for markdown content

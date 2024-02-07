@@ -72,6 +72,15 @@ class SortBy(Listable):
     SIZE = "size"
     DEVIATION = "deviation"
 
+class SortOrder(Listable):
+    """
+    Enum for the different sorting options.
+    Strings need to be kept up-to-date with any changes
+    to the MultiNet implementation's export format.
+    """
+    ASCENDING = "ascending"
+    DESCENDING = "descending"
+
 
 class SortVisibleBy(Listable):
     """
@@ -106,3 +115,13 @@ class IndividualSetSize(Listable):
     DIVERGINGABIT = "roughly equal"
     DIVERGING = "diverging"
     DIVERGINGALOT = "diverge a lot"
+
+class IntersectionTrend(Listable):
+    """
+    Enum for the different intersection trend options.
+    Strings need to be kept up-to-date with any changes
+    to the MultiNet implementation's export format.
+    """
+    DRASTIC = "drastically"
+    GRADUAL = "gradually"
+    CONSTANT = "constant"

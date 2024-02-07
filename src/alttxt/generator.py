@@ -83,6 +83,11 @@ class AltTxtGen:
 
             set_divergence = self.descriptions["level_3"]["set_divergence"]
             text_desc += set_divergence
+            text_desc += " "
+
+            intersection_trend_change = self.descriptions["level_3"]["intersection_trend_change"]
+            text_desc += intersection_trend_change
+            text_desc += " "
 
             if self.structured:
             # Construct the dictionary for markdown content

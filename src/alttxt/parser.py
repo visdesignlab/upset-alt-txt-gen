@@ -1,6 +1,6 @@
 import json
 
-from alttxt.enums import AggregateBy, SortBy, SortVisibleBy
+from alttxt.enums import AggregateBy, SortBy, SortVisibleBy, SortOrder
 from alttxt.models import BookmarkedIntersectionModel, Subset, \
         DataModel, FilterModel, GrammarModel, PlotModel, MetaDataModel
 
@@ -186,6 +186,8 @@ class Parser:
 
         sort_by = SortBy(grammar["sortBy"].lower())
 
+        sort_order = SortOrder(grammar["sortByOrder"].lower())
+
         filters = FilterModel(
             max_visible=grammar["filters"]["maxVisible"],
             min_visible=grammar["filters"]["minVisible"],
@@ -251,6 +253,7 @@ class Parser:
             second_overlap_degree=second_overlap_degree,
             sort_visible_by=sort_visible_by,
             sort_by=sort_by,
+            sort_order=sort_order,
             filters=filters,
             collapsed=collapsed,
             visible_sets=visible_sets,

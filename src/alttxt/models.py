@@ -1,4 +1,4 @@
-from alttxt.enums import AggregateBy, SortBy, SortVisibleBy
+from alttxt.enums import AggregateBy, SortBy, SortVisibleBy, SortOrder
 from pydantic import BaseModel
 
 class Subset(BaseModel):
@@ -58,6 +58,7 @@ class GrammarModel(BaseModel):
     second_overlap_degree: int
     sort_visible_by: SortVisibleBy
     sort_by: SortBy
+    sort_order: SortOrder
     filters: FilterModel
     collapsed: list # of str
     visible_sets: list # of str

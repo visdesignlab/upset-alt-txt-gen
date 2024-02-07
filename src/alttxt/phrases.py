@@ -1,4 +1,4 @@
-from alttxt.enums import SortBy, Explanation
+from alttxt.enums import SortBy, Explanation, SortOrder, SortVisibleBy
 from typing import Any
 
 """
@@ -35,6 +35,7 @@ DESCRIPTIONS: "dict[str, Any]" = {
     },
     "level_3": {
         "set_divergence": "The set sizes {{set_divergence}}, ranging from {{min_set_size}} to {{max_set_size}}.",
+        "intersection_trend_change": "The intersection sizes [[intersection_trend]].",
     },
     # L3 note: observe which sets are not present in many large intersections
 
@@ -99,5 +100,9 @@ DESCRIPTIONS: "dict[str, Any]" = {
         "negative deviation is {{avg_neg_dev}}",
         "maxmin_set_percentages_info": "The largest set, {{max_set_name}}, is present in {{max_set_percentage}} of all non-empty intersections."
         " The smallest set, {{min_set_name}}, is present in {{min_set_percentage}} of all non-empty intersections",
+        "intersection_trend": "peak at a value of {{max_int_size}} and then "
+        "{{intersection_trend}} flatten down to {{min_int_size}}" if SortOrder.ASCENDING 
+        else "starts from a value of {{min_int_size}} and then {{intersection_trend}}"
+        " rise up to {{max_int_size}}",
     },
 }

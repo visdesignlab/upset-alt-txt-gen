@@ -1,6 +1,7 @@
 from typing import Any, Callable, Tuple, Union, Optional
 from alttxt.models import DataModel, GrammarModel, Subset
-from alttxt.enums import SubsetField, IndividualSetSize
+from alttxt.enums import SubsetField, IndividualSetSize, IntersectionTrend, SortBy
+import statistics
 
 
 class TokenMap:
@@ -42,6 +43,8 @@ class TokenMap:
             "dataset_description": f"The dataset shows attributes of {self.grammar.metaData.description}. " if self.grammar.metaData.description else "",
             # Set description as set name
             "set_description": f"{self.grammar.metaData.items}" if self.grammar.metaData.items else "elements",
+            # calculates trend change (gradual or drastical) if intersection sorted by size
+            "intersection_trend": f"{self.calculate_change_trend()}" if self.grammar.sort_by == SortBy.SIZE else "",
             # Total number of elements in all sets, duplicates appear to be counted
             "universal_set_size": sum(self.data.sizes.values()),
             # Number of sets
@@ -113,6 +116,8 @@ class TokenMap:
             "list_max_5int": self.max_n_intersections(5),
             # List all intersections in order of size, including name, size, deviation
             "list_all_int": self.max_n_intersections(len(self.data.subsets)),
+            "max_int_size": self.data.subsets[0].size,
+            "min_int_size": self.data.subsets[-1].size,
             # 90th percentile for size
             "90perc_size": self.get_subset_percentile(SubsetField.SIZE, 90),
             # 10th percentile for size
@@ -551,7 +556,25 @@ class TokenMap:
         else:
             return None, 0
         
-     # Assuming this function is part of the TokenMap class or similar
+    def calculate_min_intersection(self) -> dict[str, int]:
+        """
+        Calculate the smallest intersection size and name that contains more than one set.
+        """
+        smallest_size = float('inf')
+        smallest_subset = None
+
+        for subset in self.data.subsets:
+            if subset.degree > 1 and subset.size < smallest_size:
+                smallest_size = subset.size
+                smallest_subset = subset
+
+        # 'smallest_subset' now holds the subset with more than one set that has the smallest size
+        if smallest_subset is not None:
+            return smallest_subset.name, smallest_subset.size
+        else:
+            return None, 0
+        
+   
     def calculate_set_divergence(self):
         # Assuming self.data.subsets is a list of Subset objects with a 'size' attribute
         # First, find the max and min set sizes
@@ -570,3 +593,26 @@ class TokenMap:
             return IndividualSetSize.DIVERGINGABIT.value
         else: # divergence_percentage >= 80
             return IndividualSetSize.IDENTICAL.value
+        
+
+    def calculate_change_trend(self):
+        # Extract sizes from the sorted list of tuples (sorted_by_size)
+        intersection_sizes = [self.data.subsets[i].size for i in range(len(self.data.subsets))]
+        
+        # Calculate the standard deviation of the intersection sizes
+        std_dev = statistics.stdev(intersection_sizes)
+        mean_size = statistics.mean(intersection_sizes)
+        
+        # Determine the trend based on the standard deviation
+        # Adjust the threshold as necessary for your specific data and requirements
+        threshold = 0.1  # Example threshold for deciding between gradual and drastic
+        relative_std_dev = std_dev / mean_size
+        
+        if std_dev == 0:
+            return IntersectionTrend.CONSTANT.value
+        elif relative_std_dev < threshold:
+            return IntersectionTrend.GRADUAL.value
+        else:
+            return IntersectionTrend.DRASTIC.value
+    
+

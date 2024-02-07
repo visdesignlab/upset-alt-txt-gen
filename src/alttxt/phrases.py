@@ -36,6 +36,7 @@ DESCRIPTIONS: "dict[str, Any]" = {
     "level_3": {
         "set_divergence": "The set sizes {{set_divergence}}, ranging from {{min_set_size}} to {{max_set_size}}.",
         "intersection_trend_change": "The intersection sizes [[intersection_trend]].",
+        "factor_analysis": "{{largest_factor}}"
     },
     # L3 note: observe which sets are not present in many large intersections
 

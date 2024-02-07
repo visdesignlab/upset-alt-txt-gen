@@ -2,6 +2,7 @@ from typing import Any, Callable, Tuple, Union, Optional
 from alttxt.models import DataModel, GrammarModel, Subset
 from alttxt.enums import SubsetField, IndividualSetSize, IntersectionTrend, SortBy
 import statistics
+import math
 
 
 class TokenMap:
@@ -44,7 +45,9 @@ class TokenMap:
             # Set description as set name
             "set_description": f"{self.grammar.metaData.items}" if self.grammar.metaData.items else "elements",
             # calculates trend change (gradual or drastical) if intersection sorted by size
-            "intersection_trend": f"{self.calculate_change_trend()}" if self.grammar.sort_by == SortBy.SIZE else "",
+            "intersection_trend": f"The {self.calculate_change_trend()}" if self.grammar.sort_by == SortBy.SIZE else "",
+            # largest by what fsctor
+            "largest_factor": f"{self.sort_subsets_by_key(SubsetField.SIZE, True)[0].name} is the largest by a factor of {self.calculate_largest_factor()}." if self.calculate_largest_factor() >= 2 else "",
             # Total number of elements in all sets, duplicates appear to be counted
             "universal_set_size": sum(self.data.sizes.values()),
             # Number of sets
@@ -116,8 +119,10 @@ class TokenMap:
             "list_max_5int": self.max_n_intersections(5),
             # List all intersections in order of size, including name, size, deviation
             "list_all_int": self.max_n_intersections(len(self.data.subsets)),
-            "max_int_size": self.data.subsets[0].size,
-            "min_int_size": self.data.subsets[-1].size,
+            "max_int_size": self.sort_subsets_by_key(SubsetField.SIZE, True)[0].size,
+            "max_int_name": self.sort_subsets_by_key(SubsetField.SIZE, True)[0].name,
+            "min_int_size": self.sort_subsets_by_key(SubsetField.SIZE, True)[-1].size,
+            "min_int_name": self.sort_subsets_by_key(SubsetField.SIZE, True)[-1].name,
             # 90th percentile for size
             "90perc_size": self.get_subset_percentile(SubsetField.SIZE, 90),
             # 10th percentile for size
@@ -614,5 +619,26 @@ class TokenMap:
             return IntersectionTrend.GRADUAL.value
         else:
             return IntersectionTrend.DRASTIC.value
+        
+    def calculate_largest_factor(self):
+        # Ensure the list is sorted in descending order
+        sorted_sizes = self.sort_subsets_by_key(SubsetField.SIZE, True)
+        # Calculate the factor
+        if len(sorted_sizes) >= 2:
+            largest_size = sorted_sizes[0].size
+            second_largest_size = sorted_sizes[1].size
+            
+            # Avoid division by zero
+            if second_largest_size > 0:
+                factor = largest_size / second_largest_size
+                decimal_part = factor - math.floor(factor)
+                # Apply ceiling for > 0.8, otherwise floor
+                if decimal_part > 0.78:
+                    adjusted_factor = math.ceil(factor)
+                else:
+                    adjusted_factor = math.floor(factor)
+                return int(adjusted_factor)
+        return None  
+
     
 

@@ -89,6 +89,10 @@ class AltTxtGen:
             text_desc += intersection_trend_change
             text_desc += " "
 
+            factor_analysis = self.descriptions["level_3"]["factor_analysis"]
+            text_desc += factor_analysis
+            text_desc += " "
+
             if self.structured:
             # Construct the dictionary for markdown content
                 data_to_write_as_md = {

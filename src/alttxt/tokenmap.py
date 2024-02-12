@@ -1,6 +1,6 @@
 from typing import Any, Callable, Tuple, Union, Optional
 from alttxt.models import DataModel, GrammarModel, Subset
-from alttxt.enums import SubsetField, IndividualSetSize, IntersectionTrend, SortBy
+from alttxt.enums import SubsetField, IndividualSetSize, IntersectionTrend, SortBy, IntersectionType
 import statistics
 import math
 
@@ -45,7 +45,7 @@ class TokenMap:
             # Set description as set name
             "set_description": f"{self.grammar.metaData.items}" if self.grammar.metaData.items else "elements",
             # calculates trend change (gradual or drastical) if intersection sorted by size
-            "intersection_trend": f"The {self.calculate_change_trend()}" if self.grammar.sort_by == SortBy.SIZE else "",
+            "intersection_trend": f"{self.calculate_change_trend()}" if self.grammar.sort_by == SortBy.SIZE else "",
             # largest by what fsctor
             "largest_factor": f"{self.sort_subsets_by_key(SubsetField.SIZE, True)[0].name} is the largest by a factor of {self.calculate_largest_factor()}." if self.calculate_largest_factor() >= 2 else "",
             # Total number of elements in all sets, duplicates appear to be counted
@@ -639,6 +639,5 @@ class TokenMap:
                     adjusted_factor = math.floor(factor)
                 return int(adjusted_factor)
         return None  
-
     
-
+    

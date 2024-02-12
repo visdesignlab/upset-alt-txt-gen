@@ -1,4 +1,4 @@
-from alttxt.enums import AggregateBy, SortBy, SortVisibleBy, SortOrder
+from alttxt.enums import AggregateBy, SortBy, SortVisibleBy, SortOrder, IntersectionType
 from pydantic import BaseModel
 
 class Subset(BaseModel):
@@ -12,6 +12,7 @@ class Subset(BaseModel):
     size: int # size
     dev: float # Deviation
     degree: int # Set to -1 if parser fails to find degree
+    classification: IntersectionType
 
 class DataModel(BaseModel):
     """

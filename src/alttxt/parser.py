@@ -1,6 +1,6 @@
 import json
 
-from alttxt.enums import AggregateBy, SortBy, SortVisibleBy, SortOrder
+from alttxt.enums import AggregateBy, SortBy, SortVisibleBy, SortOrder, IntersectionType
 from alttxt.models import BookmarkedIntersectionModel, Subset, \
         DataModel, FilterModel, GrammarModel, PlotModel, MetaDataModel
 
@@ -56,7 +56,58 @@ class Parser:
         """
         with open(file_path) as f:
             return json.load(f)
-
+        
+    def classify_subset(self, degree: int, num_individual_sets: int) -> IntersectionType:
+        """
+        Classifies a subset based on its degree and the number of individual sets.
+        """
+        if degree == 1:
+            return IntersectionType.INDIVIDUAL
+        
+        if num_individual_sets == 3:
+            if degree == 2:
+                return IntersectionType.MEDIUM_SET
+            elif degree == 3:
+                return IntersectionType.HIGHORDER_SET
+            
+        elif num_individual_sets == 4:
+            if degree == 2:
+                return IntersectionType.LOW_SET
+            elif degree == 3:
+                return IntersectionType.MEDIUM_SET
+            elif degree == 4:
+                return IntersectionType.HIGHORDER_SET
+            
+        elif num_individual_sets == 5:
+            if degree == 2:
+                return IntersectionType.LOW_SET
+            elif degree == 3:
+                return IntersectionType.MEDIUM_SET
+            elif degree == 4:
+                return IntersectionType.HIGHORDER_SET
+            elif degree == 5:
+                return IntersectionType.HIGHORDER_SET
+        
+        elif num_individual_sets == 6:
+            if degree == 2:
+                return IntersectionType.LOW_SET
+            elif degree == 3:
+                return IntersectionType.MEDIUM_SET
+            elif degree == 4:
+                return IntersectionType.MEDIUM_SET
+            elif degree == 5:
+                return IntersectionType.HIGHORDER_SET
+            elif degree == 6:
+                return IntersectionType.HIGHORDER_SET
+        
+        else:
+            if 2 <= degree <= 3:
+                return IntersectionType.LOW_SET
+            elif 4 <= degree <= (num_individual_sets // 2):
+                return IntersectionType.MEDIUM_SET
+            else:
+                return IntersectionType.HIGHORDER_SET
+    
     def parse_data_no_agg(self, data: "dict[str, dict[str, Any]]") -> DataModel:
         """
         Responsible for parsing non-aggregated data from the JSON export 
@@ -92,7 +143,9 @@ class Parser:
             dev: float = round(item.get("deviation", self.default_field), 2)
             # Degree
             degree: int = int(item.get("degree", self.default_field))
-            subsets.append(Subset(name=name, size=size, dev=dev, degree=degree))
+            # Classification
+            classification = self.classify_subset(degree, len(data["visibleSets"]))
+            subsets.append(Subset(name=name, size=size, dev=dev, degree=degree, classification=classification))
         
         lowercase_data_visible_subsets = {k.lower(): k for k in data_visible_subsest.keys()}
 
@@ -124,7 +177,9 @@ class Parser:
             else:
                 degree = 0  # or some default value
 
-            all_subsets.append(Subset(name=name, size=size, dev=dev, degree=degree))
+            classification = self.classify_subset(degree, len(data["allSets"]))
+
+            all_subsets.append(Subset(name=name, size=size, dev=dev, degree=degree, classification=classification))
 
 
             

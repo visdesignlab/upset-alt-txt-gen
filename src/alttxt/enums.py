@@ -99,11 +99,9 @@ class IntersectionType(Listable):
     to the MultiNet implementation's export format.
     """
     INDIVIDUAL = "individual"
-    LOWSET = "low"
-    MEDIUMSET = "medium"
-    HIGHORDER = "high"
-    ALL = "all"
-    EMPTY = "empty"
+    LOW_SET = "low set"
+    MEDIUM_SET = "medium set"
+    HIGHORDER_SET = "high order set"
 
 class IndividualSetSize(Listable):
     """

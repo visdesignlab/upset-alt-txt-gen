@@ -2,7 +2,9 @@ from typing import Any, Callable, Tuple, Union, Optional
 from alttxt.models import DataModel, GrammarModel, Subset
 from alttxt.enums import SubsetField, IndividualSetSize, IntersectionTrend, SortBy, IntersectionType
 import statistics
+from alttxt.regionclass import *
 import math
+from collections import Counter
 
 
 class TokenMap:
@@ -149,6 +151,7 @@ class TokenMap:
             "list10_dev_outliers": self.dev_outliers(10),
             # 5 largest deviations, listed
             "list5_dev_outliers": self.dev_outliers(5),
+            "test": self.categorize_subsets
         }
 
     ###############################
@@ -639,5 +642,65 @@ class TokenMap:
                     adjusted_factor = math.floor(factor)
                 return int(adjusted_factor)
         return None  
+    
+    def categorize_subsets(self):
+        """
+        Categorize the subsets into small, medium, large and largest regions based on their size.
+        """
+        results = {}
+        sorted_subsets = sorted(self.data.subsets, key=lambda subset: subset.size, reverse=True)
+        largest_subset = sorted_subsets.pop(0)  # Remove the largest
+        
+        median_size = statistics.median([subset.size for subset in sorted_subsets])
+        print("median size is" , median_size)
+        
+        region_classification = RegionClassification()
+        
+        region_classification.set_largest(largest_subset)
+        
+        close_to_zero_threshold = median_size * 1.2  # Define what 'close to zero' means
+        
+        for subset in sorted_subsets:
+            deviation = subset.size - median_size
+            
+            if deviation < 0 and abs(deviation) > abs(median_size-close_to_zero_threshold):
+                region_classification.add_to_small_region(subset)
+            elif deviation == 0 or abs(deviation) <= abs(median_size-close_to_zero_threshold):
+                region_classification.add_to_medium_region(subset)
+            else:  # deviation > 0 and not close to zero
+                region_classification.add_to_large_region(subset)
+            
+        
+        print(region_classification.largest_data_region)
+        print(region_classification.large_data_region)
+        print(region_classification.medium_data_region)
+        print(region_classification.small_data_region)
+
+        regions = {
+        'largest_data_region': [region_classification.largest_data_region],
+        'large_data_region': region_classification.large_data_region,
+        'medium_data_region': region_classification.medium_data_region,
+        'small_data_region': region_classification.small_data_region,
+        # Assuming largest_data_region is a single subset, not a list
+        
+    }
+
+        for region_name, subsets in regions.items():
+        # Extract classification names from each subset in the region
+            classifications = [classification for _, _, _, classification in subsets]
+            classification_counts = Counter(classifications)
+            total_subsets = sum(classification_counts.values())
+        
+            # Calculate the percentage for each classification
+            percentages = {cls: (count / total_subsets) * 100 for cls, count in classification_counts.items()}
+            results[region_name] = percentages
+        
+        print(results)
+        return results
+        # return region_classification
+    
+    
+    
+    
     
     

@@ -92,6 +92,11 @@ class AltTxtGen:
             factor_analysis = self.descriptions["level_3"]["factor_analysis"]
             text_desc += factor_analysis
             text_desc += " "
+            
+            text_desc += "\n\n"
+            test = self.descriptions["level_3"]["test"]
+            text_desc += test
+            text_desc += " "
 
             if self.structured:
             # Construct the dictionary for markdown content

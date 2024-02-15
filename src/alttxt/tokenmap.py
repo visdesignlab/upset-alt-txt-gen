@@ -50,6 +50,9 @@ class TokenMap:
             "intersection_trend": f"{self.calculate_change_trend()}" if self.grammar.sort_by == SortBy.SIZE else "",
             # largest by what fsctor
             "largest_factor": f"{self.sort_subsets_by_key(SubsetField.SIZE, True)[0].name} is the largest by a factor of {self.calculate_largest_factor()}." if self.calculate_largest_factor() >= 2 else "",
+            # set intersection categorization text based on intersection type and size
+            "empty set presence": f"The empty intersection is present with a size of {self.get_empty_intersection_size()}." if (self.categorize_subsets().get('the empty intersection') and self.categorize_subsets().get('the empty intersection')!='largest_data_region') else "",
+            "all set presence": f"An all set intersection is present with a size of {self.get_all_set_intersection_size()}." if self.categorize_subsets().get('all set') else f"An all set intersection is not present.",
             # Total number of elements in all sets, duplicates appear to be counted
             "universal_set_size": sum(self.data.sizes.values()),
             # Number of sets
@@ -151,7 +154,7 @@ class TokenMap:
             "list10_dev_outliers": self.dev_outliers(10),
             # 5 largest deviations, listed
             "list5_dev_outliers": self.dev_outliers(5),
-            "test": self.categorize_subsets
+            "category_of_subsets": self.categorize_subsets
         }
 
     ###############################
@@ -643,6 +646,80 @@ class TokenMap:
                 return int(adjusted_factor)
         return None  
     
+    # def categorize_subsets(self):
+    #     """
+    #     Categorize the subsets into small, medium, large and largest regions based on their size.
+    #     """
+    #     results = {}
+    #     sorted_subsets = sorted(self.data.subsets, key=lambda subset: subset.size, reverse=True)
+    #     largest_subset = sorted_subsets.pop(0)  # Remove the largest
+        
+    #     median_size = statistics.median([subset.size for subset in sorted_subsets])
+    #     print("median size is" , median_size)
+        
+    #     region_classification = RegionClassification()
+        
+    #     region_classification.set_largest(largest_subset)
+        
+    #     close_to_zero_threshold = median_size * 1.2  # Define what 'close to zero' means
+        
+    #     for subset in sorted_subsets:
+    #         deviation = subset.size - median_size
+            
+    #         if deviation < 0 and abs(deviation) > abs(median_size-close_to_zero_threshold):
+    #             region_classification.add_to_small_region(subset)
+    #         elif deviation == 0 or abs(deviation) <= abs(median_size-close_to_zero_threshold):
+    #             region_classification.add_to_medium_region(subset)
+    #         else:  # deviation > 0 and not close to zero
+    #             region_classification.add_to_large_region(subset)
+            
+        
+    #     print(region_classification.largest_data_region)
+    #     print(region_classification.large_data_region)
+    #     print(region_classification.medium_data_region)
+    #     print(region_classification.small_data_region)
+
+
+    #     regions = {
+    #     'largest_data_region': [region_classification.largest_data_region],
+    #     'large_data_region': region_classification.large_data_region,
+    #     'medium_data_region': region_classification.medium_data_region,
+    #     'small_data_region': region_classification.small_data_region,
+    #     # Assuming largest_data_region is a single subset, not a list
+        
+    # }
+
+    #     for region_name, subsets in regions.items():
+    #     # Extract classification names from each subset in the region
+    #         classifications = [classification for _, _, _, classification in subsets]
+    #         classification_counts = Counter(classifications)
+    #         total_subsets = sum(classification_counts.values())
+        
+    #         # Calculate the percentage for each classification
+    #         percentages = {cls: (count / total_subsets) * 100 for cls, count in classification_counts.items()}
+    #         results[region_name] = percentages
+        
+    #     print(results)
+
+    #     classification_to_regions = {}
+        
+    #     threshold_percentage = 30.0  # Define the threshold for inclusion
+
+    #     # Iterate through each region's results to invert the mapping
+    #     for region, classifications in results.items():
+    #         for classification, percentage in classifications.items():
+    #             if percentage >= threshold_percentage:
+    #                 if classification not in classification_to_regions:
+    #                     classification_to_regions[classification] = set()
+    #                 classification_to_regions[classification].add(region)
+
+    #     # Convert sets to lists if necessary or keep as is for a set of regions
+    #     # return {cls: regions for cls, regions in classification_to_regions.items()}
+    #     print(classification_to_regions)           
+    #     return classification_to_regions
+
+
+
     def categorize_subsets(self):
         """
         Categorize the subsets into small, medium, large and largest regions based on their size.
@@ -676,6 +753,7 @@ class TokenMap:
         print(region_classification.medium_data_region)
         print(region_classification.small_data_region)
 
+
         regions = {
         'largest_data_region': [region_classification.largest_data_region],
         'large_data_region': region_classification.large_data_region,
@@ -683,21 +761,68 @@ class TokenMap:
         'small_data_region': region_classification.small_data_region,
         # Assuming largest_data_region is a single subset, not a list
         
-    }
+        }
+
+        total_sizes = {region: sum(subset.size for subset in subsets) for region, subsets in regions.items()}
 
         for region_name, subsets in regions.items():
-        # Extract classification names from each subset in the region
-            classifications = [classification for _, _, _, classification in subsets]
-            classification_counts = Counter(classifications)
-            total_subsets = sum(classification_counts.values())
-        
-            # Calculate the percentage for each classification
-            percentages = {cls: (count / total_subsets) * 100 for cls, count in classification_counts.items()}
-            results[region_name] = percentages
-        
+            # Initialize dictionary to store sizes for special classifications
+            special_sizes = {}
+            # Initialize Counter for other classifications
+            classification_sizes = Counter()
+
+            for subset in subsets:
+                # Handle 'the empty set' and 'all set' by directly logging their sizes
+                if subset.classification in ['the empty set', 'all set']:
+                    special_sizes[subset.classification] = subset.size
+                else:
+                    classification_sizes[subset.classification] += subset.size
+
+            # Calculate percentages based on sizes for other classifications
+            percentages = {cls: (size / total_sizes[region_name] * 100) for cls, size in classification_sizes.items()}
+            
+            # Update results with percentages and direct sizes for special cases
+            results[region_name] = {**percentages, **special_sizes}
+
         print(results)
-        return results
-        # return region_classification
+
+        classification_to_regions = {}
+        
+        threshold_percentage = 35.0  # Define the threshold for inclusion
+
+        # Modify the logic for classification_to_regions to include 'the empty set' and 'all set' without percentage threshold
+        for region, classifications in results.items():
+            for classification, value in classifications.items():
+                # Directly add 'the empty set' and 'all set' classifications without checking percentage
+                if classification in ['the empty set', 'all set'] or value >= threshold_percentage:
+                    if classification.value not in classification_to_regions:
+                        classification_to_regions[classification.value] = set()
+                    classification_to_regions[classification.value].add(region)
+
+        # Convert sets to lists if necessary or keep as is for a set of regions
+        # return {cls: regions for cls, regions in classification_to_regions.items()}
+        print(classification_to_regions)           
+        return classification_to_regions
+    
+
+    def get_empty_intersection_size(self):
+    # Iterate through subsets to find 'the empty intersection'
+        for subset in self.data.subsets:
+            if subset.classification.value == 'the empty intersection':
+                return subset.size
+        # Return 0 or None if 'the empty intersection' is not found
+        return None
+
+    def get_all_set_intersection_size(self):
+        # Calculate the total number of visible sets
+        total_visible_sets = len(self.grammar.visible_sets)
+        # Iterate through subsets to find 'all set' intersection by checking if degree equals total visible sets
+        for subset in self.data.subsets:
+            if subset.classification.value == 'all set':
+                return subset.size
+        # Return 0 or None if 'all set' intersection is not found
+        return None
+
     
     
     

@@ -98,10 +98,12 @@ class IntersectionType(Listable):
     Strings need to be kept up-to-date with any changes
     to the MultiNet implementation's export format.
     """
-    INDIVIDUAL = "individual"
+    EMPTY = "the empty intersection"
+    INDIVIDUAL = "individual set"
     LOW_SET = "low set"
     MEDIUM_SET = "medium set"
     HIGHORDER_SET = "high order set"
+    ALL_SET = "all set"
 
 class IndividualSetSize(Listable):
     """

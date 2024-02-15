@@ -63,6 +63,10 @@ class Parser:
         """
         if degree == 1:
             return IntersectionType.INDIVIDUAL
+        if degree == 0:
+            return IntersectionType.EMPTY
+        if degree == num_individual_sets:
+            return IntersectionType.ALL_SET
         
         if num_individual_sets == 3:
             if degree == 2:

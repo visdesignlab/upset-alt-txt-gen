@@ -115,6 +115,7 @@ class TokenMap:
             else f"There are {self.count_non_empty_subsets()} non-empty intersections, {self.count_non_empty_visible_subsets()} of which are shown in the plot",
             # Sort type for intersections
             "sort_type": self.grammar.sort_by.value,
+            "sort_order": self.grammar.sort_order.value,
             # Number of intersections of each degree
             "list_degree_count": self.degree_count,
             # Number of intersections of each degree, their average size, and their average deviation
@@ -854,10 +855,10 @@ class TokenMap:
             if len(regions_list) == 1:
                 if regions_list[0] == 'largest_data_region':
                     return ""
-                return f"The medium set intersections can be seen among {regions_list[0].replace('_data_region', '')} sized intersections."
+                return f"The medium degree set intersections can be seen among {regions_list[0].replace('_data_region', '')} sized intersections."
             else:
                 regions_formatted = [region.replace('_data_region', '') for region in regions_list]
-                return f"The medium set intersections intersections can be seen among {' and '.join(regions_formatted)} sized intersections."
+                return f"The medium degree set intersections can be seen among {' and '.join(regions_formatted)} sized intersections."
         else:
             return ""
         
@@ -871,10 +872,10 @@ class TokenMap:
             if len(regions_list) == 1:
                 if regions_list[0] == 'largest_data_region':
                     return ""
-                return f"The low set intersections lie in {regions_list[0].replace('_data_region', '')} sized intersections."
+                return f"The low degree set intersections lie in {regions_list[0].replace('_data_region', '')} sized intersections."
             else:
                 regions_formatted = [region.replace('_data_region', '') for region in regions_list]
-                return f"The low set intersections intersections lie in {' and '.join(regions_formatted)} sized intersections."
+                return f"The low degree set intersections intersections lie in {' and '.join(regions_formatted)} sized intersections."
         else:
             return ""
         

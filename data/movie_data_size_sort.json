@@ -4,15 +4,16 @@
     "sets": "",
     "items": ""
   },
+  "horizontal": false,
   "firstAggregateBy": "None",
   "firstOverlapDegree": 2,
   "secondAggregateBy": "None",
   "secondOverlapDegree": 2,
   "sortVisibleBy": "Alphabetical",
   "sortBy": "Size",
-  "sortByOrder": "Ascending",
+  "sortByOrder": "Descending",
   "filters": {
-    "maxVisible": 3,
+    "maxVisible": 6,
     "minVisible": 0,
     "hideEmpty": true,
     "hideNoSet": true
@@ -114486,6 +114487,94 @@
           }
         }
       },
+      "Subset_Thriller_War Action Children": {
+        "id": "Subset_Thriller_War Action Children",
+        "elementName": "Thriller, War, Action, and Children",
+        "items": [
+          "movies/40723969"
+        ],
+        "size": 1,
+        "type": "Subset",
+        "setMembership": {
+          "Set_Thriller": "Yes",
+          "Set_War": "Yes",
+          "Set_Western": "No",
+          "Set_Action": "Yes",
+          "Set_Adventure": "No",
+          "Set_Children": "Yes"
+        },
+        "deviation": 0.022194221601569742,
+        "attributes": {
+          "AvgRating": {
+            "min": 3.38,
+            "max": 3.38,
+            "median": 3.38,
+            "mean": 3.38,
+            "first": 3.38,
+            "third": 3.38
+          },
+          "Watches": {
+            "min": 231,
+            "max": 231,
+            "median": 231,
+            "mean": 231,
+            "first": 231,
+            "third": 231
+          },
+          "ReleaseDate": {
+            "min": 1986,
+            "max": 1986,
+            "median": 1986,
+            "mean": 1986,
+            "first": 1986,
+            "third": 1986
+          }
+        }
+      },
+      "Subset_Thriller_War Action Adventure": {
+        "id": "Subset_Thriller_War Action Adventure",
+        "elementName": "Thriller, War, Action, and Adventure",
+        "items": [
+          "movies/40725035"
+        ],
+        "size": 1,
+        "type": "Subset",
+        "setMembership": {
+          "Set_Thriller": "Yes",
+          "Set_War": "Yes",
+          "Set_Western": "No",
+          "Set_Action": "Yes",
+          "Set_Adventure": "Yes",
+          "Set_Children": "No"
+        },
+        "deviation": 0.02170480725819286,
+        "attributes": {
+          "AvgRating": {
+            "min": 2.93,
+            "max": 2.93,
+            "median": 2.93,
+            "mean": 2.93,
+            "first": 2.93,
+            "third": 2.93
+          },
+          "Watches": {
+            "min": 290,
+            "max": 290,
+            "median": 290,
+            "mean": 290,
+            "first": 290,
+            "third": 290
+          },
+          "ReleaseDate": {
+            "min": 1998,
+            "max": 1998,
+            "median": 1998,
+            "mean": 1998,
+            "first": 1998,
+            "third": 1998
+          }
+        }
+      },
       "Subset_Western_Action Adventure": {
         "id": "Subset_Western_Action Adventure",
         "elementName": "Western, Action, and Adventure",
@@ -114642,6 +114731,8 @@
       "Subset_Western_Adventure",
       "Subset_Western_Children",
       "Subset_Thriller_Western Action",
+      "Subset_Thriller_War Action Children",
+      "Subset_Thriller_War Action Adventure",
       "Subset_Western_Action Adventure",
       "Subset_War_Children",
       "Subset_War_Western"
@@ -115548,6 +115639,88 @@
           "Set_Western": "Yes",
           "Set_Action": "Yes",
           "Set_Adventure": "No",
+          "Set_Children": "No"
+        }
+      },
+      "Subset_Thriller_War Action Children": {
+        "elementName": "Thriller, War, Action, and Children",
+        "type": "Subset",
+        "size": 1,
+        "deviation": 0.022194221601569742,
+        "attributes": {
+          "AvgRating": {
+            "min": 3.38,
+            "max": 3.38,
+            "median": 3.38,
+            "mean": 3.38,
+            "first": 3.38,
+            "third": 3.38
+          },
+          "Watches": {
+            "min": 231,
+            "max": 231,
+            "median": 231,
+            "mean": 231,
+            "first": 231,
+            "third": 231
+          },
+          "ReleaseDate": {
+            "min": 1986,
+            "max": 1986,
+            "median": 1986,
+            "mean": 1986,
+            "first": 1986,
+            "third": 1986
+          }
+        },
+        "degree": 4,
+        "setMembership": {
+          "Set_Thriller": "Yes",
+          "Set_War": "Yes",
+          "Set_Western": "No",
+          "Set_Action": "Yes",
+          "Set_Adventure": "No",
+          "Set_Children": "Yes"
+        }
+      },
+      "Subset_Thriller_War Action Adventure": {
+        "elementName": "Thriller, War, Action, and Adventure",
+        "type": "Subset",
+        "size": 1,
+        "deviation": 0.02170480725819286,
+        "attributes": {
+          "AvgRating": {
+            "min": 2.93,
+            "max": 2.93,
+            "median": 2.93,
+            "mean": 2.93,
+            "first": 2.93,
+            "third": 2.93
+          },
+          "Watches": {
+            "min": 290,
+            "max": 290,
+            "median": 290,
+            "mean": 290,
+            "first": 290,
+            "third": 290
+          },
+          "ReleaseDate": {
+            "min": 1998,
+            "max": 1998,
+            "median": 1998,
+            "mean": 1998,
+            "first": 1998,
+            "third": 1998
+          }
+        },
+        "degree": 4,
+        "setMembership": {
+          "Set_Thriller": "Yes",
+          "Set_War": "Yes",
+          "Set_Western": "No",
+          "Set_Action": "Yes",
+          "Set_Adventure": "Yes",
           "Set_Children": "No"
         }
       },

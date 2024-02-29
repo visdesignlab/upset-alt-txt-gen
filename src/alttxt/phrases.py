@@ -56,7 +56,7 @@ DESCRIPTIONS: "dict[str, Any]" = {
         "learn_more": "To learn about UpSet plots, visit https://upset.app",
         # Dataset properties
         "l1_desc": "{{dataset_description}}The dataset contains {{set_count}} sets, and {{universal_set_size}} elements,"
-        " of which {{visible_set_count}} are shown in the plot",
+        " of which {{visible_set_count}} sets are shown in the plot",
         # Set Properties
         "set_description": "The largest set is {{max_set_name}} with {{max_set_size}} {{set_description}}"
         ", followed by {{list_sorted_visible_sets}}",
@@ -76,7 +76,7 @@ DESCRIPTIONS: "dict[str, Any]" = {
         # Total number of items in all sets
         "universal_set_size": "a total of {{universal_set_size}} items are represented in all sets",
         # Intersections are sorted by
-        "sort_by": "The plot is sorted by {{sort_type}}",
+        "sort_by": "The plot is sorted by {{sort_type}} in {{sort_order}} order",
         # Number of visualized variables and their names
         "list_vars": "{{var_count}} variables are visualized- {{list_var_names}}",
         # Number of sets, non-empty intersections, and sort type
@@ -105,7 +105,7 @@ DESCRIPTIONS: "dict[str, Any]" = {
         "maxmin_set_percentages_info": "The largest set, {{max_set_name}}, is present in {{max_set_percentage}} of all non-empty intersections."
         " The smallest set, {{min_set_name}}, is present in {{min_set_percentage}} of all non-empty intersections",
         "intersection_trend": "peak at a value of {{max_int_size}} and then "
-        "{{intersection_trend}} flatten down to {{min_int_size}}" if SortOrder.ASCENDING 
+        "{{intersection_trend}} flatten down to {{min_int_size}}" if SortOrder.DESCENDING 
         else "starts from a value of {{min_int_size}} and then {{intersection_trend}}"
         " rise up to {{max_int_size}}",
     },

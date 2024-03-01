@@ -752,10 +752,13 @@ class TokenMap:
             else:  # deviation > 0 and not close to zero
                 region_classification.add_to_large_region(subset)
             
-        
+        print("==============")
         print(region_classification.largest_data_region)
+        print("==============")
         print(region_classification.large_data_region)
+        print("==============")
         print(region_classification.medium_data_region)
+        print("==============")
         print(region_classification.small_data_region)
 
 
@@ -788,26 +791,60 @@ class TokenMap:
             
             # Update results with percentages and direct sizes for special cases
             results[region_name] = {**percentages, **special_sizes}
-
-        print(results)
+        
+        # print("[[[[]][[[[[[[]]]]]]]]]")
+        # print(results)
 
         classification_to_regions = {}
         
         threshold_percentage = 35.0  # Define the threshold for inclusion
 
-        # Modify the logic for classification_to_regions to include 'the empty set' and 'all set' without percentage threshold
         for region, classifications in results.items():
-            for classification, value in classifications.items():
-                # Directly add 'the empty set' and 'all set' classifications without checking percentage
-                if classification in ['the empty set', 'all set'] or value >= threshold_percentage:
-                    if classification.value not in classification_to_regions:
-                        classification_to_regions[classification.value] = set()
-                    classification_to_regions[classification.value].add(region)
+                for classification, value in classifications.items():
+                    # Direct inclusion for single-region classifications or exceeding threshold
+                    if classification.value not in classification_to_regions or value >= threshold_percentage:
+                        classification_to_regions.setdefault(classification.value, {}).update({region: value})
+                    else:
+                        # Include only if the percentage exceeds the threshold
+                        existing_region, existing_value = next(iter(classification_to_regions[classification.value].items()))
+                        if value > existing_value:
+                            classification_to_regions[classification.value].update({region: value})
+                        # classification_to_regions[classification.value].update({region: value})
 
-        # Convert sets to lists if necessary or keep as is for a set of regions
-        # return {cls: regions for cls, regions in classification_to_regions.items()}
-        print(classification_to_regions)           
-        return classification_to_regions
+                    
+        # print("test")
+        # print(classification_to_regions)
+
+            # Refine mapping based on the new rules
+        for classification, regions_percentages in classification_to_regions.items():
+            if len(regions_percentages) > 1:
+                    # Filter regions by threshold and select the highest if none exceed the threshold
+                above_threshold_regions = {region: pct for region, pct in regions_percentages.items() if pct >= threshold_percentage}
+
+            # If no regions meet the threshold, choose the one with the highest percentage
+                if not above_threshold_regions:
+                    highest_region = max(regions_percentages, key=regions_percentages.get)
+                    classification_to_regions[classification] = {highest_region}
+                else:
+                    # Include all regions that meet the threshold
+                    classification_to_regions[classification] = set(above_threshold_regions.keys())
+            else:
+                # If the classification is present in only one region, include it regardless of the percentage
+                classification_to_regions[classification] = set(regions_percentages.keys())
+
+        # Handle special cases such as 'the empty set' and 'all set'
+        # Assuming they should be directly mapped without considering the threshold
+        for special_case in ['the empty set', 'all set']:
+            if special_case in results:
+                for region in results[special_case]:
+                    classification_to_regions[special_case] = {region}
+
+
+        final_output = {cls: {regions} if isinstance(regions, str) else set(regions) for cls, regions in classification_to_regions.items()}
+        print("=--------------------------------------=")
+        print(final_output)
+        return final_output
+
     
 
     def get_empty_intersection_size(self):

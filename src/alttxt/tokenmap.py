@@ -52,7 +52,7 @@ class TokenMap:
             "largest_factor": f"{self.sort_subsets_by_key(SubsetField.SIZE, True)[0].name} is the largest by a factor of {self.calculate_largest_factor()}." if self.calculate_largest_factor() >= 2 else "",
             # set intersection categorization text based on intersection type and size
             "empty_set_presence": f" The empty intersection is present with a size of {self.get_empty_intersection_size()}." if (self.categorize_subsets().get('the empty intersection') and self.categorize_subsets().get('the empty intersection')!='largest_data_region') else "",
-            "all_set_presence": f"An all set intersection is present with a size of {self.get_all_set_intersection_size()}." if self.categorize_subsets().get('all set') else f"An all set intersection is not present.",
+            "all_set_presence": f" An all set intersection is present with a size of {self.get_all_set_intersection_size()}." if self.categorize_subsets().get('all set') else f"An all set intersection is not present.",
             "individual_set_presence": f" {self.individual_set_presence()}",
             "low_set_presence": f" {self.low_set_presence()}",
             "high_set_presence": f" {self.high_set_presence()}",
@@ -875,7 +875,7 @@ class TokenMap:
             if len(regions_list) == 1:
                 if regions_list[0] == 'largest_data_region':
                     return ""
-                return f"The individual set intersections are {regions_list[0].replace('_data_region', '')}."
+                return f"The individual set intersections are {regions_list[0].replace('_data_region', '')} in size."
             else:
                 regions_formatted = [region.replace('_data_region', '') for region in regions_list]
                 return f"The individual set intersections are in {' and '.join(regions_formatted)} intersections."
@@ -926,7 +926,7 @@ class TokenMap:
             if len(regions_list) == 1:
                 if regions_list[0] == 'largest_data_region':
                     return ""
-                return f"Among {regions_list[0].replace('_data_region', '')} sized intersections, the high order set intersections are significantly present."
+                return f"Among the {regions_list[0].replace('_data_region', '')} sized intersections, the high order set intersections are significantly present."
             else:
                 regions_formatted = [region.replace('_data_region', '') for region in regions_list]
                 return f"In {' and '.join(regions_formatted)} sized intersections, the high order set intersections intersections are significantly present."

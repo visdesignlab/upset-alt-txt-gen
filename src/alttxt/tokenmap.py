@@ -1,6 +1,6 @@
 from typing import Any, Callable, Tuple, Union, Optional
 from alttxt.models import DataModel, GrammarModel, Subset
-from alttxt.enums import SubsetField, IndividualSetSize, IntersectionTrend, SortBy, IntersectionType
+from alttxt.enums import SubsetField, IndividualSetSize, IntersectionTrend, SortBy, IntersectionType, SortOrder
 import statistics
 from alttxt.regionclass import *
 import math
@@ -46,17 +46,16 @@ class TokenMap:
             "dataset_description": f"The dataset shows attributes of {self.grammar.metaData.description}. " if self.grammar.metaData.description else "",
             # Set description as set name
             "set_description": f"{self.grammar.metaData.items}" if self.grammar.metaData.items else "elements",
-            # calculates trend change (gradual or drastical) if intersection sorted by size
-            "intersection_trend": f"{self.calculate_change_trend()}" if self.grammar.sort_by == SortBy.SIZE else "",
-            # largest by what fsctor
-            "largest_factor": f"{self.sort_subsets_by_key(SubsetField.SIZE, True)[0].name} is the largest by a factor of {self.calculate_largest_factor()}." if self.calculate_largest_factor() >= 2 else "",
+            # largest by what factor
+            "largest_factor": f" {self.sort_subsets_by_key(SubsetField.SIZE, True)[0].name} is the largest by a factor of {self.calculate_largest_factor()}." if self.calculate_largest_factor() >= 2 else "",
             # set intersection categorization text based on intersection type and size
             "empty_set_presence": f" The empty intersection is present with a size of {self.get_empty_intersection_size()}." if (self.categorize_subsets().get('the empty intersection') and self.categorize_subsets().get('the empty intersection')!='largest_data_region') else "",
             "all_set_presence": f" An all set intersection is present with a size of {self.get_all_set_intersection_size()}." if self.categorize_subsets().get('all set') else f"An all set intersection is not present.",
-            "individual_set_presence": f" {self.individual_set_presence()}",
-            "low_set_presence": f" {self.low_set_presence()}",
-            "high_set_presence": f" {self.high_set_presence()}",
-            "medium_set_presence": f" {self.medium_set_presence()}",
+            "intersection_trend_analysis":f"{self.calculate_intersection_trend()}" if self.grammar.sort_by == SortBy.SIZE else "",
+            "individual_set_presence": f"{self.individual_set_presence()}",
+            "low_set_presence": f"{self.low_set_presence()}",
+            "high_set_presence": f"{self.high_set_presence()}",
+            "medium_set_presence": f"{self.medium_set_presence()}",
             # Total number of elements in all sets, duplicates appear to be counted
             "universal_set_size": sum(self.data.sizes.values()),
             # Number of sets
@@ -650,79 +649,6 @@ class TokenMap:
                     adjusted_factor = math.floor(factor)
                 return int(adjusted_factor)
         return None  
-    
-    # def categorize_subsets(self):
-    #     """
-    #     Categorize the subsets into small, medium, large and largest regions based on their size.
-    #     """
-    #     results = {}
-    #     sorted_subsets = sorted(self.data.subsets, key=lambda subset: subset.size, reverse=True)
-    #     largest_subset = sorted_subsets.pop(0)  # Remove the largest
-        
-    #     median_size = statistics.median([subset.size for subset in sorted_subsets])
-    #     print("median size is" , median_size)
-        
-    #     region_classification = RegionClassification()
-        
-    #     region_classification.set_largest(largest_subset)
-        
-    #     close_to_zero_threshold = median_size * 1.2  # Define what 'close to zero' means
-        
-    #     for subset in sorted_subsets:
-    #         deviation = subset.size - median_size
-            
-    #         if deviation < 0 and abs(deviation) > abs(median_size-close_to_zero_threshold):
-    #             region_classification.add_to_small_region(subset)
-    #         elif deviation == 0 or abs(deviation) <= abs(median_size-close_to_zero_threshold):
-    #             region_classification.add_to_medium_region(subset)
-    #         else:  # deviation > 0 and not close to zero
-    #             region_classification.add_to_large_region(subset)
-            
-        
-    #     print(region_classification.largest_data_region)
-    #     print(region_classification.large_data_region)
-    #     print(region_classification.medium_data_region)
-    #     print(region_classification.small_data_region)
-
-
-    #     regions = {
-    #     'largest_data_region': [region_classification.largest_data_region],
-    #     'large_data_region': region_classification.large_data_region,
-    #     'medium_data_region': region_classification.medium_data_region,
-    #     'small_data_region': region_classification.small_data_region,
-    #     # Assuming largest_data_region is a single subset, not a list
-        
-    # }
-
-    #     for region_name, subsets in regions.items():
-    #     # Extract classification names from each subset in the region
-    #         classifications = [classification for _, _, _, classification in subsets]
-    #         classification_counts = Counter(classifications)
-    #         total_subsets = sum(classification_counts.values())
-        
-    #         # Calculate the percentage for each classification
-    #         percentages = {cls: (count / total_subsets) * 100 for cls, count in classification_counts.items()}
-    #         results[region_name] = percentages
-        
-    #     print(results)
-
-    #     classification_to_regions = {}
-        
-    #     threshold_percentage = 30.0  # Define the threshold for inclusion
-
-    #     # Iterate through each region's results to invert the mapping
-    #     for region, classifications in results.items():
-    #         for classification, percentage in classifications.items():
-    #             if percentage >= threshold_percentage:
-    #                 if classification not in classification_to_regions:
-    #                     classification_to_regions[classification] = set()
-    #                 classification_to_regions[classification].add(region)
-
-    #     # Convert sets to lists if necessary or keep as is for a set of regions
-    #     # return {cls: regions for cls, regions in classification_to_regions.items()}
-    #     print(classification_to_regions)           
-    #     return classification_to_regions
-
 
 
     def categorize_subsets(self):
@@ -734,7 +660,6 @@ class TokenMap:
         largest_subset = sorted_subsets.pop(0)  # Remove the largest
         
         median_size = statistics.median([subset.size for subset in sorted_subsets])
-        print("median size is" , median_size)
         
         region_classification = RegionClassification()
         
@@ -751,15 +676,6 @@ class TokenMap:
                 region_classification.add_to_medium_region(subset)
             else:  # deviation > 0 and not close to zero
                 region_classification.add_to_large_region(subset)
-            
-        print("==============")
-        print(region_classification.largest_data_region)
-        print("==============")
-        print(region_classification.large_data_region)
-        print("==============")
-        print(region_classification.medium_data_region)
-        print("==============")
-        print(region_classification.small_data_region)
 
 
         regions = {
@@ -841,8 +757,7 @@ class TokenMap:
 
 
         final_output = {cls: {regions} if isinstance(regions, str) else set(regions) for cls, regions in classification_to_regions.items()}
-        print("=--------------------------------------=")
-        print(final_output)
+        
         return final_output
 
     
@@ -875,12 +790,12 @@ class TokenMap:
             if len(regions_list) == 1:
                 if regions_list[0] == 'largest_data_region':
                     return ""
-                return f"The individual set intersections are {regions_list[0].replace('_data_region', '')} in size."
+                return f" The individual set intersections are {regions_list[0].replace('_data_region', '')} in size."
             else:
                 regions_formatted = [region.replace('_data_region', '') for region in regions_list]
-                return f"The individual set intersections are in {' and '.join(regions_formatted)} intersections."
+                return f" The individual set intersections are in {' and '.join(regions_formatted)} intersections."
         else:
-            return "No individual set intersections are present."
+            return " No individual set intersections are present."
         
     def medium_set_presence(self) -> str:
         categorization = self.categorize_subsets()
@@ -892,10 +807,10 @@ class TokenMap:
             if len(regions_list) == 1:
                 if regions_list[0] == 'largest_data_region':
                     return ""
-                return f"The medium degree set intersections can be seen among {regions_list[0].replace('_data_region', '')} sized intersections."
+                return f" The medium degree set intersections can be seen among {regions_list[0].replace('_data_region', '')} sized intersections."
             else:
                 regions_formatted = [region.replace('_data_region', '') for region in regions_list]
-                return f"The medium degree set intersections can be seen among {' and '.join(regions_formatted)} sized intersections."
+                return f" The medium degree set intersections can be seen among {' and '.join(regions_formatted)} sized intersections."
         else:
             return ""
         
@@ -909,10 +824,10 @@ class TokenMap:
             if len(regions_list) == 1:
                 if regions_list[0] == 'largest_data_region':
                     return ""
-                return f"The low degree set intersections lie in {regions_list[0].replace('_data_region', '')} sized intersections."
+                return f" The low degree set intersections lie in {regions_list[0].replace('_data_region', '')} sized intersections."
             else:
                 regions_formatted = [region.replace('_data_region', '') for region in regions_list]
-                return f"The low degree set intersections intersections lie in {' and '.join(regions_formatted)} sized intersections."
+                return f" The low degree set intersections lie in {' and '.join(regions_formatted)} sized intersections."
         else:
             return ""
         
@@ -926,12 +841,29 @@ class TokenMap:
             if len(regions_list) == 1:
                 if regions_list[0] == 'largest_data_region':
                     return ""
-                return f"Among the {regions_list[0].replace('_data_region', '')} sized intersections, the high order set intersections are significantly present."
+                return f" Among the {regions_list[0].replace('_data_region', '')} sized intersections, the high order set intersections are significantly present."
             else:
                 regions_formatted = [region.replace('_data_region', '') for region in regions_list]
-                return f"In {' and '.join(regions_formatted)} sized intersections, the high order set intersections intersections are significantly present."
+                return f" In {' and '.join(regions_formatted)} sized intersections, the high order set intersections are significantly present."
         else:
-            return "No high order intersections are present."
+            return " No high order intersections are present."
+        
+
+    def calculate_intersection_trend(self) -> str:
+        intersection_trend = self.calculate_change_trend()
+
+        max_int_size = self.sort_subsets_by_key(SubsetField.SIZE, True)[0].size
+        min_int_size =  self.sort_subsets_by_key(SubsetField.SIZE, True)[-1].size
+        
+        if self.grammar.sort_order == SortOrder.DESCENDING:
+            return f" The intersection sizes peak at a value of {max_int_size} and then {intersection_trend} flatten down to {min_int_size}."
+            
+        else:
+            return f" The intersection sizes start from a value of {min_int_size} and then {intersection_trend} rise up to {max_int_size}."
+
+        
+
+        
 
 
     

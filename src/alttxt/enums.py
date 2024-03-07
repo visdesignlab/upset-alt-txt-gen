@@ -124,4 +124,4 @@ class IntersectionTrend(Listable):
     """
     DRASTIC = "drastically"
     GRADUAL = "gradually"
-    CONSTANT = "constant"
+    CONSTANT = "constantly"

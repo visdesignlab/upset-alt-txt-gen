@@ -81,26 +81,26 @@ class AltTxtGen:
             text_desc += statistical_information
             text_desc += " "
 
-            set_divergence = self.descriptions["level_3"]["set_divergence"]
-            text_desc += set_divergence
+            trend_analysis = self.descriptions["level_3"]["trend_analysis"]
+            text_desc += trend_analysis
             text_desc += " "
 
-            intersection_trend_change = self.descriptions["level_3"]["intersection_trend_change"]
-            text_desc += intersection_trend_change
-            text_desc += " "
-
-            factor_analysis = self.descriptions["level_3"]["factor_analysis"]
-            text_desc += factor_analysis
+            # set_divergence = self.descriptions["level_3"]["set_divergence"]
+            # text_desc += set_divergence
             # text_desc += " "
 
-            categorization_of_subsets = self.descriptions["level_3"]["categorization_of_subsets"]
-            text_desc += categorization_of_subsets
-            text_desc += " "
+            # intersection_trend_change = self.descriptions["level_3"]["intersection_trend_change"]
+            # text_desc += intersection_trend_change
+            # text_desc += " "
+
+            # factor_analysis = self.descriptions["level_3"]["factor_analysis"]
+            # text_desc += factor_analysis
+            # # text_desc += " "
+
+            # categorization_of_subsets = self.descriptions["level_3"]["categorization_of_subsets"]
+            # text_desc += categorization_of_subsets
+            # text_desc += " "
             
-            # text_desc += "\n\n"
-            # test = self.descriptions["level_3"]["test"]
-            # text_desc += test
-            # text_desc += " "
 
             if self.structured:
             # Construct the dictionary for markdown content
@@ -109,7 +109,8 @@ class AltTxtGen:
                     "Dataset Properties": self.replaceTokens(dataset_properties),
                     "Set Properties": self.replaceTokens(set_description),
                     "Intersection Properties": self.replaceTokens(intersection_description),
-                    "Statistical Information": self.replaceTokens(statistical_information)
+                    "Statistical Information": self.replaceTokens(statistical_information),
+                    "Trend Analysis": self.replaceTokens(trend_analysis)
                 }
 
                 markdown_content = ""

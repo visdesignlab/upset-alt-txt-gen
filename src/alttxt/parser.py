@@ -222,7 +222,7 @@ class Parser:
         data_model = DataModel(
             membs=membs, sets=sets_, sizes=sizes, count=count, subsets=subsets, all_subsets=all_subsets
         )
-        print(len(data_model.subsets))
+    
         return data_model
 
     def parse_grammar(self, grammar: "dict[str, Any]") -> GrammarModel:

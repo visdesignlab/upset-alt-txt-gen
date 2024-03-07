@@ -34,11 +34,12 @@ DESCRIPTIONS: "dict[str, Any]" = {
         "statistical_information": "[[size_percs]]. [[maxmin_set_percentages_info]].",
     },
     "level_3": {
-        "set_divergence": "The set sizes {{set_divergence}}, ranging from {{min_set_size}} to {{max_set_size}}.",
-        "intersection_trend_change": "The intersection sizes [[intersection_trend]]." if SortBy.SIZE else "",
-        "factor_analysis": "{{largest_factor}}",
-        # "test": "{{category_of_subsets}}",
-        "categorization_of_subsets": "{{empty_set_presence}}{{all_set_presence}}{{individual_set_presence}}{{low_set_presence}}{{medium_set_presence}}{{high_set_presence}}",
+        "trend_analysis": "[[set_divergence]][[intersection_trend_change]][[factor_analysis]][[categorization_of_subsets]]",
+        # "set_divergence": "The set sizes {{set_divergence}}, ranging from {{min_set_size}} to {{max_set_size}}.",
+        # "intersection_trend_change": "{{intersection_trend_analysis}}",
+        # "factor_analysis": "{{largest_factor}}",
+        # # "test": "{{category_of_subsets}}",
+        # "categorization_of_subsets": "{{empty_set_presence}}{{all_set_presence}}{{individual_set_presence}}{{low_set_presence}}{{medium_set_presence}}{{high_set_presence}}",
 
     },
     # L3 note: observe which sets are not present in many large intersections
@@ -60,6 +61,14 @@ DESCRIPTIONS: "dict[str, Any]" = {
         # Set Properties
         "set_description": "The largest set is {{max_set_name}} with {{max_set_size}} {{set_description}}"
         ", followed by {{list_sorted_visible_sets}}",
+        # Set Diversion Calculation
+        "set_divergence": "The set sizes {{set_divergence}}, ranging from {{min_set_size}} to {{max_set_size}}.",
+        # Intersection Trend Analysis
+        "intersection_trend_change": "{{intersection_trend_analysis}}",
+        # Largest Set Factor Analysis
+        "factor_analysis": "{{largest_factor}}",
+        # Categorization of Subsets in Different Trends
+        "categorization_of_subsets": "{{empty_set_presence}}{{all_set_presence}}{{individual_set_presence}}{{low_set_presence}}{{medium_set_presence}}{{high_set_presence}}",
         # Title, caption, set list
         "l1_low_desc": "[[title]]. The dataset contains {{set_count}} total sets, "
         "with {{universal_set_size}} elements. {{visible_set_count}} sets are shown in the plot",
@@ -104,9 +113,6 @@ DESCRIPTIONS: "dict[str, Any]" = {
         "negative deviation is {{avg_neg_dev}}",
         "maxmin_set_percentages_info": "The largest set, {{max_set_name}}, is present in {{max_set_percentage}} of all non-empty intersections."
         " The smallest set, {{min_set_name}}, is present in {{min_set_percentage}} of all non-empty intersections",
-        "intersection_trend": "peak at a value of {{max_int_size}} and then "
-        "{{intersection_trend}} flatten down to {{min_int_size}}" if SortOrder.DESCENDING 
-        else "starts from a value of {{min_int_size}} and then {{intersection_trend}}"
-        " rise up to {{max_int_size}}",
+        
     },
 }

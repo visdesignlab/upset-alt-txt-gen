@@ -13,6 +13,7 @@ from alttxt.enums import Level
 from pathlib import Path
 from typing import Optional
 
+
 # Entry point for the program
 def main(argv: Optional["list[str]"] = None) -> int:
     argv = argv if argv is not None else sys.argv[1:]
@@ -62,22 +63,20 @@ def main(argv: Optional["list[str]"] = None) -> int:
     )
 
     args: argparse.Namespace = parser.parse_args(argv)
-    
+
     try:
-      upset_parser: Parser = Parser(Path(args.data))
-      grammar: GrammarModel = upset_parser.get_grammar()
-      data: DataModel = upset_parser.get_data()
+        upset_parser: Parser = Parser(Path(args.data))
+        grammar: GrammarModel = upset_parser.get_grammar()
+        data: DataModel = upset_parser.get_data()
     except Exception as e:
-      print(f"Exception while parsing: {str(e)}")
-      return 1
-      
+        print(f"Exception while parsing: {str(e)}")
+        return 1
+
     title: str = args.title
 
     tokenMap = TokenMap(data, grammar, title)
-    
-    alttext = AltTxtGen(
-        args.level, args.structured , tokenMap, grammar
-    )
+
+    alttext = AltTxtGen(args.level, args.structured, tokenMap, grammar)
 
     print(90 * "-")
     print(

@@ -11,6 +11,7 @@ from typing import Any
 
 import json
 
+
 class AltTxtGen:
     def __init__(
         self,
@@ -23,7 +24,7 @@ class AltTxtGen:
         Params:
         - level: The semantic level of the explanation to generate
         - verbosity: The verbosity of the explanation to generate
-        - explain: How much of the UpSet explanation 
+        - explain: How much of the UpSet explanation
             (describing what an UpSet plot is) to include
         - map: The token map to use for replacing tokens in the description
         - grammar: The grammar model to use for generating the description
@@ -38,7 +39,7 @@ class AltTxtGen:
     def text(self) -> str:
         # Start with the UpSet explanation, if any
         text_desc: str = ""
-            
+
         # Get the description template for the level, verbosity, and sort
         # L0 and L1 don't care about sort/aggregation
 
@@ -50,7 +51,7 @@ class AltTxtGen:
             text_desc += self.descriptions["level_2"]["set_description"]
             text_desc += self.descriptions["level_2"]["intersection_description"]
             text_desc += self.descriptions["level_2"]["statistical_information"]
-            
+
         elif self.level == Level.DEFAULT:
             # Default level is combination of L1 and L2
 
@@ -68,26 +69,34 @@ class AltTxtGen:
             dataset_properties = self.descriptions["level_1"]["dataset_properties"]
             text_desc += dataset_properties
             text_desc += " "
-            
+
             set_description = self.descriptions["level_2"]["set_description"]
             text_desc += set_description
             text_desc += " "
 
-            intersection_description = self.descriptions["level_2"]["intersection_description"]
+            intersection_description = self.descriptions["level_2"][
+                "intersection_description"
+            ]
             text_desc += intersection_description
             text_desc += " "
 
-            statistical_information = self.descriptions["level_2"]["statistical_information"]
+            statistical_information = self.descriptions["level_2"][
+                "statistical_information"
+            ]
             text_desc += statistical_information
 
             if self.structured:
-            # Construct the dictionary for markdown content
+                # Construct the dictionary for markdown content
                 data_to_write_as_md = {
                     "UpSet Introduction": self.replaceTokens(introduction),
                     "Dataset Properties": self.replaceTokens(dataset_properties),
                     "Set Properties": self.replaceTokens(set_description),
-                    "Intersection Properties": self.replaceTokens(intersection_description),
-                    "Statistical Information": self.replaceTokens(statistical_information)
+                    "Intersection Properties": self.replaceTokens(
+                        intersection_description
+                    ),
+                    "Statistical Information": self.replaceTokens(
+                        statistical_information
+                    ),
                 }
 
                 markdown_content = ""
@@ -97,16 +106,14 @@ class AltTxtGen:
                 final_output = {
                     "techniqueDescription": self.replaceTokens(technique),
                     "shortDescription": self.replaceTokens(altText),
-                    "longDescription": markdown_content
+                    "longDescription": markdown_content,
                 }
 
                 # return the structured final output as a json content
                 return final_output
 
-            
         else:
             raise TypeError(f"Expected {Level.list()}. Got {self.level}.")
-
 
         return self.replaceTokens(text_desc)
 
@@ -135,7 +142,7 @@ class AltTxtGen:
                 else:
                     result.append(token)
                 isToken = not isToken
-            
+
             text = "".join(result)
 
         # Now, loop and replace all terminals.
@@ -154,7 +161,7 @@ class AltTxtGen:
                 else:
                     result.append(token)
                 isToken = not isToken
-            
+
             text = "".join(result)
 
         # Capitalize the first letter of each sentence, and add a period to the end
@@ -166,7 +173,7 @@ class AltTxtGen:
         Not the most robust implementation; may produce incorrect capitalizations
         after abbreviations, etc.
         """
-        match: Pattern[str] = re.compile(r'((?<=[\.\?!]\s)(\w+)|(^\w+))')
+        match: Pattern[str] = re.compile(r"((?<=[\.\?!]\s)(\w+)|(^\w+))")
 
         def cap(match) -> str:
             return match.group().capitalize()

@@ -25,6 +25,7 @@ class DataModel(BaseModel):
     sizes: dict # str -> int
     subsets: list # of Subset
     all_subsets: list # of All Subsets
+    all_sets_length: int
 
 
 class FilterModel(BaseModel):

@@ -66,21 +66,22 @@ class Parser:
         if degree == 0:
             return IntersectionType.EMPTY
         if degree == num_individual_sets:
-            return IntersectionType.ALL_SET
+            # return [IntersectionType.ALL_SET, IntersectionType.HIGHORDER_SET]
+            return IntersectionType.HIGHORDER_SET
         
         if num_individual_sets == 3:
             if degree == 2:
                 return IntersectionType.MEDIUM_SET
-            elif degree == 3:
-                return IntersectionType.HIGHORDER_SET
+            # elif degree == 3:
+            #     return IntersectionType.HIGHORDER_SET
             
         elif num_individual_sets == 4:
             if degree == 2:
                 return IntersectionType.LOW_SET
             elif degree == 3:
                 return IntersectionType.MEDIUM_SET
-            elif degree == 4:
-                return IntersectionType.HIGHORDER_SET
+            # elif degree == 4:
+            #     return IntersectionType.HIGHORDER_SET
             
         elif num_individual_sets == 5:
             if degree == 2:
@@ -89,8 +90,8 @@ class Parser:
                 return IntersectionType.MEDIUM_SET
             elif degree == 4:
                 return IntersectionType.HIGHORDER_SET
-            elif degree == 5:
-                return IntersectionType.HIGHORDER_SET
+            # elif degree == 5:
+            #     return IntersectionType.HIGHORDER_SET
         
         elif num_individual_sets == 6:
             if degree == 2:
@@ -101,8 +102,8 @@ class Parser:
                 return IntersectionType.MEDIUM_SET
             elif degree == 5:
                 return IntersectionType.HIGHORDER_SET
-            elif degree == 6:
-                return IntersectionType.HIGHORDER_SET
+            # elif degree == 6:
+            #     return IntersectionType.HIGHORDER_SET
         
         else:
             if 2 <= degree <= 3:
@@ -181,7 +182,9 @@ class Parser:
             else:
                 degree = 0  # or some default value
 
-            classification = self.classify_subset(degree, len(data["allSets"]))
+            all_sets_length = len(data["allSets"])
+
+            classification = self.classify_subset(degree, all_sets_length)
 
             all_subsets.append(Subset(name=name, size=size, dev=dev, degree=degree, classification=classification))
 
@@ -220,7 +223,7 @@ class Parser:
         membs = list(Counter(membs).keys())
         # Initialize deviations
         data_model = DataModel(
-            membs=membs, sets=sets_, sizes=sizes, count=count, subsets=subsets, all_subsets=all_subsets
+            membs=membs, sets=sets_, sizes=sizes, count=count, subsets=subsets, all_subsets=all_subsets, all_sets_length=all_sets_length
         )
     
         return data_model

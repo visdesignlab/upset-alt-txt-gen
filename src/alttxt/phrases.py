@@ -28,18 +28,13 @@ DESCRIPTIONS: "dict[str, Any]" = {
     },
     # L2 splits generation by sort- verbosity is TBA
     "level_2": {
-        "set_description": "[[set_description]].",
+        "set_description": "[[set_divergence]] [[set_description]].",
         "intersection_description": "[[sort_by]]. {{pop_non-empty_intersections}}."
         " The largest 5 intersections are {{list_max_5int}}.",
         "statistical_information": "[[size_percs]]. [[maxmin_set_percentages_info]].",
     },
     "level_3": {
-        "trend_analysis": "[[set_divergence]][[intersection_trend_change]][[factor_analysis]][[categorization_of_subsets]]",
-        # "set_divergence": "The set sizes {{set_divergence}}, ranging from {{min_set_size}} to {{max_set_size}}.",
-        # "intersection_trend_change": "{{intersection_trend_analysis}}",
-        # "factor_analysis": "{{largest_factor}}",
-        # # "test": "{{category_of_subsets}}",
-        # "categorization_of_subsets": "{{empty_set_presence}}{{all_set_presence}}{{individual_set_presence}}{{low_set_presence}}{{medium_set_presence}}{{high_set_presence}}",
+        "trend_analysis": "[[intersection_trend_change]][[factor_analysis]][[categorization_of_subsets]]",
 
     },
     # L3 note: observe which sets are not present in many large intersections
@@ -56,13 +51,13 @@ DESCRIPTIONS: "dict[str, Any]" = {
         # Learn more about UpSet plots
         "learn_more": "To learn about UpSet plots, visit https://upset.app",
         # Dataset properties
-        "l1_desc": "{{dataset_description}}The dataset contains {{set_count}} sets, and {{universal_set_size}} elements,"
+        "l1_desc": "{{dataset_description}}The dataset contains {{set_count}} sets and {{universal_set_size}} elements,"
         " of which {{visible_set_count}} sets are shown in the plot",
         # Set Properties
         "set_description": "The largest set is {{max_set_name}} with {{max_set_size}} {{set_description}}"
         ", followed by {{list_sorted_visible_sets}}",
         # Set Diversion Calculation
-        "set_divergence": "The set sizes {{set_divergence}}, ranging from {{min_set_size}} to {{max_set_size}}.",
+        "set_divergence": "The set sizes are {{set_divergence}}, ranging from {{min_set_size}} to {{max_set_size}}.",
         # Intersection Trend Analysis
         "intersection_trend_change": "{{intersection_trend_analysis}}",
         # Largest Set Factor Analysis

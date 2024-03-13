@@ -657,7 +657,7 @@ class TokenMap:
         """
         results = {}
         sorted_subsets = sorted(self.data.subsets, key=lambda subset: subset.size, reverse=True)
-        print("sorted_subsets", sorted_subsets)
+        
         largest_subset = sorted_subsets.pop(0)  # Remove the largest
         
         median_size = statistics.median([subset.size for subset in sorted_subsets])
@@ -688,7 +688,6 @@ class TokenMap:
         
         }
 
-        print("\nregions---------", regions)
 
         total_sizes = {region: sum(subset.size for subset in subsets) for region, subsets in regions.items()}
 
@@ -774,11 +773,7 @@ class TokenMap:
         return None
 
     def get_all_set_intersection_size(self):
-        # Calculate the total number of visible sets
-        total_visible_sets = len(self.grammar.visible_sets)
-        # Iterate through subsets to find 'all set' intersection by checking if degree equals total visible sets
         for subset in self.data.subsets:
-            # if subset.classification.value == 'all set':
             if subset.degree == self.data.all_sets_length:
                 return subset.size
         # Return 0 or None if 'all set' intersection is not found
@@ -792,8 +787,6 @@ class TokenMap:
             # Convert set to list to index
             regions_list = list(individual_set_regions)
             if len(regions_list) == 1:
-                # if regions_list[0] == 'largest_data_region':
-                #     return ""
                 return f" The individual set intersections are {regions_list[0].replace('_data_region', '')} in size."
             else:
                 regions_formatted = [region.replace('_data_region', '') for region in regions_list]
@@ -809,8 +802,6 @@ class TokenMap:
             # Convert set to list to index
             regions_list = list(medium_set_regions)
             if len(regions_list) == 1:
-                # if regions_list[0] == 'largest_data_region':
-                #     return ""
                 return f" The medium degree set intersections can be seen among {regions_list[0].replace('_data_region', '')} sized intersections."
             else:
                 regions_formatted = [region.replace('_data_region', '') for region in regions_list]
@@ -826,8 +817,6 @@ class TokenMap:
             # Convert set to list to index
             regions_list = list(low_set_regions)
             if len(regions_list) == 1:
-                # if regions_list[0] == 'largest_data_region':
-                #     return ""
                 return f" The low degree set intersections lie in {regions_list[0].replace('_data_region', '')} sized intersections."
             else:
                 regions_formatted = [region.replace('_data_region', '') for region in regions_list]
@@ -838,8 +827,6 @@ class TokenMap:
     def high_set_presence(self) -> str:
         categorization = self.categorize_subsets()
 
-        print("----")
-        print(categorization)
         high_set_regions = categorization.get('high order set')
 
         if high_set_regions:
@@ -868,14 +855,4 @@ class TokenMap:
         else:
             return f" The intersection sizes start from a value of {min_int_size} and then {intersection_trend} rise up to {max_int_size}."
 
-        
-
-        
-
-
-    
-    
-    
-    
-    
-    
+   

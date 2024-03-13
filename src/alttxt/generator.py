@@ -84,22 +84,6 @@ class AltTxtGen:
             trend_analysis = self.descriptions["level_3"]["trend_analysis"]
             text_desc += trend_analysis
             text_desc += " "
-
-            # set_divergence = self.descriptions["level_3"]["set_divergence"]
-            # text_desc += set_divergence
-            # text_desc += " "
-
-            # intersection_trend_change = self.descriptions["level_3"]["intersection_trend_change"]
-            # text_desc += intersection_trend_change
-            # text_desc += " "
-
-            # factor_analysis = self.descriptions["level_3"]["factor_analysis"]
-            # text_desc += factor_analysis
-            # # text_desc += " "
-
-            # categorization_of_subsets = self.descriptions["level_3"]["categorization_of_subsets"]
-            # text_desc += categorization_of_subsets
-            # text_desc += " "
             
 
             if self.structured:

@@ -5,17 +5,6 @@ class RegionClassification:
         self.medium_data_region = []
         self.small_data_region = []
 
-    # def set_largest(self, subset):
-    #     self.largest_data_region = (subset.name, subset.size, subset.degree, subset.classification.value)
-
-    # def add_to_large_region(self, subset):
-    #     self.large_data_region.append((subset.name, subset.size, subset.degree, subset.classification.value))
-
-    # def add_to_medium_region(self, subset):
-    #     self.medium_data_region.append((subset.name, subset.size, subset.degree, subset.classification.value))
-
-    # def add_to_small_region(self, subset):
-    #     self.small_data_region.append((subset.name, subset.size, subset.degree, subset.classification.value))
     def set_largest(self, subset):
         self.largest_data_region = subset
 

@@ -114,7 +114,7 @@ class IndividualSetSize(Listable):
     IDENTICAL = "identical"
     DIVERGINGABIT = "roughly equal"
     DIVERGING = "diverging"
-    DIVERGINGALOT = "diverge a lot"
+    DIVERGINGALOT = "diverging a lot"
 
 class IntersectionTrend(Listable):
     """

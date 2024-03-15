@@ -157,7 +157,7 @@ class Parser:
             classification = self.classify_subset(degree, len(data["visibleSets"]))
             subsets.append(Subset(name=name, size=size, dev=dev, degree=degree, classification=classification))
         
-        lowercase_data_visible_subsets = {k.lower(): k for k in data_visible_subsest.keys()}
+        lowercase_data_visible_subsets = {k.lower(): k for k in data_visible_subsets.keys()}
 
         all_subsets: list[Subset] = []
         data_all_subsets = data["processedData"]["values"]
@@ -208,8 +208,7 @@ class Parser:
 
         
         # Initialize deviations
-        data_model = DataModel(
-            sets=sets_, sizes=sizes, count=count, subsets=subsets, all_subsets=all_subsets, all_sets_length=all_sets_length
+        data_model = DataModel(sets=sets_, sizes=sizes, count=count, subsets=subsets, all_subsets=all_subsets, all_sets_length=all_sets_length)
     
         return data_model
 

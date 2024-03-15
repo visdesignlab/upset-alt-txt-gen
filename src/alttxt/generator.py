@@ -84,6 +84,12 @@ class AltTxtGen:
                 "statistical_information"
             ]
             text_desc += statistical_information
+            text_desc += " "
+
+            trend_analysis = self.descriptions["level_3"]["trend_analysis"]
+            text_desc += trend_analysis
+            text_desc += " "
+            
 
             if self.structured:
                 # Construct the dictionary for markdown content
@@ -91,12 +97,9 @@ class AltTxtGen:
                     "UpSet Introduction": self.replaceTokens(introduction),
                     "Dataset Properties": self.replaceTokens(dataset_properties),
                     "Set Properties": self.replaceTokens(set_description),
-                    "Intersection Properties": self.replaceTokens(
-                        intersection_description
-                    ),
-                    "Statistical Information": self.replaceTokens(
-                        statistical_information
-                    ),
+                    "Intersection Properties": self.replaceTokens(intersection_description),
+                    "Statistical Information": self.replaceTokens(statistical_information),
+                    "Trend Analysis": self.replaceTokens(trend_analysis)
                 }
 
                 markdown_content = ""

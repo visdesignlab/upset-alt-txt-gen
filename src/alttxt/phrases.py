@@ -1,4 +1,4 @@
-from alttxt.enums import SortBy, Explanation
+from alttxt.enums import SortBy, Explanation, SortOrder, SortVisibleBy
 from typing import Any
 
 """
@@ -27,10 +27,14 @@ DESCRIPTIONS: "dict[str, Any]" = {
     },
     # L2 splits generation by sort- verbosity is TBA
     "level_2": {
-        "set_description": "[[set_description]].",
+        "set_description": "[[set_divergence]] [[set_description]].",
         "intersection_description": "[[sort_by]]. {{pop_non-empty_intersections}}."
         " The largest 5 intersections are {{list_max_5int}}.",
         "statistical_information": "[[size_percs]]. [[maxmin_set_percentages_info]].",
+    },
+    "level_3": {
+        "trend_analysis": "[[intersection_trend_change]][[factor_analysis]][[categorization_of_subsets]]",
+
     },
     # L3 note: observe which sets are not present in many large intersections
     "AltText": "This is an UpSet plot which shows set intersection of {{visible_set_count}} sets out of {{set_count}} sets"
@@ -44,11 +48,19 @@ DESCRIPTIONS: "dict[str, Any]" = {
         # Learn more about UpSet plots
         "learn_more": "To learn about UpSet plots, visit https://upset.app",
         # Dataset properties
-        "l1_desc": "{{dataset_description}}The dataset contains {{set_count}} sets, and {{universal_set_size}} elements,"
-        " of which {{visible_set_count}} are shown in the plot",
+        "l1_desc": "{{dataset_description}}The dataset contains {{set_count}} sets and {{universal_set_size}} elements,"
+        " of which {{visible_set_count}} sets are shown in the plot",
         # Set Properties
         "set_description": "The largest set is {{max_set_name}} with {{max_set_size}} {{set_description}}"
         ", followed by {{list_sorted_visible_sets}}",
+        # Set Diversion Calculation
+        "set_divergence": "The set sizes are {{set_divergence}}, ranging from {{min_set_size}} to {{max_set_size}}.",
+        # Intersection Trend Analysis
+        "intersection_trend_change": "{{intersection_trend_analysis}}",
+        # Largest Set Factor Analysis
+        "factor_analysis": "{{largest_factor}}",
+        # Categorization of Subsets in Different Trends
+        "categorization_of_subsets": "{{empty_set_presence}}{{all_set_presence}}{{individual_set_presence}}{{low_set_presence}}{{medium_set_presence}}{{high_set_presence}}",
         # Title, caption, set list
         "l1_low_desc": "[[title]]. The dataset contains {{set_count}} total sets, "
         "with {{universal_set_size}} elements. {{visible_set_count}} sets are shown in the plot",
@@ -65,7 +77,7 @@ DESCRIPTIONS: "dict[str, Any]" = {
         # Total number of items in all sets
         "universal_set_size": "a total of {{universal_set_size}} items are represented in all sets",
         # Intersections are sorted by
-        "sort_by": "The plot is sorted by {{sort_type}}",
+        "sort_by": "The plot is sorted by {{sort_type}} in {{sort_order}} order",
         # Number of visualized variables and their names
         "list_vars": "{{var_count}} variables are visualized- {{list_var_names}}",
         # Number of sets, non-empty intersections, and sort type
@@ -93,5 +105,6 @@ DESCRIPTIONS: "dict[str, Any]" = {
         "negative deviation is {{avg_neg_dev}}",
         "maxmin_set_percentages_info": "The largest set, {{max_set_name}}, is present in {{max_set_percentage}} of all non-empty intersections."
         " The smallest set, {{min_set_name}}, is present in {{min_set_percentage}} of all non-empty intersections",
+        
     },
 }

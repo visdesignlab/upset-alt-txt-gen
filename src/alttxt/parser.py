@@ -1,6 +1,7 @@
 import json
 
-from alttxt.enums import AggregateBy, SortBy, SortVisibleBy
+
+from alttxt.enums import AggregateBy, SortBy, SortVisibleBy, SortOrder, IntersectionType
 from alttxt.models import (
     BookmarkedIntersectionModel,
     Subset,
@@ -69,7 +70,54 @@ class Parser:
         """
         with open(file_path) as f:
             return json.load(f)
-
+        
+    def classify_subset(self, degree: int, num_individual_sets: int) -> IntersectionType:
+        """
+        Classifies a subset based on its degree and the number of individual sets.
+        """
+        if degree == 1:
+            return IntersectionType.INDIVIDUAL
+        if degree == 0:
+            return IntersectionType.EMPTY
+        if degree == num_individual_sets:
+            return IntersectionType.HIGHORDER_SET
+        
+        if num_individual_sets == 3:
+            if degree == 2:
+                return IntersectionType.MEDIUM_SET
+               
+        elif num_individual_sets == 4:
+            if degree == 2:
+                return IntersectionType.LOW_SET
+            elif degree == 3:
+                return IntersectionType.MEDIUM_SET
+            
+        elif num_individual_sets == 5:
+            if degree == 2:
+                return IntersectionType.LOW_SET
+            elif degree == 3:
+                return IntersectionType.MEDIUM_SET
+            elif degree == 4:
+                return IntersectionType.HIGHORDER_SET
+        
+        elif num_individual_sets == 6:
+            if degree == 2:
+                return IntersectionType.LOW_SET
+            elif degree == 3:
+                return IntersectionType.MEDIUM_SET
+            elif degree == 4:
+                return IntersectionType.MEDIUM_SET
+            elif degree == 5:
+                return IntersectionType.HIGHORDER_SET
+        
+        else:
+            if 2 <= degree <= 3:
+                return IntersectionType.LOW_SET
+            elif 4 <= degree <= (num_individual_sets // 2):
+                return IntersectionType.MEDIUM_SET
+            else:
+                return IntersectionType.HIGHORDER_SET
+    
     def parse_data_no_agg(self, data: "dict[str, dict[str, Any]]") -> DataModel:
         """
         Responsible for parsing non-aggregated data from the JSON export
@@ -105,11 +153,11 @@ class Parser:
             dev: float = round(item.get("deviation", self.default_field), 2)
             # Degree
             degree: int = int(item.get("degree", self.default_field))
-            subsets.append(Subset(name=name, size=size, dev=dev, degree=degree))
-
-        lowercase_data_visible_subsets = {
-            k.lower(): k for k in data_visible_subsets.keys()
-        }
+            # Classification
+            classification = self.classify_subset(degree, len(data["visibleSets"]))
+            subsets.append(Subset(name=name, size=size, dev=dev, degree=degree, classification=classification))
+        
+        lowercase_data_visible_subsets = {k.lower(): k for k in data_visible_subsest.keys()}
 
         all_subsets: list[Subset] = []
         data_all_subsets = data["processedData"]["values"]
@@ -139,8 +187,12 @@ class Parser:
             else:
                 degree = 0  # or some default value
 
+            all_sets_length = len(data["allSets"])
+
+            classification = self.classify_subset(degree, all_sets_length)
+            
             count.append(size)
-            all_subsets.append(Subset(name=name, size=size, dev=dev, degree=degree))
+            all_subsets.append(Subset(name=name, size=size, dev=dev, degree=degree, classification=classification))
 
         # List of set names
         sets_: list[str] = []
@@ -154,14 +206,11 @@ class Parser:
                 set_name = set_name[4:]
             sets_.append(set_name)
 
+        
         # Initialize deviations
         data_model = DataModel(
-            sets=sets_,
-            sizes=sizes,
-            count=count,
-            subsets=subsets,
-            all_subsets=all_subsets,
-        )
+            sets=sets_, sizes=sizes, count=count, subsets=subsets, all_subsets=all_subsets, all_sets_length=all_sets_length
+    
         return data_model
 
     def parse_grammar(self, grammar: "dict[str, Any]") -> GrammarModel:
@@ -186,6 +235,8 @@ class Parser:
         sort_visible_by = SortVisibleBy(grammar["sortVisibleBy"])
 
         sort_by = SortBy(grammar["sortBy"].lower())
+
+        sort_order = SortOrder(grammar["sortByOrder"].lower())
 
         filters = FilterModel(
             max_visible=grammar["filters"]["maxVisible"],
@@ -254,6 +305,7 @@ class Parser:
             second_overlap_degree=second_overlap_degree,
             sort_visible_by=sort_visible_by,
             sort_by=sort_by,
+            sort_order=sort_order,
             filters=filters,
             collapsed=collapsed,
             visible_sets=visible_sets,

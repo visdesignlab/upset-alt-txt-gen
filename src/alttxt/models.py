@@ -1,4 +1,4 @@
-from alttxt.enums import AggregateBy, SortBy, SortVisibleBy
+from alttxt.enums import AggregateBy, SortBy, SortVisibleBy, SortOrder, IntersectionType
 from pydantic import BaseModel
 
 
@@ -11,10 +11,10 @@ class Subset(BaseModel):
     """
 
     name: str
-    size: int  # size
-    dev: float  # Deviation
-    degree: int  # Set to -1 if parser fails to find degree
-
+    size: int # size
+    dev: float # Deviation
+    degree: int # Set to -1 if parser fails to find degree
+    classification: IntersectionType
 
 class DataModel(BaseModel):
     """
@@ -22,12 +22,12 @@ class DataModel(BaseModel):
     of the JSON data file.
     """
 
-    count: list  # of int
-    sets: list  # of str
-    sizes: dict  # str -> int
-    subsets: list  # of Subset
-    all_subsets: list  # of All Subsets
-
+    count: list # of int
+    sets: list # of str
+    sizes: dict # str -> int
+    subsets: list # of Subset
+    all_subsets: list # of All Subsets
+    all_sets_length: int
 
 class FilterModel(BaseModel):
     max_visible: int
@@ -63,6 +63,7 @@ class GrammarModel(BaseModel):
     second_overlap_degree: int
     sort_visible_by: SortVisibleBy
     sort_by: SortBy
+    sort_order: SortOrder
     filters: FilterModel
     collapsed: list  # of str
     visible_sets: list  # of str

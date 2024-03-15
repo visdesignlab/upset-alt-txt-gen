@@ -4,14 +4,16 @@
     "sets": "",
     "items": ""
   },
+  "horizontal": false,
   "firstAggregateBy": "None",
   "firstOverlapDegree": 2,
   "secondAggregateBy": "None",
   "secondOverlapDegree": 2,
   "sortVisibleBy": "Alphabetical",
   "sortBy": "Size",
+  "sortByOrder": "Descending",
   "filters": {
-    "maxVisible": 3,
+    "maxVisible": 6,
     "minVisible": 0,
     "hideEmpty": true,
     "hideNoSet": false
@@ -35,17 +37,31 @@
     "wordClouds": []
   },
   "allSets": [
-    "Set_School",
-    "Set_Blue_Hair",
-    "Set_Duff_Fan",
-    "Set_Evil",
-    "Set_Male",
-    "Set_Power_Plant"
+    {
+      "name": "Set_School",
+      "size": 6
+    },
+    {
+      "name": "Set_Blue_Hair",
+      "size": 3
+    },
+    {
+      "name": "Set_Duff_Fan",
+      "size": 6
+    },
+    {
+      "name": "Set_Evil",
+      "size": 6
+    },
+    {
+      "name": "Set_Male",
+      "size": 18
+    },
+    {
+      "name": "Set_Power_Plant",
+      "size": 5
+    }
   ],
-  "altText": {
-    "verbosity": "low",
-    "explain": "full"
-  },
   "rawData": {
     "label": "Name",
     "setColumns": [

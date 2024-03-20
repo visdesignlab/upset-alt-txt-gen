@@ -135,6 +135,8 @@ class TokenMap:
             # Number of intersections of each degree, their average size,
             # their average deviation, and their total size
             "list_degree_info_verbose": self.degree_str(True),
+            # Total subset size
+            "subset_size": len(self.data.subsets),
             # 10 largest intersections by size- includes name, size, deviation
             "list_max_10int": self.max_n_intersections(10),
             # Largest 5 intersections by size, including name, size, deviation
@@ -168,9 +170,9 @@ class TokenMap:
             # Sizes of visible sets, listed
             "list_set_sizes": self.set_sizes,
             # 10 largest deviations, listed
-            "list10_dev_outliers": self.dev_outliers(10),
+            "list10_dev_outliers": self.dev_outliers(10) if len(self.data.subsets)>=10 else self.dev_outliers(len(self.data.subsets)),
             # 5 largest deviations, listed
-            "list5_dev_outliers": self.dev_outliers(5),
+            "list5_dev_outliers": self.dev_outliers(5) if len(self.data.subsets)>=5 else self.dev_outliers(len(self.data.subsets)),
             "category_of_subsets": self.categorize_subsets
         }
 
@@ -394,7 +396,9 @@ class TokenMap:
                 result += "and "
 
         # Trim the trailing ', '
-        return result[:-2]
+        if len(sort) < n:
+            return f"The largest {len(sort)} intersections are {result[:-2]}"
+        return f"The largest {n} intersections are {result[:-2]}"
 
     def degree_count(self) -> str:
         """
@@ -888,4 +892,6 @@ class TokenMap:
             
         else:
             return f" The intersection sizes start from a value of {min_int_size} and then {intersection_trend} rise up to {max_int_size}."
+        
+    
 

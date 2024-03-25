@@ -44,7 +44,6 @@ class BookmarkedIntersectionModel(BaseModel):
 class PlotModel(BaseModel):
     scatterplots: list  # of float
     histograms: list  # of float
-    wordclouds: list  # of float
 
 
 class MetaDataModel(BaseModel):

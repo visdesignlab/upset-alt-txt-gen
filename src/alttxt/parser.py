@@ -246,7 +246,6 @@ class Parser:
         plots = PlotModel(
             scatterplots=grammar["plots"]["scatterplots"],
             histograms=grammar["plots"]["histograms"],
-            wordclouds=grammar["plots"]["wordClouds"],
         )
 
         if "metaData" in grammar:

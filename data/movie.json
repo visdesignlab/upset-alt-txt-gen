@@ -1,14 +1,22 @@
 {
-  "firstAggregateBy": "boop",
+  "plotInformation": {
+    "description": "",
+    "sets": "",
+    "items": ""
+  },
+  "horizontal": false,
+  "firstAggregateBy": "None",
   "firstOverlapDegree": 2,
   "secondAggregateBy": "None",
   "secondOverlapDegree": 2,
   "sortVisibleBy": "Alphabetical",
   "sortBy": "Size",
+  "sortByOrder": "Descending",
   "filters": {
-    "maxVisible": 3,
+    "maxVisible": 6,
     "minVisible": 0,
-    "hideEmpty": true
+    "hideEmpty": true,
+    "hideNoSet": false
   },
   "visibleSets": [
     "Set_Thriller",
@@ -30,23 +38,74 @@
     "histograms": []
   },
   "allSets": [
-    "Set_Thriller",
-    "Set_War",
-    "Set_Western",
-    "Set_Action",
-    "Set_Adventure",
-    "Set_Children",
-    "Set_Comedy",
-    "Set_Crime",
-    "Set_Documentary",
-    "Set_Drama",
-    "Set_Fantasy",
-    "Set_Noir",
-    "Set_Horror",
-    "Set_Musical",
-    "Set_Mystery",
-    "Set_Romance",
-    "Set_SciFi"
+    {
+      "name": "Set_Thriller",
+      "size": 492
+    },
+    {
+      "name": "Set_War",
+      "size": 143
+    },
+    {
+      "name": "Set_Western",
+      "size": 68
+    },
+    {
+      "name": "Set_Action",
+      "size": 503
+    },
+    {
+      "name": "Set_Adventure",
+      "size": 283
+    },
+    {
+      "name": "Set_Children",
+      "size": 251
+    },
+    {
+      "name": "Set_Comedy",
+      "size": 1200
+    },
+    {
+      "name": "Set_Crime",
+      "size": 211
+    },
+    {
+      "name": "Set_Documentary",
+      "size": 127
+    },
+    {
+      "name": "Set_Drama",
+      "size": 1603
+    },
+    {
+      "name": "Set_Fantasy",
+      "size": 68
+    },
+    {
+      "name": "Set_Noir",
+      "size": 44
+    },
+    {
+      "name": "Set_Horror",
+      "size": 343
+    },
+    {
+      "name": "Set_Musical",
+      "size": 114
+    },
+    {
+      "name": "Set_Mystery",
+      "size": 106
+    },
+    {
+      "name": "Set_Romance",
+      "size": 471
+    },
+    {
+      "name": "Set_SciFi",
+      "size": 276
+    }
   ],
   "rawData": {
     "label": "Name",
@@ -114786,7 +114845,7 @@
       },
       "Subset_Thriller": {
         "id": "Subset_Thriller",
-        "elementName": "Thriller",
+        "elementName": "Just Thriller",
         "items": [
           "movies/40722797",
           "movies/40722799",
@@ -115178,7 +115237,7 @@
       },
       "Subset_Action": {
         "id": "Subset_Action",
-        "elementName": "Action",
+        "elementName": "Just Action",
         "items": [
           "movies/40722790",
           "movies/40722801",
@@ -115439,7 +115498,7 @@
       },
       "Subset_Children": {
         "id": "Subset_Children",
-        "elementName": "Children",
+        "elementName": "Just Children",
         "items": [
           "movies/40722782",
           "movies/40722794",
@@ -115640,9 +115699,9 @@
           }
         }
       },
-      "Subset_Thriller_Action": {
-        "id": "Subset_Thriller_Action",
-        "elementName": "Thriller Action",
+      "Subset_Thriller~&~Action": {
+        "id": "Subset_Thriller~&~Action",
+        "elementName": "Thriller, and Action",
         "items": [
           "movies/40722787",
           "movies/40722832",
@@ -115787,9 +115846,9 @@
           }
         }
       },
-      "Subset_Action_Adventure": {
-        "id": "Subset_Action_Adventure",
-        "elementName": "Action Adventure",
+      "Subset_Action~&~Adventure": {
+        "id": "Subset_Action~&~Adventure",
+        "elementName": "Action, and Adventure",
         "items": [
           "movies/40722796",
           "movies/40722825",
@@ -115922,7 +115981,7 @@
       },
       "Subset_War": {
         "id": "Subset_War",
-        "elementName": "War",
+        "elementName": "Just War",
         "items": [
           "movies/40722822",
           "movies/40722931",
@@ -116051,9 +116110,9 @@
           }
         }
       },
-      "Subset_Adventure_Children": {
-        "id": "Subset_Adventure_Children",
-        "elementName": "Adventure Children",
+      "Subset_Adventure~&~Children": {
+        "id": "Subset_Adventure~&~Children",
+        "elementName": "Adventure, and Children",
         "items": [
           "movies/40722783",
           "movies/40722789",
@@ -116171,7 +116230,7 @@
       },
       "Subset_Adventure": {
         "id": "Subset_Adventure",
-        "elementName": "Adventure",
+        "elementName": "Just Adventure",
         "items": [
           "movies/40722810",
           "movies/40722814",
@@ -116280,7 +116339,7 @@
       },
       "Subset_Western": {
         "id": "Subset_Western",
-        "elementName": "Western",
+        "elementName": "Just Western",
         "items": [
           "movies/40722990",
           "movies/40723161",
@@ -116373,9 +116432,9 @@
           }
         }
       },
-      "Subset_War_Action": {
-        "id": "Subset_War_Action",
-        "elementName": "War Action",
+      "Subset_War~&~Action": {
+        "id": "Subset_War~&~Action",
+        "elementName": "War, and Action",
         "items": [
           "movies/40722890",
           "movies/40723243",
@@ -116450,9 +116509,9 @@
           }
         }
       },
-      "Subset_Thriller_Action Adventure": {
-        "id": "Subset_Thriller_Action Adventure",
-        "elementName": "Thriller Action Adventure",
+      "Subset_Thriller~&~Action~&~Adventure": {
+        "id": "Subset_Thriller~&~Action~&~Adventure",
+        "elementName": "Thriller, Action, and Adventure",
         "items": [
           "movies/40722791",
           "movies/40723127",
@@ -116516,9 +116575,9 @@
           }
         }
       },
-      "Subset_Western_Action": {
-        "id": "Subset_Western_Action",
-        "elementName": "Western Action",
+      "Subset_Western~&~Action": {
+        "id": "Subset_Western~&~Action",
+        "elementName": "Western, and Action",
         "items": [
           "movies/40723146",
           "movies/40723765",
@@ -116567,9 +116626,9 @@
           }
         }
       },
-      "Subset_Thriller_Adventure": {
-        "id": "Subset_Thriller_Adventure",
-        "elementName": "Thriller Adventure",
+      "Subset_Thriller~&~Adventure": {
+        "id": "Subset_Thriller~&~Adventure",
+        "elementName": "Thriller, and Adventure",
         "items": [
           "movies/40724036",
           "movies/40724355",
@@ -116617,9 +116676,9 @@
           }
         }
       },
-      "Subset_War_Action Adventure": {
-        "id": "Subset_War_Action Adventure",
-        "elementName": "War Action Adventure",
+      "Subset_War~&~Action~&~Adventure": {
+        "id": "Subset_War~&~Action~&~Adventure",
+        "elementName": "War, Action, and Adventure",
         "items": [
           "movies/40723462",
           "movies/40723739",
@@ -116667,9 +116726,9 @@
           }
         }
       },
-      "Subset_Action_Children": {
-        "id": "Subset_Action_Children",
-        "elementName": "Action Children",
+      "Subset_Action~&~Children": {
+        "id": "Subset_Action~&~Children",
+        "elementName": "Action, and Children",
         "items": [
           "movies/40722961",
           "movies/40723280",
@@ -116716,9 +116775,9 @@
           }
         }
       },
-      "Subset_Action_Adventure Children": {
-        "id": "Subset_Action_Adventure Children",
-        "elementName": "Action Adventure Children",
+      "Subset_Action~&~Adventure~&~Children": {
+        "id": "Subset_Action~&~Adventure~&~Children",
+        "elementName": "Action, Adventure, and Children",
         "items": [
           "movies/40723324",
           "movies/40723336",
@@ -116765,9 +116824,9 @@
           }
         }
       },
-      "Subset_War_Adventure": {
-        "id": "Subset_War_Adventure",
-        "elementName": "War Adventure",
+      "Subset_War~&~Adventure": {
+        "id": "Subset_War~&~Adventure",
+        "elementName": "War, and Adventure",
         "items": [
           "movies/40723667",
           "movies/40723968",
@@ -116812,9 +116871,9 @@
           }
         }
       },
-      "Subset_Thriller_War": {
-        "id": "Subset_Thriller_War",
-        "elementName": "Thriller War",
+      "Subset_Thriller~&~War": {
+        "id": "Subset_Thriller~&~War",
+        "elementName": "Thriller, and War",
         "items": [
           "movies/40722941",
           "movies/40724915",
@@ -116858,9 +116917,9 @@
           }
         }
       },
-      "Subset_Thriller_War Action": {
-        "id": "Subset_Thriller_War Action",
-        "elementName": "Thriller War Action",
+      "Subset_Thriller~&~War~&~Action": {
+        "id": "Subset_Thriller~&~War~&~Action",
+        "elementName": "Thriller, War, and Action",
         "items": [
           "movies/40723964",
           "movies/40724240",
@@ -116904,9 +116963,9 @@
           }
         }
       },
-      "Subset_Western_Adventure": {
-        "id": "Subset_Western_Adventure",
-        "elementName": "Western Adventure",
+      "Subset_Western~&~Adventure": {
+        "id": "Subset_Western~&~Adventure",
+        "elementName": "Western, and Adventure",
         "items": [
           "movies/40723368",
           "movies/40723884",
@@ -116950,9 +117009,9 @@
           }
         }
       },
-      "Subset_Western_Children": {
-        "id": "Subset_Western_Children",
-        "elementName": "Western Children",
+      "Subset_Western~&~Children": {
+        "id": "Subset_Western~&~Children",
+        "elementName": "Western, and Children",
         "items": [
           "movies/40723776",
           "movies/40724729"
@@ -116995,9 +117054,9 @@
           }
         }
       },
-      "Subset_Thriller_Western Action": {
-        "id": "Subset_Thriller_Western Action",
-        "elementName": "Thriller Western Action",
+      "Subset_Thriller~&~Western~&~Action": {
+        "id": "Subset_Thriller~&~Western~&~Action",
+        "elementName": "Thriller, Western, and Action",
         "items": [
           "movies/40725240"
         ],
@@ -117039,9 +117098,97 @@
           }
         }
       },
-      "Subset_Western_Action Adventure": {
-        "id": "Subset_Western_Action Adventure",
-        "elementName": "Western Action Adventure",
+      "Subset_Thriller~&~War~&~Action~&~Children": {
+        "id": "Subset_Thriller~&~War~&~Action~&~Children",
+        "elementName": "Thriller, War, Action, and Children",
+        "items": [
+          "movies/40723969"
+        ],
+        "size": 1,
+        "type": "Subset",
+        "setMembership": {
+          "Set_Thriller": "Yes",
+          "Set_War": "Yes",
+          "Set_Western": "No",
+          "Set_Action": "Yes",
+          "Set_Adventure": "No",
+          "Set_Children": "Yes"
+        },
+        "deviation": 0.022194221601569742,
+        "attributes": {
+          "AvgRating": {
+            "min": 3.38,
+            "max": 3.38,
+            "median": 3.38,
+            "mean": 3.38,
+            "first": 3.38,
+            "third": 3.38
+          },
+          "Watches": {
+            "min": 231,
+            "max": 231,
+            "median": 231,
+            "mean": 231,
+            "first": 231,
+            "third": 231
+          },
+          "ReleaseDate": {
+            "min": 1986,
+            "max": 1986,
+            "median": 1986,
+            "mean": 1986,
+            "first": 1986,
+            "third": 1986
+          }
+        }
+      },
+      "Subset_Thriller~&~War~&~Action~&~Adventure": {
+        "id": "Subset_Thriller~&~War~&~Action~&~Adventure",
+        "elementName": "Thriller, War, Action, and Adventure",
+        "items": [
+          "movies/40725035"
+        ],
+        "size": 1,
+        "type": "Subset",
+        "setMembership": {
+          "Set_Thriller": "Yes",
+          "Set_War": "Yes",
+          "Set_Western": "No",
+          "Set_Action": "Yes",
+          "Set_Adventure": "Yes",
+          "Set_Children": "No"
+        },
+        "deviation": 0.02170480725819286,
+        "attributes": {
+          "AvgRating": {
+            "min": 2.93,
+            "max": 2.93,
+            "median": 2.93,
+            "mean": 2.93,
+            "first": 2.93,
+            "third": 2.93
+          },
+          "Watches": {
+            "min": 290,
+            "max": 290,
+            "median": 290,
+            "mean": 290,
+            "first": 290,
+            "third": 290
+          },
+          "ReleaseDate": {
+            "min": 1998,
+            "max": 1998,
+            "median": 1998,
+            "mean": 1998,
+            "first": 1998,
+            "third": 1998
+          }
+        }
+      },
+      "Subset_Western~&~Action~&~Adventure": {
+        "id": "Subset_Western~&~Action~&~Adventure",
+        "elementName": "Western, Action, and Adventure",
         "items": [
           "movies/40723082"
         ],
@@ -117083,9 +117230,9 @@
           }
         }
       },
-      "Subset_War_Children": {
-        "id": "Subset_War_Children",
-        "elementName": "War Children",
+      "Subset_War~&~Children": {
+        "id": "Subset_War~&~Children",
+        "elementName": "War, and Children",
         "items": [
           "movies/40724633"
         ],
@@ -117127,9 +117274,9 @@
           }
         }
       },
-      "Subset_War_Western": {
-        "id": "Subset_War_Western",
-        "elementName": "War Western",
+      "Subset_War~&~Western": {
+        "id": "Subset_War~&~Western",
+        "elementName": "War, and Western",
         "items": [
           "movies/40723045"
         ],
@@ -117177,28 +117324,30 @@
       "Subset_Thriller",
       "Subset_Action",
       "Subset_Children",
-      "Subset_Thriller_Action",
-      "Subset_Action_Adventure",
+      "Subset_Thriller~&~Action",
+      "Subset_Action~&~Adventure",
       "Subset_War",
-      "Subset_Adventure_Children",
+      "Subset_Adventure~&~Children",
       "Subset_Adventure",
       "Subset_Western",
-      "Subset_War_Action",
-      "Subset_Thriller_Action Adventure",
-      "Subset_Western_Action",
-      "Subset_Thriller_Adventure",
-      "Subset_War_Action Adventure",
-      "Subset_Action_Children",
-      "Subset_Action_Adventure Children",
-      "Subset_War_Adventure",
-      "Subset_Thriller_War",
-      "Subset_Thriller_War Action",
-      "Subset_Western_Adventure",
-      "Subset_Western_Children",
-      "Subset_Thriller_Western Action",
-      "Subset_Western_Action Adventure",
-      "Subset_War_Children",
-      "Subset_War_Western"
+      "Subset_War~&~Action",
+      "Subset_Thriller~&~Action~&~Adventure",
+      "Subset_Western~&~Action",
+      "Subset_Thriller~&~Adventure",
+      "Subset_War~&~Action~&~Adventure",
+      "Subset_Action~&~Children",
+      "Subset_Action~&~Adventure~&~Children",
+      "Subset_War~&~Adventure",
+      "Subset_Thriller~&~War",
+      "Subset_Thriller~&~War~&~Action",
+      "Subset_Western~&~Adventure",
+      "Subset_Western~&~Children",
+      "Subset_Thriller~&~Western~&~Action",
+      "Subset_Thriller~&~War~&~Action~&~Children",
+      "Subset_Thriller~&~War~&~Action~&~Adventure",
+      "Subset_Western~&~Action~&~Adventure",
+      "Subset_War~&~Children",
+      "Subset_War~&~Western"
     ]
   },
   "accessibleProcessedData": {
@@ -117367,8 +117516,8 @@
           "Set_Children": "Yes"
         }
       },
-      "Subset_Thriller_Action": {
-        "elementName": "Thriller & Action",
+      "Subset_Thriller~&~Action": {
+        "elementName": "Thriller, and Action",
         "type": "Subset",
         "size": 104,
         "deviation": 1.3314170597814943,
@@ -117408,8 +117557,8 @@
           "Set_Children": "No"
         }
       },
-      "Subset_Action_Adventure": {
-        "elementName": "Action & Adventure",
+      "Subset_Action~&~Adventure": {
+        "elementName": "Action, and Adventure",
         "type": "Subset",
         "size": 90,
         "deviation": 1.5880190573031083,
@@ -117490,8 +117639,8 @@
           "Set_Children": "No"
         }
       },
-      "Subset_Adventure_Children": {
-        "elementName": "Adventure & Children",
+      "Subset_Adventure~&~Children": {
+        "elementName": "Adventure, and Children",
         "type": "Subset",
         "size": 75,
         "deviation": 1.5926002615602424,
@@ -117613,8 +117762,8 @@
           "Set_Children": "No"
         }
       },
-      "Subset_War_Action": {
-        "elementName": "War & Action",
+      "Subset_War~&~Action": {
+        "elementName": "War, and Action",
         "type": "Subset",
         "size": 34,
         "deviation": 0.5206590484650806,
@@ -117654,8 +117803,8 @@
           "Set_Children": "No"
         }
       },
-      "Subset_Thriller_Action Adventure": {
-        "elementName": "Thriller & Action & Adventure",
+      "Subset_Thriller~&~Action~&~Adventure": {
+        "elementName": "Thriller, Action, and Adventure",
         "type": "Subset",
         "size": 23,
         "deviation": 0.48644229557660357,
@@ -117695,8 +117844,8 @@
           "Set_Children": "No"
         }
       },
-      "Subset_Western_Action": {
-        "elementName": "Western & Action",
+      "Subset_Western~&~Action": {
+        "elementName": "Western, and Action",
         "type": "Subset",
         "size": 8,
         "deviation": 0.040555879651136995,
@@ -117736,8 +117885,8 @@
           "Set_Children": "No"
         }
       },
-      "Subset_Thriller_Adventure": {
-        "elementName": "Thriller & Adventure",
+      "Subset_Thriller~&~Adventure": {
+        "elementName": "Thriller, and Adventure",
         "type": "Subset",
         "size": 7,
         "deviation": -0.5312286128774829,
@@ -117777,8 +117926,8 @@
           "Set_Children": "No"
         }
       },
-      "Subset_War_Action Adventure": {
-        "elementName": "War & Action & Adventure",
+      "Subset_War~&~Action~&~Adventure": {
+        "elementName": "War, Action, and Adventure",
         "type": "Subset",
         "size": 7,
         "deviation": 0.15236976715517384,
@@ -117818,8 +117967,8 @@
           "Set_Children": "No"
         }
       },
-      "Subset_Action_Children": {
-        "elementName": "Action & Children",
+      "Subset_Action~&~Children": {
+        "elementName": "Action, and Children",
         "type": "Subset",
         "size": 6,
         "deviation": -0.48703515732222136,
@@ -117859,8 +118008,8 @@
           "Set_Children": "Yes"
         }
       },
-      "Subset_Action_Adventure Children": {
-        "elementName": "Action & Adventure & Children",
+      "Subset_Action~&~Adventure~&~Children": {
+        "elementName": "Action, Adventure, and Children",
         "type": "Subset",
         "size": 6,
         "deviation": 0.1040863609898805,
@@ -117900,8 +118049,8 @@
           "Set_Children": "Yes"
         }
       },
-      "Subset_War_Adventure": {
-        "elementName": "War & Adventure",
+      "Subset_War~&~Adventure": {
+        "elementName": "War, and Adventure",
         "type": "Subset",
         "size": 4,
         "deviation": -0.08448761266100786,
@@ -117941,8 +118090,8 @@
           "Set_Children": "No"
         }
       },
-      "Subset_Thriller_War": {
-        "elementName": "Thriller & War",
+      "Subset_Thriller~&~War": {
+        "elementName": "Thriller, and War",
         "type": "Subset",
         "size": 3,
         "deviation": -0.26880411498499274,
@@ -117982,8 +118131,8 @@
           "Set_Children": "No"
         }
       },
-      "Subset_Thriller_War Action": {
-        "elementName": "Thriller & War & Action",
+      "Subset_Thriller~&~War~&~Action": {
+        "elementName": "Thriller, War, and Action",
         "type": "Subset",
         "size": 3,
         "deviation": 0.02575979894313831,
@@ -118023,8 +118172,8 @@
           "Set_Children": "No"
         }
       },
-      "Subset_Western_Adventure": {
-        "elementName": "Western & Adventure",
+      "Subset_Western~&~Adventure": {
+        "elementName": "Western, and Adventure",
         "type": "Subset",
         "size": 3,
         "deviation": -0.010148502365101075,
@@ -118064,8 +118213,8 @@
           "Set_Children": "No"
         }
       },
-      "Subset_Western_Children": {
-        "elementName": "Western & Children",
+      "Subset_Western~&~Children": {
+        "elementName": "Western, and Children",
         "type": "Subset",
         "size": 2,
         "deviation": -0.02533511868116653,
@@ -118105,8 +118254,8 @@
           "Set_Children": "Yes"
         }
       },
-      "Subset_Thriller_Western Action": {
-        "elementName": "Thriller & Western & Action",
+      "Subset_Thriller~&~Western~&~Action": {
+        "elementName": "Thriller, Western, and Action",
         "type": "Subset",
         "size": 1,
         "deviation": 0.00174519411886439,
@@ -118146,8 +118295,90 @@
           "Set_Children": "No"
         }
       },
-      "Subset_Western_Action Adventure": {
-        "elementName": "Western & Action & Adventure",
+      "Subset_Thriller~&~War~&~Action~&~Children": {
+        "elementName": "Thriller, War, Action, and Children",
+        "type": "Subset",
+        "size": 1,
+        "deviation": 0.022194221601569742,
+        "attributes": {
+          "AvgRating": {
+            "min": 3.38,
+            "max": 3.38,
+            "median": 3.38,
+            "mean": 3.38,
+            "first": 3.38,
+            "third": 3.38
+          },
+          "Watches": {
+            "min": 231,
+            "max": 231,
+            "median": 231,
+            "mean": 231,
+            "first": 231,
+            "third": 231
+          },
+          "ReleaseDate": {
+            "min": 1986,
+            "max": 1986,
+            "median": 1986,
+            "mean": 1986,
+            "first": 1986,
+            "third": 1986
+          }
+        },
+        "degree": 4,
+        "setMembership": {
+          "Set_Thriller": "Yes",
+          "Set_War": "Yes",
+          "Set_Western": "No",
+          "Set_Action": "Yes",
+          "Set_Adventure": "No",
+          "Set_Children": "Yes"
+        }
+      },
+      "Subset_Thriller~&~War~&~Action~&~Adventure": {
+        "elementName": "Thriller, War, Action, and Adventure",
+        "type": "Subset",
+        "size": 1,
+        "deviation": 0.02170480725819286,
+        "attributes": {
+          "AvgRating": {
+            "min": 2.93,
+            "max": 2.93,
+            "median": 2.93,
+            "mean": 2.93,
+            "first": 2.93,
+            "third": 2.93
+          },
+          "Watches": {
+            "min": 290,
+            "max": 290,
+            "median": 290,
+            "mean": 290,
+            "first": 290,
+            "third": 290
+          },
+          "ReleaseDate": {
+            "min": 1998,
+            "max": 1998,
+            "median": 1998,
+            "mean": 1998,
+            "first": 1998,
+            "third": 1998
+          }
+        },
+        "degree": 4,
+        "setMembership": {
+          "Set_Thriller": "Yes",
+          "Set_War": "Yes",
+          "Set_Western": "No",
+          "Set_Action": "Yes",
+          "Set_Adventure": "Yes",
+          "Set_Children": "No"
+        }
+      },
+      "Subset_Western~&~Action~&~Adventure": {
+        "elementName": "Western, Action, and Adventure",
         "type": "Subset",
         "size": 1,
         "deviation": 0.012745472432108497,
@@ -118187,8 +118418,8 @@
           "Set_Children": "No"
         }
       },
-      "Subset_War_Children": {
-        "elementName": "War & Children",
+      "Subset_War~&~Children": {
+        "elementName": "War, and Children",
         "type": "Subset",
         "size": 1,
         "deviation": -0.13908077379576328,
@@ -118228,8 +118459,8 @@
           "Set_Children": "Yes"
         }
       },
-      "Subset_War_Western": {
-        "elementName": "War & Western",
+      "Subset_War~&~Western": {
+        "elementName": "War, and Western",
         "type": "Subset",
         "size": 1,
         "deviation": -0.016760860295627386,

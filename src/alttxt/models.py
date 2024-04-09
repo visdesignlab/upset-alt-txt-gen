@@ -15,6 +15,7 @@ class Subset(BaseModel):
     dev: float # Deviation
     degree: int # Set to -1 if parser fails to find degree
     classification: IntersectionType
+    setMembership: set
 
 class DataModel(BaseModel):
     """

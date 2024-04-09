@@ -37,8 +37,8 @@ DESCRIPTIONS: "dict[str, Any]" = {
 
     },
     # L3 note: observe which sets are not present in many large intersections
-    "AltText": "This is an UpSet plot which shows set intersection of {{visible_set_count}} sets."
-    " All major intersections involve the set {{highest_dominent_set}}."
+    "AltText": "This is an UpSet plot which shows the intersections of {{visible_set_count}} sets."
+    " All major intersections involve the set {{highest_dominant_set}}."
     " The largest intersection is {{max_intersection_name}}, with {{max_intersection_size}} {{set_description}}."
     " Other large intersections also involve {{large_sets}}."
     " {{all_set_index}}",

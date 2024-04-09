@@ -155,7 +155,14 @@ class Parser:
             degree: int = int(item.get("degree", self.default_field))
             # Classification
             classification = self.classify_subset(degree, len(data["visibleSets"]))
-            subsets.append(Subset(name=name, size=size, dev=dev, degree=degree, classification=classification))
+
+               # Process setMembership to store only the names of sets with "Yes" membership
+            setMembership = {key[4:] if key.startswith("Set_") else key: value for key, value in item.get("setMembership", {}).items() if value == "Yes"}
+        
+            # Only store the keys (set names) that have "Yes" as their value
+            yes_sets = {key for key, value in setMembership.items() if value == "Yes"}
+
+            subsets.append(Subset(name=name, size=size, dev=dev, degree=degree, classification=classification, setMembership=yes_sets))
         
         lowercase_data_visible_subsets = {k.lower(): k for k in data_visible_subsets.keys()}
 
@@ -190,9 +197,14 @@ class Parser:
             all_sets_length = len(data["allSets"])
 
             classification = self.classify_subset(degree, all_sets_length)
+
+            setMembership = {key[4:] if key.startswith("Set_") else key: value for key, value in item.get("setMembership", {}).items() if value == "Yes"}
+        
+            # Only store the keys (set names) that have "Yes" as their value
+            yes_sets = {key for key, value in setMembership.items() if value == "Yes"}
             
             count.append(size)
-            all_subsets.append(Subset(name=name, size=size, dev=dev, degree=degree, classification=classification))
+            all_subsets.append(Subset(name=name, size=size, dev=dev, degree=degree, classification=classification, setMembership=yes_sets))
 
         # List of set names
         sets_: list[str] = []

@@ -174,7 +174,7 @@ class TokenMap:
             # 5 largest deviations, listed
             "list5_dev_outliers": self.dev_outliers(5) if len(self.data.subsets)>=5 else self.dev_outliers(len(self.data.subsets)),
             "category_of_subsets": self.categorize_subsets,
-            "highest_dominent_set": self.find_dominant_sets(),
+            "highest_dominant_set": self.find_dominant_sets(),
             "large_sets": self.find_sets_in_large_subsets(),
             "all_set_index": self.get_all_set_position(),
         }
@@ -914,26 +914,22 @@ class TokenMap:
         sorted_subsets = sorted(self.data.subsets, key=lambda subset: subset.size, reverse=True)
         
         # Extract set names from the 2nd largest subset
-        second_largest_sets = self.extract_set_names(sorted_subsets[1].name)
+        # second_largest_sets = self.extract_set_names(sorted_subsets[1].name)
+        second_largest_sets = sorted_subsets[1].setMembership
         sets = []
 
         if len(second_largest_sets) == 1:
-            third_largest_sets = self.extract_set_names(sorted_subsets[2].name)
+            third_largest_sets = sorted_subsets[2].setMembership
             # Find the intersection of sets between the 2nd and 3rd largest subsets
             common_sets = second_largest_sets.union(third_largest_sets)
 
             for cs in common_sets:
-                for set_name in self.grammar.visible_sets:
-                    print(set_name)
-                    if set_name in cs:
-                        sets.append(set_name)
+                sets.append(cs)
         
         else:
             for sm in second_largest_sets:
-                for set_name in self.grammar.visible_sets:
-                    if set_name in sm:
-                        sets.append(set_name)
-        
+                sets.append(sm)
+    
          # Formatting the return value based on the size of the sets list
         if len(sets) == 2:
             return f"{sets[0]} and {sets[1]}"
@@ -974,6 +970,8 @@ class TokenMap:
                 return f"The intersection of all sets is the second smallest with {all_set_size} elements."
             elif all_set_index == total_subsets - 3:
                 return f"The intersection of all sets is the third smallest with {all_set_size} elements."
+            else:
+                return f"The intersection of all sets is present with {all_set_size} elements."
         else:
             return ""
 

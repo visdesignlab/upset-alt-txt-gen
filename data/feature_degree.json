@@ -19,12 +19,11 @@
     "hideNoSet": true
   },
   "visibleSets": [
-    "Set_A_parentals_spring",
     "Set_B_larvae_spring",
+    "Set_C_pupae_spring",
     "Set_D_tenerals_spring",
     "Set_E_parentals_summer",
-    "Set_F_larvae_summer",
-    "Set_C_pupae_spring"
+    "Set_F_larvae_summer"
   ],
   "visibleAttributes": [],
   "bookmarkedIntersections": [],
@@ -6778,59 +6777,6 @@
   },
   "processedData": {
     "values": {
-      "Subset_A_parentals_spring": {
-        "id": "Subset_A_parentals_spring",
-        "elementName": "Just A_parentals_spring",
-        "items": [
-          "feature-table_wtax_upset_16S/67405594",
-          "feature-table_wtax_upset_16S/67405600",
-          "feature-table_wtax_upset_16S/67405615",
-          "feature-table_wtax_upset_16S/67405619",
-          "feature-table_wtax_upset_16S/67405629",
-          "feature-table_wtax_upset_16S/67405663",
-          "feature-table_wtax_upset_16S/67405676",
-          "feature-table_wtax_upset_16S/67405680",
-          "feature-table_wtax_upset_16S/67405696",
-          "feature-table_wtax_upset_16S/67405700",
-          "feature-table_wtax_upset_16S/67405718",
-          "feature-table_wtax_upset_16S/67405720",
-          "feature-table_wtax_upset_16S/67405724",
-          "feature-table_wtax_upset_16S/67405743",
-          "feature-table_wtax_upset_16S/67405756",
-          "feature-table_wtax_upset_16S/67405768",
-          "feature-table_wtax_upset_16S/67405769",
-          "feature-table_wtax_upset_16S/67405773",
-          "feature-table_wtax_upset_16S/67405777",
-          "feature-table_wtax_upset_16S/67405795",
-          "feature-table_wtax_upset_16S/67405801",
-          "feature-table_wtax_upset_16S/67405804",
-          "feature-table_wtax_upset_16S/67405809",
-          "feature-table_wtax_upset_16S/67405813",
-          "feature-table_wtax_upset_16S/67405820",
-          "feature-table_wtax_upset_16S/67405859",
-          "feature-table_wtax_upset_16S/67405860",
-          "feature-table_wtax_upset_16S/67405884",
-          "feature-table_wtax_upset_16S/67405890",
-          "feature-table_wtax_upset_16S/67405892",
-          "feature-table_wtax_upset_16S/67405904",
-          "feature-table_wtax_upset_16S/67405906",
-          "feature-table_wtax_upset_16S/67405915",
-          "feature-table_wtax_upset_16S/67405925",
-          "feature-table_wtax_upset_16S/67405963"
-        ],
-        "size": 35,
-        "type": "Subset",
-        "setMembership": {
-          "Set_A_parentals_spring": "Yes",
-          "Set_B_larvae_spring": "No",
-          "Set_D_tenerals_spring": "No",
-          "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "No"
-        },
-        "deviation": -3.075530140348644,
-        "attributes": {}
-      },
       "Subset_B_larvae_spring": {
         "id": "Subset_B_larvae_spring",
         "elementName": "Just B_larvae_spring",
@@ -6840,14 +6786,13 @@
         "size": 1,
         "type": "Subset",
         "setMembership": {
-          "Set_A_parentals_spring": "No",
           "Set_B_larvae_spring": "Yes",
+          "Set_C_pupae_spring": "No",
           "Set_D_tenerals_spring": "No",
           "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "No"
+          "Set_F_larvae_summer": "No"
         },
-        "deviation": -4.1056698210417775,
+        "deviation": -5.328174037600142,
         "attributes": {}
       },
       "Subset_C_pupae_spring": {
@@ -6856,20 +6801,20 @@
         "items": [
           "feature-table_wtax_upset_16S/67405638",
           "feature-table_wtax_upset_16S/67405697",
+          "feature-table_wtax_upset_16S/67405791",
           "feature-table_wtax_upset_16S/67405810",
           "feature-table_wtax_upset_16S/67405828"
         ],
-        "size": 4,
+        "size": 5,
         "type": "Subset",
         "setMembership": {
-          "Set_A_parentals_spring": "No",
           "Set_B_larvae_spring": "No",
+          "Set_C_pupae_spring": "Yes",
           "Set_D_tenerals_spring": "No",
           "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "Yes"
+          "Set_F_larvae_summer": "No"
         },
-        "deviation": -6.082425623147477,
+        "deviation": -7.81675479762877,
         "attributes": {}
       },
       "Subset_D_tenerals_spring": {
@@ -6878,25 +6823,27 @@
         "items": [
           "feature-table_wtax_upset_16S/67405609",
           "feature-table_wtax_upset_16S/67405622",
+          "feature-table_wtax_upset_16S/67405639",
           "feature-table_wtax_upset_16S/67405647",
           "feature-table_wtax_upset_16S/67405701",
+          "feature-table_wtax_upset_16S/67405702",
+          "feature-table_wtax_upset_16S/67405742",
           "feature-table_wtax_upset_16S/67405808",
           "feature-table_wtax_upset_16S/67405826",
           "feature-table_wtax_upset_16S/67405833",
           "feature-table_wtax_upset_16S/67405922",
           "feature-table_wtax_upset_16S/67405955"
         ],
-        "size": 9,
+        "size": 12,
         "type": "Subset",
         "setMembership": {
-          "Set_A_parentals_spring": "No",
           "Set_B_larvae_spring": "No",
+          "Set_C_pupae_spring": "No",
           "Set_D_tenerals_spring": "Yes",
           "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "No"
+          "Set_F_larvae_summer": "No"
         },
-        "deviation": -5.245114875490089,
+        "deviation": -6.588747040627315,
         "attributes": {}
       },
       "Subset_E_parentals_summer": {
@@ -6904,444 +6851,282 @@
         "elementName": "Just E_parentals_summer",
         "items": [
           "feature-table_wtax_upset_16S/67405699",
+          "feature-table_wtax_upset_16S/67405708",
           "feature-table_wtax_upset_16S/67405783",
           "feature-table_wtax_upset_16S/67405818",
           "feature-table_wtax_upset_16S/67405901"
         ],
-        "size": 4,
+        "size": 5,
         "type": "Subset",
         "setMembership": {
-          "Set_A_parentals_spring": "No",
           "Set_B_larvae_spring": "No",
+          "Set_C_pupae_spring": "No",
           "Set_D_tenerals_spring": "No",
           "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "No"
+          "Set_F_larvae_summer": "No"
         },
-        "deviation": -3.3244198210417775,
+        "deviation": -4.286507370933475,
         "attributes": {}
       },
       "Subset_F_larvae_summer": {
         "id": "Subset_F_larvae_summer",
         "elementName": "Just F_larvae_summer",
         "items": [
-          "feature-table_wtax_upset_16S/67405650"
-        ],
-        "size": 1,
-        "type": "Subset",
-        "setMembership": {
-          "Set_A_parentals_spring": "No",
-          "Set_B_larvae_spring": "No",
-          "Set_D_tenerals_spring": "No",
-          "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "Yes",
-          "Set_C_pupae_spring": "No"
-        },
-        "deviation": -3.4290849900167406,
-        "attributes": {}
-      },
-      "Subset_A_parentals_spring~&~C_pupae_spring": {
-        "id": "Subset_A_parentals_spring~&~C_pupae_spring",
-        "elementName": "A_parentals_spring, and C_pupae_spring",
-        "items": [
-          "feature-table_wtax_upset_16S/67405791"
-        ],
-        "size": 1,
-        "type": "Subset",
-        "setMembership": {
-          "Set_A_parentals_spring": "Yes",
-          "Set_B_larvae_spring": "No",
-          "Set_D_tenerals_spring": "No",
-          "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "Yes"
-        },
-        "deviation": -1.734329174481293,
-        "attributes": {}
-      },
-      "Subset_A_parentals_spring~&~D_tenerals_spring": {
-        "id": "Subset_A_parentals_spring~&~D_tenerals_spring",
-        "elementName": "A_parentals_spring, and D_tenerals_spring",
-        "items": [
-          "feature-table_wtax_upset_16S/67405639",
-          "feature-table_wtax_upset_16S/67405702",
-          "feature-table_wtax_upset_16S/67405742"
-        ],
-        "size": 3,
-        "type": "Subset",
-        "setMembership": {
-          "Set_A_parentals_spring": "Yes",
-          "Set_B_larvae_spring": "No",
-          "Set_D_tenerals_spring": "Yes",
-          "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "No"
-        },
-        "deviation": -1.3436321651372252,
-        "attributes": {}
-      },
-      "Subset_A_parentals_spring~&~E_parentals_summer": {
-        "id": "Subset_A_parentals_spring~&~E_parentals_summer",
-        "elementName": "A_parentals_spring, and E_parentals_summer",
-        "items": [
-          "feature-table_wtax_upset_16S/67405708"
-        ],
-        "size": 1,
-        "type": "Subset",
-        "setMembership": {
-          "Set_A_parentals_spring": "Yes",
-          "Set_B_larvae_spring": "No",
-          "Set_D_tenerals_spring": "No",
-          "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "No"
-        },
-        "deviation": -0.9620875498916979,
-        "attributes": {}
-      },
-      "Subset_A_parentals_spring~&~F_larvae_summer": {
-        "id": "Subset_A_parentals_spring~&~F_larvae_summer",
-        "elementName": "A_parentals_spring, and F_larvae_summer",
-        "items": [
+          "feature-table_wtax_upset_16S/67405650",
           "feature-table_wtax_upset_16S/67405832"
         ],
-        "size": 1,
+        "size": 2,
         "type": "Subset",
         "setMembership": {
-          "Set_A_parentals_spring": "Yes",
           "Set_B_larvae_spring": "No",
+          "Set_C_pupae_spring": "No",
           "Set_D_tenerals_spring": "No",
           "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "Yes",
-          "Set_C_pupae_spring": "No"
+          "Set_F_larvae_summer": "Yes"
         },
-        "deviation": -0.7726437972046875,
+        "deviation": -4.201728787221428,
         "attributes": {}
       },
-      "Subset_D_tenerals_spring~&~C_pupae_spring": {
-        "id": "Subset_D_tenerals_spring~&~C_pupae_spring",
-        "elementName": "D_tenerals_spring, and C_pupae_spring",
-        "items": [
-          "feature-table_wtax_upset_16S/67405732",
-          "feature-table_wtax_upset_16S/67405806",
-          "feature-table_wtax_upset_16S/67405831",
-          "feature-table_wtax_upset_16S/67405868",
-          "feature-table_wtax_upset_16S/67405876",
-          "feature-table_wtax_upset_16S/67405953"
-        ],
-        "size": 6,
-        "type": "Subset",
-        "setMembership": {
-          "Set_A_parentals_spring": "No",
-          "Set_B_larvae_spring": "No",
-          "Set_D_tenerals_spring": "Yes",
-          "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "Yes"
-        },
-        "deviation": 0.3206857476470761,
-        "attributes": {}
-      },
-      "Subset_A_parentals_spring~&~B_larvae_spring~&~E_parentals_summer": {
-        "id": "Subset_A_parentals_spring~&~B_larvae_spring~&~E_parentals_summer",
-        "elementName": "A_parentals_spring, B_larvae_spring, and E_parentals_summer",
+      "Subset_B_larvae_spring~&~E_parentals_summer": {
+        "id": "Subset_B_larvae_spring~&~E_parentals_summer",
+        "elementName": "B_larvae_spring, and E_parentals_summer",
         "items": [
           "feature-table_wtax_upset_16S/67405599"
         ],
         "size": 1,
         "type": "Subset",
         "setMembership": {
-          "Set_A_parentals_spring": "Yes",
           "Set_B_larvae_spring": "Yes",
+          "Set_C_pupae_spring": "No",
           "Set_D_tenerals_spring": "No",
           "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "No"
+          "Set_F_larvae_summer": "No"
         },
-        "deviation": 0.137815957269696,
+        "deviation": -0.3000437191480563,
         "attributes": {}
       },
-      "Subset_A_parentals_spring~&~D_tenerals_spring~&~C_pupae_spring": {
-        "id": "Subset_A_parentals_spring~&~D_tenerals_spring~&~C_pupae_spring",
-        "elementName": "A_parentals_spring, D_tenerals_spring, and C_pupae_spring",
+      "Subset_C_pupae_spring~&~D_tenerals_spring": {
+        "id": "Subset_C_pupae_spring~&~D_tenerals_spring",
+        "elementName": "C_pupae_spring, and D_tenerals_spring",
         "items": [
           "feature-table_wtax_upset_16S/67405649",
           "feature-table_wtax_upset_16S/67405675",
           "feature-table_wtax_upset_16S/67405705",
           "feature-table_wtax_upset_16S/67405729",
+          "feature-table_wtax_upset_16S/67405732",
+          "feature-table_wtax_upset_16S/67405806",
+          "feature-table_wtax_upset_16S/67405831",
           "feature-table_wtax_upset_16S/67405851",
           "feature-table_wtax_upset_16S/67405853",
-          "feature-table_wtax_upset_16S/67405926"
+          "feature-table_wtax_upset_16S/67405868",
+          "feature-table_wtax_upset_16S/67405876",
+          "feature-table_wtax_upset_16S/67405926",
+          "feature-table_wtax_upset_16S/67405953"
         ],
-        "size": 7,
+        "size": 13,
         "type": "Subset",
         "setMembership": {
-          "Set_A_parentals_spring": "Yes",
           "Set_B_larvae_spring": "No",
+          "Set_C_pupae_spring": "Yes",
           "Set_D_tenerals_spring": "Yes",
           "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "Yes"
+          "Set_F_larvae_summer": "No"
         },
-        "deviation": 1.475208676007848,
+        "deviation": 1.795894423654924,
         "attributes": {}
       },
-      "Subset_A_parentals_spring~&~D_tenerals_spring~&~E_parentals_summer": {
-        "id": "Subset_A_parentals_spring~&~D_tenerals_spring~&~E_parentals_summer",
-        "elementName": "A_parentals_spring, D_tenerals_spring, and E_parentals_summer",
-        "items": [
-          "feature-table_wtax_upset_16S/67405683"
-        ],
-        "size": 1,
-        "type": "Subset",
-        "setMembership": {
-          "Set_A_parentals_spring": "Yes",
-          "Set_B_larvae_spring": "No",
-          "Set_D_tenerals_spring": "Yes",
-          "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "No"
-        },
-        "deviation": 0.04731960139502515,
-        "attributes": {}
-      },
-      "Subset_A_parentals_spring~&~E_parentals_summer~&~F_larvae_summer": {
-        "id": "Subset_A_parentals_spring~&~E_parentals_summer~&~F_larvae_summer",
-        "elementName": "A_parentals_spring, E_parentals_summer, and F_larvae_summer",
-        "items": [
-          "feature-table_wtax_upset_16S/67405893"
-        ],
-        "size": 1,
-        "type": "Subset",
-        "setMembership": {
-          "Set_A_parentals_spring": "Yes",
-          "Set_B_larvae_spring": "No",
-          "Set_D_tenerals_spring": "No",
-          "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "Yes",
-          "Set_C_pupae_spring": "No"
-        },
-        "deviation": 0.15681461441595781,
-        "attributes": {}
-      },
-      "Subset_A_parentals_spring~&~F_larvae_summer~&~C_pupae_spring": {
-        "id": "Subset_A_parentals_spring~&~F_larvae_summer~&~C_pupae_spring",
-        "elementName": "A_parentals_spring, F_larvae_summer, and C_pupae_spring",
+      "Subset_C_pupae_spring~&~F_larvae_summer": {
+        "id": "Subset_C_pupae_spring~&~F_larvae_summer",
+        "elementName": "C_pupae_spring, and F_larvae_summer",
         "items": [
           "feature-table_wtax_upset_16S/67405910"
         ],
         "size": 1,
         "type": "Subset",
         "setMembership": {
-          "Set_A_parentals_spring": "Yes",
           "Set_B_larvae_spring": "No",
+          "Set_C_pupae_spring": "Yes",
           "Set_D_tenerals_spring": "No",
           "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "Yes",
-          "Set_C_pupae_spring": "Yes"
+          "Set_F_larvae_summer": "Yes"
         },
-        "deviation": 0.09137040894226327,
+        "deviation": -0.5123662257877488,
         "attributes": {}
       },
-      "Subset_B_larvae_spring~&~D_tenerals_spring~&~C_pupae_spring": {
-        "id": "Subset_B_larvae_spring~&~D_tenerals_spring~&~C_pupae_spring",
-        "elementName": "B_larvae_spring, D_tenerals_spring, and C_pupae_spring",
+      "Subset_D_tenerals_spring~&~E_parentals_summer": {
+        "id": "Subset_D_tenerals_spring~&~E_parentals_summer",
+        "elementName": "D_tenerals_spring, and E_parentals_summer",
         "items": [
-          "feature-table_wtax_upset_16S/67405717",
-          "feature-table_wtax_upset_16S/67405730"
-        ],
-        "size": 2,
-        "type": "Subset",
-        "setMembership": {
-          "Set_A_parentals_spring": "No",
-          "Set_B_larvae_spring": "Yes",
-          "Set_D_tenerals_spring": "Yes",
-          "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "Yes"
-        },
-        "deviation": 0.396296087395361,
-        "attributes": {}
-      },
-      "Subset_E_parentals_summer~&~F_larvae_summer~&~C_pupae_spring": {
-        "id": "Subset_E_parentals_summer~&~F_larvae_summer~&~C_pupae_spring",
-        "elementName": "E_parentals_summer, F_larvae_summer, and C_pupae_spring",
-        "items": [
-          "feature-table_wtax_upset_16S/67405862"
+          "feature-table_wtax_upset_16S/67405683"
         ],
         "size": 1,
         "type": "Subset",
         "setMembership": {
-          "Set_A_parentals_spring": "No",
           "Set_B_larvae_spring": "No",
-          "Set_D_tenerals_spring": "No",
+          "Set_C_pupae_spring": "No",
+          "Set_D_tenerals_spring": "Yes",
           "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "Yes",
-          "Set_C_pupae_spring": "Yes"
+          "Set_F_larvae_summer": "No"
         },
-        "deviation": 0.19987001275391472,
+        "deviation": -0.7137413460036947,
         "attributes": {}
       },
-      "Subset_A_parentals_spring~&~B_larvae_spring~&~D_tenerals_spring~&~C_pupae_spring": {
-        "id": "Subset_A_parentals_spring~&~B_larvae_spring~&~D_tenerals_spring~&~C_pupae_spring",
-        "elementName": "A_parentals_spring, B_larvae_spring, D_tenerals_spring, and C_pupae_spring",
+      "Subset_E_parentals_summer~&~F_larvae_summer": {
+        "id": "Subset_E_parentals_summer~&~F_larvae_summer",
+        "elementName": "E_parentals_summer, and F_larvae_summer",
+        "items": [
+          "feature-table_wtax_upset_16S/67405893"
+        ],
+        "size": 1,
+        "type": "Subset",
+        "setMembership": {
+          "Set_B_larvae_spring": "No",
+          "Set_C_pupae_spring": "No",
+          "Set_D_tenerals_spring": "No",
+          "Set_E_parentals_summer": "Yes",
+          "Set_F_larvae_summer": "Yes"
+        },
+        "deviation": -0.21319271505085952,
+        "attributes": {}
+      },
+      "Subset_B_larvae_spring~&~C_pupae_spring~&~D_tenerals_spring": {
+        "id": "Subset_B_larvae_spring~&~C_pupae_spring~&~D_tenerals_spring",
+        "elementName": "B_larvae_spring, C_pupae_spring, and D_tenerals_spring",
         "items": [
           "feature-table_wtax_upset_16S/67405640",
+          "feature-table_wtax_upset_16S/67405717",
           "feature-table_wtax_upset_16S/67405725",
+          "feature-table_wtax_upset_16S/67405730",
           "feature-table_wtax_upset_16S/67405738",
           "feature-table_wtax_upset_16S/67405771",
           "feature-table_wtax_upset_16S/67405776",
           "feature-table_wtax_upset_16S/67405942"
         ],
-        "size": 6,
+        "size": 8,
         "type": "Subset",
         "setMembership": {
-          "Set_A_parentals_spring": "Yes",
           "Set_B_larvae_spring": "Yes",
+          "Set_C_pupae_spring": "Yes",
           "Set_D_tenerals_spring": "Yes",
           "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "Yes"
+          "Set_F_larvae_summer": "No"
         },
-        "deviation": 1.5276295711373677,
+        "deviation": 1.9239256585327287,
         "attributes": {}
       },
-      "Subset_A_parentals_spring~&~B_larvae_spring~&~E_parentals_summer~&~C_pupae_spring": {
-        "id": "Subset_A_parentals_spring~&~B_larvae_spring~&~E_parentals_summer~&~C_pupae_spring",
-        "elementName": "A_parentals_spring, B_larvae_spring, E_parentals_summer, and C_pupae_spring",
+      "Subset_B_larvae_spring~&~C_pupae_spring~&~E_parentals_summer": {
+        "id": "Subset_B_larvae_spring~&~C_pupae_spring~&~E_parentals_summer",
+        "elementName": "B_larvae_spring, C_pupae_spring, and E_parentals_summer",
         "items": [
           "feature-table_wtax_upset_16S/67405957"
         ],
         "size": 1,
         "type": "Subset",
         "setMembership": {
-          "Set_A_parentals_spring": "Yes",
           "Set_B_larvae_spring": "Yes",
+          "Set_C_pupae_spring": "Yes",
           "Set_D_tenerals_spring": "No",
           "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "Yes"
+          "Set_F_larvae_summer": "No"
         },
-        "deviation": 0.24035473240170782,
+        "deviation": 0.16870496716971198,
         "attributes": {}
       },
-      "Subset_A_parentals_spring~&~D_tenerals_spring~&~E_parentals_summer~&~F_larvae_summer": {
-        "id": "Subset_A_parentals_spring~&~D_tenerals_spring~&~E_parentals_summer~&~F_larvae_summer",
-        "elementName": "A_parentals_spring, D_tenerals_spring, E_parentals_summer, and F_larvae_summer",
+      "Subset_C_pupae_spring~&~E_parentals_summer~&~F_larvae_summer": {
+        "id": "Subset_C_pupae_spring~&~E_parentals_summer~&~F_larvae_summer",
+        "elementName": "C_pupae_spring, E_parentals_summer, and F_larvae_summer",
+        "items": [
+          "feature-table_wtax_upset_16S/67405862",
+          "feature-table_wtax_upset_16S/67405871"
+        ],
+        "size": 2,
+        "type": "Subset",
+        "setMembership": {
+          "Set_B_larvae_spring": "No",
+          "Set_C_pupae_spring": "Yes",
+          "Set_D_tenerals_spring": "No",
+          "Set_E_parentals_summer": "Yes",
+          "Set_F_larvae_summer": "Yes"
+        },
+        "deviation": 0.44333361632501084,
+        "attributes": {}
+      },
+      "Subset_D_tenerals_spring~&~E_parentals_summer~&~F_larvae_summer": {
+        "id": "Subset_D_tenerals_spring~&~E_parentals_summer~&~F_larvae_summer",
+        "elementName": "D_tenerals_spring, E_parentals_summer, and F_larvae_summer",
         "items": [
           "feature-table_wtax_upset_16S/67405764"
         ],
         "size": 1,
         "type": "Subset",
         "setMembership": {
-          "Set_A_parentals_spring": "Yes",
           "Set_B_larvae_spring": "No",
+          "Set_C_pupae_spring": "No",
           "Set_D_tenerals_spring": "Yes",
           "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "Yes",
-          "Set_C_pupae_spring": "No"
+          "Set_F_larvae_summer": "Yes"
         },
-        "deviation": 0.24235759333856144,
+        "deviation": 0.1778609028810428,
         "attributes": {}
       },
-      "Subset_A_parentals_spring~&~E_parentals_summer~&~F_larvae_summer~&~C_pupae_spring": {
-        "id": "Subset_A_parentals_spring~&~E_parentals_summer~&~F_larvae_summer~&~C_pupae_spring",
-        "elementName": "A_parentals_spring, E_parentals_summer, F_larvae_summer, and C_pupae_spring",
-        "items": [
-          "feature-table_wtax_upset_16S/67405871"
-        ],
-        "size": 1,
-        "type": "Subset",
-        "setMembership": {
-          "Set_A_parentals_spring": "Yes",
-          "Set_B_larvae_spring": "No",
-          "Set_D_tenerals_spring": "No",
-          "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "Yes",
-          "Set_C_pupae_spring": "Yes"
-        },
-        "deviation": 0.24346360357109612,
-        "attributes": {}
-      },
-      "Subset_B_larvae_spring~&~E_parentals_summer~&~F_larvae_summer~&~C_pupae_spring": {
-        "id": "Subset_B_larvae_spring~&~E_parentals_summer~&~F_larvae_summer~&~C_pupae_spring",
-        "elementName": "B_larvae_spring, E_parentals_summer, F_larvae_summer, and C_pupae_spring",
-        "items": [
-          "feature-table_wtax_upset_16S/67405943"
-        ],
-        "size": 1,
-        "type": "Subset",
-        "setMembership": {
-          "Set_A_parentals_spring": "No",
-          "Set_B_larvae_spring": "Yes",
-          "Set_D_tenerals_spring": "No",
-          "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "Yes",
-          "Set_C_pupae_spring": "Yes"
-        },
-        "deviation": 0.2543446526639551,
-        "attributes": {}
-      },
-      "Subset_A_parentals_spring~&~B_larvae_spring~&~D_tenerals_spring~&~E_parentals_summer~&~C_pupae_spring": {
-        "id": "Subset_A_parentals_spring~&~B_larvae_spring~&~D_tenerals_spring~&~E_parentals_summer~&~C_pupae_spring",
-        "elementName": "A_parentals_spring, B_larvae_spring, D_tenerals_spring, E_parentals_summer, and C_pupae_spring",
+      "Subset_B_larvae_spring~&~C_pupae_spring~&~D_tenerals_spring~&~E_parentals_summer": {
+        "id": "Subset_B_larvae_spring~&~C_pupae_spring~&~D_tenerals_spring~&~E_parentals_summer",
+        "elementName": "B_larvae_spring, C_pupae_spring, D_tenerals_spring, and E_parentals_summer",
         "items": [
           "feature-table_wtax_upset_16S/67405670"
         ],
         "size": 1,
         "type": "Subset",
         "setMembership": {
-          "Set_A_parentals_spring": "Yes",
           "Set_B_larvae_spring": "Yes",
+          "Set_C_pupae_spring": "Yes",
           "Set_D_tenerals_spring": "Yes",
           "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "Yes"
+          "Set_F_larvae_summer": "No"
         },
-        "deviation": 0.25691963225350867,
+        "deviation": 0.2444302236350874,
         "attributes": {}
       },
-      "Subset_A_parentals_spring~&~B_larvae_spring~&~D_tenerals_spring~&~F_larvae_summer~&~C_pupae_spring": {
-        "id": "Subset_A_parentals_spring~&~B_larvae_spring~&~D_tenerals_spring~&~F_larvae_summer~&~C_pupae_spring",
-        "elementName": "A_parentals_spring, B_larvae_spring, D_tenerals_spring, F_larvae_summer, and C_pupae_spring",
+      "Subset_B_larvae_spring~&~C_pupae_spring~&~D_tenerals_spring~&~F_larvae_summer": {
+        "id": "Subset_B_larvae_spring~&~C_pupae_spring~&~D_tenerals_spring~&~F_larvae_summer",
+        "elementName": "B_larvae_spring, C_pupae_spring, D_tenerals_spring, and F_larvae_summer",
         "items": [
           "feature-table_wtax_upset_16S/67405672"
         ],
         "size": 1,
         "type": "Subset",
         "setMembership": {
-          "Set_A_parentals_spring": "Yes",
           "Set_B_larvae_spring": "Yes",
+          "Set_C_pupae_spring": "Yes",
           "Set_D_tenerals_spring": "Yes",
           "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "Yes",
-          "Set_C_pupae_spring": "Yes"
+          "Set_F_larvae_summer": "Yes"
         },
-        "deviation": 0.25746154557661305,
+        "deviation": 0.24690754168356457,
         "attributes": {}
       },
-      "Subset_A_parentals_spring~&~B_larvae_spring~&~E_parentals_summer~&~F_larvae_summer~&~C_pupae_spring": {
-        "id": "Subset_A_parentals_spring~&~B_larvae_spring~&~E_parentals_summer~&~F_larvae_summer~&~C_pupae_spring",
-        "elementName": "A_parentals_spring, B_larvae_spring, E_parentals_summer, F_larvae_summer, and C_pupae_spring",
+      "Subset_B_larvae_spring~&~C_pupae_spring~&~E_parentals_summer~&~F_larvae_summer": {
+        "id": "Subset_B_larvae_spring~&~C_pupae_spring~&~E_parentals_summer~&~F_larvae_summer",
+        "elementName": "B_larvae_spring, C_pupae_spring, E_parentals_summer, and F_larvae_summer",
         "items": [
-          "feature-table_wtax_upset_16S/67405753"
+          "feature-table_wtax_upset_16S/67405753",
+          "feature-table_wtax_upset_16S/67405943"
         ],
-        "size": 1,
+        "size": 2,
         "type": "Subset",
         "setMembership": {
-          "Set_A_parentals_spring": "Yes",
           "Set_B_larvae_spring": "Yes",
+          "Set_C_pupae_spring": "Yes",
           "Set_D_tenerals_spring": "No",
           "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "Yes",
-          "Set_C_pupae_spring": "Yes"
+          "Set_F_larvae_summer": "Yes"
         },
-        "deviation": 0.2587165027459074,
+        "deviation": 0.5130611554098625,
         "attributes": {}
       },
-      "Subset_A_parentals_spring~&~B_larvae_spring~&~D_tenerals_spring~&~E_parentals_summer~&~F_larvae_summer~&~C_pupae_spring": {
-        "id": "Subset_A_parentals_spring~&~B_larvae_spring~&~D_tenerals_spring~&~E_parentals_summer~&~F_larvae_summer~&~C_pupae_spring",
-        "elementName": "A_parentals_spring, B_larvae_spring, D_tenerals_spring, E_parentals_summer, F_larvae_summer, and C_pupae_spring",
+      "Subset_B_larvae_spring~&~C_pupae_spring~&~D_tenerals_spring~&~E_parentals_summer~&~F_larvae_summer": {
+        "id": "Subset_B_larvae_spring~&~C_pupae_spring~&~D_tenerals_spring~&~E_parentals_summer~&~F_larvae_summer",
+        "elementName": "B_larvae_spring, C_pupae_spring, D_tenerals_spring, E_parentals_summer, and F_larvae_summer",
         "items": [
           "feature-table_wtax_upset_16S/67405607",
           "feature-table_wtax_upset_16S/67405610",
@@ -7367,479 +7152,307 @@
         "size": 20,
         "type": "Subset",
         "setMembership": {
-          "Set_A_parentals_spring": "Yes",
           "Set_B_larvae_spring": "Yes",
+          "Set_C_pupae_spring": "Yes",
           "Set_D_tenerals_spring": "Yes",
           "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "Yes",
-          "Set_C_pupae_spring": "Yes"
+          "Set_F_larvae_summer": "Yes"
         },
-        "deviation": 5.208036974484761,
+        "deviation": 5.206978550025573,
         "attributes": {}
       }
     },
     "order": [
-      "Subset_A_parentals_spring",
       "Subset_B_larvae_spring",
       "Subset_C_pupae_spring",
       "Subset_D_tenerals_spring",
       "Subset_E_parentals_summer",
       "Subset_F_larvae_summer",
-      "Subset_A_parentals_spring~&~C_pupae_spring",
-      "Subset_A_parentals_spring~&~D_tenerals_spring",
-      "Subset_A_parentals_spring~&~E_parentals_summer",
-      "Subset_A_parentals_spring~&~F_larvae_summer",
-      "Subset_D_tenerals_spring~&~C_pupae_spring",
-      "Subset_A_parentals_spring~&~B_larvae_spring~&~E_parentals_summer",
-      "Subset_A_parentals_spring~&~D_tenerals_spring~&~C_pupae_spring",
-      "Subset_A_parentals_spring~&~D_tenerals_spring~&~E_parentals_summer",
-      "Subset_A_parentals_spring~&~E_parentals_summer~&~F_larvae_summer",
-      "Subset_A_parentals_spring~&~F_larvae_summer~&~C_pupae_spring",
-      "Subset_B_larvae_spring~&~D_tenerals_spring~&~C_pupae_spring",
-      "Subset_E_parentals_summer~&~F_larvae_summer~&~C_pupae_spring",
-      "Subset_A_parentals_spring~&~B_larvae_spring~&~D_tenerals_spring~&~C_pupae_spring",
-      "Subset_A_parentals_spring~&~B_larvae_spring~&~E_parentals_summer~&~C_pupae_spring",
-      "Subset_A_parentals_spring~&~D_tenerals_spring~&~E_parentals_summer~&~F_larvae_summer",
-      "Subset_A_parentals_spring~&~E_parentals_summer~&~F_larvae_summer~&~C_pupae_spring",
-      "Subset_B_larvae_spring~&~E_parentals_summer~&~F_larvae_summer~&~C_pupae_spring",
-      "Subset_A_parentals_spring~&~B_larvae_spring~&~D_tenerals_spring~&~E_parentals_summer~&~C_pupae_spring",
-      "Subset_A_parentals_spring~&~B_larvae_spring~&~D_tenerals_spring~&~F_larvae_summer~&~C_pupae_spring",
-      "Subset_A_parentals_spring~&~B_larvae_spring~&~E_parentals_summer~&~F_larvae_summer~&~C_pupae_spring",
-      "Subset_A_parentals_spring~&~B_larvae_spring~&~D_tenerals_spring~&~E_parentals_summer~&~F_larvae_summer~&~C_pupae_spring"
+      "Subset_B_larvae_spring~&~E_parentals_summer",
+      "Subset_C_pupae_spring~&~D_tenerals_spring",
+      "Subset_C_pupae_spring~&~F_larvae_summer",
+      "Subset_D_tenerals_spring~&~E_parentals_summer",
+      "Subset_E_parentals_summer~&~F_larvae_summer",
+      "Subset_B_larvae_spring~&~C_pupae_spring~&~D_tenerals_spring",
+      "Subset_B_larvae_spring~&~C_pupae_spring~&~E_parentals_summer",
+      "Subset_C_pupae_spring~&~E_parentals_summer~&~F_larvae_summer",
+      "Subset_D_tenerals_spring~&~E_parentals_summer~&~F_larvae_summer",
+      "Subset_B_larvae_spring~&~C_pupae_spring~&~D_tenerals_spring~&~E_parentals_summer",
+      "Subset_B_larvae_spring~&~C_pupae_spring~&~D_tenerals_spring~&~F_larvae_summer",
+      "Subset_B_larvae_spring~&~C_pupae_spring~&~E_parentals_summer~&~F_larvae_summer",
+      "Subset_B_larvae_spring~&~C_pupae_spring~&~D_tenerals_spring~&~E_parentals_summer~&~F_larvae_summer"
     ]
   },
   "accessibleProcessedData": {
     "values": {
-      "Subset_A_parentals_spring": {
-        "elementName": "Just A_parentals_spring",
-        "type": "Subset",
-        "size": 35,
-        "deviation": -3.075530140348644,
-        "attributes": {},
-        "degree": 1,
-        "setMembership": {
-          "Set_A_parentals_spring": "Yes",
-          "Set_B_larvae_spring": "No",
-          "Set_D_tenerals_spring": "No",
-          "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "No"
-        }
-      },
       "Subset_B_larvae_spring": {
         "elementName": "Just B_larvae_spring",
         "type": "Subset",
         "size": 1,
-        "deviation": -4.1056698210417775,
+        "deviation": -5.328174037600142,
         "attributes": {},
         "degree": 1,
         "setMembership": {
-          "Set_A_parentals_spring": "No",
           "Set_B_larvae_spring": "Yes",
+          "Set_C_pupae_spring": "No",
           "Set_D_tenerals_spring": "No",
           "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "No"
+          "Set_F_larvae_summer": "No"
         }
       },
       "Subset_C_pupae_spring": {
         "elementName": "Just C_pupae_spring",
         "type": "Subset",
-        "size": 4,
-        "deviation": -6.082425623147477,
+        "size": 5,
+        "deviation": -7.81675479762877,
         "attributes": {},
         "degree": 1,
         "setMembership": {
-          "Set_A_parentals_spring": "No",
           "Set_B_larvae_spring": "No",
+          "Set_C_pupae_spring": "Yes",
           "Set_D_tenerals_spring": "No",
           "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "Yes"
+          "Set_F_larvae_summer": "No"
         }
       },
       "Subset_D_tenerals_spring": {
         "elementName": "Just D_tenerals_spring",
         "type": "Subset",
-        "size": 9,
-        "deviation": -5.245114875490089,
+        "size": 12,
+        "deviation": -6.588747040627315,
         "attributes": {},
         "degree": 1,
         "setMembership": {
-          "Set_A_parentals_spring": "No",
           "Set_B_larvae_spring": "No",
+          "Set_C_pupae_spring": "No",
           "Set_D_tenerals_spring": "Yes",
           "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "No"
+          "Set_F_larvae_summer": "No"
         }
       },
       "Subset_E_parentals_summer": {
         "elementName": "Just E_parentals_summer",
         "type": "Subset",
-        "size": 4,
-        "deviation": -3.3244198210417775,
+        "size": 5,
+        "deviation": -4.286507370933475,
         "attributes": {},
         "degree": 1,
         "setMembership": {
-          "Set_A_parentals_spring": "No",
           "Set_B_larvae_spring": "No",
+          "Set_C_pupae_spring": "No",
           "Set_D_tenerals_spring": "No",
           "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "No"
+          "Set_F_larvae_summer": "No"
         }
       },
       "Subset_F_larvae_summer": {
         "elementName": "Just F_larvae_summer",
         "type": "Subset",
-        "size": 1,
-        "deviation": -3.4290849900167406,
+        "size": 2,
+        "deviation": -4.201728787221428,
         "attributes": {},
         "degree": 1,
         "setMembership": {
-          "Set_A_parentals_spring": "No",
           "Set_B_larvae_spring": "No",
+          "Set_C_pupae_spring": "No",
           "Set_D_tenerals_spring": "No",
           "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "Yes",
-          "Set_C_pupae_spring": "No"
+          "Set_F_larvae_summer": "Yes"
         }
       },
-      "Subset_A_parentals_spring~&~C_pupae_spring": {
-        "elementName": "A_parentals_spring, and C_pupae_spring",
+      "Subset_B_larvae_spring~&~E_parentals_summer": {
+        "elementName": "B_larvae_spring, and E_parentals_summer",
         "type": "Subset",
         "size": 1,
-        "deviation": -1.734329174481293,
+        "deviation": -0.3000437191480563,
         "attributes": {},
         "degree": 2,
         "setMembership": {
-          "Set_A_parentals_spring": "Yes",
-          "Set_B_larvae_spring": "No",
-          "Set_D_tenerals_spring": "No",
-          "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "Yes"
-        }
-      },
-      "Subset_A_parentals_spring~&~D_tenerals_spring": {
-        "elementName": "A_parentals_spring, and D_tenerals_spring",
-        "type": "Subset",
-        "size": 3,
-        "deviation": -1.3436321651372252,
-        "attributes": {},
-        "degree": 2,
-        "setMembership": {
-          "Set_A_parentals_spring": "Yes",
-          "Set_B_larvae_spring": "No",
-          "Set_D_tenerals_spring": "Yes",
-          "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "No"
-        }
-      },
-      "Subset_A_parentals_spring~&~E_parentals_summer": {
-        "elementName": "A_parentals_spring, and E_parentals_summer",
-        "type": "Subset",
-        "size": 1,
-        "deviation": -0.9620875498916979,
-        "attributes": {},
-        "degree": 2,
-        "setMembership": {
-          "Set_A_parentals_spring": "Yes",
-          "Set_B_larvae_spring": "No",
-          "Set_D_tenerals_spring": "No",
-          "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "No"
-        }
-      },
-      "Subset_A_parentals_spring~&~F_larvae_summer": {
-        "elementName": "A_parentals_spring, and F_larvae_summer",
-        "type": "Subset",
-        "size": 1,
-        "deviation": -0.7726437972046875,
-        "attributes": {},
-        "degree": 2,
-        "setMembership": {
-          "Set_A_parentals_spring": "Yes",
-          "Set_B_larvae_spring": "No",
-          "Set_D_tenerals_spring": "No",
-          "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "Yes",
-          "Set_C_pupae_spring": "No"
-        }
-      },
-      "Subset_D_tenerals_spring~&~C_pupae_spring": {
-        "elementName": "D_tenerals_spring, and C_pupae_spring",
-        "type": "Subset",
-        "size": 6,
-        "deviation": 0.3206857476470761,
-        "attributes": {},
-        "degree": 2,
-        "setMembership": {
-          "Set_A_parentals_spring": "No",
-          "Set_B_larvae_spring": "No",
-          "Set_D_tenerals_spring": "Yes",
-          "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "Yes"
-        }
-      },
-      "Subset_A_parentals_spring~&~B_larvae_spring~&~E_parentals_summer": {
-        "elementName": "A_parentals_spring, B_larvae_spring, and E_parentals_summer",
-        "type": "Subset",
-        "size": 1,
-        "deviation": 0.137815957269696,
-        "attributes": {},
-        "degree": 3,
-        "setMembership": {
-          "Set_A_parentals_spring": "Yes",
           "Set_B_larvae_spring": "Yes",
+          "Set_C_pupae_spring": "No",
           "Set_D_tenerals_spring": "No",
           "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "No"
+          "Set_F_larvae_summer": "No"
         }
       },
-      "Subset_A_parentals_spring~&~D_tenerals_spring~&~C_pupae_spring": {
-        "elementName": "A_parentals_spring, D_tenerals_spring, and C_pupae_spring",
+      "Subset_C_pupae_spring~&~D_tenerals_spring": {
+        "elementName": "C_pupae_spring, and D_tenerals_spring",
         "type": "Subset",
-        "size": 7,
-        "deviation": 1.475208676007848,
+        "size": 13,
+        "deviation": 1.795894423654924,
         "attributes": {},
-        "degree": 3,
+        "degree": 2,
         "setMembership": {
-          "Set_A_parentals_spring": "Yes",
           "Set_B_larvae_spring": "No",
+          "Set_C_pupae_spring": "Yes",
           "Set_D_tenerals_spring": "Yes",
           "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "Yes"
+          "Set_F_larvae_summer": "No"
         }
       },
-      "Subset_A_parentals_spring~&~D_tenerals_spring~&~E_parentals_summer": {
-        "elementName": "A_parentals_spring, D_tenerals_spring, and E_parentals_summer",
+      "Subset_C_pupae_spring~&~F_larvae_summer": {
+        "elementName": "C_pupae_spring, and F_larvae_summer",
         "type": "Subset",
         "size": 1,
-        "deviation": 0.04731960139502515,
+        "deviation": -0.5123662257877488,
         "attributes": {},
-        "degree": 3,
+        "degree": 2,
         "setMembership": {
-          "Set_A_parentals_spring": "Yes",
           "Set_B_larvae_spring": "No",
-          "Set_D_tenerals_spring": "Yes",
-          "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "No"
-        }
-      },
-      "Subset_A_parentals_spring~&~E_parentals_summer~&~F_larvae_summer": {
-        "elementName": "A_parentals_spring, E_parentals_summer, and F_larvae_summer",
-        "type": "Subset",
-        "size": 1,
-        "deviation": 0.15681461441595781,
-        "attributes": {},
-        "degree": 3,
-        "setMembership": {
-          "Set_A_parentals_spring": "Yes",
-          "Set_B_larvae_spring": "No",
-          "Set_D_tenerals_spring": "No",
-          "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "Yes",
-          "Set_C_pupae_spring": "No"
-        }
-      },
-      "Subset_A_parentals_spring~&~F_larvae_summer~&~C_pupae_spring": {
-        "elementName": "A_parentals_spring, F_larvae_summer, and C_pupae_spring",
-        "type": "Subset",
-        "size": 1,
-        "deviation": 0.09137040894226327,
-        "attributes": {},
-        "degree": 3,
-        "setMembership": {
-          "Set_A_parentals_spring": "Yes",
-          "Set_B_larvae_spring": "No",
+          "Set_C_pupae_spring": "Yes",
           "Set_D_tenerals_spring": "No",
           "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "Yes",
-          "Set_C_pupae_spring": "Yes"
+          "Set_F_larvae_summer": "Yes"
         }
       },
-      "Subset_B_larvae_spring~&~D_tenerals_spring~&~C_pupae_spring": {
-        "elementName": "B_larvae_spring, D_tenerals_spring, and C_pupae_spring",
+      "Subset_D_tenerals_spring~&~E_parentals_summer": {
+        "elementName": "D_tenerals_spring, and E_parentals_summer",
+        "type": "Subset",
+        "size": 1,
+        "deviation": -0.7137413460036947,
+        "attributes": {},
+        "degree": 2,
+        "setMembership": {
+          "Set_B_larvae_spring": "No",
+          "Set_C_pupae_spring": "No",
+          "Set_D_tenerals_spring": "Yes",
+          "Set_E_parentals_summer": "Yes",
+          "Set_F_larvae_summer": "No"
+        }
+      },
+      "Subset_E_parentals_summer~&~F_larvae_summer": {
+        "elementName": "E_parentals_summer, and F_larvae_summer",
+        "type": "Subset",
+        "size": 1,
+        "deviation": -0.21319271505085952,
+        "attributes": {},
+        "degree": 2,
+        "setMembership": {
+          "Set_B_larvae_spring": "No",
+          "Set_C_pupae_spring": "No",
+          "Set_D_tenerals_spring": "No",
+          "Set_E_parentals_summer": "Yes",
+          "Set_F_larvae_summer": "Yes"
+        }
+      },
+      "Subset_B_larvae_spring~&~C_pupae_spring~&~D_tenerals_spring": {
+        "elementName": "B_larvae_spring, C_pupae_spring, and D_tenerals_spring",
+        "type": "Subset",
+        "size": 8,
+        "deviation": 1.9239256585327287,
+        "attributes": {},
+        "degree": 3,
+        "setMembership": {
+          "Set_B_larvae_spring": "Yes",
+          "Set_C_pupae_spring": "Yes",
+          "Set_D_tenerals_spring": "Yes",
+          "Set_E_parentals_summer": "No",
+          "Set_F_larvae_summer": "No"
+        }
+      },
+      "Subset_B_larvae_spring~&~C_pupae_spring~&~E_parentals_summer": {
+        "elementName": "B_larvae_spring, C_pupae_spring, and E_parentals_summer",
+        "type": "Subset",
+        "size": 1,
+        "deviation": 0.16870496716971198,
+        "attributes": {},
+        "degree": 3,
+        "setMembership": {
+          "Set_B_larvae_spring": "Yes",
+          "Set_C_pupae_spring": "Yes",
+          "Set_D_tenerals_spring": "No",
+          "Set_E_parentals_summer": "Yes",
+          "Set_F_larvae_summer": "No"
+        }
+      },
+      "Subset_C_pupae_spring~&~E_parentals_summer~&~F_larvae_summer": {
+        "elementName": "C_pupae_spring, E_parentals_summer, and F_larvae_summer",
         "type": "Subset",
         "size": 2,
-        "deviation": 0.396296087395361,
+        "deviation": 0.44333361632501084,
         "attributes": {},
         "degree": 3,
         "setMembership": {
-          "Set_A_parentals_spring": "No",
-          "Set_B_larvae_spring": "Yes",
-          "Set_D_tenerals_spring": "Yes",
-          "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "Yes"
+          "Set_B_larvae_spring": "No",
+          "Set_C_pupae_spring": "Yes",
+          "Set_D_tenerals_spring": "No",
+          "Set_E_parentals_summer": "Yes",
+          "Set_F_larvae_summer": "Yes"
         }
       },
-      "Subset_E_parentals_summer~&~F_larvae_summer~&~C_pupae_spring": {
-        "elementName": "E_parentals_summer, F_larvae_summer, and C_pupae_spring",
+      "Subset_D_tenerals_spring~&~E_parentals_summer~&~F_larvae_summer": {
+        "elementName": "D_tenerals_spring, E_parentals_summer, and F_larvae_summer",
         "type": "Subset",
         "size": 1,
-        "deviation": 0.19987001275391472,
+        "deviation": 0.1778609028810428,
         "attributes": {},
         "degree": 3,
         "setMembership": {
-          "Set_A_parentals_spring": "No",
           "Set_B_larvae_spring": "No",
-          "Set_D_tenerals_spring": "No",
+          "Set_C_pupae_spring": "No",
+          "Set_D_tenerals_spring": "Yes",
           "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "Yes",
-          "Set_C_pupae_spring": "Yes"
+          "Set_F_larvae_summer": "Yes"
         }
       },
-      "Subset_A_parentals_spring~&~B_larvae_spring~&~D_tenerals_spring~&~C_pupae_spring": {
-        "elementName": "A_parentals_spring, B_larvae_spring, D_tenerals_spring, and C_pupae_spring",
+      "Subset_B_larvae_spring~&~C_pupae_spring~&~D_tenerals_spring~&~E_parentals_summer": {
+        "elementName": "B_larvae_spring, C_pupae_spring, D_tenerals_spring, and E_parentals_summer",
         "type": "Subset",
-        "size": 6,
-        "deviation": 1.5276295711373677,
+        "size": 1,
+        "deviation": 0.2444302236350874,
         "attributes": {},
         "degree": 4,
         "setMembership": {
-          "Set_A_parentals_spring": "Yes",
           "Set_B_larvae_spring": "Yes",
+          "Set_C_pupae_spring": "Yes",
+          "Set_D_tenerals_spring": "Yes",
+          "Set_E_parentals_summer": "Yes",
+          "Set_F_larvae_summer": "No"
+        }
+      },
+      "Subset_B_larvae_spring~&~C_pupae_spring~&~D_tenerals_spring~&~F_larvae_summer": {
+        "elementName": "B_larvae_spring, C_pupae_spring, D_tenerals_spring, and F_larvae_summer",
+        "type": "Subset",
+        "size": 1,
+        "deviation": 0.24690754168356457,
+        "attributes": {},
+        "degree": 4,
+        "setMembership": {
+          "Set_B_larvae_spring": "Yes",
+          "Set_C_pupae_spring": "Yes",
           "Set_D_tenerals_spring": "Yes",
           "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "Yes"
+          "Set_F_larvae_summer": "Yes"
         }
       },
-      "Subset_A_parentals_spring~&~B_larvae_spring~&~E_parentals_summer~&~C_pupae_spring": {
-        "elementName": "A_parentals_spring, B_larvae_spring, E_parentals_summer, and C_pupae_spring",
+      "Subset_B_larvae_spring~&~C_pupae_spring~&~E_parentals_summer~&~F_larvae_summer": {
+        "elementName": "B_larvae_spring, C_pupae_spring, E_parentals_summer, and F_larvae_summer",
         "type": "Subset",
-        "size": 1,
-        "deviation": 0.24035473240170782,
+        "size": 2,
+        "deviation": 0.5130611554098625,
         "attributes": {},
         "degree": 4,
         "setMembership": {
-          "Set_A_parentals_spring": "Yes",
           "Set_B_larvae_spring": "Yes",
+          "Set_C_pupae_spring": "Yes",
           "Set_D_tenerals_spring": "No",
           "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "Yes"
+          "Set_F_larvae_summer": "Yes"
         }
       },
-      "Subset_A_parentals_spring~&~D_tenerals_spring~&~E_parentals_summer~&~F_larvae_summer": {
-        "elementName": "A_parentals_spring, D_tenerals_spring, E_parentals_summer, and F_larvae_summer",
-        "type": "Subset",
-        "size": 1,
-        "deviation": 0.24235759333856144,
-        "attributes": {},
-        "degree": 4,
-        "setMembership": {
-          "Set_A_parentals_spring": "Yes",
-          "Set_B_larvae_spring": "No",
-          "Set_D_tenerals_spring": "Yes",
-          "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "Yes",
-          "Set_C_pupae_spring": "No"
-        }
-      },
-      "Subset_A_parentals_spring~&~E_parentals_summer~&~F_larvae_summer~&~C_pupae_spring": {
-        "elementName": "A_parentals_spring, E_parentals_summer, F_larvae_summer, and C_pupae_spring",
-        "type": "Subset",
-        "size": 1,
-        "deviation": 0.24346360357109612,
-        "attributes": {},
-        "degree": 4,
-        "setMembership": {
-          "Set_A_parentals_spring": "Yes",
-          "Set_B_larvae_spring": "No",
-          "Set_D_tenerals_spring": "No",
-          "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "Yes",
-          "Set_C_pupae_spring": "Yes"
-        }
-      },
-      "Subset_B_larvae_spring~&~E_parentals_summer~&~F_larvae_summer~&~C_pupae_spring": {
-        "elementName": "B_larvae_spring, E_parentals_summer, F_larvae_summer, and C_pupae_spring",
-        "type": "Subset",
-        "size": 1,
-        "deviation": 0.2543446526639551,
-        "attributes": {},
-        "degree": 4,
-        "setMembership": {
-          "Set_A_parentals_spring": "No",
-          "Set_B_larvae_spring": "Yes",
-          "Set_D_tenerals_spring": "No",
-          "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "Yes",
-          "Set_C_pupae_spring": "Yes"
-        }
-      },
-      "Subset_A_parentals_spring~&~B_larvae_spring~&~D_tenerals_spring~&~E_parentals_summer~&~C_pupae_spring": {
-        "elementName": "A_parentals_spring, B_larvae_spring, D_tenerals_spring, E_parentals_summer, and C_pupae_spring",
-        "type": "Subset",
-        "size": 1,
-        "deviation": 0.25691963225350867,
-        "attributes": {},
-        "degree": 5,
-        "setMembership": {
-          "Set_A_parentals_spring": "Yes",
-          "Set_B_larvae_spring": "Yes",
-          "Set_D_tenerals_spring": "Yes",
-          "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "No",
-          "Set_C_pupae_spring": "Yes"
-        }
-      },
-      "Subset_A_parentals_spring~&~B_larvae_spring~&~D_tenerals_spring~&~F_larvae_summer~&~C_pupae_spring": {
-        "elementName": "A_parentals_spring, B_larvae_spring, D_tenerals_spring, F_larvae_summer, and C_pupae_spring",
-        "type": "Subset",
-        "size": 1,
-        "deviation": 0.25746154557661305,
-        "attributes": {},
-        "degree": 5,
-        "setMembership": {
-          "Set_A_parentals_spring": "Yes",
-          "Set_B_larvae_spring": "Yes",
-          "Set_D_tenerals_spring": "Yes",
-          "Set_E_parentals_summer": "No",
-          "Set_F_larvae_summer": "Yes",
-          "Set_C_pupae_spring": "Yes"
-        }
-      },
-      "Subset_A_parentals_spring~&~B_larvae_spring~&~E_parentals_summer~&~F_larvae_summer~&~C_pupae_spring": {
-        "elementName": "A_parentals_spring, B_larvae_spring, E_parentals_summer, F_larvae_summer, and C_pupae_spring",
-        "type": "Subset",
-        "size": 1,
-        "deviation": 0.2587165027459074,
-        "attributes": {},
-        "degree": 5,
-        "setMembership": {
-          "Set_A_parentals_spring": "Yes",
-          "Set_B_larvae_spring": "Yes",
-          "Set_D_tenerals_spring": "No",
-          "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "Yes",
-          "Set_C_pupae_spring": "Yes"
-        }
-      },
-      "Subset_A_parentals_spring~&~B_larvae_spring~&~D_tenerals_spring~&~E_parentals_summer~&~F_larvae_summer~&~C_pupae_spring": {
-        "elementName": "A_parentals_spring, B_larvae_spring, D_tenerals_spring, E_parentals_summer, F_larvae_summer, and C_pupae_spring",
+      "Subset_B_larvae_spring~&~C_pupae_spring~&~D_tenerals_spring~&~E_parentals_summer~&~F_larvae_summer": {
+        "elementName": "B_larvae_spring, C_pupae_spring, D_tenerals_spring, E_parentals_summer, and F_larvae_summer",
         "type": "Subset",
         "size": 20,
-        "deviation": 5.208036974484761,
+        "deviation": 5.206978550025573,
         "attributes": {},
-        "degree": 6,
+        "degree": 5,
         "setMembership": {
-          "Set_A_parentals_spring": "Yes",
           "Set_B_larvae_spring": "Yes",
+          "Set_C_pupae_spring": "Yes",
           "Set_D_tenerals_spring": "Yes",
           "Set_E_parentals_summer": "Yes",
-          "Set_F_larvae_summer": "Yes",
-          "Set_C_pupae_spring": "Yes"
+          "Set_F_larvae_summer": "Yes"
         }
       }
     }

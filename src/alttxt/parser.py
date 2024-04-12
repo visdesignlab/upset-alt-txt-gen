@@ -260,11 +260,11 @@ class Parser:
             histograms=grammar["plots"]["histograms"],
         )
 
-        if "metaData" in grammar:
+        if "plotInformation" in grammar:
             metaData = MetaDataModel(
-                description=grammar["metaData"]["description"],
-                sets=grammar["metaData"]["sets"],
-                items=grammar["metaData"]["items"],
+                description=grammar["plotInformation"]["description"],
+                sets=grammar["plotInformation"]["sets"],
+                items=grammar["plotInformation"]["items"],
             )
         else:
             metaData = MetaDataModel(

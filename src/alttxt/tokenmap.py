@@ -47,12 +47,12 @@ class TokenMap:
             "title": f"is titled: {self.title}" if self.title else "has no title",
             # Dataset description as attribute name
             "dataset_description": (
-                f"The dataset shows attributes of {self.grammar.metaData.description}. "
+                f"The dataset shows attributes of {self.grammar.metaData.description.lower()}. "
                 if self.grammar.metaData.description
                 else ""
             ),
             # Set description as set name
-            "set_description": f"{self.grammar.metaData.items}" if self.grammar.metaData.items else "elements",
+            "set_description": f"{self.grammar.metaData.items.lower()}" if self.grammar.metaData.items else "elements",
             # largest by what factor
             "largest_factor": f" {self.sort_subsets_by_key(SubsetField.SIZE, True)[0].name} is the largest by a factor of {self.calculate_largest_factor()}." if self.calculate_largest_factor() >= 2 else "",
             # set intersection categorization text based on intersection type and size
@@ -914,11 +914,11 @@ class TokenMap:
         sorted_subsets = sorted(self.data.subsets, key=lambda subset: subset.size, reverse=True)
         
         # Extract set names from the 2nd largest subset
-        # second_largest_sets = self.extract_set_names(sorted_subsets[1].name)
         second_largest_sets = sorted_subsets[1].setMembership
         sets = []
 
         if len(second_largest_sets) == 1:
+            # Extract set names from the 3rd largest subset
             third_largest_sets = sorted_subsets[2].setMembership
             # Find the intersection of sets between the 2nd and 3rd largest subsets
             common_sets = second_largest_sets.union(third_largest_sets)
@@ -937,10 +937,6 @@ class TokenMap:
             return ', '.join(sets[:-1]) + ', and ' + sets[-1]
         else:
             return sets
-
-    def extract_set_names(self, subset_name):
-        set_names = set(subset_name.split(','))
-        return set_names
     
 
     def get_all_set_position(self):

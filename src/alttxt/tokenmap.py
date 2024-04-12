@@ -47,12 +47,12 @@ class TokenMap:
             "title": f"is titled: {self.title}" if self.title else "has no title",
             # Dataset description as attribute name
             "dataset_description": (
-                f"The dataset shows attributes of {self.grammar.metaData.description}. "
+                f"The dataset shows attributes of {self.grammar.metaData.description.lower()}. "
                 if self.grammar.metaData.description
                 else ""
             ),
             # Set description as set name
-            "set_description": f"{self.grammar.metaData.items}" if self.grammar.metaData.items else "elements",
+            "set_description": f"{self.grammar.metaData.items.lower()}" if self.grammar.metaData.items else "elements",
             # largest by what factor
             "largest_factor": f" {self.sort_subsets_by_key(SubsetField.SIZE, True)[0].name} is the largest by a factor of {self.calculate_largest_factor()}." if self.calculate_largest_factor() >= 2 else "",
             # set intersection categorization text based on intersection type and size
@@ -173,7 +173,10 @@ class TokenMap:
             "list10_dev_outliers": self.dev_outliers(10) if len(self.data.subsets)>=10 else self.dev_outliers(len(self.data.subsets)),
             # 5 largest deviations, listed
             "list5_dev_outliers": self.dev_outliers(5) if len(self.data.subsets)>=5 else self.dev_outliers(len(self.data.subsets)),
-            "category_of_subsets": self.categorize_subsets
+            "category_of_subsets": self.categorize_subsets,
+            "highest_dominant_set": self.find_dominant_sets(),
+            "large_sets": self.find_sets_in_large_subsets(),
+            "all_set_index": self.get_all_set_position(),
         }
 
     ###############################
@@ -737,12 +740,8 @@ class TokenMap:
 
             for subset in subsets:
                 # Handle 'the empty set' and 'all set' by directly logging their sizes
-                # if subset.classification in ['the empty set', 'all set']:
-                #     special_sizes[subset.classification] = subset.size
                 if subset.classification in ['the empty set']:
                     special_sizes[subset.classification] = subset.size
-                # elif subset.degree == self.data.all_sets_length:
-                #     special_sizes[IntersectionType.ALL_SET] = subset.size
                 else:
                     classification_sizes[subset.classification] += subset.size
 
@@ -789,7 +788,7 @@ class TokenMap:
                 classification_to_regions[classification] = set(regions_percentages.keys())
 
         # Handle special cases such as 'the empty set' and 'all set'
-        # Assuming they should be directly mapped without considering the threshold
+        # They should be directly mapped without considering the threshold
         for special_case in ['the empty set', 'all set']:
             if special_case in results:
                 for region in results[special_case]:
@@ -799,8 +798,6 @@ class TokenMap:
         final_output = {cls: {regions} if isinstance(regions, str) else set(regions) for cls, regions in classification_to_regions.items()}
         
         return final_output
-
-    
 
     def get_empty_intersection_size(self):
     # Iterate through subsets to find 'the empty intersection'
@@ -894,4 +891,87 @@ class TokenMap:
             return f" The intersection sizes start from a value of {min_int_size} and then {intersection_trend} rise up to {max_int_size}."
         
     
+    def find_dominant_sets(self):
+        # Initialize a counter for all visible sets
+        set_occurrences = Counter()
+
+        # Go through each subset and count the occurrences of each visible set in subset names
+        for subset in self.data.subsets:
+            for set_name in self.grammar.visible_sets:
+                if set_name in subset.name:
+                    set_occurrences[set_name] += 1
+        # Find the most common sets, which returns a list of tuples (set_name, occurrences)
+        most_common_sets = set_occurrences.most_common(2)
+
+        # Extract only the names of the most and second most dominant sets
+        most_dominant_set = most_common_sets[0][0]
+        second_most_dominant_set = most_common_sets[1][0] if len(most_common_sets) > 1 else None
+
+        return f"{most_dominant_set}, and {second_most_dominant_set}"
+
+    def find_sets_in_large_subsets(self):
+        # Sort subsets by size in descending order
+        sorted_subsets = sorted(self.data.subsets, key=lambda subset: subset.size, reverse=True)
+        
+        # Extract set names from the 2nd largest subset
+        second_largest_sets = sorted_subsets[1].setMembership
+        sets = []
+
+        if len(second_largest_sets) == 1:
+            # Extract set names from the 3rd largest subset
+            third_largest_sets = sorted_subsets[2].setMembership
+            # Find the intersection of sets between the 2nd and 3rd largest subsets
+            common_sets = second_largest_sets.union(third_largest_sets)
+
+            for cs in common_sets:
+                sets.append(cs)
+        
+        else:
+            for sm in second_largest_sets:
+                sets.append(sm)
+    
+         # Formatting the return value based on the size of the sets list
+        if len(sets) == 2:
+            return f"{sets[0]} and {sets[1]}"
+        elif len(sets) > 2:
+            return ', '.join(sets[:-1]) + ', and ' + sets[-1]
+        else:
+            return sets
+    
+
+    def get_all_set_position(self):
+    # Sort subsets by size in descending order
+        sorted_subsets = sorted(self.data.subsets, key=lambda subset: subset.size, reverse=True)
+
+        # Find the "all set" intersection if it exists
+        all_set_index = None
+        for index, subset in enumerate(sorted_subsets):
+            if subset.degree == len(self.grammar.visible_sets): # all_sets_length is equal to the number of visible sets
+                all_set_size =  subset.size
+                all_set_index = index
+                break
+
+        if all_set_index is not None:
+            # Determine the position of the "all set" intersection
+            total_subsets = len(sorted_subsets)
+            if all_set_index == 0:
+                return f"The intersection of all sets is the largest with {all_set_size} elements."
+            elif all_set_index == 1:
+                return f"The intersection of all sets is the second largest with {all_set_size} elements."
+            elif all_set_index == 2:
+                return f"The intersection of all sets is the third largest with {all_set_size} elements."
+            elif all_set_index == total_subsets - 1:
+                return f"The intersection of all sets is the smallest with {all_set_size} elements."
+            elif all_set_index == total_subsets - 2:
+                return f"The intersection of all sets is the second smallest with {all_set_size} elements."
+            elif all_set_index == total_subsets - 3:
+                return f"The intersection of all sets is the third smallest with {all_set_size} elements."
+            else:
+                return f"The intersection of all sets is present with {all_set_size} elements."
+        else:
+            return ""
+
+
+
+
 

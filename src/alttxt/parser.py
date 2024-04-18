@@ -152,7 +152,7 @@ class Parser:
             # Deviation - rounded to 2 decimals
             # Backwards compatibility (<v0.2.7)
             try:
-                dev = item.get("attributes", self.default_field)["deviation"]
+                dev: float = round(item.get("attributes", self.default_field)["deviation"])
             except KeyError:
                 dev: float = round(item.get("deviation", self.default_field))
 
@@ -193,7 +193,7 @@ class Parser:
             # Deviation - rounded to 2 decimals
             # Backwards compatibility (<v0.2.7)
             try:
-                dev = item.get("attributes", self.default_field)["deviation"]
+                dev: float = round(item.get("attributes", self.default_field)["deviation"])
             except KeyError:
                 dev: float = round(item.get("deviation", self.default_field))
 

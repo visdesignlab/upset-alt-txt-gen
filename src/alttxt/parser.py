@@ -152,9 +152,9 @@ class Parser:
             # Deviation - rounded to 2 decimals
             # Backwards compatibility (<v0.2.7)
             try:
-                dev: float = round(item.get("attributes", self.default_field)["deviation"])
+                dev: float = round(item.get("attributes", self.default_field)["deviation"], 2)
             except KeyError:
-                dev: float = round(item.get("deviation", self.default_field))
+                dev: float = round(item.get("deviation", self.default_field), 2)
 
             # Degree
             degree: int = int(item.get("degree", self.default_field))
@@ -193,9 +193,9 @@ class Parser:
             # Deviation - rounded to 2 decimals
             # Backwards compatibility (<v0.2.7)
             try:
-                dev: float = round(item.get("attributes", self.default_field)["deviation"])
+                dev: float = round(item.get("attributes", self.default_field)["deviation"], 2)
             except KeyError:
-                dev: float = round(item.get("deviation", self.default_field))
+                dev: float = round(item.get("deviation", self.default_field), 2)
 
             # Degree - the degree might not be available in the raw data, handle accordingly
             degree: int = item.get("degree")

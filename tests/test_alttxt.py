@@ -1,6 +1,8 @@
+from pathlib import Path
 import pytest
 
-from alttxt import tokenmap
+from alttxt.parser import Parser
 
-def practice_test() -> bool:
-    return True
+def test_practice():
+    parser = Parser(Path("data/movie.json"))
+    assert parser is not None

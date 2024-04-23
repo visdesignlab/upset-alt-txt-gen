@@ -1,0 +1,1329 @@
+{
+  "plotInformation": {
+    "description": "",
+    "sets": "",
+    "items": ""
+  },
+  "horizontal": false,
+  "firstAggregateBy": "None",
+  "firstOverlapDegree": 2,
+  "secondAggregateBy": "None",
+  "secondOverlapDegree": 2,
+  "sortVisibleBy": "Alphabetical",
+  "sortBy": "Size",
+  "sortByOrder": "Descending",
+  "filters": {
+    "maxVisible": 6,
+    "minVisible": 0,
+    "hideEmpty": true,
+    "hideNoSet": false
+  },
+  "visibleSets": [
+    "Set_School",
+    "Set_Blue Hair",
+    "Set_Duff Fan",
+    "Set_Evil",
+    "Set_Male",
+    "Set_Power Plant"
+  ],
+  "visibleAttributes": [
+    "Degree",
+    "Deviation",
+    "Age"
+  ],
+  "bookmarkedIntersections": [],
+  "collapsed": [],
+  "plots": {
+    "scatterplots": [],
+    "histograms": []
+  },
+  "allSets": [
+    {
+      "name": "Set_School",
+      "size": 6
+    },
+    {
+      "name": "Set_Blue Hair",
+      "size": 3
+    },
+    {
+      "name": "Set_Duff Fan",
+      "size": 6
+    },
+    {
+      "name": "Set_Evil",
+      "size": 6
+    },
+    {
+      "name": "Set_Male",
+      "size": 18
+    },
+    {
+      "name": "Set_Power Plant",
+      "size": 5
+    }
+  ],
+  "selected": null,
+  "rawData": {
+    "label": "Name",
+    "setColumns": [
+      "School",
+      "Blue Hair",
+      "Duff Fan",
+      "Evil",
+      "Male",
+      "Power Plant"
+    ],
+    "attributeColumns": [
+      "Age"
+    ],
+    "columns": [
+      "_id",
+      "_rev",
+      "Name",
+      "School",
+      "Blue Hair",
+      "Duff Fan",
+      "Evil",
+      "Male",
+      "Power Plant",
+      "Age",
+      "_key"
+    ],
+    "columnTypes": {
+      "_id": "string",
+      "_rev": "string",
+      "Name": "label",
+      "School": "boolean",
+      "Blue Hair": "boolean",
+      "Duff Fan": "boolean",
+      "Evil": "boolean",
+      "Male": "boolean",
+      "Power Plant": "boolean",
+      "Age": "number",
+      "_key": "primary key"
+    },
+    "items": {
+      "simpsons/40726825": {
+        "_id": "simpsons/40726825",
+        "_label": "Lisa",
+        "_key": "40726825",
+        "_rev": "_hETsMiy---",
+        "Name": "Lisa",
+        "School": 1,
+        "Blue Hair": 0,
+        "Duff Fan": 0,
+        "Evil": 0,
+        "Male": 0,
+        "Power Plant": 0,
+        "Age": 8
+      },
+      "simpsons/40726826": {
+        "_id": "simpsons/40726826",
+        "_label": "Bart",
+        "_key": "40726826",
+        "_rev": "_hETsMiy--_",
+        "Name": "Bart",
+        "School": 1,
+        "Blue Hair": 0,
+        "Duff Fan": 0,
+        "Evil": 0,
+        "Male": 1,
+        "Power Plant": 0,
+        "Age": 10
+      },
+      "simpsons/40726827": {
+        "_id": "simpsons/40726827",
+        "_label": "Homer",
+        "_key": "40726827",
+        "_rev": "_hETsMiy--A",
+        "Name": "Homer",
+        "School": 0,
+        "Blue Hair": 0,
+        "Duff Fan": 1,
+        "Evil": 0,
+        "Male": 1,
+        "Power Plant": 1,
+        "Age": 40
+      },
+      "simpsons/40726828": {
+        "_id": "simpsons/40726828",
+        "_label": "Marge",
+        "_key": "40726828",
+        "_rev": "_hETsMiy--B",
+        "Name": "Marge",
+        "School": 0,
+        "Blue Hair": 1,
+        "Duff Fan": 0,
+        "Evil": 0,
+        "Male": 0,
+        "Power Plant": 0,
+        "Age": 36
+      },
+      "simpsons/40726829": {
+        "_id": "simpsons/40726829",
+        "_label": "Maggie",
+        "_key": "40726829",
+        "_rev": "_hETsMiy--C",
+        "Name": "Maggie",
+        "School": 0,
+        "Blue Hair": 0,
+        "Duff Fan": 0,
+        "Evil": 0,
+        "Male": 0,
+        "Power Plant": 0,
+        "Age": 1
+      },
+      "simpsons/40726830": {
+        "_id": "simpsons/40726830",
+        "_label": "Barney",
+        "_key": "40726830",
+        "_rev": "_hETsMiy--D",
+        "Name": "Barney",
+        "School": 0,
+        "Blue Hair": 0,
+        "Duff Fan": 1,
+        "Evil": 0,
+        "Male": 1,
+        "Power Plant": 0,
+        "Age": 39
+      },
+      "simpsons/40726831": {
+        "_id": "simpsons/40726831",
+        "_label": "Mr. Burns",
+        "_key": "40726831",
+        "_rev": "_hETsMiy--E",
+        "Name": "Mr. Burns",
+        "School": 0,
+        "Blue Hair": 0,
+        "Duff Fan": 0,
+        "Evil": 1,
+        "Male": 1,
+        "Power Plant": 1,
+        "Age": 90
+      },
+      "simpsons/40726832": {
+        "_id": "simpsons/40726832",
+        "_label": "Mo",
+        "_key": "40726832",
+        "_rev": "_hETsMiy--F",
+        "Name": "Mo",
+        "School": 0,
+        "Blue Hair": 0,
+        "Duff Fan": 1,
+        "Evil": 0,
+        "Male": 1,
+        "Power Plant": 0,
+        "Age": 41
+      },
+      "simpsons/40726833": {
+        "_id": "simpsons/40726833",
+        "_label": "Ned",
+        "_key": "40726833",
+        "_rev": "_hETsMiy--G",
+        "Name": "Ned",
+        "School": 0,
+        "Blue Hair": 0,
+        "Duff Fan": 0,
+        "Evil": 0,
+        "Male": 1,
+        "Power Plant": 0,
+        "Age": 42
+      },
+      "simpsons/40726834": {
+        "_id": "simpsons/40726834",
+        "_label": "Milhouse",
+        "_key": "40726834",
+        "_rev": "_hETsMiy--H",
+        "Name": "Milhouse",
+        "School": 1,
+        "Blue Hair": 1,
+        "Duff Fan": 0,
+        "Evil": 0,
+        "Male": 1,
+        "Power Plant": 0,
+        "Age": 10
+      },
+      "simpsons/40726835": {
+        "_id": "simpsons/40726835",
+        "_label": "Grampa",
+        "_key": "40726835",
+        "_rev": "_hETsMiy--I",
+        "Name": "Grampa",
+        "School": 0,
+        "Blue Hair": 0,
+        "Duff Fan": 0,
+        "Evil": 0,
+        "Male": 1,
+        "Power Plant": 0,
+        "Age": 85
+      },
+      "simpsons/40726836": {
+        "_id": "simpsons/40726836",
+        "_label": "Krusty",
+        "_key": "40726836",
+        "_rev": "_hETsMiy--J",
+        "Name": "Krusty",
+        "School": 0,
+        "Blue Hair": 0,
+        "Duff Fan": 1,
+        "Evil": 1,
+        "Male": 1,
+        "Power Plant": 0,
+        "Age": 46
+      },
+      "simpsons/40726837": {
+        "_id": "simpsons/40726837",
+        "_label": "Smithers",
+        "_key": "40726837",
+        "_rev": "_hETsMiy--K",
+        "Name": "Smithers",
+        "School": 0,
+        "Blue Hair": 0,
+        "Duff Fan": 0,
+        "Evil": 1,
+        "Male": 1,
+        "Power Plant": 1,
+        "Age": 33
+      },
+      "simpsons/40726838": {
+        "_id": "simpsons/40726838",
+        "_label": "Ralph",
+        "_key": "40726838",
+        "_rev": "_hETsMiy--L",
+        "Name": "Ralph",
+        "School": 1,
+        "Blue Hair": 0,
+        "Duff Fan": 0,
+        "Evil": 0,
+        "Male": 1,
+        "Power Plant": 0,
+        "Age": 8
+      },
+      "simpsons/40726839": {
+        "_id": "simpsons/40726839",
+        "_label": "Sideshow Bob",
+        "_key": "40726839",
+        "_rev": "_hETsMiy--M",
+        "Name": "Sideshow Bob",
+        "School": 0,
+        "Blue Hair": 0,
+        "Duff Fan": 0,
+        "Evil": 1,
+        "Male": 1,
+        "Power Plant": 0,
+        "Age": 37
+      },
+      "simpsons/40726840": {
+        "_id": "simpsons/40726840",
+        "_label": "Kent Brockman",
+        "_key": "40726840",
+        "_rev": "_hETsMiy--N",
+        "Name": "Kent Brockman",
+        "School": 0,
+        "Blue Hair": 0,
+        "Duff Fan": 0,
+        "Evil": 0,
+        "Male": 1,
+        "Power Plant": 0,
+        "Age": 45
+      },
+      "simpsons/40726841": {
+        "_id": "simpsons/40726841",
+        "_label": "Fat Tony",
+        "_key": "40726841",
+        "_rev": "_hETsMiy--O",
+        "Name": "Fat Tony",
+        "School": 0,
+        "Blue Hair": 0,
+        "Duff Fan": 0,
+        "Evil": 1,
+        "Male": 1,
+        "Power Plant": 0,
+        "Age": 50
+      },
+      "simpsons/40726842": {
+        "_id": "simpsons/40726842",
+        "_label": "Jacqueline Bouvier ",
+        "_key": "40726842",
+        "_rev": "_hETsMiy--P",
+        "Name": "Jacqueline Bouvier ",
+        "School": 0,
+        "Blue Hair": 1,
+        "Duff Fan": 0,
+        "Evil": 0,
+        "Male": 0,
+        "Power Plant": 0,
+        "Age": 76
+      },
+      "simpsons/40726843": {
+        "_id": "simpsons/40726843",
+        "_label": "Patty Bouvier",
+        "_key": "40726843",
+        "_rev": "_hETsMiy--Q",
+        "Name": "Patty Bouvier",
+        "School": 0,
+        "Blue Hair": 0,
+        "Duff Fan": 0,
+        "Evil": 0,
+        "Male": 0,
+        "Power Plant": 0,
+        "Age": 45
+      },
+      "simpsons/40726844": {
+        "_id": "simpsons/40726844",
+        "_label": "Selma Bouvier",
+        "_key": "40726844",
+        "_rev": "_hETsMiy--R",
+        "Name": "Selma Bouvier",
+        "School": 0,
+        "Blue Hair": 0,
+        "Duff Fan": 0,
+        "Evil": 0,
+        "Male": 0,
+        "Power Plant": 0,
+        "Age": 45
+      },
+      "simpsons/40726845": {
+        "_id": "simpsons/40726845",
+        "_label": "Lenny Leonard",
+        "_key": "40726845",
+        "_rev": "_hETsMiy--S",
+        "Name": "Lenny Leonard",
+        "School": 0,
+        "Blue Hair": 0,
+        "Duff Fan": 1,
+        "Evil": 0,
+        "Male": 1,
+        "Power Plant": 1,
+        "Age": 38
+      },
+      "simpsons/40726846": {
+        "_id": "simpsons/40726846",
+        "_label": "Carl Carlson",
+        "_key": "40726846",
+        "_rev": "_hETsMiy--T",
+        "Name": "Carl Carlson",
+        "School": 0,
+        "Blue Hair": 0,
+        "Duff Fan": 1,
+        "Evil": 0,
+        "Male": 1,
+        "Power Plant": 1,
+        "Age": 37
+      },
+      "simpsons/40726847": {
+        "_id": "simpsons/40726847",
+        "_label": "Nelson",
+        "_key": "40726847",
+        "_rev": "_hETsMiy--U",
+        "Name": "Nelson",
+        "School": 1,
+        "Blue Hair": 0,
+        "Duff Fan": 0,
+        "Evil": 1,
+        "Male": 1,
+        "Power Plant": 0,
+        "Age": 11
+      },
+      "simpsons/40726848": {
+        "_id": "simpsons/40726848",
+        "_label": "Martin Prince",
+        "_key": "40726848",
+        "_rev": "_hETsMiy--V",
+        "Name": "Martin Prince",
+        "School": 1,
+        "Blue Hair": 0,
+        "Duff Fan": 0,
+        "Evil": 0,
+        "Male": 1,
+        "Power Plant": 0,
+        "Age": 10
+      }
+    },
+    "sets": {
+      "Set_School": {
+        "id": "Set_School",
+        "elementName": "School",
+        "items": [
+          "simpsons/40726825",
+          "simpsons/40726826",
+          "simpsons/40726834",
+          "simpsons/40726838",
+          "simpsons/40726847",
+          "simpsons/40726848"
+        ],
+        "type": "Set",
+        "size": 6,
+        "setMembership": {
+          "School": "Yes",
+          "Blue Hair": "No",
+          "Duff Fan": "No",
+          "Evil": "No",
+          "Male": "No",
+          "Power Plant": "No"
+        },
+        "attributes": {
+          "Age": {
+            "min": 8,
+            "max": 11,
+            "median": 10,
+            "mean": 9.5,
+            "first": 8.5,
+            "third": 10
+          }
+        }
+      },
+      "Set_Blue Hair": {
+        "id": "Set_Blue Hair",
+        "elementName": "Blue Hair",
+        "items": [
+          "simpsons/40726828",
+          "simpsons/40726834",
+          "simpsons/40726842"
+        ],
+        "type": "Set",
+        "size": 3,
+        "setMembership": {
+          "School": "No",
+          "Blue Hair": "Yes",
+          "Duff Fan": "No",
+          "Evil": "No",
+          "Male": "No",
+          "Power Plant": "No"
+        },
+        "attributes": {
+          "Age": {
+            "min": 10,
+            "max": 76,
+            "median": 36,
+            "mean": 40.666666666666664,
+            "first": 23,
+            "third": 56
+          }
+        }
+      },
+      "Set_Duff Fan": {
+        "id": "Set_Duff Fan",
+        "elementName": "Duff Fan",
+        "items": [
+          "simpsons/40726827",
+          "simpsons/40726830",
+          "simpsons/40726832",
+          "simpsons/40726836",
+          "simpsons/40726845",
+          "simpsons/40726846"
+        ],
+        "type": "Set",
+        "size": 6,
+        "setMembership": {
+          "School": "No",
+          "Blue Hair": "No",
+          "Duff Fan": "Yes",
+          "Evil": "No",
+          "Male": "No",
+          "Power Plant": "No"
+        },
+        "attributes": {
+          "Age": {
+            "min": 37,
+            "max": 46,
+            "median": 39.5,
+            "mean": 40.166666666666664,
+            "first": 38.25,
+            "third": 40.75
+          }
+        }
+      },
+      "Set_Evil": {
+        "id": "Set_Evil",
+        "elementName": "Evil",
+        "items": [
+          "simpsons/40726831",
+          "simpsons/40726836",
+          "simpsons/40726837",
+          "simpsons/40726839",
+          "simpsons/40726841",
+          "simpsons/40726847"
+        ],
+        "type": "Set",
+        "size": 6,
+        "setMembership": {
+          "School": "No",
+          "Blue Hair": "No",
+          "Duff Fan": "No",
+          "Evil": "Yes",
+          "Male": "No",
+          "Power Plant": "No"
+        },
+        "attributes": {
+          "Age": {
+            "min": 11,
+            "max": 90,
+            "median": 41.5,
+            "mean": 44.5,
+            "first": 34,
+            "third": 49
+          }
+        }
+      },
+      "Set_Male": {
+        "id": "Set_Male",
+        "elementName": "Male",
+        "items": [
+          "simpsons/40726826",
+          "simpsons/40726827",
+          "simpsons/40726830",
+          "simpsons/40726831",
+          "simpsons/40726832",
+          "simpsons/40726833",
+          "simpsons/40726834",
+          "simpsons/40726835",
+          "simpsons/40726836",
+          "simpsons/40726837",
+          "simpsons/40726838",
+          "simpsons/40726839",
+          "simpsons/40726840",
+          "simpsons/40726841",
+          "simpsons/40726845",
+          "simpsons/40726846",
+          "simpsons/40726847",
+          "simpsons/40726848"
+        ],
+        "type": "Set",
+        "size": 18,
+        "setMembership": {
+          "School": "No",
+          "Blue Hair": "No",
+          "Duff Fan": "No",
+          "Evil": "No",
+          "Male": "Yes",
+          "Power Plant": "No"
+        },
+        "attributes": {
+          "Age": {
+            "min": 8,
+            "max": 90,
+            "median": 38.5,
+            "mean": 37.333333333333336,
+            "first": 16.5,
+            "third": 44.25
+          }
+        }
+      },
+      "Set_Power Plant": {
+        "id": "Set_Power Plant",
+        "elementName": "Power Plant",
+        "items": [
+          "simpsons/40726827",
+          "simpsons/40726831",
+          "simpsons/40726837",
+          "simpsons/40726845",
+          "simpsons/40726846"
+        ],
+        "type": "Set",
+        "size": 5,
+        "setMembership": {
+          "School": "No",
+          "Blue Hair": "No",
+          "Duff Fan": "No",
+          "Evil": "No",
+          "Male": "No",
+          "Power Plant": "Yes"
+        },
+        "attributes": {
+          "Age": {
+            "min": 33,
+            "max": 90,
+            "median": 38,
+            "mean": 47.6,
+            "first": 37,
+            "third": 40
+          }
+        }
+      }
+    }
+  },
+  "processedData": {
+    "values": {
+      "Subset_School~&~Male": {
+        "id": "Subset_School~&~Male",
+        "elementName": "School, and Male",
+        "items": [
+          "simpsons/40726826",
+          "simpsons/40726838",
+          "simpsons/40726848"
+        ],
+        "size": 3,
+        "type": "Subset",
+        "setMembership": {
+          "Set_School": "Yes",
+          "Set_Blue Hair": "No",
+          "Set_Duff Fan": "No",
+          "Set_Evil": "No",
+          "Set_Male": "Yes",
+          "Set_Power Plant": "No"
+        },
+        "attributes": {
+          "Age": {
+            "min": 8,
+            "max": 10,
+            "median": 10,
+            "mean": 9.333333333333334,
+            "first": 9,
+            "third": 10
+          },
+          "deviation": 5.194091796875
+        }
+      },
+      "Subset_Unincluded": {
+        "id": "Subset_Unincluded",
+        "elementName": "Unincluded",
+        "items": [
+          "simpsons/40726829",
+          "simpsons/40726843",
+          "simpsons/40726844"
+        ],
+        "size": 3,
+        "type": "Subset",
+        "setMembership": {
+          "Set_School": "No",
+          "Set_Blue Hair": "No",
+          "Set_Duff Fan": "No",
+          "Set_Evil": "No",
+          "Set_Male": "No",
+          "Set_Power Plant": "No"
+        },
+        "attributes": {
+          "Age": {
+            "min": 1,
+            "max": 45,
+            "median": 45,
+            "mean": 30.333333333333332,
+            "first": 23,
+            "third": 45
+          },
+          "deviation": 5.194091796875
+        }
+      },
+      "Subset_Male": {
+        "id": "Subset_Male",
+        "elementName": "Just Male",
+        "items": [
+          "simpsons/40726833",
+          "simpsons/40726835",
+          "simpsons/40726840"
+        ],
+        "size": 3,
+        "type": "Subset",
+        "setMembership": {
+          "Set_School": "No",
+          "Set_Blue Hair": "No",
+          "Set_Duff Fan": "No",
+          "Set_Evil": "No",
+          "Set_Male": "Yes",
+          "Set_Power Plant": "No"
+        },
+        "attributes": {
+          "Age": {
+            "min": 42,
+            "max": 85,
+            "median": 45,
+            "mean": 57.333333333333336,
+            "first": 43.5,
+            "third": 65
+          },
+          "deviation": -9.417724609375
+        }
+      },
+      "Subset_Duff_Fan~&~Male~&~Power Plant": {
+        "id": "Subset_Duff_Fan~&~Male~&~Power Plant",
+        "elementName": "Duff Fan, Male, and Power Plant",
+        "items": [
+          "simpsons/40726827",
+          "simpsons/40726845",
+          "simpsons/40726846"
+        ],
+        "size": 3,
+        "type": "Subset",
+        "setMembership": {
+          "Set_School": "No",
+          "Set_Blue Hair": "No",
+          "Set_Duff Fan": "Yes",
+          "Set_Evil": "No",
+          "Set_Male": "Yes",
+          "Set_Power Plant": "Yes"
+        },
+        "attributes": {
+          "Age": {
+            "min": 37,
+            "max": 40,
+            "median": 38,
+            "mean": 38.333333333333336,
+            "first": 37.5,
+            "third": 39
+          },
+          "deviation": 10.577392578125
+        }
+      },
+      "Subset_Evil~&~Male": {
+        "id": "Subset_Evil~&~Male",
+        "elementName": "Evil, and Male",
+        "items": [
+          "simpsons/40726839",
+          "simpsons/40726841"
+        ],
+        "size": 2,
+        "type": "Subset",
+        "setMembership": {
+          "Set_School": "No",
+          "Set_Blue Hair": "No",
+          "Set_Duff Fan": "No",
+          "Set_Evil": "Yes",
+          "Set_Male": "Yes",
+          "Set_Power Plant": "No"
+        },
+        "attributes": {
+          "Age": {
+            "min": 37,
+            "max": 50,
+            "median": 43.5,
+            "mean": 43.5,
+            "first": 40.25,
+            "third": 46.75
+          },
+          "deviation": 1.0274251302083328
+        }
+      },
+      "Subset_Evil~&~Male~&~Power_Plant": {
+        "id": "Subset_Evil~&~Male~&~Power_Plant",
+        "elementName": "Evil, Male, and Power Plant",
+        "items": [
+          "simpsons/40726831",
+          "simpsons/40726837"
+        ],
+        "size": 2,
+        "type": "Subset",
+        "setMembership": {
+          "Set_School": "No",
+          "Set_Blue Hair": "No",
+          "Set_Duff Fan": "No",
+          "Set_Evil": "Yes",
+          "Set_Male": "Yes",
+          "Set_Power Plant": "Yes"
+        },
+        "attributes": {
+          "Age": {
+            "min": 33,
+            "max": 90,
+            "median": 61.5,
+            "mean": 61.5,
+            "first": 47.25,
+            "third": 75.75
+          },
+          "deviation": 6.410725911458333
+        }
+      },
+      "Subset_Duff_Fan~&~Male": {
+        "id": "Subset_Duff_Fan~&~Male",
+        "elementName": "Duff Fan, and Male",
+        "items": [
+          "simpsons/40726830",
+          "simpsons/40726832"
+        ],
+        "size": 2,
+        "type": "Subset",
+        "setMembership": {
+          "Set_School": "No",
+          "Set_Blue Hair": "No",
+          "Set_Duff Fan": "Yes",
+          "Set_Evil": "No",
+          "Set_Male": "Yes",
+          "Set_Power Plant": "No"
+        },
+        "attributes": {
+          "Age": {
+            "min": 39,
+            "max": 41,
+            "median": 40,
+            "mean": 40,
+            "first": 39.5,
+            "third": 40.5
+          },
+          "deviation": 1.0274251302083328
+        }
+      },
+      "Subset_Blue_Hair": {
+        "id": "Subset_Blue_Hair",
+        "elementName": "Just Blue Hair",
+        "items": [
+          "simpsons/40726828",
+          "simpsons/40726842"
+        ],
+        "size": 2,
+        "type": "Subset",
+        "setMembership": {
+          "Set_School": "No",
+          "Set_Blue Hair": "Yes",
+          "Set_Duff Fan": "No",
+          "Set_Evil": "No",
+          "Set_Male": "No",
+          "Set_Power Plant": "No"
+        },
+        "attributes": {
+          "Age": {
+            "min": 36,
+            "max": 76,
+            "median": 56,
+            "mean": 56,
+            "first": 46,
+            "third": 66
+          },
+          "deviation": 7.289632161458333
+        }
+      },
+      "Subset_School": {
+        "id": "Subset_School",
+        "elementName": "Just School",
+        "items": [
+          "simpsons/40726825"
+        ],
+        "size": 1,
+        "type": "Subset",
+        "setMembership": {
+          "Set_School": "Yes",
+          "Set_Blue Hair": "No",
+          "Set_Duff Fan": "No",
+          "Set_Evil": "No",
+          "Set_Male": "No",
+          "Set_Power Plant": "No"
+        },
+        "attributes": {
+          "Age": {
+            "min": 8,
+            "max": 8,
+            "median": 8,
+            "mean": 8,
+            "first": 8,
+            "third": 8
+          },
+          "deviation": 1.7313639322916665
+        }
+      },
+      "Subset_School~&~Evil~&~Male": {
+        "id": "Subset_School~&~Evil~&~Male",
+        "elementName": "School, Evil, and Male",
+        "items": [
+          "simpsons/40726847"
+        ],
+        "size": 1,
+        "type": "Subset",
+        "setMembership": {
+          "Set_School": "Yes",
+          "Set_Blue Hair": "No",
+          "Set_Duff Fan": "No",
+          "Set_Evil": "Yes",
+          "Set_Male": "Yes",
+          "Set_Power Plant": "No"
+        },
+        "attributes": {
+          "Age": {
+            "min": 11,
+            "max": 11,
+            "median": 11,
+            "mean": 11,
+            "first": 11,
+            "third": 11
+          },
+          "deviation": 1.7313639322916665
+        }
+      },
+      "Subset_School~&~Blue_Hair~&~Male": {
+        "id": "Subset_School~&~Blue_Hair~&~Male",
+        "elementName": "School, Blue Hair, and Male",
+        "items": [
+          "simpsons/40726834"
+        ],
+        "size": 1,
+        "type": "Subset",
+        "setMembership": {
+          "Set_School": "Yes",
+          "Set_Blue Hair": "Yes",
+          "Set_Duff Fan": "No",
+          "Set_Evil": "No",
+          "Set_Male": "Yes",
+          "Set_Power Plant": "No"
+        },
+        "attributes": {
+          "Age": {
+            "min": 10,
+            "max": 10,
+            "median": 10,
+            "mean": 10,
+            "first": 10,
+            "third": 10
+          },
+          "deviation": 3.1229654947916665
+        }
+      },
+      "Subset_Duff_Fan~&~Evil~&~Male": {
+        "id": "Subset_Duff_Fan~&~Evil~&~Male",
+        "elementName": "Duff Fan, Evil, and Male",
+        "items": [
+          "simpsons/40726836"
+        ],
+        "size": 1,
+        "type": "Subset",
+        "setMembership": {
+          "Set_School": "No",
+          "Set_Blue Hair": "No",
+          "Set_Duff Fan": "Yes",
+          "Set_Evil": "Yes",
+          "Set_Male": "Yes",
+          "Set_Power Plant": "No"
+        },
+        "attributes": {
+          "Age": {
+            "min": 46,
+            "max": 46,
+            "median": 46,
+            "mean": 46,
+            "first": 46,
+            "third": 46
+          },
+          "deviation": 1.7313639322916665
+        }
+      }
+    },
+    "order": [
+      "Subset_School~&~Male",
+      "Subset_Unincluded",
+      "Subset_Male",
+      "Subset_Duff_Fan~&~Male~&~Power Plant",
+      "Subset_Evil~&~Male",
+      "Subset_Evil~&~Male~&~Power_Plant",
+      "Subset_Duff_Fan~&~Male",
+      "Subset_Blue_Hair",
+      "Subset_School",
+      "Subset_School~&~Evil~&~Male",
+      "Subset_School~&~Blue_Hair~&~Male",
+      "Subset_Duff_Fan~&~Evil~&~Male"
+    ]
+  },
+  "accessibleProcessedData": {
+    "values": {
+      "Subset_School~&~Male": {
+        "elementName": "School, and Male",
+        "type": "Subset",
+        "size": 3,
+        "attributes": {
+          "Age": {
+            "min": 8,
+            "max": 10,
+            "median": 10,
+            "mean": 9.333333333333334,
+            "first": 9,
+            "third": 10
+          },
+          "deviation": 5.194091796875
+        },
+        "deviation": 5.194091796875,
+        "degree": 2,
+        "setMembership": {
+          "Set_School": "Yes",
+          "Set_Blue Hair": "No",
+          "Set_Duff Fan": "No",
+          "Set_Evil": "No",
+          "Set_Male": "Yes",
+          "Set_Power Plant": "No"
+        }
+      },
+      "Subset_Unincluded": {
+        "elementName": "Unincluded",
+        "type": "Subset",
+        "size": 3,
+        "attributes": {
+          "Age": {
+            "min": 1,
+            "max": 45,
+            "median": 45,
+            "mean": 30.333333333333332,
+            "first": 23,
+            "third": 45
+          },
+          "deviation": 5.194091796875
+        },
+        "deviation": 5.194091796875,
+        "degree": 0,
+        "setMembership": {
+          "Set_School": "No",
+          "Set_Blue Hair": "No",
+          "Set_Duff Fan": "No",
+          "Set_Evil": "No",
+          "Set_Male": "No",
+          "Set_Power Plant": "No"
+        }
+      },
+      "Subset_Male": {
+        "elementName": "Just Male",
+        "type": "Subset",
+        "size": 3,
+        "attributes": {
+          "Age": {
+            "min": 42,
+            "max": 85,
+            "median": 45,
+            "mean": 57.333333333333336,
+            "first": 43.5,
+            "third": 65
+          },
+          "deviation": -9.417724609375
+        },
+        "deviation": -9.417724609375,
+        "degree": 1,
+        "setMembership": {
+          "Set_School": "No",
+          "Set_Blue Hair": "No",
+          "Set_Duff Fan": "No",
+          "Set_Evil": "No",
+          "Set_Male": "Yes",
+          "Set_Power Plant": "No"
+        }
+      },
+      "Subset_Duff_Fan~&~Male~&~Power Plant": {
+        "elementName": "Duff Fan, Male, and Power Plant",
+        "type": "Subset",
+        "size": 3,
+        "attributes": {
+          "Age": {
+            "min": 37,
+            "max": 40,
+            "median": 38,
+            "mean": 38.333333333333336,
+            "first": 37.5,
+            "third": 39
+          },
+          "deviation": 10.577392578125
+        },
+        "deviation": 10.577392578125,
+        "degree": 3,
+        "setMembership": {
+          "Set_School": "No",
+          "Set_Blue Hair": "No",
+          "Set_Duff Fan": "Yes",
+          "Set_Evil": "No",
+          "Set_Male": "Yes",
+          "Set_Power Plant": "Yes"
+        }
+      },
+      "Subset_Evil~&~Male": {
+        "elementName": "Evil, and Male",
+        "type": "Subset",
+        "size": 2,
+        "attributes": {
+          "Age": {
+            "min": 37,
+            "max": 50,
+            "median": 43.5,
+            "mean": 43.5,
+            "first": 40.25,
+            "third": 46.75
+          },
+          "deviation": 1.0274251302083328
+        },
+        "deviation": 1.0274251302083328,
+        "degree": 2,
+        "setMembership": {
+          "Set_School": "No",
+          "Set_Blue Hair": "No",
+          "Set_Duff Fan": "No",
+          "Set_Evil": "Yes",
+          "Set_Male": "Yes",
+          "Set_Power Plant": "No"
+        }
+      },
+      "Subset_Evil~&~Male~&~Power_Plant": {
+        "elementName": "Evil, Male, and Power Plant",
+        "type": "Subset",
+        "size": 2,
+        "attributes": {
+          "Age": {
+            "min": 33,
+            "max": 90,
+            "median": 61.5,
+            "mean": 61.5,
+            "first": 47.25,
+            "third": 75.75
+          },
+          "deviation": 6.410725911458333
+        },
+        "deviation": 6.410725911458333,
+        "degree": 3,
+        "setMembership": {
+          "Set_School": "No",
+          "Set_Blue Hair": "No",
+          "Set_Duff Fan": "No",
+          "Set_Evil": "Yes",
+          "Set_Male": "Yes",
+          "Set_Power Plant": "Yes"
+        }
+      },
+      "Subset_Duff_Fan~&~Male": {
+        "elementName": "Duff Fan, and Male",
+        "type": "Subset",
+        "size": 2,
+        "attributes": {
+          "Age": {
+            "min": 39,
+            "max": 41,
+            "median": 40,
+            "mean": 40,
+            "first": 39.5,
+            "third": 40.5
+          },
+          "deviation": 1.0274251302083328
+        },
+        "deviation": 1.0274251302083328,
+        "degree": 2,
+        "setMembership": {
+          "Set_School": "No",
+          "Set_Blue Hair": "No",
+          "Set_Duff Fan": "Yes",
+          "Set_Evil": "No",
+          "Set_Male": "Yes",
+          "Set_Power Plant": "No"
+        }
+      },
+      "Subset_Blue_Hair": {
+        "elementName": "Just Blue Hair",
+        "type": "Subset",
+        "size": 2,
+        "attributes": {
+          "Age": {
+            "min": 36,
+            "max": 76,
+            "median": 56,
+            "mean": 56,
+            "first": 46,
+            "third": 66
+          },
+          "deviation": 7.289632161458333
+        },
+        "deviation": 7.289632161458333,
+        "degree": 1,
+        "setMembership": {
+          "Set_School": "No",
+          "Set_Blue Hair": "Yes",
+          "Set_Duff Fan": "No",
+          "Set_Evil": "No",
+          "Set_Male": "No",
+          "Set_Power Plant": "No"
+        }
+      },
+      "Subset_School": {
+        "elementName": "Just School",
+        "type": "Subset",
+        "size": 1,
+        "attributes": {
+          "Age": {
+            "min": 8,
+            "max": 8,
+            "median": 8,
+            "mean": 8,
+            "first": 8,
+            "third": 8
+          },
+          "deviation": 1.7313639322916665
+        },
+        "deviation": 1.7313639322916665,
+        "degree": 1,
+        "setMembership": {
+          "Set_School": "Yes",
+          "Set_Blue Hair": "No",
+          "Set_Duff Fan": "No",
+          "Set_Evil": "No",
+          "Set_Male": "No",
+          "Set_Power Plant": "No"
+        }
+      },
+      "Subset_School~&~Evil~&~Male": {
+        "elementName": "School, Evil, and Male",
+        "type": "Subset",
+        "size": 1,
+        "attributes": {
+          "Age": {
+            "min": 11,
+            "max": 11,
+            "median": 11,
+            "mean": 11,
+            "first": 11,
+            "third": 11
+          },
+          "deviation": 1.7313639322916665
+        },
+        "deviation": 1.7313639322916665,
+        "degree": 3,
+        "setMembership": {
+          "Set_School": "Yes",
+          "Set_Blue Hair": "No",
+          "Set_Duff Fan": "No",
+          "Set_Evil": "Yes",
+          "Set_Male": "Yes",
+          "Set_Power Plant": "No"
+        }
+      },
+      "Subset_School~&~Blue_Hair~&~Male": {
+        "elementName": "School, Blue Hair, and Male",
+        "type": "Subset",
+        "size": 1,
+        "attributes": {
+          "Age": {
+            "min": 10,
+            "max": 10,
+            "median": 10,
+            "mean": 10,
+            "first": 10,
+            "third": 10
+          },
+          "deviation": 3.1229654947916665
+        },
+        "deviation": 3.1229654947916665,
+        "degree": 3,
+        "setMembership": {
+          "Set_School": "Yes",
+          "Set_Blue Hair": "Yes",
+          "Set_Duff Fan": "No",
+          "Set_Evil": "No",
+          "Set_Male": "Yes",
+          "Set_Power Plant": "No"
+        }
+      },
+      "Subset_Duff_Fan~&~Evil~&~Male": {
+        "elementName": "Duff Fan, Evil, and Male",
+        "type": "Subset",
+        "size": 1,
+        "attributes": {
+          "Age": {
+            "min": 46,
+            "max": 46,
+            "median": 46,
+            "mean": 46,
+            "first": 46,
+            "third": 46
+          },
+          "deviation": 1.7313639322916665
+        },
+        "deviation": 1.7313639322916665,
+        "degree": 3,
+        "setMembership": {
+          "Set_School": "No",
+          "Set_Blue Hair": "No",
+          "Set_Duff Fan": "Yes",
+          "Set_Evil": "Yes",
+          "Set_Male": "Yes",
+          "Set_Power Plant": "No"
+        }
+      }
+    }
+  }
+}

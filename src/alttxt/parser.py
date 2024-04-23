@@ -150,20 +150,25 @@ class Parser:
             # size
             size: int = int(item.get("size", self.default_field))
             # Deviation - rounded to 2 decimals
-            dev: float = round(item.get("deviation", self.default_field), 2)
+            # Backwards compatibility (<v0.2.7)
+            try:
+                dev: float = round(item.get("attributes", self.default_field)["deviation"], 2)
+            except KeyError:
+                dev: float = round(item.get("deviation", self.default_field), 2)
+
             # Degree
             degree: int = int(item.get("degree", self.default_field))
             # Classification
             classification = self.classify_subset(degree, len(data["visibleSets"]))
 
-               # Process setMembership to store only the names of sets with "Yes" membership
+            # Process setMembership to store only the names of sets with "Yes" membership
             setMembership = {key[4:] if key.startswith("Set_") else key: value for key, value in item.get("setMembership", {}).items() if value == "Yes"}
-        
+
             # Only store the keys (set names) that have "Yes" as their value
             yes_sets = {key for key, value in setMembership.items() if value == "Yes"}
 
             subsets.append(Subset(name=name, size=size, dev=dev, degree=degree, classification=classification, setMembership=yes_sets))
-        
+
         lowercase_data_visible_subsets = {k.lower(): k for k in data_visible_subsets.keys()}
 
         all_subsets: list[Subset] = []
@@ -186,7 +191,12 @@ class Parser:
             # size
             size: int = int(item.get("size", self.default_field))
             # Deviation - rounded to 2 decimals
-            dev: float = round(item.get("deviation", self.default_field), 2)
+            # Backwards compatibility (<v0.2.7)
+            try:
+                dev: float = round(item.get("attributes", self.default_field)["deviation"], 2)
+            except KeyError:
+                dev: float = round(item.get("deviation", self.default_field), 2)
+
             # Degree - the degree might not be available in the raw data, handle accordingly
             degree: int = item.get("degree")
             if degree is not None:

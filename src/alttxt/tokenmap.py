@@ -910,8 +910,15 @@ class TokenMap:
         return f"{most_dominant_set}, and {second_most_dominant_set}"
 
     def find_sets_in_large_subsets(self):
+
         # Sort subsets by size in descending order
         sorted_subsets = sorted(self.data.subsets, key=lambda subset: subset.size, reverse=True)
+
+        # Check the top two largest subsets and remove them if they have empty setMembership
+        if len(sorted_subsets) > 1 and len(sorted_subsets[1].setMembership) == 0:
+            sorted_subsets.pop(1)  # Remove the second largest if empty
+        elif len(sorted_subsets) > 2 and len(sorted_subsets[2].setMembership) == 0:
+            sorted_subsets.pop(2)  # Remove the third largest if empty
         
         # Extract set names from the 2nd largest subset
         second_largest_sets = sorted_subsets[1].setMembership

@@ -609,7 +609,7 @@ class TokenMap:
 
         # 'largest_subset' now holds the subset with more than one set that has the largest size
         if largest_subset is not None:
-            return self.truncate_string(largest_subset.name, 15), largest_subset.size
+            return self.truncate_separately(largest_subset.name), largest_subset.size
         else:
             return None, 0
 
@@ -628,7 +628,8 @@ class TokenMap:
 
         # 'smallest_subset' now holds the subset with more than one set that has the smallest size
         if smallest_subset is not None:
-            return smallest_subset.name, smallest_subset.size
+            return self.truncate_separately(smallest_subset.name), smallest_subset.size
+        
         else:
             return None, 0
         

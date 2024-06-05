@@ -19,6 +19,7 @@ class TokenMap:
     it is not responsible for the actual substitution of tokens
     or the overall generation of the text description.
     """
+    TRUNCATION_LENGTH = 15  # Global constant for truncation length
 
     def __init__(
         self, data: DataModel, grammar: GrammarModel, title: Optional[str] = None
@@ -54,7 +55,7 @@ class TokenMap:
             # Set description as set name
             "set_description": f"{self.grammar.metaData.items.lower()}" if self.grammar.metaData.items else "elements",
             # largest by what factor
-            "largest_factor": f" {self.sort_subsets_by_key(SubsetField.SIZE, True)[0].name} is the largest by a factor of {self.calculate_largest_factor()}." if self.calculate_largest_factor() >= 2 else "",
+            "largest_factor": f" {self.truncate_separately(self.sort_subsets_by_key(SubsetField.SIZE, True)[0].name)} is the largest by a factor of {self.calculate_largest_factor()}." if self.calculate_largest_factor() >= 2 else "",
             # set intersection categorization text based on intersection type and size
             "empty_set_presence": f" The empty intersection is present with a size of {self.get_empty_intersection_size()}." if (self.categorize_subsets().get('the empty intersection') and self.categorize_subsets().get('the empty intersection')!='largest_data_region') else "",
             "all_set_presence": f" An all set intersection is present with a size of {self.get_all_set_intersection_size()}." if self.get_all_set_intersection_size()!= None else f" An all set intersection is not present.",
@@ -78,7 +79,7 @@ class TokenMap:
             # List of sorted visible set names and sizes
             "list_sorted_visible_sets": self.list_sorted_visible_sets,
             # Largest visible set name
-            "max_set_name": self.sort_visible_sets()[0][0],
+            "max_set_name": self.truncate_string(self.sort_visible_sets()[0][0]),
             # Largest visible set size
             "max_set_size": self.sort_visible_sets()[0][1],
             # max set percentage
@@ -86,7 +87,7 @@ class TokenMap:
                 self.sort_visible_sets()[0][0]
             ),
             # Smallest visible set name
-            "min_set_name": self.sort_visible_sets()[-1][0],
+            "min_set_name": self.truncate_string(self.sort_visible_sets()[-1][0]),
             # Smallest visible set size
             "min_set_size": self.sort_visible_sets()[-1][1],
             # min set percentage
@@ -393,8 +394,10 @@ class TokenMap:
         for i in range(0, n):
             if i >= len(sort):
                 break
-
-            result += f"{sort[i].name} ({sort[i].size}), "
+            
+            formatted_names = self.truncate_separately(sort[i].name)
+            result += f"{formatted_names} ({sort[i].size}), "
+        
             if i == n - 2:
                 result += "and "
 
@@ -525,13 +528,13 @@ class TokenMap:
         # Format the sorted sets into the desired string format
         if len(sorted_by_size) > 1:
             set_strings = [
-                f"{set_name} with {size}" for set_name, size in sorted_by_size[:-1]
+                f"{self.truncate_string(set_name)} with {size}" for set_name, size in sorted_by_size[:-1]
             ]
-            last_set_string = f"{sorted_by_size[-1][0]} with {sorted_by_size[-1][1]}"
+            last_set_string = f"{self.truncate_string(sorted_by_size[-1][0])} with {sorted_by_size[-1][1]}"
             return ", ".join(set_strings) + ", and " + last_set_string
         elif sorted_by_size:
             # If there is only one set after excluding the largest
-            return f"{sorted_by_size[0][0]} with {sorted_by_size[0][1]}"
+            return f"{self.truncate_string(sorted_by_size[0][0])} with {sorted_by_size[0][1]}"
         else:
             # If there are no sets to list (empty or only one set was visible initially)
             return "No sets to list"
@@ -578,10 +581,10 @@ class TokenMap:
         maxmin_set_count = 0
 
         # Total number of non-empty intersections
-        total_non_empty = sum(1 for subset in self.data.all_subsets if subset.size > 0)
+        total_non_empty = sum(1 for subset in self.data.subsets if subset.size > 0)
 
         # Iterate through all subsets
-        for subset in self.data.all_subsets:
+        for subset in self.data.subsets:
             if subset.size > 0:  # Check only non-empty subsets
                 if maxmin_sized_set_name in subset.name:
                     maxmin_set_count += 1
@@ -607,7 +610,7 @@ class TokenMap:
 
         # 'largest_subset' now holds the subset with more than one set that has the largest size
         if largest_subset is not None:
-            return largest_subset.name, largest_subset.size
+            return self.truncate_separately(largest_subset.name), largest_subset.size
         else:
             return None, 0
 
@@ -626,7 +629,8 @@ class TokenMap:
 
         # 'smallest_subset' now holds the subset with more than one set that has the smallest size
         if smallest_subset is not None:
-            return smallest_subset.name, smallest_subset.size
+            return self.truncate_separately(smallest_subset.name), smallest_subset.size
+        
         else:
             return None, 0
         
@@ -907,7 +911,7 @@ class TokenMap:
         most_dominant_set = most_common_sets[0][0]
         second_most_dominant_set = most_common_sets[1][0] if len(most_common_sets) > 1 else None
 
-        return f"{most_dominant_set}, and {second_most_dominant_set}"
+        return f"{self.truncate_string(most_dominant_set)}, and {self.truncate_string(second_most_dominant_set)}"
 
     def find_sets_in_large_subsets(self):
 
@@ -939,11 +943,11 @@ class TokenMap:
     
          # Formatting the return value based on the size of the sets list
         if len(sets) == 2:
-            return f"{sets[0]} and {sets[1]}"
+            return f"{self.truncate_string(sets[0])} and {self.truncate_string(sets[1])}"
         elif len(sets) > 2:
-            return ', '.join(sets[:-1]) + ', and ' + sets[-1]
+            return ', '.join(self.truncate_string(sets[:-1])) + ', and ' + self.truncate_string(sets[-1])
         else:
-            return sets
+            return self.truncate_string(sets)
     
 
     def get_all_set_position(self):
@@ -978,6 +982,41 @@ class TokenMap:
         else:
             return ""
 
+
+    def truncate_string(self, original_string):
+            # Ensure the length is not greater than the string's length
+        if original_string.lower().startswith('just '):
+            original_string = original_string[5:]
+        if original_string.lower().startswith('and '):
+            original_string = original_string[4:]
+
+        if TokenMap.TRUNCATION_LENGTH < len(original_string):
+            return original_string[:TokenMap.TRUNCATION_LENGTH]
+        return original_string
+    
+    def truncate_separately(self, sorted_subset):
+        
+        """
+        Splits a string containing multiple set names separated by commas,
+        truncates each name to a maximum length defined by TokenMap.TRUNCATION_LENGTH,
+        and formats them into a single string.
+
+        Initially for convenience to truncate, we cut down 'and' and 'Just' from the subset name in the truncate_string function.
+        In this function, if the subset contains multiple set names, they are joined into a formatted string
+        with commas separating all but the last two names, which are separated by ", and".
+        If the subset contains only one set name, it prefixes the name with "Just".
+
+        Parameters:
+        sorted_subset (str): A comma-separated string of set names.
+
+        Returns:
+        str: A string of formatted and truncated set names.
+        """
+        truncated_names = [self.truncate_string(name) for name in sorted_subset.split(', ')]
+        formatted_names = ", ".join(truncated_names[:-1]) + ", and " + truncated_names[-1] if len(truncated_names) > 1 else "Just " + truncated_names[0]
+
+        return formatted_names
+    
 
 
 

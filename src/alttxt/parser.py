@@ -147,6 +147,10 @@ class Parser:
             name: str = item.get("elementName", self.default_field)
             if name.lower() == "unincluded":
                 name = "the empty intersection"
+            else:
+            # Replace underscores with hyphens if underscores are present
+                name = name.replace('_', '-') if '_' in name else name
+            
             # size
             size: int = int(item.get("size", self.default_field))
             # Deviation - rounded to 2 decimals
@@ -165,7 +169,7 @@ class Parser:
             setMembership = {key[4:] if key.startswith("Set_") else key: value for key, value in item.get("setMembership", {}).items() if value == "Yes"}
 
             # Only store the keys (set names) that have "Yes" as their value
-            yes_sets = {key for key, value in setMembership.items() if value == "Yes"}
+            yes_sets = {key.replace('_','-') for key, value in setMembership.items() if value == "Yes"}
 
             subsets.append(Subset(name=name, size=size, dev=dev, degree=degree, classification=classification, setMembership=yes_sets))
 
@@ -226,7 +230,7 @@ class Parser:
         #     # must be done after prev steps
             if set_name.startswith("Set_"):
                 set_name = set_name[4:]
-            sets_.append(set_name)
+            sets_.append(set_name.replace('_', '-'))
 
         
         # Initialize deviations
@@ -297,7 +301,7 @@ class Parser:
                 # visible_set_sizes expects "Thriller", rather than "Set_Thriller"
                 name = set_name
                 if name.startswith("Set_"):
-                    name = name[4:]
+                    name = name[4:].replace('_', '-')
 
                 visible_set_sizes[name] = grammar["allSets"][all_set_names.index(set_name)]["size"]
             else:
@@ -316,7 +320,7 @@ class Parser:
         # Remove the 'Set_' prefix from each visible set name, if extant
         for i in range(len(visible_sets)):
             if visible_sets[i].startswith("Set_"):
-                visible_sets[i] = visible_sets[i][4:]
+                visible_sets[i] = visible_sets[i][4:].replace('_', '-')
 
         grammar_model = GrammarModel(
             first_aggregate_by=first_aggregate_by,

@@ -313,7 +313,7 @@ class Parser:
                 lambda bookmarked_intersection: BookmarkedIntersectionModel(
                     **bookmarked_intersection
                 ),
-                grammar["bookmarkedIntersections"],
+                grammar["bookmarks"],
             )
         )
 

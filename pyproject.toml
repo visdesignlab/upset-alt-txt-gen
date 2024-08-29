@@ -24,7 +24,7 @@ no_implicit_reexport = true
 
 [project]
 name = "upset-alttxt"
-version = "0.2.8"
+version = "0.2.9"
 description = "Generates alt text for UpSet plots"
 readme = "README.md"
 requires-python = ">=3.8"

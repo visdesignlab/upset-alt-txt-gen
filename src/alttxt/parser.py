@@ -313,7 +313,11 @@ class Parser:
                 lambda bookmarked_intersection: BookmarkedIntersectionModel(
                     **bookmarked_intersection
                 ),
-                grammar["bookmarkedIntersections"],
+                # Backwards compatibility (<v0.2.8)
+                # if bookmarks is not present, use bookmarkedIntersections
+                # this may introduce some issues with using bookmarks
+                # if removed, this is a breaking change for API calls, and so should likely be moved into a major version
+                grammar.get("bookmarks", grammar.get("bookmarkedIntersections", []))
             )
         )
 

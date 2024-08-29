@@ -1,12 +1,5 @@
 # :sparkles: upset-alt-txt-gen ![Tests](https://github.com/visdesignlab/upset-alt-txt-gen/actions/workflows/tests.yml/badge.svg)
-Design experiments for generating semantically meaningful alt-text. 
-This work is adapted from:
-
-```
-Alan Lundgard AND Arvind Satyanarayan (2022). Accessible Visualization via 
-Natural Language Descriptions: A Four-Level Model of Semantic Content. IEEE 
-Transactions on Visualization & Computer Graphics (Proc. IEEE VIS).
-```
+Design experiments for generating semantically meaningful alt-text for UpSet Plots.
 
 ## Local Deployment
 
@@ -20,7 +13,7 @@ Transactions on Visualization & Computer Graphics (Proc. IEEE VIS).
 
 To run the program with the example data, run `python [path/to/alttxt directory] --data ../../data/movie_data_card_sort.json`
 Level and granularity can be changed to any of the options listed in [Command Line Options](#command-line-options).
-Here is an example command: 
+Here is an example command:
     For unix/macOS: `python3 src/alttxt --data data/movie_data_dev_sort.json`
     For Windows: `python src/alttxt --data data/movie_data_dev_sort.json`
 

@@ -940,12 +940,12 @@ class TokenMap:
         else:
             for sm in second_largest_sets:
                 sets.append(sm)
-    
+
          # Formatting the return value based on the size of the sets list
         if len(sets) == 2:
             return f"{self.truncate_string(sets[0])} and {self.truncate_string(sets[1])}"
         elif len(sets) > 2:
-            return ', '.join(self.truncate_string(sets[:-1])) + ', and ' + self.truncate_string(sets[-1])
+            return self.truncate_separately(', '.join(sets))
         else:
             return self.truncate_string(sets)
     

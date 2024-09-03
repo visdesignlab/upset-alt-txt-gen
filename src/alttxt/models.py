@@ -1,3 +1,4 @@
+from typing import Optional
 from alttxt.enums import AggregateBy, SortBy, SortVisibleBy, SortOrder, IntersectionType
 from pydantic import BaseModel
 
@@ -48,9 +49,11 @@ class PlotModel(BaseModel):
 
 
 class MetaDataModel(BaseModel):
-    description: str
-    sets: str
-    items: str
+    title: Optional[str] = ""
+    caption: Optional[str] = ""
+    description: Optional[str] = ""
+    sets: Optional[str] = ""
+    items: Optional[str] = ""
 
 
 class GrammarModel(BaseModel):

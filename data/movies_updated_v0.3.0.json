@@ -3,8 +3,8 @@
     "description": "",
     "sets": "",
     "items": "",
-    "caption": "[Caption]",
-    "title": "[Title]"
+    "caption": null,
+    "title": null
   },
   "horizontal": false,
   "firstAggregateBy": "None",

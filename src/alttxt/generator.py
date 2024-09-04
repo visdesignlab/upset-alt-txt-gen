@@ -59,7 +59,7 @@ class AltTxtGen:
             altText = self.descriptions["AltText"]
 
             # A short description of the technique used in plot visualization
-            technique = self.descriptions["level_1"]["upset_introduction"]
+            technique = self.descriptions["level_1"]["technical_description"]
 
             # Structured text starts here
             introduction = self.descriptions["level_1"]["upset_introduction"]

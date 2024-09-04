@@ -22,7 +22,8 @@ and the grammar, the symbols must be stripped of their enclosing brackets.
 """
 DESCRIPTIONS: "dict[str, Any]" = {
     "level_1": {
-        "upset_introduction": "[[UpSet]]. [[learn_more]].",
+        "technical_description": "[[UpSet]]. [[learn_more]].",
+        "upset_introduction": "[[short_description]]",
         "dataset_properties": "[[l1_desc]].",
     },
     # L2 splits generation by sort- verbosity is TBA
@@ -35,18 +36,12 @@ DESCRIPTIONS: "dict[str, Any]" = {
     "level_3": {
         "trend_analysis": "[[intersection_trend_change]][[factor_analysis]][[categorization_of_subsets]]",
 
-    },
-    # L3 note: observe which sets are not present in many large intersections
-    "AltText": "This is an UpSet plot which shows the intersections of {{visible_set_count}} sets."
-    " All major intersections involve the set {{highest_dominant_set}}."
-    " The largest intersection is {{max_intersection_name}}, with {{max_intersection_size}} {{set_description}}."
-    " Other large intersections also involve {{large_sets}}."
-    " {{all_set_index}}",
-
+    }, # L3 note: observe which sets are not present in many large intersections
+    "AltText": "[[short_description]]",
     # These are all of the non-terminal symbols that are used in the grammar
     "symbols": {
         # "This is an UpSet plot"
-        "UpSet": "This is an UpSet plot that visualizes set intersection",
+        "UpSet": "This is an UpSet plot that visualizes set intersections",
         # Another title for an UpSet plot
         "InUpSet": "in this UpSet plot",
         # Learn more about UpSet plots
@@ -109,6 +104,12 @@ DESCRIPTIONS: "dict[str, Any]" = {
         "negative deviation is {{avg_neg_dev}}",
         "maxmin_set_percentages_info": "The largest set, {{max_set_name}}, is present in {{max_set_percentage}} of all non-empty intersections."
         " The smallest set, {{min_set_name}}, is present in {{min_set_percentage}} of all non-empty intersections",
+        "short_description": "This is an UpSet plot which shows the intersections of {{visible_set_count}} sets."
+        " [[learn_more]]."
+        " {{highest_dominant_set}}."
+        " The largest intersection is {{max_intersection_name}}, with {{max_intersection_size}} {{set_description}}."
+        " Other large intersections also involve {{large_sets}}."
+        " {{all_set_index}}",
         
     },
 }

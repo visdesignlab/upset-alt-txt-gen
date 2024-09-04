@@ -5,7 +5,6 @@ import statistics
 from alttxt.regionclass import *
 import math
 from collections import Counter
-from scipy.stats import linregress, t
 import numpy as np
 
 
@@ -901,7 +900,7 @@ class TokenMap:
 
         """
         Identifies the dominant sets by based on a percentage threshold over the overall difference. 
-        Returns a formatted string listing the dominant sets that meet the criteria based on the percentage threshold.
+        Returns a formatted string based on the count of the sets
         """
         set_occurrences = Counter()
 
@@ -927,17 +926,19 @@ class TokenMap:
         filtered_sets.insert(0, most_common_sets[0])
 
         if len(filtered_sets) == 1:
-            result = f"{self.truncate_string(filtered_sets[0][0])}"
+            result = f"All major intersections involve the set {self.truncate_string(filtered_sets[0][0])}"
         elif len(filtered_sets) == 2:
-            result = f"{self.truncate_string(filtered_sets[0][0])} and {self.truncate_string(filtered_sets[1][0])}"
+            result = f"All major intersections involve the sets {self.truncate_string(filtered_sets[0][0])} and {self.truncate_string(filtered_sets[1][0])}"
         elif len(filtered_sets) > 2:
-            result = ", ".join(self.truncate_string(set_name[0]) for set_name in filtered_sets[:-1])
+            # Join all but the last set with commas, and add the last set with "and"
+            result = "All major intersections involve the sets " + ", ".join(
+            self.truncate_string(set_name[0]) for set_name in filtered_sets[:-1])
             result += f", and {self.truncate_string(filtered_sets[-1][0])}"
         else:
             result = ""
 
         return result
-
+    
 
     def find_sets_in_large_subsets(self):
 

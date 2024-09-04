@@ -5,7 +5,6 @@ import statistics
 from alttxt.regionclass import *
 import math
 from collections import Counter
-import numpy as np
 
 
 class TokenMap:

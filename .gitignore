@@ -1,5 +1,6 @@
 .DS_Store
 .cache/
+.idea/
 .mypy_cache/
 .pytest_cache/
 .coverage/
@@ -7,6 +8,7 @@
 venv/
 src/alttxt.egg-info/
 src/alttxt/__pycache__/
+src/alttxt/static/.DS_Store
 tests/__pycache__/
 build/
 /.vs

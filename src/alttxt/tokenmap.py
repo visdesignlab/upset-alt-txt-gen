@@ -5,6 +5,8 @@ import statistics
 from alttxt.regionclass import *
 import math
 from collections import Counter
+from scipy.stats import linregress, t
+import numpy as np
 
 
 class TokenMap:
@@ -175,7 +177,7 @@ class TokenMap:
             # 5 largest deviations, listed
             "list5_dev_outliers": self.dev_outliers(5) if len(self.data.subsets)>=5 else self.dev_outliers(len(self.data.subsets)),
             "category_of_subsets": self.categorize_subsets,
-            "highest_dominant_set": self.find_dominant_sets(),
+            "highest_dominant_set": self.find_dominant_sets(len(self.grammar.visible_sets)),
             "large_sets": self.find_sets_in_large_subsets(),
             "all_set_index": self.get_all_set_position(),
         }
@@ -895,23 +897,47 @@ class TokenMap:
             return f" The intersection sizes start from a value of {min_int_size} and then {intersection_trend} rise up to {max_int_size}."
         
     
-    def find_dominant_sets(self):
-        # Initialize a counter for all visible sets
+    def find_dominant_sets(self, visible_sets):
+
+        """
+        Identifies the dominant sets by based on a percentage threshold over the overall difference. 
+        Returns a formatted string listing the dominant sets that meet the criteria based on the percentage threshold.
+        """
         set_occurrences = Counter()
 
-        # Go through each subset and count the occurrences of each visible set in subset names
         for subset in self.data.subsets:
             for set_name in self.grammar.visible_sets:
                 if set_name in subset.name:
                     set_occurrences[set_name] += 1
-        # Find the most common sets, which returns a list of tuples (set_name, occurrences)
-        most_common_sets = set_occurrences.most_common(2)
 
-        # Extract only the names of the most and second most dominant sets
-        most_dominant_set = most_common_sets[0][0]
-        second_most_dominant_set = most_common_sets[1][0] if len(most_common_sets) > 1 else None
+        most_common_sets = set_occurrences.most_common(visible_sets)
 
-        return f"{self.truncate_string(most_dominant_set)}, and {self.truncate_string(second_most_dominant_set)}"
+        occurrences = [count for _, count in most_common_sets]
+
+        overall_diff = occurrences[0] - occurrences[-1]
+
+        filtered_sets = []
+        for i in range(1, len(occurrences)):
+            diff = occurrences[0] - occurrences[i]
+            percentage_change = (diff / overall_diff) * 100 if overall_diff != 0 else 0
+
+            if abs(percentage_change) <= 10:
+                filtered_sets.append(most_common_sets[i])
+
+        filtered_sets.insert(0, most_common_sets[0])
+
+        if len(filtered_sets) == 1:
+            result = f"{self.truncate_string(filtered_sets[0][0])}"
+        elif len(filtered_sets) == 2:
+            result = f"{self.truncate_string(filtered_sets[0][0])} and {self.truncate_string(filtered_sets[1][0])}"
+        elif len(filtered_sets) > 2:
+            result = ", ".join(self.truncate_string(set_name[0]) for set_name in filtered_sets[:-1])
+            result += f", and {self.truncate_string(filtered_sets[-1][0])}"
+        else:
+            result = ""
+
+        return result
+
 
     def find_sets_in_large_subsets(self):
 

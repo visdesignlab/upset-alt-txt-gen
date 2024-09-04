@@ -46,7 +46,7 @@ DESCRIPTIONS: "dict[str, Any]" = {
     # These are all of the non-terminal symbols that are used in the grammar
     "symbols": {
         # "This is an UpSet plot"
-        "UpSet": "This is an UpSet plot that visualizes set intersection",
+        "UpSet": "This is an UpSet plot that visualizes set intersections",
         # Another title for an UpSet plot
         "InUpSet": "in this UpSet plot",
         # Learn more about UpSet plots

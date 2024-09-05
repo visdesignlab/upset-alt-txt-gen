@@ -19,7 +19,7 @@ class TokenMap:
     it is not responsible for the actual substitution of tokens
     or the overall generation of the text description.
     """
-    TRUNCATION_LENGTH = 15  # Global constant for truncation length
+    TRUNCATION_LENGTH = 19  # Global constant for truncation length
 
     def __init__(
         self, data: DataModel, grammar: GrammarModel, title: Optional[str] = None
@@ -396,15 +396,19 @@ class TokenMap:
                 break
             
             formatted_names = self.truncate_separately(sort[i].name)
-            result += f"{formatted_names} ({sort[i].size}), "
-        
-            if i == n - 2:
-                result += "and "
+            result += f"{formatted_names} ({sort[i].size}); "
 
-        # Trim the trailing ', '
+        result = result.rstrip("; ")
+        parts = result.split("; ")
+
+        if len(parts) > 2:
+            result = "; ".join(parts[:-1]) + "; and " + parts[-1]
+        elif len(parts) == 2:
+            result = " and ".join(parts)
+
         if len(sort) < n:
-            return f"The largest {len(sort)} intersections are {result[:-2]}"
-        return f"The largest {n} intersections are {result[:-2]}"
+            return f"The largest {len(sort)} intersections are {result}"
+        return f"The largest {n} intersections are {result}"
 
     def degree_count(self) -> str:
         """
@@ -610,7 +614,26 @@ class TokenMap:
 
         # 'largest_subset' now holds the subset with more than one set that has the largest size
         if largest_subset is not None:
-            return self.truncate_separately(largest_subset.name), largest_subset.size
+            truncated_names = []
+            sorted_subset = largest_subset.name
+    
+            for name in sorted_subset.split(', '):
+                if name == "the empty intersection":
+                    truncated_names.append(name)
+                else:
+                    truncated_names.append(self.truncate_string(name))
+
+        
+            if len(truncated_names) == 2:
+                formatted_names = "between " + " and ".join(truncated_names)
+            elif len(truncated_names) > 2:
+                formatted_names = "between " + ", ".join(truncated_names[:-1]) + ", and " + truncated_names[-1]
+            else:
+                formatted_names = "Just " + truncated_names[0]
+                formatted_names = truncated_names[0] if truncated_names[0] == "the empty intersection" else "Just " + truncated_names[0]
+
+            return formatted_names, largest_subset.size
+            
         else:
             return None, 0
 
@@ -636,12 +659,9 @@ class TokenMap:
         
    
     def calculate_set_divergence(self):
-        # Assuming self.data.subsets is a list of Subset objects with a 'size' attribute
-        # First, find the max and min set sizes
         max_set_size = self.sort_visible_sets()[0][1]
         min_set_size = self.sort_visible_sets()[-1][1]
         
-        # Calculate the divergence percentage
         divergence_percentage = (min_set_size / max_set_size) * 100
 
         # Determine the divergence category
@@ -651,7 +671,7 @@ class TokenMap:
             return IndividualSetSize.DIVERGING.value
         elif 53.35 <= divergence_percentage <= 79.99:
             return IndividualSetSize.DIVERGINGABIT.value
-        else: # divergence_percentage >= 80
+        else:
             return IndividualSetSize.IDENTICAL.value
         
 
@@ -664,8 +684,7 @@ class TokenMap:
         mean_size = statistics.mean(intersection_sizes)
         
         # Determine the trend based on the standard deviation
-        # Adjust the threshold as necessary for your specific data and requirements
-        threshold = 0.1  # Example threshold for deciding between gradual and drastic
+        threshold = 0.1  
         relative_std_dev = std_dev / mean_size
         
         if std_dev == 0:
@@ -676,14 +695,11 @@ class TokenMap:
             return IntersectionTrend.DRASTIC.value
         
     def calculate_largest_factor(self):
-        # Ensure the list is sorted in descending order
         sorted_sizes = self.sort_subsets_by_key(SubsetField.SIZE, True)
-        # Calculate the factor
         if len(sorted_sizes) >= 2:
             largest_size = sorted_sizes[0].size
             second_largest_size = sorted_sizes[1].size
             
-            # Avoid division by zero
             if second_largest_size > 0:
                 factor = largest_size / second_largest_size
                 decimal_part = factor - math.floor(factor)
@@ -941,14 +957,13 @@ class TokenMap:
 
     def find_sets_in_large_subsets(self):
 
-        # Sort subsets by size in descending order
         sorted_subsets = sorted(self.data.subsets, key=lambda subset: subset.size, reverse=True)
 
-        # Check the top two largest subsets and remove them if they have empty setMembership
+        # Check the top two largest subsets and remove them if they have empty setMembership. Remove the second and third largest, if empty
         if len(sorted_subsets) > 1 and len(sorted_subsets[1].setMembership) == 0:
-            sorted_subsets.pop(1)  # Remove the second largest if empty
+            sorted_subsets.pop(1) 
         elif len(sorted_subsets) > 2 and len(sorted_subsets[2].setMembership) == 0:
-            sorted_subsets.pop(2)  # Remove the third largest if empty
+            sorted_subsets.pop(2)  
         
         # Extract set names from the 2nd largest subset
         second_largest_sets = sorted_subsets[1].setMembership
@@ -967,7 +982,6 @@ class TokenMap:
             for sm in second_largest_sets:
                 sets.append(sm)
 
-         # Formatting the return value based on the size of the sets list
         if len(sets) == 2:
             return f"{self.truncate_string(sets[0])} and {self.truncate_string(sets[1])}"
         elif len(sets) > 2:
@@ -977,7 +991,6 @@ class TokenMap:
     
 
     def get_all_set_position(self):
-    # Sort subsets by size in descending order
         sorted_subsets = sorted(self.data.subsets, key=lambda subset: subset.size, reverse=True)
 
         # Find the "all set" intersection if it exists
@@ -988,8 +1001,8 @@ class TokenMap:
                 all_set_index = index
                 break
 
+        # Determine the position of the "all set" intersection
         if all_set_index is not None:
-            # Determine the position of the "all set" intersection
             total_subsets = len(sorted_subsets)
             if all_set_index == 0:
                 return f"The intersection of all sets is the largest with {all_set_size} elements."
@@ -1010,7 +1023,6 @@ class TokenMap:
 
 
     def truncate_string(self, original_string):
-            # Ensure the length is not greater than the string's length
         if original_string.lower().startswith('just '):
             original_string = original_string[5:]
         if original_string.lower().startswith('and '):
@@ -1038,8 +1050,21 @@ class TokenMap:
         Returns:
         str: A string of formatted and truncated set names.
         """
-        truncated_names = [self.truncate_string(name) for name in sorted_subset.split(', ')]
-        formatted_names = ", ".join(truncated_names[:-1]) + ", and " + truncated_names[-1] if len(truncated_names) > 1 else "Just " + truncated_names[0]
+        truncated_names = []
+    
+        for name in sorted_subset.split(', '):
+            if name == "the empty intersection":
+                truncated_names.append(name)
+            else:
+                truncated_names.append(self.truncate_string(name))
+
+    
+        if len(truncated_names) == 2:
+            formatted_names = " and ".join(truncated_names)
+        elif len(truncated_names) > 2:
+            formatted_names = ", ".join(truncated_names[:-1]) + ", and " + truncated_names[-1]
+        else:
+            formatted_names = truncated_names[0] if truncated_names[0] == "the empty intersection" else "just " + truncated_names[0]
 
         return formatted_names
     

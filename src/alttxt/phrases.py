@@ -107,7 +107,7 @@ DESCRIPTIONS: "dict[str, Any]" = {
         "short_description": "This is an UpSet plot which shows the intersections of {{visible_set_count}} sets."
         " [[learn_more]]."
         " {{highest_dominant_set}}."
-        " The largest intersection is {{max_intersection_name}}, with {{max_intersection_size}} {{set_description}}."
+        " The largest non-empty intersection is {{max_intersection_name}}, with {{max_intersection_size}} {{set_description}}."
         " Other large intersections also involve {{large_sets}}."
         " {{all_set_index}}",
         

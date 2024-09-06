@@ -62,6 +62,12 @@ def main(argv: Optional["list[str]"] = None) -> int:
         help="Alt-text structured text with appropriate headers. Returns JSON file with structured text.",
     )
 
+    parser.add_argument(
+        "--table",
+        action="store_true",
+        help="Generate and output a pattern analysis table.",
+    )
+
     args: argparse.Namespace = parser.parse_args(argv)
 
     try:
@@ -76,7 +82,7 @@ def main(argv: Optional["list[str]"] = None) -> int:
 
     tokenMap = TokenMap(data, grammar, title)
 
-    alttext = AltTxtGen(args.level, args.structured, tokenMap, grammar)
+    alttext = AltTxtGen(args.level, args.structured, args.table, tokenMap, grammar)
 
     print(90 * "-")
     print(

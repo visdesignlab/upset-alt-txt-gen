@@ -4,12 +4,10 @@ from typing import Pattern
 from alttxt import phrases
 from alttxt.models import GrammarModel
 
-from alttxt.enums import Explanation, Verbosity, Level
+from alttxt.enums import Level
 from alttxt.tokenmap import TokenMap
 
 from typing import Any
-
-import json
 
 
 class AltTxtGen:
@@ -17,7 +15,6 @@ class AltTxtGen:
         self,
         level: Level,
         structured: bool,
-        table: bool,
         map: TokenMap,
         grammar: GrammarModel,
     ) -> None:
@@ -33,7 +30,6 @@ class AltTxtGen:
         self.descriptions: "dict[str, Any]" = phrases.DESCRIPTIONS
         self.level: Level = level
         self.structured: bool = structured
-        self.table: bool = table
         self.map: TokenMap = map
         self.grammar: GrammarModel = grammar
 
@@ -91,7 +87,6 @@ class AltTxtGen:
             trend_analysis = self.descriptions["level_3"]["trend_analysis"]
             text_desc += trend_analysis
             text_desc += " "
-            
 
             if self.structured:
                 # Construct the dictionary for markdown content
@@ -116,9 +111,6 @@ class AltTxtGen:
 
                 # return the structured final output as a json content
                 return final_output
-
-            if self.table:
-                print("table")
 
         else:
             raise TypeError(f"Expected {Level.list()}. Got {self.level}.")

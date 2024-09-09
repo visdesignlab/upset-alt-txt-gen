@@ -807,7 +807,20 @@ class TokenMap:
         """
         intersection_sizes = [self.data.subsets[i].size for i in range(len(self.data.subsets))]
         print(intersection_sizes)
+        if len(intersection_sizes) < 2:
+            print("Not enough data points to determine the trend.")
+        else:
+            differences = np.diff(intersection_sizes)
+            is_linear = np.isclose(differences, differences[0], atol=1e-5).all()  # You can adjust atol if needed
+            print("Is linear?", is_linear)
+            try:
+                ratios = np.array(intersection_sizes[1:]) / np.array(intersection_sizes[:-1])
+                is_exponential = np.isclose(ratios, ratios[0], atol=1e-5).all()  # You can adjust atol if needed
+                print("Is exponential?", is_exponential)
+            except ZeroDivisionError:
+                print("Cannot determine exponential decrease due to division by zero.")
 
+                
         x = np.arange(len(intersection_sizes))
         y = np.array(intersection_sizes)
         # print(X)

@@ -5,6 +5,8 @@ import statistics
 from alttxt.regionclass import *
 import math
 from collections import Counter
+import numpy as np
+from scipy.stats import linregress
 
 
 class TokenMap:
@@ -59,7 +61,7 @@ class TokenMap:
             # set intersection categorization text based on intersection type and size
             "empty_set_presence": f" The empty intersection is present with a size of {self.get_empty_intersection_size()}." if (self.categorize_subsets().get('the empty intersection') and self.categorize_subsets().get('the empty intersection')!='largest_data_region') else "",
             "all_set_presence": f" An all set intersection is present with a size of {self.get_all_set_intersection_size()}." if self.get_all_set_intersection_size()!= None else f" An all set intersection is not present.",
-            "intersection_trend_analysis":f"{self.calculate_intersection_trend()}" if self.grammar.sort_by == SortBy.SIZE else "",
+            "intersection_trend_analysis":f"{self.calculate_intersection_trend()}",
             "individual_set_presence": f"{self.individual_set_presence()}",
             "low_set_presence": f"{self.low_set_presence()}",
             "high_set_presence": f"{self.high_set_presence()}",
@@ -678,21 +680,39 @@ class TokenMap:
     def calculate_change_trend(self):
         # Extract sizes from the sorted list of tuples (sorted_by_size)
         intersection_sizes = [self.data.subsets[i].size for i in range(len(self.data.subsets))]
-        
+        x = np.arange(len(intersection_sizes))
+        y_log = np.log(np.array(intersection_sizes) + 1)
+        slope, intercept, r_value, p_value, std_err = linregress(x, y_log)
+        r_sqr = r_value**2
+        print(slope, intercept, r_sqr, p_value, std_err )
+        threshold_gradual = 0.1  # Example threshold for gradual trend
+        threshold_drastic = 0.5
         # Calculate the standard deviation of the intersection sizes
         std_dev = statistics.stdev(intersection_sizes)
         mean_size = statistics.mean(intersection_sizes)
-        
         # Determine the trend based on the standard deviation
-        threshold = 0.1  
+        threshold = 0.1
         relative_std_dev = std_dev / mean_size
-        
-        if std_dev == 0:
-            return IntersectionTrend.CONSTANT.value
-        elif relative_std_dev < threshold:
+       
+        if slope < -0.5:
+            return IntersectionTrend.DRASTIC.value
+        elif slope < -0.1:
             return IntersectionTrend.GRADUAL.value
         else:
-            return IntersectionTrend.DRASTIC.value
+            return IntersectionTrend.CONSTANT.value
+        # if abs(slope) < threshold_gradual:
+        #     return IntersectionTrend.CONSTANT.value
+        # elif abs(slope) < threshold_drastic:
+        #     return IntersectionTrend.GRADUAL.value
+        # else:
+        #     return IntersectionTrend.DRASTIC.value
+        # if std_dev == 0:
+        #     return IntersectionTrend.CONSTANT.value
+        # elif relative_std_dev < threshold:
+        #     return IntersectionTrend.GRADUAL.value
+        # else:
+        #     return IntersectionTrend.DRASTIC.value
+
         
     def calculate_largest_factor(self):
         sorted_sizes = self.sort_subsets_by_key(SubsetField.SIZE, True)

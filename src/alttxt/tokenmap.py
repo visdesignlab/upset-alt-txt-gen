@@ -6,8 +6,15 @@ from alttxt.regionclass import *
 import math
 from collections import Counter
 import numpy as np
+import scipy
+import sklearn
 from scipy.stats import linregress, t
 from sklearn.utils import resample
+from scipy.optimize import curve_fit
+import matplotlib.pyplot as plt
+print(f"NumPy version: {np.__version__}")
+print(f"SciPy version: {scipy.__version__}")
+print(f"Scikit-learn version: {sklearn.__version__}")
 
 
 class TokenMap:
@@ -678,99 +685,177 @@ class TokenMap:
             return IndividualSetSize.IDENTICAL.value
         
 
-    def calculate_change_trend(self):
-        # Extract sizes from the sorted list of tuples (sorted_by_size)
-        intersection_sizes = [self.data.subsets[i].size for i in range(len(self.data.subsets))]
-        # print(intersection_sizes)
-        # x = np.arange(len(intersection_sizes))
-        # y_log = np.log(np.array(intersection_sizes) + 1)
-        # slope, intercept, r_value, p_value, std_err = linregress(x, y_log)
-        # r_sqr = r_value**2
-        # print(slope, intercept, r_sqr, p_value, std_err )
-        # threshold_gradual = 0.1  # Example threshold for gradual trend
-        # threshold_drastic = 0.5
-        # # Calculate the standard deviation of the intersection sizes
-        # std_dev = statistics.stdev(intersection_sizes)
-        # mean_size = statistics.mean(intersection_sizes)
-        # # Determine the trend based on the standard deviation
-        # threshold = 0.1
-        # relative_std_dev = std_dev / mean_size
+    # def calculate_change_trend(self):
+    #     # Extract sizes from the sorted list of tuples (sorted_by_size)
+    #     intersection_sizes = [self.data.subsets[i].size for i in range(len(self.data.subsets))]
+    #     print(intersection_sizes)
+    #     # print(intersection_sizes)
+    #     # x = np.arange(len(intersection_sizes))
+    #     # y_log = np.log(np.array(intersection_sizes) + 1)
+    #     # slope, intercept, r_value, p_value, std_err = linregress(x, y_log)
+    #     # r_sqr = r_value**2
+    #     # print(slope, intercept, r_sqr, p_value, std_err )
+    #     # threshold_gradual = 0.1  # Example threshold for gradual trend
+    #     # threshold_drastic = 0.5
+    #     # # Calculate the standard deviation of the intersection sizes
+    #     # std_dev = statistics.stdev(intersection_sizes)
+    #     # mean_size = statistics.mean(intersection_sizes)
+    #     # # Determine the trend based on the standard deviation
+    #     # threshold = 0.1
+    #     # relative_std_dev = std_dev / mean_size
        
-        # if slope < -0.5:
-        #     return IntersectionTrend.DRASTIC.value
-        # elif slope < -0.1:
-        #     return IntersectionTrend.GRADUAL.value
-        # else:
-        #     return IntersectionTrend.CONSTANT.value
+    #     # if slope < -0.5:
+    #     #     return IntersectionTrend.DRASTIC.value
+    #     # elif slope < -0.1:
+    #     #     return IntersectionTrend.GRADUAL.value
+    #     # else:
+    #     #     return IntersectionTrend.CONSTANT.value
 
-        X = np.array(range(len(intersection_sizes))).reshape(-1, 1)
-        y = np.log(np.array(intersection_sizes) + 1) 
+    #     X = np.array(range(len(intersection_sizes))).reshape(-1, 1)
+    #     y = np.log(np.array(intersection_sizes) + 1) 
+    #     print(X)
+    #     print(y)
         
-        slope, intercept, r_value, p_value, std_err = linregress(X.flatten(), y)
+    #     slope, intercept, r_value, p_value, std_err = linregress(X.flatten(), y)
+    #     r_sqr = r_value**2
+    #     print(slope, r_sqr, p_value)
         
-        # 1. P-value Threshold
-        if p_value < 0.001:
-            p_value_interpretation = "Strong evidence of a trend"
-        elif p_value < 0.05:
-            p_value_interpretation = "Moderate evidence of a trend"
-        else:
-            p_value_interpretation = "Weak or no evidence of a trend"
-        
-        print(p_value_interpretation)
+    #     n_bootstraps = 1000
+    #     bootstrapped_slopes = []
+    #     for _ in range(n_bootstraps):
+    #         X_resampled, y_resampled = resample(X, y)
+    #         slope_resampled, _, _, _, _ = linregress(X_resampled.flatten(), y_resampled)
+    #         bootstrapped_slopes.append(slope_resampled)
 
-        mean_x = np.mean(X)
-        mean_y = np.mean(y)
-        sd_x = np.std(X, ddof=1)
-        sd_y = np.std(y, ddof=1)
-        cohens_d = (slope * sd_x) / sd_y
-
-        if abs(cohens_d) < 0.2:
-            effect_size_interpretation = "Negligible effect"
-        elif abs(cohens_d) < 0.5:
-            effect_size_interpretation = "Small effect"
-        elif abs(cohens_d) < 0.8:
-            effect_size_interpretation = "Medium effect"
-        else:
-            effect_size_interpretation = "Large effect"
+    #     mean_slope = np.mean(bootstrapped_slopes)
+    #     std_slope = np.std(bootstrapped_slopes)
+    #     print(mean_slope, std_slope)
         
-        print(effect_size_interpretation)
-
-        confidence_level = 0.95
-        degrees_of_freedom = len(intersection_sizes) - 2
-        t_value = t.ppf((1 + confidence_level) / 2, degrees_of_freedom)
-        margin_of_error = t_value * std_err
-        ci_lower = slope - margin_of_error
-        ci_upper = slope + margin_of_error
+    #     # Define thresholds based on z-scores
+    #     moderate_threshold = 1  # 1 standard deviation
+    #     strong_threshold = 2    # 2 standard deviations
+        
+    #     # Calculate actual thresholds
+    #     moderate_lower = mean_slope - moderate_threshold * std_slope
+    #     moderate_upper = mean_slope + moderate_threshold * std_slope
+    #     strong_lower = mean_slope - strong_threshold * std_slope
+    #     strong_upper = mean_slope + strong_threshold * std_slope
+    #     print(moderate_lower, moderate_upper)
+    #     print(strong_lower, strong_upper)
     
-        if ci_lower > 0 or ci_upper < 0:
-            ci_interpretation = "Confident of a real trend (CI doesn't include 0)"
+        
+    #     # Determine trend strength
+    #     if slope < strong_lower or slope > strong_upper:
+    #         strength = "strong"
+    #     elif slope < moderate_lower or slope > moderate_upper:
+    #         strength = "moderate"
+    #     else:
+    #         strength = "weak"
+            
+
+    #     # Calculate percentiles
+    #     # percentile_2_5 = np.percentile(bootstrapped_slopes, 2.5)
+    #     # percentile_97_5 = np.percentile(bootstrapped_slopes, 97.5)
+
+    #     # print(percentile_2_5,percentile_97_5)
+
+    #     # # Interpret trend strength
+    #     # if slope < percentile_2_5 or slope > percentile_97_5:
+    #     #     strength = "strong"
+    #     # elif slope < np.percentile(bootstrapped_slopes, 25) or slope > np.percentile(bootstrapped_slopes, 75):
+    #     #     strength = "moderate"
+    #     # else:
+    #     #     strength = "weak"
+
+    #     # Interpret trend direction
+    #     direction = "upward" if slope > 0 else "downward"
+
+    #     # Interpret reliability
+    #     if p_value < 0.001:
+    #         reliability = "highly reliable"
+    #     elif p_value < 0.05:
+    #         reliability = "reliable"
+    #     else:
+    #         reliability = "uncertain"
+
+    #     # Interpret fit quality
+    #     fit_quality = r_sqr / np.max([r_sqr, 1 - r_sqr])
+    #     if fit_quality > 2:
+    #         fit = "excellent"
+    #     elif fit_quality > 1:
+    #         fit = "good"
+    #     elif fit_quality > 0.5:
+    #         fit = "moderate"
+    #     else:
+    #         fit = "poor"
+
+    #     trend_statement = f"The data shows a {strength} {direction} trend. " \
+    #                     f"This trend is {reliability} based on statistical significance. " \
+    #                     f"The model's fit to the data is {fit}."
+
+    #     return trend_statement
+        
+
+    def calculate_change_trend(self):
+        """
+        Performs non-linear regression using an exponential decay model
+        Returns: array of optimal values for parameters a (amplitude), b (decay rate), and c (asymptote)
+
+        These steps fit an exponential decay model to the data, extract key parameters,
+        generate points for plotting the fitted curve, and calculate the half-life,
+        providing a comprehensive analysis of the decay behavior in the data.
+        """
+        intersection_sizes = [self.data.subsets[i].size for i in range(len(self.data.subsets))]
+        print(intersection_sizes)
+
+        x = np.arange(len(intersection_sizes))
+        y = np.array(intersection_sizes)
+        # print(X)
+        # print(y)
+        
+        popt, pcov = curve_fit(lambda x, a, b, c: a*np.exp(-b*x)+c, x, y, p0=[max(y), 0.1, min(y)])
+        a, b, c = popt 
+        print(a,b,c)     
+
+        x_fit = np.linspace(0, len(intersection_sizes)-1, 100)
+        y_fit = a * np.exp(-b * x_fit) + c
+
+        half_life = np.log(2) / b
+        print(half_life)
+
+        residuals = y - (a * np.exp(-b * x) + c)
+        ss_res = np.sum(residuals**2)
+        ss_tot = np.sum((y - np.mean(y))**2)
+        r_squared = 1 - (ss_res / ss_tot)
+
+        plt.figure(figsize=(10, 6))
+        plt.scatter(x, y, label='Data')
+        plt.plot(x_fit, y_fit, 'r-', label='Fitted Curve')
+        plt.xlabel('Index')
+        plt.ylabel('Intersection Size')
+        plt.legend()
+        plt.title('Exponential Decay Fit to Intersection Sizes')
+        plt.show()
+
+        # Print results
+        print(f"Equation: y = {a:.2f} * exp(-{b:.4f} * x) + {c:.2f}")
+        print(f"Half-life: {half_life:.2f}")
+        print(f"R-squared: {r_squared:.4f}")
+
+        # Interpret the decay rate
+        if b > 0.5:
+            return IntersectionTrend.DRASTIC.value
+        #     # decay_interpretation = "The data shows a drastic initial decrease."
+        # elif b > 0.1:
+        #     # decay_interpretation = "The data shows a moderate decrease."
         else:
-            ci_interpretation = "Uncertain of a real trend (CI includes 0)"
-        
-        print(ci_interpretation)
+            # decay_interpretation = "The data shows a gradual decrease."
+            return IntersectionTrend.MODERATE.value
 
-        n_bootstraps = 1000
-        bootstrapped_slopes = []
-        for _ in range(n_bootstraps):
-            X_resampled, y_resampled = resample(X, y)
-            slope_resampled, _, _, _, _ = linregress(X_resampled.flatten(), y_resampled)
-            bootstrapped_slopes.append(slope_resampled)
         
-        percentile_10th = np.percentile(bootstrapped_slopes, 10)
-        percentile_25th = np.percentile(bootstrapped_slopes, 25)
-        percentile_75th = np.percentile(bootstrapped_slopes, 75)
-        percentile_90th = np.percentile(bootstrapped_slopes, 90)
-        
-        if slope < percentile_10th or slope > percentile_90th:
-            percentile_interpretation = "Strong trend"
-        elif percentile_10th <= slope < percentile_25th or percentile_75th < slope <= percentile_90th:
-            percentile_interpretation = "Moderate trend"
-        else:
-            percentile_interpretation = "Weak or no trend"
-        print(percentile_interpretation)
 
-        return "xyz"
 
+      
         
     def calculate_largest_factor(self):
         sorted_sizes = self.sort_subsets_by_key(SubsetField.SIZE, True)

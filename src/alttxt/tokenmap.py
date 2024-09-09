@@ -6,7 +6,8 @@ from alttxt.regionclass import *
 import math
 from collections import Counter
 import numpy as np
-from scipy.stats import linregress
+from scipy.stats import linregress, t
+from sklearn.utils import resample
 
 
 class TokenMap:
@@ -680,38 +681,95 @@ class TokenMap:
     def calculate_change_trend(self):
         # Extract sizes from the sorted list of tuples (sorted_by_size)
         intersection_sizes = [self.data.subsets[i].size for i in range(len(self.data.subsets))]
-        x = np.arange(len(intersection_sizes))
-        y_log = np.log(np.array(intersection_sizes) + 1)
-        slope, intercept, r_value, p_value, std_err = linregress(x, y_log)
-        r_sqr = r_value**2
-        print(slope, intercept, r_sqr, p_value, std_err )
-        threshold_gradual = 0.1  # Example threshold for gradual trend
-        threshold_drastic = 0.5
-        # Calculate the standard deviation of the intersection sizes
-        std_dev = statistics.stdev(intersection_sizes)
-        mean_size = statistics.mean(intersection_sizes)
-        # Determine the trend based on the standard deviation
-        threshold = 0.1
-        relative_std_dev = std_dev / mean_size
+        # print(intersection_sizes)
+        # x = np.arange(len(intersection_sizes))
+        # y_log = np.log(np.array(intersection_sizes) + 1)
+        # slope, intercept, r_value, p_value, std_err = linregress(x, y_log)
+        # r_sqr = r_value**2
+        # print(slope, intercept, r_sqr, p_value, std_err )
+        # threshold_gradual = 0.1  # Example threshold for gradual trend
+        # threshold_drastic = 0.5
+        # # Calculate the standard deviation of the intersection sizes
+        # std_dev = statistics.stdev(intersection_sizes)
+        # mean_size = statistics.mean(intersection_sizes)
+        # # Determine the trend based on the standard deviation
+        # threshold = 0.1
+        # relative_std_dev = std_dev / mean_size
        
-        if slope < -0.5:
-            return IntersectionTrend.DRASTIC.value
-        elif slope < -0.1:
-            return IntersectionTrend.GRADUAL.value
+        # if slope < -0.5:
+        #     return IntersectionTrend.DRASTIC.value
+        # elif slope < -0.1:
+        #     return IntersectionTrend.GRADUAL.value
+        # else:
+        #     return IntersectionTrend.CONSTANT.value
+
+        X = np.array(range(len(intersection_sizes))).reshape(-1, 1)
+        y = np.log(np.array(intersection_sizes) + 1) 
+        
+        slope, intercept, r_value, p_value, std_err = linregress(X.flatten(), y)
+        
+        # 1. P-value Threshold
+        if p_value < 0.001:
+            p_value_interpretation = "Strong evidence of a trend"
+        elif p_value < 0.05:
+            p_value_interpretation = "Moderate evidence of a trend"
         else:
-            return IntersectionTrend.CONSTANT.value
-        # if abs(slope) < threshold_gradual:
-        #     return IntersectionTrend.CONSTANT.value
-        # elif abs(slope) < threshold_drastic:
-        #     return IntersectionTrend.GRADUAL.value
-        # else:
-        #     return IntersectionTrend.DRASTIC.value
-        # if std_dev == 0:
-        #     return IntersectionTrend.CONSTANT.value
-        # elif relative_std_dev < threshold:
-        #     return IntersectionTrend.GRADUAL.value
-        # else:
-        #     return IntersectionTrend.DRASTIC.value
+            p_value_interpretation = "Weak or no evidence of a trend"
+        
+        print(p_value_interpretation)
+
+        mean_x = np.mean(X)
+        mean_y = np.mean(y)
+        sd_x = np.std(X, ddof=1)
+        sd_y = np.std(y, ddof=1)
+        cohens_d = (slope * sd_x) / sd_y
+
+        if abs(cohens_d) < 0.2:
+            effect_size_interpretation = "Negligible effect"
+        elif abs(cohens_d) < 0.5:
+            effect_size_interpretation = "Small effect"
+        elif abs(cohens_d) < 0.8:
+            effect_size_interpretation = "Medium effect"
+        else:
+            effect_size_interpretation = "Large effect"
+        
+        print(effect_size_interpretation)
+
+        confidence_level = 0.95
+        degrees_of_freedom = len(intersection_sizes) - 2
+        t_value = t.ppf((1 + confidence_level) / 2, degrees_of_freedom)
+        margin_of_error = t_value * std_err
+        ci_lower = slope - margin_of_error
+        ci_upper = slope + margin_of_error
+    
+        if ci_lower > 0 or ci_upper < 0:
+            ci_interpretation = "Confident of a real trend (CI doesn't include 0)"
+        else:
+            ci_interpretation = "Uncertain of a real trend (CI includes 0)"
+        
+        print(ci_interpretation)
+
+        n_bootstraps = 1000
+        bootstrapped_slopes = []
+        for _ in range(n_bootstraps):
+            X_resampled, y_resampled = resample(X, y)
+            slope_resampled, _, _, _, _ = linregress(X_resampled.flatten(), y_resampled)
+            bootstrapped_slopes.append(slope_resampled)
+        
+        percentile_10th = np.percentile(bootstrapped_slopes, 10)
+        percentile_25th = np.percentile(bootstrapped_slopes, 25)
+        percentile_75th = np.percentile(bootstrapped_slopes, 75)
+        percentile_90th = np.percentile(bootstrapped_slopes, 90)
+        
+        if slope < percentile_10th or slope > percentile_90th:
+            percentile_interpretation = "Strong trend"
+        elif percentile_10th <= slope < percentile_25th or percentile_75th < slope <= percentile_90th:
+            percentile_interpretation = "Moderate trend"
+        else:
+            percentile_interpretation = "Weak or no trend"
+        print(percentile_interpretation)
+
+        return "xyz"
 
         
     def calculate_largest_factor(self):

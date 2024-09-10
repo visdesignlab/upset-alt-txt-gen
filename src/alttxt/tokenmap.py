@@ -1,6 +1,6 @@
 from typing import Any, Callable, Tuple, Union, Optional
 from alttxt.models import DataModel, GrammarModel, Subset
-from alttxt.enums import SubsetField, IndividualSetSize, IntersectionTrend, SortBy, IntersectionType, SortOrder
+from alttxt.enums import SubsetField, IndividualSetSize, IntersectionTrend
 import statistics
 from alttxt.regionclass import *
 import math
@@ -100,6 +100,12 @@ class TokenMap:
             # largest intersection name and size
             "max_intersection_name": self.calculate_max_intersection()[0],
             "max_intersection_size": self.calculate_max_intersection()[1],
+            # largest two intersections
+            "largest_intersections": self.max_n_intersections(2),
+            # largest two set or more intersections, conditional on largest_intersections not containing the same information
+            "two_set_intersection": self.max_intersection_two_sets(),
+            # other large intersections. conditional on largest_intersections not containing the same information
+            "other_large_intersections": self.other_large_intersections(),
             # size of the largest set/intersection
             "min_size": min(self.data.count),
             # size of the smallest set/intersection
@@ -384,6 +390,72 @@ class TokenMap:
 
         # Trim the trailing ', '
         return result[:-2]
+
+    def other_large_intersections(self) -> str:
+        """
+        Identifies and returns a string describing other large intersections involving large sets.
+
+        This method first finds sets that are part of large subsets and then identifies the 
+        largest intersections among them. If any of these large sets are found 
+        within the already defined dominant sets, it returns an empty string
+        Otherwise, it returns a formatted string indicating the involvement of other large intersections.
+
+        Returns:
+            str: A description of other large intersections involving large sets, or an empty 
+            string if the largest intersections are found within the large sets.
+        """
+        large_sets = self.find_sets_in_large_subsets().strip()
+
+        dominant_sets = self.find_dominant_sets(len(self.grammar.visible_sets))
+
+        if large_sets in dominant_sets:
+            return ""
+
+        largest_intersections = [self.sort_subsets_by_key(SubsetField.SIZE, True)[i] for i in range(2)]
+
+        # there are much better ways to implement this, but I am strapped for time...
+        # TODO: improve this implementation
+        # for every set in large_sets, check if it is entirely in any of the largest_intersections set membership list
+        for intersection in largest_intersections:
+            # initialize a flag to check if the set is in the intersection
+            is_in_largest_intersections = True
+            # remove 'and' and split the large_sets string to get individual set names
+            for set in large_sets.replace('and', '').split(", "):
+                # remove any whitespace
+                set = set.strip()
+                # if the set is not in the setmembership, we should break and set the flag to false
+                # this is required because it is possible that there are multiple intersections that need to be checked
+                if set not in intersection.setMembership:
+                    is_in_largest_intersections = False
+                    break
+            if is_in_largest_intersections:
+                return ""
+
+        return f" Other large intersections also involve {large_sets}."
+
+    def max_intersection_two_sets(self) -> str:
+        """
+        Determines the largest intersection of at least two sets and returns a descriptive string.
+
+        This method calculates the maximum intersection of sets and constructs a string that describes
+        the largest intersection in terms of its name and size. It also checks if the largest intersection
+        is among the top two largest intersections.
+
+        Returns:
+            str: A string describing the largest intersection of at least two sets, including its name and size.
+        """
+        max_intersection = self.calculate_max_intersection()
+        max_name = max_intersection[0]
+        max_size = max_intersection[1]
+
+        items = f"{self.grammar.metaData.items.lower()}" if self.grammar.metaData.items else "elements"
+
+        largest_two_intersections = self.max_n_intersections(2)
+
+        if max_name.replace("between", "") in largest_two_intersections:
+            return ""
+
+        return f" The largest intersection of at least two sets is {max_name}, with {max_size} {items}."
 
     def max_n_intersections(self, n: int) -> str:
         """
@@ -922,72 +994,91 @@ class TokenMap:
                 return f" In {' and '.join(regions_formatted)} sized intersections, the high order set intersections are significantly present."
         else:
             return " No high order intersections are present."
-        
 
     def calculate_intersection_trend(self) -> str:
         intersection_trend = self.calculate_change_trend()
 
         max_int_size = self.sort_subsets_by_key(SubsetField.SIZE, True)[0].size
-        min_int_size =  self.sort_subsets_by_key(SubsetField.SIZE, True)[-1].size
-       
+        min_int_size = self.sort_subsets_by_key(SubsetField.SIZE, True)[-1].size
+
         return f" The intersection sizes peak at a value of {max_int_size} and then {intersection_trend} flatten down to {min_int_size}."
 
-        
-    
-    def find_dominant_sets(self, visible_sets):
-
+    def find_dominant_intersections(self):
         """
-        Identifies the dominant sets by based on a percentage threshold over the overall difference. 
-        Returns a formatted string based on the count of the sets
+        Identify and return the dominant intersections from the dataset.
+
+        This method calculates the average size of intersections and filters out
+        the intersections that have a size greater than this average.
+
+        Returns:
+            list: A list of subsets where each subset has a size greater than the average size.
+        """
+        # use the average size intersection and get all intersections that are of greater size than this
+        avg_size = self.avg_size()
+
+        dominant_intersections = [subset for subset in self.data.subsets if float(subset.size) > float(avg_size)]
+
+        return dominant_intersections
+
+    def find_dominant_sets(self, visible_sets):
+        """
+        Identifies and returns a description of the dominant sets based on their occurrences in dominant intersections.
+
+        Args:
+            visible_sets (int): The number of most common sets to consider.
+
+        Returns:
+            str: A description of the dominant sets, indicating which sets are dominant and their occurrence percentages.
+
+        The method works as follows:
+        1. It calculates the occurrences of each set in the dominant intersections.
+        2. It filters the sets based on an 80% occurrence threshold.
+        3. It generates a descriptive string indicating the dominant sets and their occurrences.
         """
         set_occurrences = Counter()
 
-        for subset in self.data.subsets:
+        dominant_intersections = self.find_dominant_intersections()
+
+        # get common occurences for each set
+        for subset in dominant_intersections:
             for set_name in self.grammar.visible_sets:
                 if set_name in subset.name:
                     set_occurrences[set_name] += 1
 
         most_common_sets = set_occurrences.most_common(visible_sets)
 
-        occurrences = [count for _, count in most_common_sets]
-
-        overall_diff = occurrences[0] - occurrences[-1]
+        # 80% threshold for "dominant" set
+        THRESHOLD = 80
 
         filtered_sets = []
-        for i in range(1, len(occurrences)):
-            diff = occurrences[0] - occurrences[i]
-            percentage_change = (diff / overall_diff) * 100 if overall_diff != 0 else 0
 
-            if abs(percentage_change) <= 10:
-                filtered_sets.append(most_common_sets[i])
+        # for each value in most_common_sets, filter by the percentage threshold
+        for set_name, count in most_common_sets:
+            percentage = (count / len(dominant_intersections)) * 100
+            if percentage >= THRESHOLD:
+                filtered_sets.append((set_name, count, percentage))
 
-        filtered_sets.insert(0, most_common_sets[0])
+        result = ""
 
         if len(filtered_sets) == 1:
-            result = f"All major intersections involve the set {self.truncate_string(filtered_sets[0][0])}"
-        elif len(filtered_sets) == 2:
-            result = f"All major intersections involve the sets {self.truncate_string(filtered_sets[0][0])} and {self.truncate_string(filtered_sets[1][0])}"
-        elif len(filtered_sets) > 2:
-            # Join all but the last set with commas, and add the last set with "and"
-            result = "All major intersections involve the sets " + ", ".join(
-            self.truncate_string(set_name[0]) for set_name in filtered_sets[:-1])
-            result += f", and {self.truncate_string(filtered_sets[-1][0])}"
-        else:
-            result = ""
+            if filtered_sets[0][2] == 100:
+                result = f" {self.truncate_string(filtered_sets[0][0])} is the dominant set, appearing in all major intersections."
+            else:
+                result = f" {self.truncate_string(filtered_sets[0][0])} is the dominant set with {filtered_sets[0][1]} occurrences."
+        elif len(filtered_sets) > 1:
+            result = f" {self.truncate_separately(', '.join([set_name[0] for set_name in filtered_sets]))} are the dominant sets."
 
         return result
-    
 
     def find_sets_in_large_subsets(self):
-
         sorted_subsets = sorted(self.data.subsets, key=lambda subset: subset.size, reverse=True)
 
         # Check the top two largest subsets and remove them if they have empty setMembership. Remove the second and third largest, if empty
         if len(sorted_subsets) > 1 and len(sorted_subsets[1].setMembership) == 0:
-            sorted_subsets.pop(1) 
+            sorted_subsets.pop(1)
         elif len(sorted_subsets) > 2 and len(sorted_subsets[2].setMembership) == 0:
-            sorted_subsets.pop(2)  
-        
+            sorted_subsets.pop(2)
+
         # Extract set names from the 2nd largest subset
         second_largest_sets = sorted_subsets[1].setMembership
         sets = []
@@ -1000,7 +1091,7 @@ class TokenMap:
 
             for cs in common_sets:
                 sets.append(cs)
-        
+
         else:
             for sm in second_largest_sets:
                 sets.append(sm)
@@ -1011,7 +1102,6 @@ class TokenMap:
             return self.truncate_separately(', '.join(sets))
         else:
             return self.truncate_string(sets)
-    
 
     def get_all_set_position(self):
         sorted_subsets = sorted(self.data.subsets, key=lambda subset: subset.size, reverse=True)
@@ -1019,8 +1109,8 @@ class TokenMap:
         # Find the "all set" intersection if it exists
         all_set_index = None
         for index, subset in enumerate(sorted_subsets):
-            if subset.degree == len(self.grammar.visible_sets): # all_sets_length is equal to the number of visible sets
-                all_set_size =  subset.size
+            if subset.degree == len(self.grammar.visible_sets):  # all_sets_length is equal to the number of visible sets
+                all_set_size = subset.size
                 all_set_index = index
                 break
 
@@ -1090,8 +1180,3 @@ class TokenMap:
             formatted_names = truncated_names[0] if truncated_names[0] == "the empty intersection" else "just " + truncated_names[0]
 
         return formatted_names
-    
-
-
-
-

@@ -104,12 +104,12 @@ DESCRIPTIONS: "dict[str, Any]" = {
         "negative deviation is {{avg_neg_dev}}",
         "maxmin_set_percentages_info": "The largest set, {{max_set_name}}, is present in {{max_set_percentage}} of all non-empty intersections."
         " The smallest set, {{min_set_name}}, is present in {{min_set_percentage}} of all non-empty intersections",
-        "short_description": "This is an UpSet plot which shows the intersections of {{visible_set_count}} sets."
+        "short_description": "This is an UpSet plot that shows the intersections of {{visible_set_count}} sets."
         " [[learn_more]]."
-        " {{highest_dominant_set}}."
-        " The largest non-empty intersection is {{max_intersection_name}}, with {{max_intersection_size}} {{set_description}}."
+        "{{highest_dominant_set}}"
+        " {{largest_intersections}}."
+        " The largest intersection of at least two sets is {{max_intersection_name}}, with {{max_intersection_size}} {{set_description}}."
         " Other large intersections also involve {{large_sets}}."
         " {{all_set_index}}",
-        
     },
 }

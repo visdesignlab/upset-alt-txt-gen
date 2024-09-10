@@ -685,7 +685,6 @@ class TokenMap:
         Returns the intersection trend type based on the decay rate (b)
         """
         intersection_sizes = [self.data.subsets[i].size for i in range(len(self.data.subsets))]
-        print(intersection_sizes)
 
         x = np.arange(len(intersection_sizes))
         y = np.array(intersection_sizes)

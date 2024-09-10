@@ -1,3 +1,4 @@
+alttxt==0.0.0
 annotated-types==0.7.0
 numpy==2.1.1
 pydantic==2.9.1

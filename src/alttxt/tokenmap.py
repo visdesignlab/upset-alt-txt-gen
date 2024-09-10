@@ -740,108 +740,175 @@ class TokenMap:
 
     def categorize_subsets(self):
         """
-        Categorize the subsets into small, medium, large and largest regions based on their size.
+        Categorize the subsets into small, medium, large and largest regions based on their coeficent of variance.
+        Based on the varainces, we do set two thresholds for large region of intersections and small region intersections
+        Then we assign the intersection types (individual, low-degree, medium-degree, high-order sets)  based on the percentage presence (>=50%)
+        Returns a dictionary of intersection types being on the region(s)
+
         """
         results = {}
         sorted_subsets = sorted(self.data.subsets, key=lambda subset: subset.size, reverse=True)
+        print('the sorted subset is')
+        # print(sorted_subsets)
         
-        largest_subset = sorted_subsets.pop(0)  # Remove the largest
-        
-        median_size = statistics.median([subset.size for subset in sorted_subsets])
+        largest_subset = sorted_subsets.pop(0)  
         
         region_classification = RegionClassification()
-        
         region_classification.set_largest(largest_subset)
-        
-        close_to_zero_threshold = median_size * 1.2  # Define what 'close to zero' means
-        
+
+        if not sorted_subsets:
+            return {'largest_data_region': [largest_subset]}
+
+        sizes = [subset.size for subset in sorted_subsets]
+        unique_sizes = sorted(set(sizes), reverse=True)  
+
+        q1, median, q3 = np.percentile(unique_sizes, [25, 50, 75])
+        iqr = q3 - q1
+        mean_size = np.mean(unique_sizes)
+        std_dev = np.std(unique_sizes)
+        cv = std_dev / mean_size if mean_size != 0 else 0
+
+        print("Unique Sizes Statistics:")
+        print("Q1:", q1, "Median:", median, "Q3:", q3, "IQR:", iqr)
+        print("Mean:", mean_size, "Standard Deviation:", std_dev, "Coefficient of Variation (cv):", cv)
+
+        if cv < 0.5:
+            multiplier = 0.5 
+        elif cv < 1:
+            multiplier = 1 
+        else:
+            multiplier = 1.5 
+
+        # print(median)
+        large_threshold = median + multiplier * iqr
+        small_threshold = median - multiplier * iqr
+
+        # print("the small & large tresholds")
+        # print(small_threshold)
+        # print(large_threshold)
+
+        size_categories = {}
+
+        for size in unique_sizes:
+            if size >= large_threshold:
+                size_categories[size] = 'large'
+            elif size <= small_threshold:
+                size_categories[size] = 'small'
+            else:
+                size_categories[size] = 'medium'
+
+
         for subset in sorted_subsets:
-            deviation = subset.size - median_size
-            
-            if deviation < 0 and abs(deviation) > abs(median_size-close_to_zero_threshold):
-                region_classification.add_to_small_region(subset)
-            elif deviation == 0 or abs(deviation) <= abs(median_size-close_to_zero_threshold):
-                region_classification.add_to_medium_region(subset)
-            else:  # deviation > 0 and not close to zero
+            category = size_categories[subset.size]
+            if category == 'large':
                 region_classification.add_to_large_region(subset)
+            elif category == 'medium':
+                region_classification.add_to_medium_region(subset)
+            else:  # small
+                region_classification.add_to_small_region(subset)
 
+        # print("before adjusting")
+        # region_p = {
+        #     'largest_data_region': [region_classification.largest_data_region],
+        #     'large_data_region': region_classification.large_data_region,
+        #     'medium_data_region': region_classification.medium_data_region,
+        #     'small_data_region': region_classification.small_data_region, 
+        # }
+        # print(region_p)
 
+        # the small treshold do not always perform well, specially in the case of being the smallest intersection really pretty smaller than the largest
+        if not region_classification.large_data_region and region_classification.medium_data_region:
+            largest_medium = max(region_classification.medium_data_region, key=lambda x: x.size)
+            region_classification.medium_data_region = [x for x in region_classification.medium_data_region if x.size != largest_medium.size]
+            region_classification.large_data_region = [x for x in sorted_subsets if x.size == largest_medium.size]
+        
+        if not region_classification.small_data_region and region_classification.medium_data_region:
+            smallest_medium = min(region_classification.medium_data_region, key=lambda x: x.size)
+            region_classification.medium_data_region = [x for x in region_classification.medium_data_region if x.size != smallest_medium.size]
+            region_classification.small_data_region = [x for x in sorted_subsets if x.size == smallest_medium.size]
+
+        regions = {
+            'largest_data_region': [region_classification.largest_data_region],
+            'large_data_region': region_classification.large_data_region,
+            'medium_data_region': region_classification.medium_data_region,
+            'small_data_region': region_classification.small_data_region, 
+        }
+       
         regions = {
         'largest_data_region': [region_classification.largest_data_region],
         'large_data_region': region_classification.large_data_region,
         'medium_data_region': region_classification.medium_data_region,
-        'small_data_region': region_classification.small_data_region,
-        # Assuming largest_data_region is a single subset, not a list
-        
+        'small_data_region': region_classification.small_data_region, 
         }
-
+        # print("region class")
+        # print(regions)
 
         total_sizes = {region: sum(subset.size for subset in subsets) for region, subsets in regions.items()}
 
         for region_name, subsets in regions.items():
-            # Initialize dictionary to store sizes for special classifications
             special_sizes = {}
-            # Initialize Counter for other classifications
             classification_sizes = Counter()
 
             for subset in subsets:
-                # Handle 'the empty set' and 'all set' by directly logging their sizes
                 if subset.classification in ['the empty set']:
                     special_sizes[subset.classification] = subset.size
                 else:
                     classification_sizes[subset.classification] += subset.size
 
                     
-
-            # Calculate percentages based on sizes for other classifications
             percentages = {cls: (size / total_sizes[region_name] * 100) for cls, size in classification_sizes.items()}
             
-            # Update results with percentages and direct sizes for special cases
             results[region_name] = {**percentages, **special_sizes}
 
         classification_to_regions = {}
         
-        threshold_percentage = 35.0  # Define the threshold for inclusion
+        threshold_percentage = 50.0  # the threshold for inclusion
+
+        # for region, classifications in results.items():
+        #         for classification, value in classifications.items():
+        #             if classification.value not in classification_to_regions or value >= threshold_percentage:
+        #                 classification_to_regions.setdefault(classification.value, {}).update({region: value})
+        #             else:
+        #                 # Include only if the percentage exceeds the threshold
+        #                 existing_region, existing_value = next(iter(classification_to_regions[classification.value].items()))
+        #                 if value > existing_value:
+        #                     classification_to_regions[classification.value].update({region: value})
+        #                 # classification_to_regions[classification.value].update({region: value})
+
+
+        # for classification, regions_percentages in classification_to_regions.items():
+        #     if len(regions_percentages) > 1:
+        #         above_threshold_regions = {region: pct for region, pct in regions_percentages.items() if pct >= threshold_percentage}
+
+        #         if not above_threshold_regions:
+        #             highest_region = max(regions_percentages, key=regions_percentages.get)
+        #             classification_to_regions[classification] = {highest_region}
+        #         else:
+        #             classification_to_regions[classification] = set(above_threshold_regions.keys())
+        #     else:
+        #         classification_to_regions[classification] = set(regions_percentages.keys())
 
         for region, classifications in results.items():
-                for classification, value in classifications.items():
-                    # Direct inclusion for single-region classifications or exceeding threshold
-                    if classification.value not in classification_to_regions or value >= threshold_percentage:
-                        classification_to_regions.setdefault(classification.value, {}).update({region: value})
-                    else:
-                        # Include only if the percentage exceeds the threshold
-                        existing_region, existing_value = next(iter(classification_to_regions[classification.value].items()))
-                        if value > existing_value:
-                            classification_to_regions[classification.value].update({region: value})
-                        # classification_to_regions[classification.value].update({region: value})
-
-
-            # Refine mapping based on the new rules
-        for classification, regions_percentages in classification_to_regions.items():
-            if len(regions_percentages) > 1:
-                    # Filter regions by threshold and select the highest if none exceed the threshold
-                above_threshold_regions = {region: pct for region, pct in regions_percentages.items() if pct >= threshold_percentage}
-
-            # If no regions meet the threshold, choose the one with the highest percentage
-                if not above_threshold_regions:
-                    highest_region = max(regions_percentages, key=regions_percentages.get)
-                    classification_to_regions[classification] = {highest_region}
-                else:
-                    # Include all regions that meet the threshold
-                    classification_to_regions[classification] = set(above_threshold_regions.keys())
+            above_threshold = {classification: value for classification, value in classifications.items() if value >= threshold_percentage}
+            
+            if above_threshold:
+                for classification in above_threshold.keys():
+                    classification_to_regions.setdefault(classification, set()).add(region)
             else:
-                # If the classification is present in only one region, include it regardless of the percentage
-                classification_to_regions[classification] = set(regions_percentages.keys())
+                if classifications:
+                    highest_classification = max(classifications, key=classifications.get)
+                    classification_to_regions.setdefault(highest_classification, set()).add(region)
 
-        # Handle special cases such as 'the empty set' and 'all set'
-        # They should be directly mapped without considering the threshold
+
         for special_case in ['the empty set', 'all set']:
             if special_case in results:
                 for region in results[special_case]:
                     classification_to_regions[special_case] = {region}
 
 
-        final_output = {cls: {regions} if isinstance(regions, str) else set(regions) for cls, regions in classification_to_regions.items()}
+        final_output = {cls.value: {regions} if isinstance(regions, str) else set(regions) for cls, regions in classification_to_regions.items()}
+        # print("the final output")
+        # print(final_output)
         
         return final_output
 
@@ -865,7 +932,6 @@ class TokenMap:
         individual_set_regions = categorization.get('individual set')
 
         if individual_set_regions:
-            # Convert set to list to index
             regions_list = list(individual_set_regions)
             if len(regions_list) == 1:
                 return f" The individual set intersections are {regions_list[0].replace('_data_region', '')} in size."
@@ -873,14 +939,14 @@ class TokenMap:
                 regions_formatted = [region.replace('_data_region', '') for region in regions_list]
                 return f" The individual set intersections are in {' and '.join(regions_formatted)} intersections."
         else:
-            return " No individual set intersections are present."
+            # return " No individual set intersections are present."
+            return ""
         
     def medium_set_presence(self) -> str:
         categorization = self.categorize_subsets()
         medium_set_regions = categorization.get('medium set')
 
         if medium_set_regions:
-            # Convert set to list to index
             regions_list = list(medium_set_regions)
             if len(regions_list) == 1:
                 return f" The medium degree set intersections can be seen among {regions_list[0].replace('_data_region', '')} sized intersections."

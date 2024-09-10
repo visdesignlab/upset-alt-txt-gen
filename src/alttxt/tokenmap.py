@@ -1,4 +1,5 @@
-from typing import Any, Callable, Tuple, Union, Optional
+import re
+from typing import Any, Callable, List, Tuple, Union, Optional
 from alttxt.models import DataModel, GrammarModel, Subset
 from alttxt.enums import SubsetField, IndividualSetSize, IntersectionTrend, SortBy, IntersectionType, SortOrder
 import statistics
@@ -404,12 +405,32 @@ class TokenMap:
             str: A description of other large intersections involving large sets, or an empty 
             string if the largest intersections are found within the large sets.
         """
-        large_sets = self.find_sets_in_large_subsets()
+        large_sets = self.find_sets_in_large_subsets().strip()
 
         dominant_sets = self.find_dominant_sets(len(self.grammar.visible_sets))
 
-        if large_sets.strip() in dominant_sets:
+        if large_sets in dominant_sets:
             return ""
+
+        largest_intersections = [self.sort_subsets_by_key(SubsetField.SIZE, True)[i] for i in range(2)]
+
+        # there are much better ways to implement this, but I am strapped for time...
+        # TODO: improve this implementation
+        # for every set in large_sets, check if it is entirely in any of the largest_intersections set membership list
+        for intersection in largest_intersections:
+            # initialize a flag to check if the set is in the intersection
+            is_in_largest_intersections = True
+            # remove 'and' and split the large_sets string to get individual set names
+            for set in large_sets.replace('and', '').split(", "):
+                # remove any whitespace
+                set = set.strip()
+                # if the set is not in the setmembership, we should break and set the flag to false
+                # this is required because it is possible that there are multiple intersections that need to be checked
+                if set not in intersection.setMembership:
+                    is_in_largest_intersections = False
+                    break
+            if is_in_largest_intersections:
+                return ""
 
         return f" Other large intersections also involve {large_sets}."
 

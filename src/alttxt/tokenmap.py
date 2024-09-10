@@ -906,12 +906,9 @@ class TokenMap:
 
         max_int_size = self.sort_subsets_by_key(SubsetField.SIZE, True)[0].size
         min_int_size =  self.sort_subsets_by_key(SubsetField.SIZE, True)[-1].size
-        
-        if self.grammar.sort_order == SortOrder.DESCENDING:
-            return f" The intersection sizes peak at a value of {max_int_size} and then {intersection_trend} flatten down to {min_int_size}."
-            
-        else:
-            return f" The intersection sizes start from a value of {min_int_size} and then {intersection_trend} rise up to {max_int_size}."
+       
+        return f" The intersection sizes peak at a value of {max_int_size} and then {intersection_trend} flatten down to {min_int_size}."
+
         
     
     def find_dominant_sets(self, visible_sets):

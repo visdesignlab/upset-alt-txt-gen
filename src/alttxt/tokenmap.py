@@ -5,6 +5,9 @@ import statistics
 from alttxt.regionclass import *
 import math
 from collections import Counter
+import numpy as np
+from scipy import stats
+from scipy.optimize import curve_fit
 
 
 class TokenMap:
@@ -59,7 +62,7 @@ class TokenMap:
             # set intersection categorization text based on intersection type and size
             "empty_set_presence": f" The empty intersection is present with a size of {self.get_empty_intersection_size()}." if (self.categorize_subsets().get('the empty intersection') and self.categorize_subsets().get('the empty intersection')!='largest_data_region') else "",
             "all_set_presence": f" An all set intersection is present with a size of {self.get_all_set_intersection_size()}." if self.get_all_set_intersection_size()!= None else f" An all set intersection is not present.",
-            "intersection_trend_analysis":f"{self.calculate_intersection_trend()}" if self.grammar.sort_by == SortBy.SIZE else "",
+            "intersection_trend_analysis":f"{self.calculate_intersection_trend()}",
             "individual_set_presence": f"{self.individual_set_presence()}",
             "low_set_presence": f"{self.low_set_presence()}",
             "high_set_presence": f"{self.high_set_presence()}",
@@ -676,23 +679,46 @@ class TokenMap:
         
 
     def calculate_change_trend(self):
-        # Extract sizes from the sorted list of tuples (sorted_by_size)
+        """
+        Performs non-linear regression using an exponential decay model
+        Calculates an array of optimal values for parameters a (amplitude), b (decay rate), and c (asymptote)
+        Returns the intersection trend type based on the decay rate (b)
+        """
         intersection_sizes = [self.data.subsets[i].size for i in range(len(self.data.subsets))]
+
+        x = np.arange(len(intersection_sizes))
+        y = np.array(intersection_sizes)
         
-        # Calculate the standard deviation of the intersection sizes
-        std_dev = statistics.stdev(intersection_sizes)
-        mean_size = statistics.mean(intersection_sizes)
-        
-        # Determine the trend based on the standard deviation
-        threshold = 0.1  
-        relative_std_dev = std_dev / mean_size
-        
-        if std_dev == 0:
-            return IntersectionTrend.CONSTANT.value
-        elif relative_std_dev < threshold:
-            return IntersectionTrend.GRADUAL.value
+        try:
+            popt, _ = curve_fit(lambda x, a, b, c: a*np.exp(-b*x)+c, x, y, 
+                                p0=[max(y), 0.1, min(y)],
+                                bounds=([0, 0, 0], [np.inf, np.inf, np.inf]),
+                                maxfev=5000)
+            a, b, c = popt
+            
+            if b > 0 and a > 0:
+                x_fit = np.linspace(0, len(intersection_sizes)-1, 100)
+                y_fit = a * np.exp(-b * x_fit) + c
+                
+                if b > 0.5:
+                    return IntersectionTrend.DRASTIC.value
+                else:
+                    return IntersectionTrend.MODERATE.value
+
+        except:
+            pass  # If exponential fit fails, we'll fall back to linear regression
+      
+        slope, _, r_value, p_value, _ = stats.linregress(x, y)
+    
+        if p_value < 0.05: 
+            relative_change = abs(slope * (len(x) - 1) / y[0])
+            if relative_change > 0.5:
+                return IntersectionTrend.DRASTIC.value
+            else:
+                return IntersectionTrend.MODERATE.value
         else:
-            return IntersectionTrend.DRASTIC.value
+            return IntersectionTrend.SLIGHT.value
+      
         
     def calculate_largest_factor(self):
         sorted_sizes = self.sort_subsets_by_key(SubsetField.SIZE, True)
@@ -903,12 +929,9 @@ class TokenMap:
 
         max_int_size = self.sort_subsets_by_key(SubsetField.SIZE, True)[0].size
         min_int_size =  self.sort_subsets_by_key(SubsetField.SIZE, True)[-1].size
-        
-        if self.grammar.sort_order == SortOrder.DESCENDING:
-            return f" The intersection sizes peak at a value of {max_int_size} and then {intersection_trend} flatten down to {min_int_size}."
-            
-        else:
-            return f" The intersection sizes start from a value of {min_int_size} and then {intersection_trend} rise up to {max_int_size}."
+       
+        return f" The intersection sizes peak at a value of {max_int_size} and then {intersection_trend} flatten down to {min_int_size}."
+
         
     
     def find_dominant_sets(self, visible_sets):

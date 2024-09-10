@@ -1,1 +1,7 @@
-pydantic==1.10.6
+alttxt==0.0.0
+annotated-types==0.7.0
+numpy==2.1.1
+pydantic==2.9.1
+pydantic_core==2.23.3
+scipy==1.14.1
+typing_extensions==4.12.2

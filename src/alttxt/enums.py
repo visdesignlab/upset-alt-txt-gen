@@ -135,5 +135,4 @@ class IntersectionTrend(Listable):
     to the MultiNet implementation's export format.
     """
     DRASTIC = "drastically"
-    GRADUAL = "gradually"
-    CONSTANT = "constantly"
+    MODERATE = "moderately"

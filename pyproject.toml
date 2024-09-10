@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools==68.2.2", "wheel", "numpy>=2.1.1", "scipy>=1.14.1"]
+requires = ["setuptools==68.2.2", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.pytest.ini_options]
@@ -24,7 +24,8 @@ no_implicit_reexport = true
 
 [project]
 name = "upset-alttxt"
-version = "0.3.6"
+version = "0.3.7"
 description = "Generates alt text for UpSet plots"
 readme = "README.md"
 requires-python = ">=3.8"
+dependencies = ["numpy>=2.1.1", "scipy>=1.14.1"]

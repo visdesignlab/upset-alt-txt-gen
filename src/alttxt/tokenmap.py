@@ -1,7 +1,6 @@
-import re
-from typing import Any, Callable, List, Tuple, Union, Optional
+from typing import Any, Callable, Tuple, Union, Optional
 from alttxt.models import DataModel, GrammarModel, Subset
-from alttxt.enums import SubsetField, IndividualSetSize, IntersectionTrend, SortBy, IntersectionType, SortOrder
+from alttxt.enums import SubsetField, IndividualSetSize, IntersectionTrend
 import statistics
 from alttxt.regionclass import *
 import math

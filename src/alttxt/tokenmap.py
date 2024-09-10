@@ -6,6 +6,7 @@ from alttxt.regionclass import *
 import math
 from collections import Counter
 import numpy as np
+from scipy import stats
 from scipy.optimize import curve_fit
 
 
@@ -684,17 +685,40 @@ class TokenMap:
         Returns the intersection trend type based on the decay rate (b)
         """
         intersection_sizes = [self.data.subsets[i].size for i in range(len(self.data.subsets))]
+        print(intersection_sizes)
 
         x = np.arange(len(intersection_sizes))
         y = np.array(intersection_sizes)
         
-        popt, pcov = curve_fit(lambda x, a, b, c: a*np.exp(-b*x)+c, x, y, p0=[max(y), 0.1, min(y)])
-        a, b, c = popt   
+        try:
+            popt, _ = curve_fit(lambda x, a, b, c: a*np.exp(-b*x)+c, x, y, 
+                                p0=[max(y), 0.1, min(y)],
+                                bounds=([0, 0, 0], [np.inf, np.inf, np.inf]),
+                                maxfev=5000)
+            a, b, c = popt
+            
+            if b > 0 and a > 0:
+                x_fit = np.linspace(0, len(intersection_sizes)-1, 100)
+                y_fit = a * np.exp(-b * x_fit) + c
+                
+                if b > 0.5:
+                    return IntersectionTrend.DRASTIC.value
+                else:
+                    return IntersectionTrend.MODERATE.value
 
-        if b > 0.5:
-            return IntersectionTrend.DRASTIC.value
+        except:
+            pass  # If exponential fit fails, we'll fall back to linear regression
+      
+        slope, _, r_value, p_value, _ = stats.linregress(x, y)
+    
+        if p_value < 0.05: 
+            relative_change = abs(slope * (len(x) - 1) / y[0])
+            if relative_change > 0.5:
+                return IntersectionTrend.DRASTIC.value
+            else:
+                return IntersectionTrend.MODERATE.value
         else:
-            return IntersectionTrend.MODERATE.value
+            return IntersectionTrend.SLIGHT.value
       
         
     def calculate_largest_factor(self):

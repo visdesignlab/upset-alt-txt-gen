@@ -100,7 +100,12 @@ class TokenMap:
             # largest intersection name and size
             "max_intersection_name": self.calculate_max_intersection()[0],
             "max_intersection_size": self.calculate_max_intersection()[1],
+            # largest two intersections
             "largest_intersections": self.max_n_intersections(2),
+            # largest two set or more intersections, conditional on largest_intersections not containing the same information
+            "two_set_intersection": self.max_intersection_two_sets(),
+            # other large intersections. conditional on largest_intersections not containing the same information
+            "other_large_intersections": self.other_large_intersections(),
             # size of the largest set/intersection
             "min_size": min(self.data.count),
             # size of the smallest set/intersection
@@ -385,6 +390,52 @@ class TokenMap:
 
         # Trim the trailing ', '
         return result[:-2]
+
+    def other_large_intersections(self) -> str:
+        """
+        Identifies and returns a string describing other large intersections involving large sets.
+
+        This method first finds sets that are part of large subsets and then identifies the 
+        largest intersections among them. If any of these large sets are found 
+        within the already defined dominant sets, it returns an empty string
+        Otherwise, it returns a formatted string indicating the involvement of other large intersections.
+
+        Returns:
+            str: A description of other large intersections involving large sets, or an empty 
+            string if the largest intersections are found within the large sets.
+        """
+        large_sets = self.find_sets_in_large_subsets()
+
+        dominant_sets = self.find_dominant_sets(len(self.grammar.visible_sets))
+
+        if large_sets.strip() in dominant_sets:
+            return ""
+
+        return f" Other large intersections also involve {large_sets}."
+
+    def max_intersection_two_sets(self) -> str:
+        """
+        Determines the largest intersection of at least two sets and returns a descriptive string.
+
+        This method calculates the maximum intersection of sets and constructs a string that describes
+        the largest intersection in terms of its name and size. It also checks if the largest intersection
+        is among the top two largest intersections.
+
+        Returns:
+            str: A string describing the largest intersection of at least two sets, including its name and size.
+        """
+        max_intersection = self.calculate_max_intersection()
+        max_name = max_intersection[0]
+        max_size = max_intersection[1]
+
+        items = f"{self.grammar.metaData.items.lower()}" if self.grammar.metaData.items else "elements"
+
+        largest_two_intersections = self.max_n_intersections(2)
+
+        if max_name.replace("between", "") in largest_two_intersections:
+            return ""
+
+        return f" The largest intersection of at least two sets is {max_name}, with {max_size} {items}."
 
     def max_n_intersections(self, n: int) -> str:
         """
@@ -984,7 +1035,6 @@ class TokenMap:
         # for each value in most_common_sets, filter by the percentage threshold
         for set_name, count in most_common_sets:
             percentage = (count / len(dominant_intersections)) * 100
-            print(set_name, percentage)
             if percentage >= THRESHOLD:
                 filtered_sets.append((set_name, count, percentage))
 

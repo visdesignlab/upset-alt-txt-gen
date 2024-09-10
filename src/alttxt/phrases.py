@@ -108,8 +108,8 @@ DESCRIPTIONS: "dict[str, Any]" = {
         " [[learn_more]]."
         "{{highest_dominant_set}}"
         " {{largest_intersections}}."
-        " The largest intersection of at least two sets is {{max_intersection_name}}, with {{max_intersection_size}} {{set_description}}."
-        " Other large intersections also involve {{large_sets}}."
+        "{{two_set_intersection}}"
+        "{{other_large_intersections}}"
         " {{all_set_index}}",
     },
 }

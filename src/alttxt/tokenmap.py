@@ -1,7 +1,6 @@
 from typing import Any, Callable, Tuple, Union, Optional
 from alttxt.models import DataModel, GrammarModel, Subset
 from alttxt.enums import SubsetField, IndividualSetSize, IntersectionTrend, SortBy, IntersectionType, SortOrder
-import statistics
 from alttxt.regionclass import *
 import math
 from collections import Counter
@@ -748,8 +747,6 @@ class TokenMap:
         """
         results = {}
         sorted_subsets = sorted(self.data.subsets, key=lambda subset: subset.size, reverse=True)
-        print('the sorted subset is')
-        # print(sorted_subsets)
         
         largest_subset = sorted_subsets.pop(0)  
         
@@ -768,10 +765,6 @@ class TokenMap:
         std_dev = np.std(unique_sizes)
         cv = std_dev / mean_size if mean_size != 0 else 0
 
-        print("Unique Sizes Statistics:")
-        print("Q1:", q1, "Median:", median, "Q3:", q3, "IQR:", iqr)
-        print("Mean:", mean_size, "Standard Deviation:", std_dev, "Coefficient of Variation (cv):", cv)
-
         if cv < 0.5:
             multiplier = 0.5 
         elif cv < 1:
@@ -779,13 +772,9 @@ class TokenMap:
         else:
             multiplier = 1.5 
 
-        # print(median)
         large_threshold = median + multiplier * iqr
         small_threshold = median - multiplier * iqr
 
-        # print("the small & large tresholds")
-        # print(small_threshold)
-        # print(large_threshold)
 
         size_categories = {}
 
@@ -804,17 +793,9 @@ class TokenMap:
                 region_classification.add_to_large_region(subset)
             elif category == 'medium':
                 region_classification.add_to_medium_region(subset)
-            else:  # small
+            else: 
                 region_classification.add_to_small_region(subset)
 
-        # print("before adjusting")
-        # region_p = {
-        #     'largest_data_region': [region_classification.largest_data_region],
-        #     'large_data_region': region_classification.large_data_region,
-        #     'medium_data_region': region_classification.medium_data_region,
-        #     'small_data_region': region_classification.small_data_region, 
-        # }
-        # print(region_p)
 
         # the small treshold do not always perform well, specially in the case of being the smallest intersection really pretty smaller than the largest
         if not region_classification.large_data_region and region_classification.medium_data_region:
@@ -840,8 +821,6 @@ class TokenMap:
         'medium_data_region': region_classification.medium_data_region,
         'small_data_region': region_classification.small_data_region, 
         }
-        # print("region class")
-        # print(regions)
 
         total_sizes = {region: sum(subset.size for subset in subsets) for region, subsets in regions.items()}
 
@@ -864,30 +843,6 @@ class TokenMap:
         
         threshold_percentage = 50.0  # the threshold for inclusion
 
-        # for region, classifications in results.items():
-        #         for classification, value in classifications.items():
-        #             if classification.value not in classification_to_regions or value >= threshold_percentage:
-        #                 classification_to_regions.setdefault(classification.value, {}).update({region: value})
-        #             else:
-        #                 # Include only if the percentage exceeds the threshold
-        #                 existing_region, existing_value = next(iter(classification_to_regions[classification.value].items()))
-        #                 if value > existing_value:
-        #                     classification_to_regions[classification.value].update({region: value})
-        #                 # classification_to_regions[classification.value].update({region: value})
-
-
-        # for classification, regions_percentages in classification_to_regions.items():
-        #     if len(regions_percentages) > 1:
-        #         above_threshold_regions = {region: pct for region, pct in regions_percentages.items() if pct >= threshold_percentage}
-
-        #         if not above_threshold_regions:
-        #             highest_region = max(regions_percentages, key=regions_percentages.get)
-        #             classification_to_regions[classification] = {highest_region}
-        #         else:
-        #             classification_to_regions[classification] = set(above_threshold_regions.keys())
-        #     else:
-        #         classification_to_regions[classification] = set(regions_percentages.keys())
-
         for region, classifications in results.items():
             above_threshold = {classification: value for classification, value in classifications.items() if value >= threshold_percentage}
             
@@ -907,8 +862,6 @@ class TokenMap:
 
 
         final_output = {cls.value: {regions} if isinstance(regions, str) else set(regions) for cls, regions in classification_to_regions.items()}
-        # print("the final output")
-        # print(final_output)
         
         return final_output
 
@@ -987,7 +940,7 @@ class TokenMap:
                 regions_formatted = [region.replace('_data_region', '') for region in regions_list]
                 return f" In {' and '.join(regions_formatted)} sized intersections, the high order set intersections are significantly present."
         else:
-            return " No high order intersections are present."
+            return ""
         
 
     def calculate_intersection_trend(self) -> str:

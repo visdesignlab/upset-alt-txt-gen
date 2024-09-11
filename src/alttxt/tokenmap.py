@@ -770,7 +770,7 @@ class TokenMap:
         for size in unique_sizes:
             if size >= large_threshold:
                 size_categories[size] = 'large'
-            elif size <= median:
+            elif size < median:
                 size_categories[size] = 'small'
             else:
                 size_categories[size] = 'medium'

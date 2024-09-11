@@ -775,8 +775,12 @@ class TokenMap:
         linear_fit = slope * x + intercept
         linear_residuals = np.sum((y - linear_fit) ** 2)
 
+        # polynomial (quadratic) fit
+        fit = np.polyfit(x, y, 2, full=True)
+        quadratic_residuals = fit[1][0]
+
         # exponential fit
-        popt, _ = curve_fit(lambda x, a, beta, c: a*np.exp(-b*x)+c, x, y, 
+        popt, _ = curve_fit(lambda x, a, beta, c: a*np.exp(-beta*x)+c, x, y,
                             p0=[max(y), 0.1, min(y)],
                             bounds=([0, 0, 0], [np.inf, np.inf, np.inf]),
                             maxfev=5000)
@@ -789,10 +793,6 @@ class TokenMap:
             exponential_residuals = np.sum((y - y_fit_interpolated) ** 2)
         else:
             exponential_residuals = np.inf
-
-        # polynomial fit
-        fit = np.polyfit(x, y, 2, full=True)
-        quadratic_residuals = fit[1][0]
 
         if exponential_residuals < linear_residuals and exponential_residuals < quadratic_residuals:
             if beta > 0.8:

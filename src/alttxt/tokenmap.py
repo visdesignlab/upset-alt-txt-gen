@@ -822,10 +822,9 @@ class TokenMap:
                     special_sizes[subset.classification] = subset.size
                 else:
                     classification_sizes[subset.classification] += subset.size
-
-                    
-            percentages = {cls: (size / total_sizes[region_name] * 100) for cls, size in classification_sizes.items()}
             
+            percentages = {cls: (size / total_sizes[region_name] * 100) for cls, size in classification_sizes.items()}
+
             results[region_name] = {**percentages, **special_sizes}
 
         classification_to_regions = {}
@@ -840,8 +839,11 @@ class TokenMap:
                     classification_to_regions.setdefault(classification, set()).add(region)
             else:
                 if classifications:
-                    highest_classification = max(classifications, key=classifications.get)
-                    classification_to_regions.setdefault(highest_classification, set()).add(region)
+                    max_value = max(classifications.values())
+                    max_classifications = [classification for classification, value in classifications.items() if value == max_value]
+                    for classification in max_classifications:
+                        classification_to_regions.setdefault(classification, set()).add(region)
+
 
 
         for special_case in ['the empty set', 'all set']:

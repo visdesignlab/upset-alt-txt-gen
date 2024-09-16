@@ -7,6 +7,7 @@ from collections import Counter
 import numpy as np
 from scipy import stats
 from scipy.optimize import curve_fit
+import matplotlib.pyplot as plt
 
 
 class TokenMap:
@@ -737,16 +738,16 @@ class TokenMap:
         min_set_size = self.sort_visible_sets()[-1][1]
         
         divergence_percentage = (min_set_size / max_set_size) * 100
+        divergence_percentage = math.ceil(divergence_percentage)
 
         # Determine the divergence category
-        if divergence_percentage < 26.67:
+        if divergence_percentage < 30:
             return IndividualSetSize.DIVERGINGALOT.value
-        elif 26.68 <= divergence_percentage <= 53.34:
+        elif 30 <= divergence_percentage <= 90:
             return IndividualSetSize.DIVERGING.value
-        elif 53.35 <= divergence_percentage <= 79.99:
+        elif divergence_percentage > 90:
             return IndividualSetSize.DIVERGINGABIT.value
-        else:
-            return IndividualSetSize.IDENTICAL.value
+
 
     def calculate_change_trend(self):
         """
@@ -775,6 +776,7 @@ class TokenMap:
 
         # polynomial (quadratic) fit
         fit = np.polyfit(x, y, 2, full=True)
+        quadratic_fit = np.polyval(fit[0], x)
         quadratic_residuals = fit[1][0]
 
         # exponential fit

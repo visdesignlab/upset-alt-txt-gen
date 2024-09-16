@@ -776,7 +776,6 @@ class TokenMap:
 
         # polynomial (quadratic) fit
         fit = np.polyfit(x, y, 2, full=True)
-        quadratic_fit = np.polyval(fit[0], x)
         quadratic_residuals = fit[1][0]
 
         # exponential fit

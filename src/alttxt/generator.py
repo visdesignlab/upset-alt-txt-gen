@@ -99,9 +99,9 @@ class AltTxtGen:
                     text = text.strip()
                     text = "* " + text
 
-                    parts = text.split('.')
+                    parts = text.split('. ')
                     if len(parts) > 1:
-                        return '.\n*'.join(parts[:-1]) + '.' + parts[-1]
+                        return '.\n* '.join(parts[:-1]) + '. ' + parts[-1]
                     return text
 
                 # Construct the dictionary for markdown content

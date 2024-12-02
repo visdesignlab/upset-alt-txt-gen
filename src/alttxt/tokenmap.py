@@ -673,7 +673,7 @@ class TokenMap:
             (maxmin_set_count / total_non_empty) * 100 if total_non_empty else 0
         )
 
-        return f"{round(maxmin_set_percentage)}%"
+        return f"{round(maxmin_set_percentage, 1)}%"
 
     def calculate_max_intersection(self) -> dict[str, int]:
         """

@@ -90,19 +90,22 @@ class AltTxtGen:
             trend_analysis = self.descriptions["level_3"]["trend_analysis"]
             text_desc += trend_analysis
             text_desc += " "
-            
 
             if self.structured:
                 # Helper function to replace periods with newlines and bullet points
                 def add_bullet_points(text: str) -> str:
-                    # Add a bullet point to the first sentence
-                    text = text.strip()
-                    text = "* " + text
+                    # add bullet point to the first sentence
+                    text = "* " + text.strip()
 
                     parts = text.split('. ')
+
                     if len(parts) > 1:
-                        return '.\n* '.join(parts[:-1]) + '. ' + parts[-1]
-                    return text
+                        # add \n* to each part except the last one, and only add * to the first one
+                        p = parts[0] + ".\n* " + ("\n* ".join(parts[1:]))
+                        print(p)
+                        return p
+                    else:
+                        return text
 
                 # Construct the dictionary for markdown content
                 data_to_write_as_md = {

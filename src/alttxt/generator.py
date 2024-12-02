@@ -92,14 +92,25 @@ class AltTxtGen:
             
 
             if self.structured:
+                # Helper function to replace periods with newlines and bullet points
+                def add_bullet_points(text: str) -> str:
+                    # Add a bullet point to the first sentence
+                    text = text.strip()
+                    text = "* " + text
+
+                    parts = text.split('.')
+                    if len(parts) > 1:
+                        return '.\n*'.join(parts[:-1]) + '.' + parts[-1]
+                    return text
+
                 # Construct the dictionary for markdown content
                 data_to_write_as_md = {
                     "UpSet Introduction": self.replaceTokens(introduction),
                     "Dataset Properties": self.replaceTokens(dataset_properties),
-                    "Set Properties": self.replaceTokens(set_description),
-                    "Intersection Properties": self.replaceTokens(intersection_description),
-                    "Statistical Information": self.replaceTokens(statistical_information),
-                    "Trend Analysis": self.replaceTokens(trend_analysis)
+                    "Set Properties": add_bullet_points(self.replaceTokens(set_description)),
+                    "Intersection Properties": add_bullet_points(self.replaceTokens(intersection_description)),
+                    "Statistical Information": add_bullet_points(self.replaceTokens(statistical_information)),
+                    "Trend Analysis": add_bullet_points(self.replaceTokens(trend_analysis)),
                 }
 
                 markdown_content = ""

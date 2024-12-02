@@ -6,6 +6,7 @@ from alttxt.models import GrammarModel
 
 from alttxt.enums import Explanation, Verbosity, Level
 from alttxt.tokenmap import TokenMap
+from alttxt.glossary import Glossary
 
 from typing import Any
 
@@ -116,6 +117,11 @@ class AltTxtGen:
                 markdown_content = ""
                 for section, content in data_to_write_as_md.items():
                     markdown_content += f"# {section}\n{content}\n\n"
+
+                # add glossary to markdown_content, from glossary.json
+                markdown_content += "# Glossary\n"
+                for term, definition in Glossary.items():
+                    markdown_content += f"* {term}: {definition}\n"
 
                 final_output = {
                     "techniqueDescription": self.replaceTokens(technique),

@@ -1,0 +1,19 @@
+{
+  "intersection_trend_analysis": " The intersection sizes peak at a value of 1777 and then drastically flatten down to 1.",
+  "set_divergence": "diverging a lot",
+  "largest_factor": 1,
+  "set_size": { "set_divergence": "diverging a lot" },
+  "intersection_degree": {
+    "individual_set_presence": " The individual set intersections are large in size.",
+    "low_set_presence": " The low degree set intersections lie in medium sized intersections.",
+    "medium_set_presence": " The medium degree set intersections can be seen among small sized intersections.",
+    "high_set_presence": " No high order intersections are present."
+  },
+  "special_intersections": {
+    "no_set": " The empty intersection is present with a size of 1777.",
+    "all_set": " An all set intersection is not present."
+  },
+  "intersection_size_distribution": {
+    "trend": " The intersection sizes peak at a value of 1777 and then drastically flatten down to 1."
+  }
+}

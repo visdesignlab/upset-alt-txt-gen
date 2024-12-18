@@ -1,0 +1,2787 @@
+{
+  "plots": {
+    "histograms": [],
+    "scatterplots": []
+  },
+  "sortBy": "Size",
+  "allSets": [
+    {
+      "name": "Set_French Open",
+      "size": 56
+    },
+    {
+      "name": "Set_Australian Open",
+      "size": 58
+    },
+    {
+      "name": "Set_US Open",
+      "size": 52
+    },
+    {
+      "name": "Set_Wimbledon",
+      "size": 42
+    }
+  ],
+  "filters": {
+    "hideEmpty": true,
+    "hideNoSet": false,
+    "maxVisible": 6,
+    "minVisible": 0
+  },
+  "selected": null,
+  "collapsed": [],
+  "horizontal": false,
+  "useUserAlt": false,
+  "sortByOrder": "Descending",
+  "visibleSets": [
+    "Set_French Open",
+    "Set_Australian Open",
+    "Set_US Open",
+    "Set_Wimbledon"
+  ],
+  "sortVisibleBy": "Ascending",
+  "attributePlots": {},
+  "plotInformation": {
+    "sets": "Grand Slam tournament venues",
+    "items": "champions",
+    "title": "Grand Slam Championships by Player",
+    "caption": "This plot shows the overlap of tennis Grand Slam tournament winners. Notably, the majority of champions have won only at one tournament venue. Out of 117 champions, only 9 have won at least once at every Grand Slam tournament venue.",
+    "description": "Grand Slam tournaments won by player"
+  },
+  "firstAggregateBy": "None",
+  "secondAggregateBy": "None",
+  "visibleAttributes": [],
+  "firstOverlapDegree": 2,
+  "secondOverlapDegree": 2,
+  "version": "0.1.0",
+  "elementSelection": null,
+  "bookmarks": [],
+  "userAltText": null,
+  "rawData": {
+    "label": "Winner",
+    "setColumns": [
+      "French Open",
+      "Australian Open",
+      "US Open",
+      "Wimbledon"
+    ],
+    "attributeColumns": [
+      "Total"
+    ],
+    "columns": [
+      "_id",
+      "_rev",
+      "Winner",
+      "tour",
+      "Total",
+      "French Open",
+      "Australian Open",
+      "US Open",
+      "Wimbledon",
+      "_key"
+    ],
+    "columnTypes": {
+      "_id": "string",
+      "_rev": "string",
+      "Winner": "label",
+      "tour": "category",
+      "Total": "number",
+      "French Open": "boolean",
+      "Australian Open": "boolean",
+      "US Open": "boolean",
+      "Wimbledon": "boolean",
+      "_key": "primary key"
+    },
+    "items": {
+      "Tennis_Grand_Slam_Champions/73301341": {
+        "_id": "Tennis_Grand_Slam_Champions/73301341",
+        "_label": "Adriano Panatta",
+        "_key": "73301341",
+        "_rev": "_iVrnI16---",
+        "Winner": "Adriano Panatta",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301342": {
+        "_id": "Tennis_Grand_Slam_Champions/73301342",
+        "_label": "Albert Costa",
+        "_key": "73301342",
+        "_rev": "_iVrnI16--_",
+        "Winner": "Albert Costa",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301343": {
+        "_id": "Tennis_Grand_Slam_Champions/73301343",
+        "_label": "Andre Agassi",
+        "_key": "73301343",
+        "_rev": "_iVrnI16--A",
+        "Winner": "Andre Agassi",
+        "tour": "Mens",
+        "Total": 8,
+        "French Open": 1,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301344": {
+        "_id": "Tennis_Grand_Slam_Champions/73301344",
+        "_label": "Andrés Gimeno",
+        "_key": "73301344",
+        "_rev": "_iVrnI16--B",
+        "Winner": "Andrés Gimeno",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301345": {
+        "_id": "Tennis_Grand_Slam_Champions/73301345",
+        "_label": "Andrés Gómez",
+        "_key": "73301345",
+        "_rev": "_iVrnI16--C",
+        "Winner": "Andrés Gómez",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301346": {
+        "_id": "Tennis_Grand_Slam_Champions/73301346",
+        "_label": "Andy Murray",
+        "_key": "73301346",
+        "_rev": "_iVrnI16--D",
+        "Winner": "Andy Murray",
+        "tour": "Mens",
+        "Total": 3,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301347": {
+        "_id": "Tennis_Grand_Slam_Champions/73301347",
+        "_label": "Andy Roddick",
+        "_key": "73301347",
+        "_rev": "_iVrnI16--E",
+        "Winner": "Andy Roddick",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301348": {
+        "_id": "Tennis_Grand_Slam_Champions/73301348",
+        "_label": "Arthur Ashe",
+        "_key": "73301348",
+        "_rev": "_iVrnI16--F",
+        "Winner": "Arthur Ashe",
+        "tour": "Mens",
+        "Total": 3,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301349": {
+        "_id": "Tennis_Grand_Slam_Champions/73301349",
+        "_label": "Björn Borg",
+        "_key": "73301349",
+        "_rev": "_iVrnI16--G",
+        "Winner": "Björn Borg",
+        "tour": "Mens",
+        "Total": 11,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301350": {
+        "_id": "Tennis_Grand_Slam_Champions/73301350",
+        "_label": "Boris Becker",
+        "_key": "73301350",
+        "_rev": "_iVrnI16--H",
+        "Winner": "Boris Becker",
+        "tour": "Mens",
+        "Total": 6,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301351": {
+        "_id": "Tennis_Grand_Slam_Champions/73301351",
+        "_label": "Brian Teacher ††††",
+        "_key": "73301351",
+        "_rev": "_iVrnI16--I",
+        "Winner": "Brian Teacher ††††",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301352": {
+        "_id": "Tennis_Grand_Slam_Champions/73301352",
+        "_label": "Carlos Moyá",
+        "_key": "73301352",
+        "_rev": "_iVrnI16--J",
+        "Winner": "Carlos Moyá",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301353": {
+        "_id": "Tennis_Grand_Slam_Champions/73301353",
+        "_label": "Gastón Gaudio",
+        "_key": "73301353",
+        "_rev": "_iVrnI16--K",
+        "Winner": "Gastón Gaudio",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301354": {
+        "_id": "Tennis_Grand_Slam_Champions/73301354",
+        "_label": "Goran Ivanišević",
+        "_key": "73301354",
+        "_rev": "_iVrnI16--L",
+        "Winner": "Goran Ivanišević",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301355": {
+        "_id": "Tennis_Grand_Slam_Champions/73301355",
+        "_label": "Guillermo Vilas",
+        "_key": "73301355",
+        "_rev": "_iVrnI16--M",
+        "Winner": "Guillermo Vilas",
+        "tour": "Mens",
+        "Total": 2,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301356": {
+        "_id": "Tennis_Grand_Slam_Champions/73301356",
+        "_label": "Guillermo Vilas ††††",
+        "_key": "73301356",
+        "_rev": "_iVrnI16--N",
+        "Winner": "Guillermo Vilas ††††",
+        "tour": "Mens",
+        "Total": 2,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301357": {
+        "_id": "Tennis_Grand_Slam_Champions/73301357",
+        "_label": "Gustavo Kuerten",
+        "_key": "73301357",
+        "_rev": "_iVrnI16--O",
+        "Winner": "Gustavo Kuerten",
+        "tour": "Mens",
+        "Total": 3,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301358": {
+        "_id": "Tennis_Grand_Slam_Champions/73301358",
+        "_label": "Ilie Năstase",
+        "_key": "73301358",
+        "_rev": "_iVrnI16--P",
+        "Winner": "Ilie Năstase",
+        "tour": "Mens",
+        "Total": 2,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301359": {
+        "_id": "Tennis_Grand_Slam_Champions/73301359",
+        "_label": "Ivan Lendl",
+        "_key": "73301359",
+        "_rev": "_iVrnI16--Q",
+        "Winner": "Ivan Lendl",
+        "tour": "Mens",
+        "Total": 8,
+        "French Open": 1,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301360": {
+        "_id": "Tennis_Grand_Slam_Champions/73301360",
+        "_label": "Jan Kodeš",
+        "_key": "73301360",
+        "_rev": "_iVrnI16--R",
+        "Winner": "Jan Kodeš",
+        "tour": "Mens",
+        "Total": 3,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301361": {
+        "_id": "Tennis_Grand_Slam_Champions/73301361",
+        "_label": "Jim Courier",
+        "_key": "73301361",
+        "_rev": "_iVrnI16--S",
+        "Winner": "Jim Courier",
+        "tour": "Mens",
+        "Total": 4,
+        "French Open": 1,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301362": {
+        "_id": "Tennis_Grand_Slam_Champions/73301362",
+        "_label": "Jimmy Connors",
+        "_key": "73301362",
+        "_rev": "_iVrnI16--T",
+        "Winner": "Jimmy Connors",
+        "tour": "Mens",
+        "Total": 8,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301363": {
+        "_id": "Tennis_Grand_Slam_Champions/73301363",
+        "_label": "Johan Kriek ††††",
+        "_key": "73301363",
+        "_rev": "_iVrnI16--U",
+        "Winner": "Johan Kriek ††††",
+        "tour": "Mens",
+        "Total": 2,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301364": {
+        "_id": "Tennis_Grand_Slam_Champions/73301364",
+        "_label": "John McEnroe",
+        "_key": "73301364",
+        "_rev": "_iVrnI16--V",
+        "Winner": "John McEnroe",
+        "tour": "Mens",
+        "Total": 7,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301365": {
+        "_id": "Tennis_Grand_Slam_Champions/73301365",
+        "_label": "John Newcombe",
+        "_key": "73301365",
+        "_rev": "_iVrnI16--W",
+        "Winner": "John Newcombe",
+        "tour": "Mens",
+        "Total": 5,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301366": {
+        "_id": "Tennis_Grand_Slam_Champions/73301366",
+        "_label": "Juan Carlos Ferrero",
+        "_key": "73301366",
+        "_rev": "_iVrnI16--X",
+        "Winner": "Juan Carlos Ferrero",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301367": {
+        "_id": "Tennis_Grand_Slam_Champions/73301367",
+        "_label": "Juan Martín del Potro",
+        "_key": "73301367",
+        "_rev": "_iVrnI16--Y",
+        "Winner": "Juan Martín del Potro",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301368": {
+        "_id": "Tennis_Grand_Slam_Champions/73301368",
+        "_label": "Ken Rosewall",
+        "_key": "73301368",
+        "_rev": "_iVrnI16--Z",
+        "Winner": "Ken Rosewall",
+        "tour": "Mens",
+        "Total": 4,
+        "French Open": 1,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301369": {
+        "_id": "Tennis_Grand_Slam_Champions/73301369",
+        "_label": "Lleyton Hewitt",
+        "_key": "73301369",
+        "_rev": "_iVrnI16--a",
+        "Winner": "Lleyton Hewitt",
+        "tour": "Mens",
+        "Total": 2,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301370": {
+        "_id": "Tennis_Grand_Slam_Champions/73301370",
+        "_label": "Manuel Orantes",
+        "_key": "73301370",
+        "_rev": "_iVrnI16--b",
+        "Winner": "Manuel Orantes",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301371": {
+        "_id": "Tennis_Grand_Slam_Champions/73301371",
+        "_label": "Marat Safin",
+        "_key": "73301371",
+        "_rev": "_iVrnI16--c",
+        "Winner": "Marat Safin",
+        "tour": "Mens",
+        "Total": 2,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301372": {
+        "_id": "Tennis_Grand_Slam_Champions/73301372",
+        "_label": "Marin Čilić",
+        "_key": "73301372",
+        "_rev": "_iVrnI16--d",
+        "Winner": "Marin Čilić",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301373": {
+        "_id": "Tennis_Grand_Slam_Champions/73301373",
+        "_label": "Mark Edmondson",
+        "_key": "73301373",
+        "_rev": "_iVrnI16--e",
+        "Winner": "Mark Edmondson",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301374": {
+        "_id": "Tennis_Grand_Slam_Champions/73301374",
+        "_label": "Mats Wilander",
+        "_key": "73301374",
+        "_rev": "_iVrnI16--f",
+        "Winner": "Mats Wilander",
+        "tour": "Mens",
+        "Total": 5,
+        "French Open": 1,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301375": {
+        "_id": "Tennis_Grand_Slam_Champions/73301375",
+        "_label": "Mats Wilander ††††",
+        "_key": "73301375",
+        "_rev": "_iVrnI16--g",
+        "Winner": "Mats Wilander ††††",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301376": {
+        "_id": "Tennis_Grand_Slam_Champions/73301376",
+        "_label": "Mats Wilander††††",
+        "_key": "73301376",
+        "_rev": "_iVrnI16--h",
+        "Winner": "Mats Wilander††††",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301377": {
+        "_id": "Tennis_Grand_Slam_Champions/73301377",
+        "_label": "Michael Chang",
+        "_key": "73301377",
+        "_rev": "_iVrnI16--i",
+        "Winner": "Michael Chang",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301378": {
+        "_id": "Tennis_Grand_Slam_Champions/73301378",
+        "_label": "Michael Stich",
+        "_key": "73301378",
+        "_rev": "_iVrnI16--j",
+        "Winner": "Michael Stich",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301379": {
+        "_id": "Tennis_Grand_Slam_Champions/73301379",
+        "_label": "Novak Djokovic",
+        "_key": "73301379",
+        "_rev": "_iVrnI16--k",
+        "Winner": "Novak Djokovic",
+        "tour": "Mens",
+        "Total": 17,
+        "French Open": 1,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301380": {
+        "_id": "Tennis_Grand_Slam_Champions/73301380",
+        "_label": "Pat Cash",
+        "_key": "73301380",
+        "_rev": "_iVrnI16--l",
+        "Winner": "Pat Cash",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301381": {
+        "_id": "Tennis_Grand_Slam_Champions/73301381",
+        "_label": "Patrick Rafter",
+        "_key": "73301381",
+        "_rev": "_iVrnI16--m",
+        "Winner": "Patrick Rafter",
+        "tour": "Mens",
+        "Total": 2,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301382": {
+        "_id": "Tennis_Grand_Slam_Champions/73301382",
+        "_label": "Pete Sampras",
+        "_key": "73301382",
+        "_rev": "_iVrnI16--n",
+        "Winner": "Pete Sampras",
+        "tour": "Mens",
+        "Total": 14,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301383": {
+        "_id": "Tennis_Grand_Slam_Champions/73301383",
+        "_label": "Petr Korda",
+        "_key": "73301383",
+        "_rev": "_iVrnI16--o",
+        "Winner": "Petr Korda",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301384": {
+        "_id": "Tennis_Grand_Slam_Champions/73301384",
+        "_label": "Rafael Nadal",
+        "_key": "73301384",
+        "_rev": "_iVrnI16--p",
+        "Winner": "Rafael Nadal",
+        "tour": "Mens",
+        "Total": 18,
+        "French Open": 1,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301385": {
+        "_id": "Tennis_Grand_Slam_Champions/73301385",
+        "_label": "Rafael Nadal ",
+        "_key": "73301385",
+        "_rev": "_iVrnI16--q",
+        "Winner": "Rafael Nadal ",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301386": {
+        "_id": "Tennis_Grand_Slam_Champions/73301386",
+        "_label": "Richard Krajicek",
+        "_key": "73301386",
+        "_rev": "_iVrnI16--r",
+        "Winner": "Richard Krajicek",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301387": {
+        "_id": "Tennis_Grand_Slam_Champions/73301387",
+        "_label": "Rod Laver",
+        "_key": "73301387",
+        "_rev": "_iVrnI16--s",
+        "Winner": "Rod Laver",
+        "tour": "Mens",
+        "Total": 5,
+        "French Open": 1,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301388": {
+        "_id": "Tennis_Grand_Slam_Champions/73301388",
+        "_label": "Roger Federer",
+        "_key": "73301388",
+        "_rev": "_iVrnI16--t",
+        "Winner": "Roger Federer",
+        "tour": "Mens",
+        "Total": 20,
+        "French Open": 1,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301389": {
+        "_id": "Tennis_Grand_Slam_Champions/73301389",
+        "_label": "Roscoe Tanner",
+        "_key": "73301389",
+        "_rev": "_iVrnI16--u",
+        "Winner": "Roscoe Tanner",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301390": {
+        "_id": "Tennis_Grand_Slam_Champions/73301390",
+        "_label": "Sergi Bruguera",
+        "_key": "73301390",
+        "_rev": "_iVrnI16--v",
+        "Winner": "Sergi Bruguera",
+        "tour": "Mens",
+        "Total": 2,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301391": {
+        "_id": "Tennis_Grand_Slam_Champions/73301391",
+        "_label": "Stan Smith",
+        "_key": "73301391",
+        "_rev": "_iVrnI16--w",
+        "Winner": "Stan Smith",
+        "tour": "Mens",
+        "Total": 2,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301392": {
+        "_id": "Tennis_Grand_Slam_Champions/73301392",
+        "_label": "Stan Wawrinka",
+        "_key": "73301392",
+        "_rev": "_iVrnI16--x",
+        "Winner": "Stan Wawrinka",
+        "tour": "Mens",
+        "Total": 3,
+        "French Open": 1,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301393": {
+        "_id": "Tennis_Grand_Slam_Champions/73301393",
+        "_label": "Stefan Edberg",
+        "_key": "73301393",
+        "_rev": "_iVrnI16--y",
+        "Winner": "Stefan Edberg",
+        "tour": "Mens",
+        "Total": 5,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301394": {
+        "_id": "Tennis_Grand_Slam_Champions/73301394",
+        "_label": "Stefan Edberg ††††",
+        "_key": "73301394",
+        "_rev": "_iVrnI16--z",
+        "Winner": "Stefan Edberg ††††",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301395": {
+        "_id": "Tennis_Grand_Slam_Champions/73301395",
+        "_label": "Thomas Johansson",
+        "_key": "73301395",
+        "_rev": "_iVrnI16--0",
+        "Winner": "Thomas Johansson",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301396": {
+        "_id": "Tennis_Grand_Slam_Champions/73301396",
+        "_label": "Thomas Muster",
+        "_key": "73301396",
+        "_rev": "_iVrnI16--1",
+        "Winner": "Thomas Muster",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301397": {
+        "_id": "Tennis_Grand_Slam_Champions/73301397",
+        "_label": "Tournament date changed",
+        "_key": "73301397",
+        "_rev": "_iVrnI16--2",
+        "Winner": "Tournament date changed",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301398": {
+        "_id": "Tennis_Grand_Slam_Champions/73301398",
+        "_label": "Yannick Noah",
+        "_key": "73301398",
+        "_rev": "_iVrnI16--3",
+        "Winner": "Yannick Noah",
+        "tour": "Mens",
+        "Total": 1,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301399": {
+        "_id": "Tennis_Grand_Slam_Champions/73301399",
+        "_label": "Yevgeny Kafelnikov",
+        "_key": "73301399",
+        "_rev": "_iVrnI2----",
+        "Winner": "Yevgeny Kafelnikov",
+        "tour": "Mens",
+        "Total": 2,
+        "French Open": 1,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301400": {
+        "_id": "Tennis_Grand_Slam_Champions/73301400",
+        "_label": "Amélie Mauresmo",
+        "_key": "73301400",
+        "_rev": "_iVrnI2---_",
+        "Winner": "Amélie Mauresmo",
+        "tour": "Womens",
+        "Total": 2,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301401": {
+        "_id": "Tennis_Grand_Slam_Champions/73301401",
+        "_label": "Ana Ivanovic",
+        "_key": "73301401",
+        "_rev": "_iVrnI2---A",
+        "Winner": "Ana Ivanovic",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301402": {
+        "_id": "Tennis_Grand_Slam_Champions/73301402",
+        "_label": "Anastasia Myskina",
+        "_key": "73301402",
+        "_rev": "_iVrnI2---B",
+        "Winner": "Anastasia Myskina",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301403": {
+        "_id": "Tennis_Grand_Slam_Champions/73301403",
+        "_label": "Angelique Kerber",
+        "_key": "73301403",
+        "_rev": "_iVrnI2---C",
+        "Winner": "Angelique Kerber",
+        "tour": "Womens",
+        "Total": 3,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301404": {
+        "_id": "Tennis_Grand_Slam_Champions/73301404",
+        "_label": "Ann Haydon-Jones",
+        "_key": "73301404",
+        "_rev": "_iVrnI2---D",
+        "Winner": "Ann Haydon-Jones",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301405": {
+        "_id": "Tennis_Grand_Slam_Champions/73301405",
+        "_label": "Arantxa Sánchez Vicario",
+        "_key": "73301405",
+        "_rev": "_iVrnI2---E",
+        "Winner": "Arantxa Sánchez Vicario",
+        "tour": "Womens",
+        "Total": 4,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301406": {
+        "_id": "Tennis_Grand_Slam_Champions/73301406",
+        "_label": "Ashleigh Barty",
+        "_key": "73301406",
+        "_rev": "_iVrnI2---F",
+        "Winner": "Ashleigh Barty",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301407": {
+        "_id": "Tennis_Grand_Slam_Champions/73301407",
+        "_label": "Barbara Jordan ‡",
+        "_key": "73301407",
+        "_rev": "_iVrnI2---G",
+        "Winner": "Barbara Jordan ‡",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301408": {
+        "_id": "Tennis_Grand_Slam_Champions/73301408",
+        "_label": "Bianca Andreescu",
+        "_key": "73301408",
+        "_rev": "_iVrnI2---H",
+        "Winner": "Bianca Andreescu",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301409": {
+        "_id": "Tennis_Grand_Slam_Champions/73301409",
+        "_label": "Billie Jean King",
+        "_key": "73301409",
+        "_rev": "_iVrnI2---I",
+        "Winner": "Billie Jean King",
+        "tour": "Womens",
+        "Total": 8,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301410": {
+        "_id": "Tennis_Grand_Slam_Champions/73301410",
+        "_label": "Caroline Wozniacki",
+        "_key": "73301410",
+        "_rev": "_iVrnI2---J",
+        "Winner": "Caroline Wozniacki",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301411": {
+        "_id": "Tennis_Grand_Slam_Champions/73301411",
+        "_label": "Chris Evert",
+        "_key": "73301411",
+        "_rev": "_iVrnI2---K",
+        "Winner": "Chris Evert",
+        "tour": "Womens",
+        "Total": 16,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301412": {
+        "_id": "Tennis_Grand_Slam_Champions/73301412",
+        "_label": "Chris Evert ‡",
+        "_key": "73301412",
+        "_rev": "_iVrnI2---L",
+        "Winner": "Chris Evert ‡",
+        "tour": "Womens",
+        "Total": 2,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301413": {
+        "_id": "Tennis_Grand_Slam_Champions/73301413",
+        "_label": "Chris O'Neil ‡",
+        "_key": "73301413",
+        "_rev": "_iVrnI2---M",
+        "Winner": "Chris O'Neil ‡",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301414": {
+        "_id": "Tennis_Grand_Slam_Champions/73301414",
+        "_label": "Conchita Martínez",
+        "_key": "73301414",
+        "_rev": "_iVrnI2---N",
+        "Winner": "Conchita Martínez",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301415": {
+        "_id": "Tennis_Grand_Slam_Champions/73301415",
+        "_label": "Evonne Goolagong",
+        "_key": "73301415",
+        "_rev": "_iVrnI2---O",
+        "Winner": "Evonne Goolagong",
+        "tour": "Womens",
+        "Total": 6,
+        "French Open": 1,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301416": {
+        "_id": "Tennis_Grand_Slam_Champions/73301416",
+        "_label": "Flavia Pennetta",
+        "_key": "73301416",
+        "_rev": "_iVrnI2---P",
+        "Winner": "Flavia Pennetta",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301417": {
+        "_id": "Tennis_Grand_Slam_Champions/73301417",
+        "_label": "Francesca Schiavone",
+        "_key": "73301417",
+        "_rev": "_iVrnI2---Q",
+        "Winner": "Francesca Schiavone",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301418": {
+        "_id": "Tennis_Grand_Slam_Champions/73301418",
+        "_label": "Gabriela Sabatini",
+        "_key": "73301418",
+        "_rev": "_iVrnI2---R",
+        "Winner": "Gabriela Sabatini",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301419": {
+        "_id": "Tennis_Grand_Slam_Champions/73301419",
+        "_label": "Garbiñe Muguruza",
+        "_key": "73301419",
+        "_rev": "_iVrnI2---S",
+        "Winner": "Garbiñe Muguruza",
+        "tour": "Womens",
+        "Total": 2,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301420": {
+        "_id": "Tennis_Grand_Slam_Champions/73301420",
+        "_label": "Hana Mandlíková",
+        "_key": "73301420",
+        "_rev": "_iVrnI2---T",
+        "Winner": "Hana Mandlíková",
+        "tour": "Womens",
+        "Total": 3,
+        "French Open": 1,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301421": {
+        "_id": "Tennis_Grand_Slam_Champions/73301421",
+        "_label": "Hana Mandlíková ‡",
+        "_key": "73301421",
+        "_rev": "_iVrnI2---U",
+        "Winner": "Hana Mandlíková ‡",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301422": {
+        "_id": "Tennis_Grand_Slam_Champions/73301422",
+        "_label": "Iva Majoli",
+        "_key": "73301422",
+        "_rev": "_iVrnI2---V",
+        "Winner": "Iva Majoli",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301423": {
+        "_id": "Tennis_Grand_Slam_Champions/73301423",
+        "_label": "Jana Novotná",
+        "_key": "73301423",
+        "_rev": "_iVrnI2---W",
+        "Winner": "Jana Novotná",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301424": {
+        "_id": "Tennis_Grand_Slam_Champions/73301424",
+        "_label": "Jennifer Capriati",
+        "_key": "73301424",
+        "_rev": "_iVrnI2---X",
+        "Winner": "Jennifer Capriati",
+        "tour": "Womens",
+        "Total": 3,
+        "French Open": 1,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301425": {
+        "_id": "Tennis_Grand_Slam_Champions/73301425",
+        "_label": "Jeļena Ostapenko",
+        "_key": "73301425",
+        "_rev": "_iVrnI2---Y",
+        "Winner": "Jeļena Ostapenko",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301426": {
+        "_id": "Tennis_Grand_Slam_Champions/73301426",
+        "_label": "Justine Henin",
+        "_key": "73301426",
+        "_rev": "_iVrnI2---Z",
+        "Winner": "Justine Henin",
+        "tour": "Womens",
+        "Total": 7,
+        "French Open": 1,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301427": {
+        "_id": "Tennis_Grand_Slam_Champions/73301427",
+        "_label": "Kerry Melville Reid",
+        "_key": "73301427",
+        "_rev": "_iVrnI2---a",
+        "Winner": "Kerry Melville Reid",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301428": {
+        "_id": "Tennis_Grand_Slam_Champions/73301428",
+        "_label": "Kim Clijsters",
+        "_key": "73301428",
+        "_rev": "_iVrnI2---b",
+        "Winner": "Kim Clijsters",
+        "tour": "Womens",
+        "Total": 4,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301429": {
+        "_id": "Tennis_Grand_Slam_Champions/73301429",
+        "_label": "Li Na",
+        "_key": "73301429",
+        "_rev": "_iVrnI2---c",
+        "Winner": "Li Na",
+        "tour": "Womens",
+        "Total": 2,
+        "French Open": 1,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301430": {
+        "_id": "Tennis_Grand_Slam_Champions/73301430",
+        "_label": "Lindsay Davenport",
+        "_key": "73301430",
+        "_rev": "_iVrnI2---d",
+        "Winner": "Lindsay Davenport",
+        "tour": "Womens",
+        "Total": 3,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301431": {
+        "_id": "Tennis_Grand_Slam_Champions/73301431",
+        "_label": "Margaret Court",
+        "_key": "73301431",
+        "_rev": "_iVrnI2---e",
+        "Winner": "Margaret Court",
+        "tour": "Womens",
+        "Total": 11,
+        "French Open": 1,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301432": {
+        "_id": "Tennis_Grand_Slam_Champions/73301432",
+        "_label": "Maria Sharapova",
+        "_key": "73301432",
+        "_rev": "_iVrnI2---f",
+        "Winner": "Maria Sharapova",
+        "tour": "Womens",
+        "Total": 5,
+        "French Open": 1,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301433": {
+        "_id": "Tennis_Grand_Slam_Champions/73301433",
+        "_label": "Marion Bartoli",
+        "_key": "73301433",
+        "_rev": "_iVrnI2---g",
+        "Winner": "Marion Bartoli",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301434": {
+        "_id": "Tennis_Grand_Slam_Champions/73301434",
+        "_label": "Martina Hingis",
+        "_key": "73301434",
+        "_rev": "_iVrnI2---h",
+        "Winner": "Martina Hingis",
+        "tour": "Womens",
+        "Total": 5,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301435": {
+        "_id": "Tennis_Grand_Slam_Champions/73301435",
+        "_label": "Martina Navratilova",
+        "_key": "73301435",
+        "_rev": "_iVrnI2---i",
+        "Winner": "Martina Navratilova",
+        "tour": "Womens",
+        "Total": 15,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301436": {
+        "_id": "Tennis_Grand_Slam_Champions/73301436",
+        "_label": "Martina Navratilova ‡",
+        "_key": "73301436",
+        "_rev": "_iVrnI2---j",
+        "Winner": "Martina Navratilova ‡",
+        "tour": "Womens",
+        "Total": 3,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301437": {
+        "_id": "Tennis_Grand_Slam_Champions/73301437",
+        "_label": "Mary Pierce",
+        "_key": "73301437",
+        "_rev": "_iVrnI2---k",
+        "Winner": "Mary Pierce",
+        "tour": "Womens",
+        "Total": 2,
+        "French Open": 1,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301438": {
+        "_id": "Tennis_Grand_Slam_Champions/73301438",
+        "_label": "Mima Jaušovec",
+        "_key": "73301438",
+        "_rev": "_iVrnI2---l",
+        "Winner": "Mima Jaušovec",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301439": {
+        "_id": "Tennis_Grand_Slam_Champions/73301439",
+        "_label": "Monica Seles",
+        "_key": "73301439",
+        "_rev": "_iVrnI2---m",
+        "Winner": "Monica Seles",
+        "tour": "Womens",
+        "Total": 9,
+        "French Open": 1,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301440": {
+        "_id": "Tennis_Grand_Slam_Champions/73301440",
+        "_label": "Nancy Richey",
+        "_key": "73301440",
+        "_rev": "_iVrnI2---n",
+        "Winner": "Nancy Richey",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301441": {
+        "_id": "Tennis_Grand_Slam_Champions/73301441",
+        "_label": "Naomi Osaka",
+        "_key": "73301441",
+        "_rev": "_iVrnI2---o",
+        "Winner": "Naomi Osaka",
+        "tour": "Womens",
+        "Total": 2,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301442": {
+        "_id": "Tennis_Grand_Slam_Champions/73301442",
+        "_label": "Not held",
+        "_key": "73301442",
+        "_rev": "_iVrnI2---p",
+        "Winner": "Not held",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301443": {
+        "_id": "Tennis_Grand_Slam_Champions/73301443",
+        "_label": "Petra Kvitová",
+        "_key": "73301443",
+        "_rev": "_iVrnI2C---",
+        "Winner": "Petra Kvitová",
+        "tour": "Womens",
+        "Total": 2,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301444": {
+        "_id": "Tennis_Grand_Slam_Champions/73301444",
+        "_label": "Samantha Stosur",
+        "_key": "73301444",
+        "_rev": "_iVrnI2C--_",
+        "Winner": "Samantha Stosur",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301445": {
+        "_id": "Tennis_Grand_Slam_Champions/73301445",
+        "_label": "Serena Williams",
+        "_key": "73301445",
+        "_rev": "_iVrnI2C--A",
+        "Winner": "Serena Williams",
+        "tour": "Womens",
+        "Total": 23,
+        "French Open": 1,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301446": {
+        "_id": "Tennis_Grand_Slam_Champions/73301446",
+        "_label": "Simona Halep",
+        "_key": "73301446",
+        "_rev": "_iVrnI2C--B",
+        "Winner": "Simona Halep",
+        "tour": "Womens",
+        "Total": 2,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301447": {
+        "_id": "Tennis_Grand_Slam_Champions/73301447",
+        "_label": "Sloane Stephens",
+        "_key": "73301447",
+        "_rev": "_iVrnI2C--C",
+        "Winner": "Sloane Stephens",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301448": {
+        "_id": "Tennis_Grand_Slam_Champions/73301448",
+        "_label": "Sofia Kenin",
+        "_key": "73301448",
+        "_rev": "_iVrnI2C--D",
+        "Winner": "Sofia Kenin",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301449": {
+        "_id": "Tennis_Grand_Slam_Champions/73301449",
+        "_label": "Steffi Graf",
+        "_key": "73301449",
+        "_rev": "_iVrnI2C--E",
+        "Winner": "Steffi Graf",
+        "tour": "Womens",
+        "Total": 22,
+        "French Open": 1,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301450": {
+        "_id": "Tennis_Grand_Slam_Champions/73301450",
+        "_label": "Sue Barker",
+        "_key": "73301450",
+        "_rev": "_iVrnI2C--F",
+        "Winner": "Sue Barker",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301451": {
+        "_id": "Tennis_Grand_Slam_Champions/73301451",
+        "_label": "Svetlana Kuznetsova",
+        "_key": "73301451",
+        "_rev": "_iVrnI2C--G",
+        "Winner": "Svetlana Kuznetsova",
+        "tour": "Womens",
+        "Total": 2,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301452": {
+        "_id": "Tennis_Grand_Slam_Champions/73301452",
+        "_label": "Tracy Austin",
+        "_key": "73301452",
+        "_rev": "_iVrnI2C--H",
+        "Winner": "Tracy Austin",
+        "tour": "Womens",
+        "Total": 2,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301453": {
+        "_id": "Tennis_Grand_Slam_Champions/73301453",
+        "_label": "Venus Williams",
+        "_key": "73301453",
+        "_rev": "_iVrnI2C--I",
+        "Winner": "Venus Williams",
+        "tour": "Womens",
+        "Total": 7,
+        "French Open": 0,
+        "Australian Open": 0,
+        "US Open": 1,
+        "Wimbledon": 1
+      },
+      "Tennis_Grand_Slam_Champions/73301454": {
+        "_id": "Tennis_Grand_Slam_Champions/73301454",
+        "_label": "Victoria Azarenka",
+        "_key": "73301454",
+        "_rev": "_iVrnI2C--J",
+        "Winner": "Victoria Azarenka",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301455": {
+        "_id": "Tennis_Grand_Slam_Champions/73301455",
+        "_label": "Victoria Azarenka ",
+        "_key": "73301455",
+        "_rev": "_iVrnI2C--K",
+        "Winner": "Victoria Azarenka ",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301456": {
+        "_id": "Tennis_Grand_Slam_Champions/73301456",
+        "_label": "Virginia Ruzici",
+        "_key": "73301456",
+        "_rev": "_iVrnI2C--L",
+        "Winner": "Virginia Ruzici",
+        "tour": "Womens",
+        "Total": 1,
+        "French Open": 1,
+        "Australian Open": 0,
+        "US Open": 0,
+        "Wimbledon": 0
+      },
+      "Tennis_Grand_Slam_Champions/73301457": {
+        "_id": "Tennis_Grand_Slam_Champions/73301457",
+        "_label": "Virginia Wade",
+        "_key": "73301457",
+        "_rev": "_iVrnI2C--M",
+        "Winner": "Virginia Wade",
+        "tour": "Womens",
+        "Total": 3,
+        "French Open": 0,
+        "Australian Open": 1,
+        "US Open": 1,
+        "Wimbledon": 1
+      }
+    },
+    "sets": {
+      "Set_French Open": {
+        "id": "Set_French Open",
+        "elementName": "French Open",
+        "items": [
+          "Tennis_Grand_Slam_Champions/73301341",
+          "Tennis_Grand_Slam_Champions/73301342",
+          "Tennis_Grand_Slam_Champions/73301343",
+          "Tennis_Grand_Slam_Champions/73301344",
+          "Tennis_Grand_Slam_Champions/73301345",
+          "Tennis_Grand_Slam_Champions/73301349",
+          "Tennis_Grand_Slam_Champions/73301352",
+          "Tennis_Grand_Slam_Champions/73301353",
+          "Tennis_Grand_Slam_Champions/73301355",
+          "Tennis_Grand_Slam_Champions/73301357",
+          "Tennis_Grand_Slam_Champions/73301358",
+          "Tennis_Grand_Slam_Champions/73301359",
+          "Tennis_Grand_Slam_Champions/73301360",
+          "Tennis_Grand_Slam_Champions/73301361",
+          "Tennis_Grand_Slam_Champions/73301366",
+          "Tennis_Grand_Slam_Champions/73301368",
+          "Tennis_Grand_Slam_Champions/73301374",
+          "Tennis_Grand_Slam_Champions/73301377",
+          "Tennis_Grand_Slam_Champions/73301379",
+          "Tennis_Grand_Slam_Champions/73301384",
+          "Tennis_Grand_Slam_Champions/73301385",
+          "Tennis_Grand_Slam_Champions/73301387",
+          "Tennis_Grand_Slam_Champions/73301388",
+          "Tennis_Grand_Slam_Champions/73301390",
+          "Tennis_Grand_Slam_Champions/73301392",
+          "Tennis_Grand_Slam_Champions/73301396",
+          "Tennis_Grand_Slam_Champions/73301398",
+          "Tennis_Grand_Slam_Champions/73301399",
+          "Tennis_Grand_Slam_Champions/73301401",
+          "Tennis_Grand_Slam_Champions/73301402",
+          "Tennis_Grand_Slam_Champions/73301405",
+          "Tennis_Grand_Slam_Champions/73301406",
+          "Tennis_Grand_Slam_Champions/73301409",
+          "Tennis_Grand_Slam_Champions/73301411",
+          "Tennis_Grand_Slam_Champions/73301415",
+          "Tennis_Grand_Slam_Champions/73301417",
+          "Tennis_Grand_Slam_Champions/73301419",
+          "Tennis_Grand_Slam_Champions/73301420",
+          "Tennis_Grand_Slam_Champions/73301422",
+          "Tennis_Grand_Slam_Champions/73301424",
+          "Tennis_Grand_Slam_Champions/73301425",
+          "Tennis_Grand_Slam_Champions/73301426",
+          "Tennis_Grand_Slam_Champions/73301429",
+          "Tennis_Grand_Slam_Champions/73301431",
+          "Tennis_Grand_Slam_Champions/73301432",
+          "Tennis_Grand_Slam_Champions/73301435",
+          "Tennis_Grand_Slam_Champions/73301437",
+          "Tennis_Grand_Slam_Champions/73301438",
+          "Tennis_Grand_Slam_Champions/73301439",
+          "Tennis_Grand_Slam_Champions/73301440",
+          "Tennis_Grand_Slam_Champions/73301445",
+          "Tennis_Grand_Slam_Champions/73301446",
+          "Tennis_Grand_Slam_Champions/73301449",
+          "Tennis_Grand_Slam_Champions/73301450",
+          "Tennis_Grand_Slam_Champions/73301451",
+          "Tennis_Grand_Slam_Champions/73301456"
+        ],
+        "type": "Set",
+        "size": 56,
+        "setMembership": {
+          "French Open": "Yes",
+          "Australian Open": "No",
+          "US Open": "No",
+          "Wimbledon": "No"
+        },
+        "attributes": {
+          "Total": {
+            "min": 1,
+            "max": 23,
+            "median": 2,
+            "mean": 5,
+            "first": 1,
+            "third": 6.25
+          }
+        }
+      },
+      "Set_Australian Open": {
+        "id": "Set_Australian Open",
+        "elementName": "Australian Open",
+        "items": [
+          "Tennis_Grand_Slam_Champions/73301343",
+          "Tennis_Grand_Slam_Champions/73301348",
+          "Tennis_Grand_Slam_Champions/73301350",
+          "Tennis_Grand_Slam_Champions/73301351",
+          "Tennis_Grand_Slam_Champions/73301356",
+          "Tennis_Grand_Slam_Champions/73301359",
+          "Tennis_Grand_Slam_Champions/73301361",
+          "Tennis_Grand_Slam_Champions/73301362",
+          "Tennis_Grand_Slam_Champions/73301363",
+          "Tennis_Grand_Slam_Champions/73301365",
+          "Tennis_Grand_Slam_Champions/73301368",
+          "Tennis_Grand_Slam_Champions/73301371",
+          "Tennis_Grand_Slam_Champions/73301373",
+          "Tennis_Grand_Slam_Champions/73301374",
+          "Tennis_Grand_Slam_Champions/73301375",
+          "Tennis_Grand_Slam_Champions/73301376",
+          "Tennis_Grand_Slam_Champions/73301379",
+          "Tennis_Grand_Slam_Champions/73301382",
+          "Tennis_Grand_Slam_Champions/73301383",
+          "Tennis_Grand_Slam_Champions/73301384",
+          "Tennis_Grand_Slam_Champions/73301387",
+          "Tennis_Grand_Slam_Champions/73301388",
+          "Tennis_Grand_Slam_Champions/73301389",
+          "Tennis_Grand_Slam_Champions/73301392",
+          "Tennis_Grand_Slam_Champions/73301393",
+          "Tennis_Grand_Slam_Champions/73301394",
+          "Tennis_Grand_Slam_Champions/73301395",
+          "Tennis_Grand_Slam_Champions/73301397",
+          "Tennis_Grand_Slam_Champions/73301399",
+          "Tennis_Grand_Slam_Champions/73301400",
+          "Tennis_Grand_Slam_Champions/73301403",
+          "Tennis_Grand_Slam_Champions/73301407",
+          "Tennis_Grand_Slam_Champions/73301410",
+          "Tennis_Grand_Slam_Champions/73301412",
+          "Tennis_Grand_Slam_Champions/73301413",
+          "Tennis_Grand_Slam_Champions/73301415",
+          "Tennis_Grand_Slam_Champions/73301420",
+          "Tennis_Grand_Slam_Champions/73301421",
+          "Tennis_Grand_Slam_Champions/73301424",
+          "Tennis_Grand_Slam_Champions/73301426",
+          "Tennis_Grand_Slam_Champions/73301427",
+          "Tennis_Grand_Slam_Champions/73301428",
+          "Tennis_Grand_Slam_Champions/73301429",
+          "Tennis_Grand_Slam_Champions/73301430",
+          "Tennis_Grand_Slam_Champions/73301431",
+          "Tennis_Grand_Slam_Champions/73301432",
+          "Tennis_Grand_Slam_Champions/73301434",
+          "Tennis_Grand_Slam_Champions/73301436",
+          "Tennis_Grand_Slam_Champions/73301437",
+          "Tennis_Grand_Slam_Champions/73301439",
+          "Tennis_Grand_Slam_Champions/73301441",
+          "Tennis_Grand_Slam_Champions/73301442",
+          "Tennis_Grand_Slam_Champions/73301445",
+          "Tennis_Grand_Slam_Champions/73301448",
+          "Tennis_Grand_Slam_Champions/73301449",
+          "Tennis_Grand_Slam_Champions/73301454",
+          "Tennis_Grand_Slam_Champions/73301455",
+          "Tennis_Grand_Slam_Champions/73301457"
+        ],
+        "type": "Set",
+        "size": 58,
+        "setMembership": {
+          "French Open": "No",
+          "Australian Open": "Yes",
+          "US Open": "No",
+          "Wimbledon": "No"
+        },
+        "attributes": {
+          "Total": {
+            "min": 1,
+            "max": 23,
+            "median": 3,
+            "mean": 4.810344827586207,
+            "first": 1,
+            "third": 5
+          }
+        }
+      },
+      "Set_US Open": {
+        "id": "Set_US Open",
+        "elementName": "US Open",
+        "items": [
+          "Tennis_Grand_Slam_Champions/73301343",
+          "Tennis_Grand_Slam_Champions/73301346",
+          "Tennis_Grand_Slam_Champions/73301347",
+          "Tennis_Grand_Slam_Champions/73301348",
+          "Tennis_Grand_Slam_Champions/73301350",
+          "Tennis_Grand_Slam_Champions/73301355",
+          "Tennis_Grand_Slam_Champions/73301358",
+          "Tennis_Grand_Slam_Champions/73301359",
+          "Tennis_Grand_Slam_Champions/73301362",
+          "Tennis_Grand_Slam_Champions/73301364",
+          "Tennis_Grand_Slam_Champions/73301365",
+          "Tennis_Grand_Slam_Champions/73301367",
+          "Tennis_Grand_Slam_Champions/73301368",
+          "Tennis_Grand_Slam_Champions/73301369",
+          "Tennis_Grand_Slam_Champions/73301370",
+          "Tennis_Grand_Slam_Champions/73301371",
+          "Tennis_Grand_Slam_Champions/73301372",
+          "Tennis_Grand_Slam_Champions/73301374",
+          "Tennis_Grand_Slam_Champions/73301379",
+          "Tennis_Grand_Slam_Champions/73301381",
+          "Tennis_Grand_Slam_Champions/73301382",
+          "Tennis_Grand_Slam_Champions/73301384",
+          "Tennis_Grand_Slam_Champions/73301387",
+          "Tennis_Grand_Slam_Champions/73301388",
+          "Tennis_Grand_Slam_Champions/73301391",
+          "Tennis_Grand_Slam_Champions/73301392",
+          "Tennis_Grand_Slam_Champions/73301393",
+          "Tennis_Grand_Slam_Champions/73301403",
+          "Tennis_Grand_Slam_Champions/73301405",
+          "Tennis_Grand_Slam_Champions/73301408",
+          "Tennis_Grand_Slam_Champions/73301409",
+          "Tennis_Grand_Slam_Champions/73301411",
+          "Tennis_Grand_Slam_Champions/73301416",
+          "Tennis_Grand_Slam_Champions/73301418",
+          "Tennis_Grand_Slam_Champions/73301420",
+          "Tennis_Grand_Slam_Champions/73301426",
+          "Tennis_Grand_Slam_Champions/73301428",
+          "Tennis_Grand_Slam_Champions/73301430",
+          "Tennis_Grand_Slam_Champions/73301431",
+          "Tennis_Grand_Slam_Champions/73301432",
+          "Tennis_Grand_Slam_Champions/73301434",
+          "Tennis_Grand_Slam_Champions/73301435",
+          "Tennis_Grand_Slam_Champions/73301439",
+          "Tennis_Grand_Slam_Champions/73301441",
+          "Tennis_Grand_Slam_Champions/73301444",
+          "Tennis_Grand_Slam_Champions/73301445",
+          "Tennis_Grand_Slam_Champions/73301447",
+          "Tennis_Grand_Slam_Champions/73301449",
+          "Tennis_Grand_Slam_Champions/73301451",
+          "Tennis_Grand_Slam_Champions/73301452",
+          "Tennis_Grand_Slam_Champions/73301453",
+          "Tennis_Grand_Slam_Champions/73301457"
+        ],
+        "type": "Set",
+        "size": 52,
+        "setMembership": {
+          "French Open": "No",
+          "Australian Open": "No",
+          "US Open": "Yes",
+          "Wimbledon": "No"
+        },
+        "attributes": {
+          "Total": {
+            "min": 1,
+            "max": 23,
+            "median": 4,
+            "mean": 6.038461538461538,
+            "first": 2,
+            "third": 8
+          }
+        }
+      },
+      "Set_Wimbledon": {
+        "id": "Set_Wimbledon",
+        "elementName": "Wimbledon",
+        "items": [
+          "Tennis_Grand_Slam_Champions/73301343",
+          "Tennis_Grand_Slam_Champions/73301346",
+          "Tennis_Grand_Slam_Champions/73301348",
+          "Tennis_Grand_Slam_Champions/73301349",
+          "Tennis_Grand_Slam_Champions/73301350",
+          "Tennis_Grand_Slam_Champions/73301354",
+          "Tennis_Grand_Slam_Champions/73301360",
+          "Tennis_Grand_Slam_Champions/73301362",
+          "Tennis_Grand_Slam_Champions/73301364",
+          "Tennis_Grand_Slam_Champions/73301365",
+          "Tennis_Grand_Slam_Champions/73301369",
+          "Tennis_Grand_Slam_Champions/73301378",
+          "Tennis_Grand_Slam_Champions/73301379",
+          "Tennis_Grand_Slam_Champions/73301380",
+          "Tennis_Grand_Slam_Champions/73301382",
+          "Tennis_Grand_Slam_Champions/73301384",
+          "Tennis_Grand_Slam_Champions/73301386",
+          "Tennis_Grand_Slam_Champions/73301387",
+          "Tennis_Grand_Slam_Champions/73301388",
+          "Tennis_Grand_Slam_Champions/73301391",
+          "Tennis_Grand_Slam_Champions/73301393",
+          "Tennis_Grand_Slam_Champions/73301400",
+          "Tennis_Grand_Slam_Champions/73301403",
+          "Tennis_Grand_Slam_Champions/73301404",
+          "Tennis_Grand_Slam_Champions/73301409",
+          "Tennis_Grand_Slam_Champions/73301411",
+          "Tennis_Grand_Slam_Champions/73301414",
+          "Tennis_Grand_Slam_Champions/73301415",
+          "Tennis_Grand_Slam_Champions/73301419",
+          "Tennis_Grand_Slam_Champions/73301423",
+          "Tennis_Grand_Slam_Champions/73301430",
+          "Tennis_Grand_Slam_Champions/73301431",
+          "Tennis_Grand_Slam_Champions/73301432",
+          "Tennis_Grand_Slam_Champions/73301433",
+          "Tennis_Grand_Slam_Champions/73301434",
+          "Tennis_Grand_Slam_Champions/73301435",
+          "Tennis_Grand_Slam_Champions/73301443",
+          "Tennis_Grand_Slam_Champions/73301445",
+          "Tennis_Grand_Slam_Champions/73301446",
+          "Tennis_Grand_Slam_Champions/73301449",
+          "Tennis_Grand_Slam_Champions/73301453",
+          "Tennis_Grand_Slam_Champions/73301457"
+        ],
+        "type": "Set",
+        "size": 42,
+        "setMembership": {
+          "French Open": "No",
+          "Australian Open": "No",
+          "US Open": "No",
+          "Wimbledon": "Yes"
+        },
+        "attributes": {
+          "Total": {
+            "min": 1,
+            "max": 23,
+            "median": 5,
+            "mean": 6.666666666666667,
+            "first": 2,
+            "third": 8
+          }
+        }
+      }
+    }
+  },
+  "processedData": {
+    "values": {
+      "Subset_French_Open": {
+        "id": "Subset_French_Open",
+        "elementName": "Just French Open",
+        "items": [
+          "Tennis_Grand_Slam_Champions/73301341",
+          "Tennis_Grand_Slam_Champions/73301342",
+          "Tennis_Grand_Slam_Champions/73301344",
+          "Tennis_Grand_Slam_Champions/73301345",
+          "Tennis_Grand_Slam_Champions/73301352",
+          "Tennis_Grand_Slam_Champions/73301353",
+          "Tennis_Grand_Slam_Champions/73301357",
+          "Tennis_Grand_Slam_Champions/73301366",
+          "Tennis_Grand_Slam_Champions/73301377",
+          "Tennis_Grand_Slam_Champions/73301385",
+          "Tennis_Grand_Slam_Champions/73301390",
+          "Tennis_Grand_Slam_Champions/73301396",
+          "Tennis_Grand_Slam_Champions/73301398",
+          "Tennis_Grand_Slam_Champions/73301401",
+          "Tennis_Grand_Slam_Champions/73301402",
+          "Tennis_Grand_Slam_Champions/73301406",
+          "Tennis_Grand_Slam_Champions/73301417",
+          "Tennis_Grand_Slam_Champions/73301422",
+          "Tennis_Grand_Slam_Champions/73301425",
+          "Tennis_Grand_Slam_Champions/73301438",
+          "Tennis_Grand_Slam_Champions/73301440",
+          "Tennis_Grand_Slam_Champions/73301450",
+          "Tennis_Grand_Slam_Champions/73301456"
+        ],
+        "size": 23,
+        "type": "Subset",
+        "setMembership": {
+          "Set_French Open": "Yes",
+          "Set_Australian Open": "No",
+          "Set_US Open": "No",
+          "Set_Wimbledon": "No"
+        },
+        "attributes": {
+          "Total": {
+            "min": 1,
+            "max": 3,
+            "median": 1,
+            "mean": 1.1304347826086956,
+            "first": 1,
+            "third": 1
+          },
+          "deviation": 11.062618331228164
+        }
+      },
+      "Subset_Australian_Open": {
+        "id": "Subset_Australian_Open",
+        "elementName": "Just Australian Open",
+        "items": [
+          "Tennis_Grand_Slam_Champions/73301351",
+          "Tennis_Grand_Slam_Champions/73301356",
+          "Tennis_Grand_Slam_Champions/73301363",
+          "Tennis_Grand_Slam_Champions/73301373",
+          "Tennis_Grand_Slam_Champions/73301375",
+          "Tennis_Grand_Slam_Champions/73301376",
+          "Tennis_Grand_Slam_Champions/73301383",
+          "Tennis_Grand_Slam_Champions/73301389",
+          "Tennis_Grand_Slam_Champions/73301394",
+          "Tennis_Grand_Slam_Champions/73301395",
+          "Tennis_Grand_Slam_Champions/73301397",
+          "Tennis_Grand_Slam_Champions/73301407",
+          "Tennis_Grand_Slam_Champions/73301410",
+          "Tennis_Grand_Slam_Champions/73301412",
+          "Tennis_Grand_Slam_Champions/73301413",
+          "Tennis_Grand_Slam_Champions/73301421",
+          "Tennis_Grand_Slam_Champions/73301427",
+          "Tennis_Grand_Slam_Champions/73301436",
+          "Tennis_Grand_Slam_Champions/73301442",
+          "Tennis_Grand_Slam_Champions/73301448",
+          "Tennis_Grand_Slam_Champions/73301454",
+          "Tennis_Grand_Slam_Champions/73301455"
+        ],
+        "size": 22,
+        "type": "Subset",
+        "setMembership": {
+          "Set_French Open": "No",
+          "Set_Australian Open": "Yes",
+          "Set_US Open": "No",
+          "Set_Wimbledon": "No"
+        },
+        "attributes": {
+          "Total": {
+            "min": 1,
+            "max": 3,
+            "median": 1,
+            "mean": 1.2272727272727273,
+            "first": 1,
+            "third": 1
+          },
+          "deviation": 9.599156184005334
+        }
+      },
+      "Subset_US_Open": {
+        "id": "Subset_US_Open",
+        "elementName": "Just US Open",
+        "items": [
+          "Tennis_Grand_Slam_Champions/73301347",
+          "Tennis_Grand_Slam_Champions/73301367",
+          "Tennis_Grand_Slam_Champions/73301370",
+          "Tennis_Grand_Slam_Champions/73301372",
+          "Tennis_Grand_Slam_Champions/73301381",
+          "Tennis_Grand_Slam_Champions/73301408",
+          "Tennis_Grand_Slam_Champions/73301416",
+          "Tennis_Grand_Slam_Champions/73301418",
+          "Tennis_Grand_Slam_Champions/73301444",
+          "Tennis_Grand_Slam_Champions/73301447",
+          "Tennis_Grand_Slam_Champions/73301452"
+        ],
+        "size": 11,
+        "type": "Subset",
+        "setMembership": {
+          "Set_French Open": "No",
+          "Set_Australian Open": "No",
+          "Set_US Open": "Yes",
+          "Set_Wimbledon": "No"
+        },
+        "attributes": {
+          "Total": {
+            "min": 1,
+            "max": 2,
+            "median": 1,
+            "mean": 1.1818181818181819,
+            "first": 1,
+            "third": 1
+          },
+          "deviation": 1.911343959703958
+        }
+      },
+      "Subset_Australian_Open~&~US Open~&~Wimbledon": {
+        "id": "Subset_Australian_Open~&~US Open~&~Wimbledon",
+        "elementName": "Australian Open, US Open, and Wimbledon",
+        "items": [
+          "Tennis_Grand_Slam_Champions/73301348",
+          "Tennis_Grand_Slam_Champions/73301350",
+          "Tennis_Grand_Slam_Champions/73301362",
+          "Tennis_Grand_Slam_Champions/73301365",
+          "Tennis_Grand_Slam_Champions/73301382",
+          "Tennis_Grand_Slam_Champions/73301393",
+          "Tennis_Grand_Slam_Champions/73301403",
+          "Tennis_Grand_Slam_Champions/73301430",
+          "Tennis_Grand_Slam_Champions/73301434",
+          "Tennis_Grand_Slam_Champions/73301457"
+        ],
+        "size": 10,
+        "type": "Subset",
+        "setMembership": {
+          "Set_French Open": "No",
+          "Set_Australian Open": "Yes",
+          "Set_US Open": "Yes",
+          "Set_Wimbledon": "Yes"
+        },
+        "attributes": {
+          "Total": {
+            "min": 3,
+            "max": 14,
+            "median": 5,
+            "mean": 5.5,
+            "first": 3,
+            "third": 5.75
+          },
+          "deviation": 4.423498893511313
+        }
+      },
+      "Subset_French_Open~&~Australian Open~&~US Open~&~Wimbledon": {
+        "id": "Subset_French_Open~&~Australian Open~&~US Open~&~Wimbledon",
+        "elementName": "French Open, Australian Open, US Open, and Wimbledon",
+        "items": [
+          "Tennis_Grand_Slam_Champions/73301343",
+          "Tennis_Grand_Slam_Champions/73301379",
+          "Tennis_Grand_Slam_Champions/73301384",
+          "Tennis_Grand_Slam_Champions/73301387",
+          "Tennis_Grand_Slam_Champions/73301388",
+          "Tennis_Grand_Slam_Champions/73301431",
+          "Tennis_Grand_Slam_Champions/73301432",
+          "Tennis_Grand_Slam_Champions/73301445",
+          "Tennis_Grand_Slam_Champions/73301449"
+        ],
+        "size": 9,
+        "type": "Subset",
+        "setMembership": {
+          "Set_French Open": "Yes",
+          "Set_Australian Open": "Yes",
+          "Set_US Open": "Yes",
+          "Set_Wimbledon": "Yes"
+        },
+        "attributes": {
+          "Total": {
+            "min": 5,
+            "max": 23,
+            "median": 17,
+            "mean": 14.333333333333334,
+            "first": 8,
+            "third": 20
+          },
+          "deviation": 3.9067906333594116
+        }
+      },
+      "Subset_Wimbledon": {
+        "id": "Subset_Wimbledon",
+        "elementName": "Just Wimbledon",
+        "items": [
+          "Tennis_Grand_Slam_Champions/73301354",
+          "Tennis_Grand_Slam_Champions/73301378",
+          "Tennis_Grand_Slam_Champions/73301380",
+          "Tennis_Grand_Slam_Champions/73301386",
+          "Tennis_Grand_Slam_Champions/73301404",
+          "Tennis_Grand_Slam_Champions/73301414",
+          "Tennis_Grand_Slam_Champions/73301423",
+          "Tennis_Grand_Slam_Champions/73301433",
+          "Tennis_Grand_Slam_Champions/73301443"
+        ],
+        "size": 9,
+        "type": "Subset",
+        "setMembership": {
+          "Set_French Open": "No",
+          "Set_Australian Open": "No",
+          "Set_US Open": "No",
+          "Set_Wimbledon": "Yes"
+        },
+        "attributes": {
+          "Total": {
+            "min": 1,
+            "max": 2,
+            "median": 1,
+            "mean": 1.1111111111111112,
+            "first": 1,
+            "third": 1
+          },
+          "deviation": 2.449051882903882
+        }
+      },
+      "Subset_French_Open~&~Australian Open~&~US Open": {
+        "id": "Subset_French_Open~&~Australian Open~&~US Open",
+        "elementName": "French Open, Australian Open, and US Open",
+        "items": [
+          "Tennis_Grand_Slam_Champions/73301359",
+          "Tennis_Grand_Slam_Champions/73301368",
+          "Tennis_Grand_Slam_Champions/73301374",
+          "Tennis_Grand_Slam_Champions/73301392",
+          "Tennis_Grand_Slam_Champions/73301420",
+          "Tennis_Grand_Slam_Champions/73301426",
+          "Tennis_Grand_Slam_Champions/73301439"
+        ],
+        "size": 7,
+        "type": "Subset",
+        "setMembership": {
+          "Set_French Open": "Yes",
+          "Set_Australian Open": "Yes",
+          "Set_US Open": "Yes",
+          "Set_Wimbledon": "No"
+        },
+        "attributes": {
+          "Total": {
+            "min": 3,
+            "max": 9,
+            "median": 5,
+            "mean": 5.571428571428571,
+            "first": 3.5,
+            "third": 7.5
+          },
+          "deviation": -0.7769459080730894
+        }
+      },
+      "Subset_French_Open~&~Australian Open": {
+        "id": "Subset_French_Open~&~Australian Open",
+        "elementName": "French Open, and Australian Open",
+        "items": [
+          "Tennis_Grand_Slam_Champions/73301361",
+          "Tennis_Grand_Slam_Champions/73301399",
+          "Tennis_Grand_Slam_Champions/73301424",
+          "Tennis_Grand_Slam_Champions/73301429",
+          "Tennis_Grand_Slam_Champions/73301437"
+        ],
+        "size": 5,
+        "type": "Subset",
+        "setMembership": {
+          "Set_French Open": "Yes",
+          "Set_Australian Open": "Yes",
+          "Set_US Open": "No",
+          "Set_Wimbledon": "No"
+        },
+        "attributes": {
+          "Total": {
+            "min": 2,
+            "max": 4,
+            "median": 2,
+            "mean": 2.6,
+            "first": 2,
+            "third": 3
+          },
+          "deviation": -4.176310590219569
+        }
+      },
+      "Subset_US_Open~&~Wimbledon": {
+        "id": "Subset_US_Open~&~Wimbledon",
+        "elementName": "US Open, and Wimbledon",
+        "items": [
+          "Tennis_Grand_Slam_Champions/73301346",
+          "Tennis_Grand_Slam_Champions/73301364",
+          "Tennis_Grand_Slam_Champions/73301369",
+          "Tennis_Grand_Slam_Champions/73301391",
+          "Tennis_Grand_Slam_Champions/73301453"
+        ],
+        "size": 5,
+        "type": "Subset",
+        "setMembership": {
+          "Set_French Open": "No",
+          "Set_Australian Open": "No",
+          "Set_US Open": "Yes",
+          "Set_Wimbledon": "Yes"
+        },
+        "attributes": {
+          "Total": {
+            "min": 2,
+            "max": 7,
+            "median": 3,
+            "mean": 4.2,
+            "first": 2,
+            "third": 7
+          },
+          "deviation": 0.07889962598122482
+        }
+      },
+      "Subset_French_Open~&~Wimbledon": {
+        "id": "Subset_French_Open~&~Wimbledon",
+        "elementName": "French Open, and Wimbledon",
+        "items": [
+          "Tennis_Grand_Slam_Champions/73301349",
+          "Tennis_Grand_Slam_Champions/73301360",
+          "Tennis_Grand_Slam_Champions/73301419",
+          "Tennis_Grand_Slam_Champions/73301446"
+        ],
+        "size": 4,
+        "type": "Subset",
+        "setMembership": {
+          "Set_French Open": "Yes",
+          "Set_Australian Open": "No",
+          "Set_US Open": "No",
+          "Set_Wimbledon": "Yes"
+        },
+        "attributes": {
+          "Total": {
+            "min": 2,
+            "max": 11,
+            "median": 2.5,
+            "mean": 4.5,
+            "first": 2,
+            "third": 5
+          },
+          "deviation": -1.3946773242558177
+        }
+      },
+      "Subset_French_Open~&~US Open": {
+        "id": "Subset_French_Open~&~US Open",
+        "elementName": "French Open, and US Open",
+        "items": [
+          "Tennis_Grand_Slam_Champions/73301355",
+          "Tennis_Grand_Slam_Champions/73301358",
+          "Tennis_Grand_Slam_Champions/73301405",
+          "Tennis_Grand_Slam_Champions/73301451"
+        ],
+        "size": 4,
+        "type": "Subset",
+        "setMembership": {
+          "Set_French Open": "Yes",
+          "Set_Australian Open": "No",
+          "Set_US Open": "Yes",
+          "Set_Wimbledon": "No"
+        },
+        "attributes": {
+          "Total": {
+            "min": 2,
+            "max": 4,
+            "median": 2,
+            "mean": 2.5,
+            "first": 2,
+            "third": 2.5
+          },
+          "deviation": -3.4575976427097754
+        }
+      },
+      "Subset_French_Open~&~US Open~&~Wimbledon": {
+        "id": "Subset_French_Open~&~US Open~&~Wimbledon",
+        "elementName": "French Open, US Open, and Wimbledon",
+        "items": [
+          "Tennis_Grand_Slam_Champions/73301409",
+          "Tennis_Grand_Slam_Champions/73301411",
+          "Tennis_Grand_Slam_Champions/73301435"
+        ],
+        "size": 3,
+        "type": "Subset",
+        "setMembership": {
+          "Set_French Open": "Yes",
+          "Set_Australian Open": "No",
+          "Set_US Open": "Yes",
+          "Set_Wimbledon": "Yes"
+        },
+        "attributes": {
+          "Total": {
+            "min": 8,
+            "max": 16,
+            "median": 15,
+            "mean": 13,
+            "first": 11.5,
+            "third": 15.5
+          },
+          "deviation": -1.2866820303448254
+        }
+      },
+      "Subset_Australian_Open~&~US Open": {
+        "id": "Subset_Australian_Open~&~US Open",
+        "elementName": "Australian Open, and US Open",
+        "items": [
+          "Tennis_Grand_Slam_Champions/73301371",
+          "Tennis_Grand_Slam_Champions/73301428",
+          "Tennis_Grand_Slam_Champions/73301441"
+        ],
+        "size": 3,
+        "type": "Subset",
+        "setMembership": {
+          "Set_French Open": "No",
+          "Set_Australian Open": "Yes",
+          "Set_US Open": "Yes",
+          "Set_Wimbledon": "No"
+        },
+        "attributes": {
+          "Total": {
+            "min": 2,
+            "max": 4,
+            "median": 2,
+            "mean": 2.6666666666666665,
+            "first": 2,
+            "third": 3
+          },
+          "deviation": -4.7993075314282105
+        }
+      },
+      "Subset_French_Open~&~Australian Open~&~Wimbledon": {
+        "id": "Subset_French_Open~&~Australian Open~&~Wimbledon",
+        "elementName": "French Open, Australian Open, and Wimbledon",
+        "items": [
+          "Tennis_Grand_Slam_Champions/73301415"
+        ],
+        "size": 1,
+        "type": "Subset",
+        "setMembership": {
+          "Set_French Open": "Yes",
+          "Set_Australian Open": "Yes",
+          "Set_US Open": "No",
+          "Set_Wimbledon": "Yes"
+        },
+        "attributes": {
+          "Total": {
+            "min": 6,
+            "max": 6,
+            "median": 6,
+            "mean": 6,
+            "first": 6,
+            "third": 6
+          },
+          "deviation": -3.877195468984497
+        }
+      },
+      "Subset_Australian_Open~&~Wimbledon": {
+        "id": "Subset_Australian_Open~&~Wimbledon",
+        "elementName": "Australian Open, and Wimbledon",
+        "items": [
+          "Tennis_Grand_Slam_Champions/73301400"
+        ],
+        "size": 1,
+        "type": "Subset",
+        "setMembership": {
+          "Set_French Open": "No",
+          "Set_Australian Open": "Yes",
+          "Set_US Open": "No",
+          "Set_Wimbledon": "Yes"
+        },
+        "attributes": {
+          "Total": {
+            "min": 2,
+            "max": 2,
+            "median": 2,
+            "mean": 2,
+            "first": 2,
+            "third": 2
+          },
+          "deviation": -4.299686212170688
+        }
+      }
+    },
+    "order": [
+      "Subset_French_Open",
+      "Subset_Australian_Open",
+      "Subset_US_Open",
+      "Subset_Australian_Open~&~US Open~&~Wimbledon",
+      "Subset_French_Open~&~Australian Open~&~US Open~&~Wimbledon",
+      "Subset_Wimbledon",
+      "Subset_French_Open~&~Australian Open~&~US Open",
+      "Subset_French_Open~&~Australian Open",
+      "Subset_US_Open~&~Wimbledon",
+      "Subset_French_Open~&~Wimbledon",
+      "Subset_French_Open~&~US Open",
+      "Subset_French_Open~&~US Open~&~Wimbledon",
+      "Subset_Australian_Open~&~US Open",
+      "Subset_French_Open~&~Australian Open~&~Wimbledon",
+      "Subset_Australian_Open~&~Wimbledon"
+    ]
+  },
+  "accessibleProcessedData": {
+    "values": {
+      "Subset_French_Open": {
+        "elementName": "Just French Open",
+        "type": "Subset",
+        "size": 23,
+        "attributes": {
+          "Total": {
+            "min": 1,
+            "max": 3,
+            "median": 1,
+            "mean": 1.1304347826086956,
+            "first": 1,
+            "third": 1
+          },
+          "deviation": 11.062618331228164
+        },
+        "degree": 1,
+        "setMembership": {
+          "Set_French Open": "Yes",
+          "Set_Australian Open": "No",
+          "Set_US Open": "No",
+          "Set_Wimbledon": "No"
+        }
+      },
+      "Subset_Australian_Open": {
+        "elementName": "Just Australian Open",
+        "type": "Subset",
+        "size": 22,
+        "attributes": {
+          "Total": {
+            "min": 1,
+            "max": 3,
+            "median": 1,
+            "mean": 1.2272727272727273,
+            "first": 1,
+            "third": 1
+          },
+          "deviation": 9.599156184005334
+        },
+        "degree": 1,
+        "setMembership": {
+          "Set_French Open": "No",
+          "Set_Australian Open": "Yes",
+          "Set_US Open": "No",
+          "Set_Wimbledon": "No"
+        }
+      },
+      "Subset_US_Open": {
+        "elementName": "Just US Open",
+        "type": "Subset",
+        "size": 11,
+        "attributes": {
+          "Total": {
+            "min": 1,
+            "max": 2,
+            "median": 1,
+            "mean": 1.1818181818181819,
+            "first": 1,
+            "third": 1
+          },
+          "deviation": 1.911343959703958
+        },
+        "degree": 1,
+        "setMembership": {
+          "Set_French Open": "No",
+          "Set_Australian Open": "No",
+          "Set_US Open": "Yes",
+          "Set_Wimbledon": "No"
+        }
+      },
+      "Subset_Australian_Open~&~US Open~&~Wimbledon": {
+        "elementName": "Australian Open, US Open, and Wimbledon",
+        "type": "Subset",
+        "size": 10,
+        "attributes": {
+          "Total": {
+            "min": 3,
+            "max": 14,
+            "median": 5,
+            "mean": 5.5,
+            "first": 3,
+            "third": 5.75
+          },
+          "deviation": 4.423498893511313
+        },
+        "degree": 3,
+        "setMembership": {
+          "Set_French Open": "No",
+          "Set_Australian Open": "Yes",
+          "Set_US Open": "Yes",
+          "Set_Wimbledon": "Yes"
+        }
+      },
+      "Subset_French_Open~&~Australian Open~&~US Open~&~Wimbledon": {
+        "elementName": "French Open, Australian Open, US Open, and Wimbledon",
+        "type": "Subset",
+        "size": 9,
+        "attributes": {
+          "Total": {
+            "min": 5,
+            "max": 23,
+            "median": 17,
+            "mean": 14.333333333333334,
+            "first": 8,
+            "third": 20
+          },
+          "deviation": 3.9067906333594116
+        },
+        "degree": 4,
+        "setMembership": {
+          "Set_French Open": "Yes",
+          "Set_Australian Open": "Yes",
+          "Set_US Open": "Yes",
+          "Set_Wimbledon": "Yes"
+        }
+      },
+      "Subset_Wimbledon": {
+        "elementName": "Just Wimbledon",
+        "type": "Subset",
+        "size": 9,
+        "attributes": {
+          "Total": {
+            "min": 1,
+            "max": 2,
+            "median": 1,
+            "mean": 1.1111111111111112,
+            "first": 1,
+            "third": 1
+          },
+          "deviation": 2.449051882903882
+        },
+        "degree": 1,
+        "setMembership": {
+          "Set_French Open": "No",
+          "Set_Australian Open": "No",
+          "Set_US Open": "No",
+          "Set_Wimbledon": "Yes"
+        }
+      },
+      "Subset_French_Open~&~Australian Open~&~US Open": {
+        "elementName": "French Open, Australian Open, and US Open",
+        "type": "Subset",
+        "size": 7,
+        "attributes": {
+          "Total": {
+            "min": 3,
+            "max": 9,
+            "median": 5,
+            "mean": 5.571428571428571,
+            "first": 3.5,
+            "third": 7.5
+          },
+          "deviation": -0.7769459080730894
+        },
+        "degree": 3,
+        "setMembership": {
+          "Set_French Open": "Yes",
+          "Set_Australian Open": "Yes",
+          "Set_US Open": "Yes",
+          "Set_Wimbledon": "No"
+        }
+      },
+      "Subset_French_Open~&~Australian Open": {
+        "elementName": "French Open, and Australian Open",
+        "type": "Subset",
+        "size": 5,
+        "attributes": {
+          "Total": {
+            "min": 2,
+            "max": 4,
+            "median": 2,
+            "mean": 2.6,
+            "first": 2,
+            "third": 3
+          },
+          "deviation": -4.176310590219569
+        },
+        "degree": 2,
+        "setMembership": {
+          "Set_French Open": "Yes",
+          "Set_Australian Open": "Yes",
+          "Set_US Open": "No",
+          "Set_Wimbledon": "No"
+        }
+      },
+      "Subset_US_Open~&~Wimbledon": {
+        "elementName": "US Open, and Wimbledon",
+        "type": "Subset",
+        "size": 5,
+        "attributes": {
+          "Total": {
+            "min": 2,
+            "max": 7,
+            "median": 3,
+            "mean": 4.2,
+            "first": 2,
+            "third": 7
+          },
+          "deviation": 0.07889962598122482
+        },
+        "degree": 2,
+        "setMembership": {
+          "Set_French Open": "No",
+          "Set_Australian Open": "No",
+          "Set_US Open": "Yes",
+          "Set_Wimbledon": "Yes"
+        }
+      },
+      "Subset_French_Open~&~Wimbledon": {
+        "elementName": "French Open, and Wimbledon",
+        "type": "Subset",
+        "size": 4,
+        "attributes": {
+          "Total": {
+            "min": 2,
+            "max": 11,
+            "median": 2.5,
+            "mean": 4.5,
+            "first": 2,
+            "third": 5
+          },
+          "deviation": -1.3946773242558177
+        },
+        "degree": 2,
+        "setMembership": {
+          "Set_French Open": "Yes",
+          "Set_Australian Open": "No",
+          "Set_US Open": "No",
+          "Set_Wimbledon": "Yes"
+        }
+      },
+      "Subset_French_Open~&~US Open": {
+        "elementName": "French Open, and US Open",
+        "type": "Subset",
+        "size": 4,
+        "attributes": {
+          "Total": {
+            "min": 2,
+            "max": 4,
+            "median": 2,
+            "mean": 2.5,
+            "first": 2,
+            "third": 2.5
+          },
+          "deviation": -3.4575976427097754
+        },
+        "degree": 2,
+        "setMembership": {
+          "Set_French Open": "Yes",
+          "Set_Australian Open": "No",
+          "Set_US Open": "Yes",
+          "Set_Wimbledon": "No"
+        }
+      },
+      "Subset_French_Open~&~US Open~&~Wimbledon": {
+        "elementName": "French Open, US Open, and Wimbledon",
+        "type": "Subset",
+        "size": 3,
+        "attributes": {
+          "Total": {
+            "min": 8,
+            "max": 16,
+            "median": 15,
+            "mean": 13,
+            "first": 11.5,
+            "third": 15.5
+          },
+          "deviation": -1.2866820303448254
+        },
+        "degree": 3,
+        "setMembership": {
+          "Set_French Open": "Yes",
+          "Set_Australian Open": "No",
+          "Set_US Open": "Yes",
+          "Set_Wimbledon": "Yes"
+        }
+      },
+      "Subset_Australian_Open~&~US Open": {
+        "elementName": "Australian Open, and US Open",
+        "type": "Subset",
+        "size": 3,
+        "attributes": {
+          "Total": {
+            "min": 2,
+            "max": 4,
+            "median": 2,
+            "mean": 2.6666666666666665,
+            "first": 2,
+            "third": 3
+          },
+          "deviation": -4.7993075314282105
+        },
+        "degree": 2,
+        "setMembership": {
+          "Set_French Open": "No",
+          "Set_Australian Open": "Yes",
+          "Set_US Open": "Yes",
+          "Set_Wimbledon": "No"
+        }
+      },
+      "Subset_French_Open~&~Australian Open~&~Wimbledon": {
+        "elementName": "French Open, Australian Open, and Wimbledon",
+        "type": "Subset",
+        "size": 1,
+        "attributes": {
+          "Total": {
+            "min": 6,
+            "max": 6,
+            "median": 6,
+            "mean": 6,
+            "first": 6,
+            "third": 6
+          },
+          "deviation": -3.877195468984497
+        },
+        "degree": 3,
+        "setMembership": {
+          "Set_French Open": "Yes",
+          "Set_Australian Open": "Yes",
+          "Set_US Open": "No",
+          "Set_Wimbledon": "Yes"
+        }
+      },
+      "Subset_Australian_Open~&~Wimbledon": {
+        "elementName": "Australian Open, and Wimbledon",
+        "type": "Subset",
+        "size": 1,
+        "attributes": {
+          "Total": {
+            "min": 2,
+            "max": 2,
+            "median": 2,
+            "mean": 2,
+            "first": 2,
+            "third": 2
+          },
+          "deviation": -4.299686212170688
+        },
+        "degree": 2,
+        "setMembership": {
+          "Set_French Open": "No",
+          "Set_Australian Open": "Yes",
+          "Set_US Open": "No",
+          "Set_Wimbledon": "Yes"
+        }
+      }
+    }
+  }
+}

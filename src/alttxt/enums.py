@@ -123,10 +123,10 @@ class IndividualSetSize(Listable):
     Strings need to be kept up-to-date with any changes
     to the MultiNet implementation's export format.
     """
-    
     DIVERGINGABIT = "roughly equal"
     DIVERGING = "moderately diverging"
     DIVERGINGALOT = "diverging a lot"
+    IDENTICAL = "the same"
 
 class IntersectionTrend(Listable):
     """

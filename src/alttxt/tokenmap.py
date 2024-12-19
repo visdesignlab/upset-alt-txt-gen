@@ -206,6 +206,7 @@ class TokenMap:
             return "{" + token + "}"
 
         result: Any = self.map[token]
+
         if type(result) == float:
             return str(round(result, 2))
         elif type(result) == int:
@@ -213,7 +214,10 @@ class TokenMap:
         elif type(result) == str:
             return result
         elif callable(result):
-            return result()
+            try:
+                return result()
+            except Exception as e:
+                raise Exception(f"Exception while executing function for token {token}: {str(e)}")
         else:
             raise Exception("Invalid token type: " + str(type(result)))
 

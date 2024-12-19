@@ -107,15 +107,18 @@ class AltTxtGen:
                     else:
                         return text
 
-                # Construct the dictionary for markdown content
-                data_to_write_as_md = {
-                    "UpSet Introduction": self.replaceTokens(introduction),
-                    "Dataset Properties": self.replaceTokens(dataset_properties),
-                    "Set Properties": add_bullet_points(self.replaceTokens(set_description)),
-                    "Intersection Properties": add_bullet_points(self.replaceTokens(intersection_description)),
-                    "Statistical Information": add_bullet_points(self.replaceTokens(statistical_information)),
-                    "Trend Analysis": add_bullet_points(self.replaceTokens(trend_analysis)),
-                }
+                try:
+                    # Construct the dictionary for markdown content
+                    data_to_write_as_md = {
+                        "UpSet Introduction": self.replaceTokens(introduction),
+                        "Dataset Properties": self.replaceTokens(dataset_properties),
+                        "Set Properties": add_bullet_points(self.replaceTokens(set_description)),
+                        "Intersection Properties": add_bullet_points(self.replaceTokens(intersection_description)),
+                        "Statistical Information": add_bullet_points(self.replaceTokens(statistical_information)),
+                        "Trend Analysis": add_bullet_points(self.replaceTokens(trend_analysis)),
+                    }
+                except Exception as e:
+                    print(f"Exception while constructing markdown content: {str(e)}")
 
                 markdown_content = ""
                 for section, content in data_to_write_as_md.items():
@@ -183,6 +186,7 @@ class AltTxtGen:
                     result.append(str(self.map.get_token(token)))
                 else:
                     result.append(token)
+
                 isToken = not isToken
 
             text = "".join(result)

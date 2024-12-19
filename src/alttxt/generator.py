@@ -102,7 +102,6 @@ class AltTxtGen:
                     if len(parts) > 1:
                         # add \n* to each part except the last one, and only add * to the first one
                         p = parts[0] + ".\n* " + ("\n* ".join(parts[1:]))
-                        print(p)
                         return p
                     else:
                         return text

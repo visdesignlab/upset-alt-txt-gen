@@ -126,7 +126,7 @@ class AltTxtGen:
                 # add glossary to markdown_content, from glossary.json
                 markdown_content += "# Glossary\n"
                 for term, definition in Glossary.items():
-                    markdown_content += f"* {term}: {definition}\n"
+                    markdown_content += f"* **{term}**: {definition}\n"
 
                 final_output = {
                     "techniqueDescription": self.replaceTokens(technique),

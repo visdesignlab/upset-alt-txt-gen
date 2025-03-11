@@ -1,5 +1,5 @@
 from typing import Any, Callable, Tuple, Union, Optional
-from alttxt.models import DataModel, GrammarModel, Subset
+from alttxt.models import DataModel, GrammarModel, SetMembershipStatus, Subset
 from alttxt.enums import SubsetField, IndividualSetSize, IntersectionTrend
 import statistics
 from alttxt.regionclass import *
@@ -187,6 +187,7 @@ class TokenMap:
             "highest_dominant_set": self.find_dominant_sets(len(self.grammar.visible_sets)),
             "large_sets": self.find_sets_in_large_subsets(),
             "all_set_index": self.get_all_set_position(),
+            "set_query": self.set_query,
         }
 
     ###############################
@@ -341,6 +342,10 @@ class TokenMap:
             "pos_size_avg": pos_size_total / pos_count if pos_count > 0 else 0,
             "neg_size_avg": neg_size_total / neg_count if neg_count > 0 else 0,
         }
+    
+    def trim_set_name(self, name: str) -> str:
+        '''Trims Set_ from a set name if extant'''
+        return name[4:] if name.startswith("Set_") else name
 
     ###############################
     #       Token functions       #
@@ -388,7 +393,7 @@ class TokenMap:
             self.data.sizes.items(), key=lambda x: x[1], reverse=True
         ):
             # Trim "Set_" from the setID if extant to make it match up with the name field
-            set_name: str = setID[4:] if setID.startswith("Set_") else setID
+            set_name: str = self.trim_set_name(setID)
             if set_name in self.grammar.visible_sets:
                 result += f"{set_name}: {size}, "
 
@@ -1154,6 +1159,43 @@ class TokenMap:
                 return f"The intersection of all sets is present with {all_set_size} elements."
         else:
             return ""
+        
+    def set_query(self):
+      '''Outputs text describing the current set query with no terminating period'''
+      no_set_query = "No set query is active"
+
+      if self.grammar.set_query:
+          included_sets = []
+          excluded_sets = []
+          for name, membership in self.grammar.set_query.query.items():
+              if membership == SetMembershipStatus.YES:
+                  included_sets.append(name)
+              elif membership == SetMembershipStatus.NO:
+                  excluded_sets.append(name)
+          if not included_sets and not excluded_sets:
+              return no_set_query
+          result = f"A set query is active; intersections"
+          if included_sets:
+              result += f" must contain {'either ' if len(included_sets) > 1 else ''}"
+              for i, s in enumerate(included_sets):
+                  if i == 0:
+                      result += f"{s}"
+                  elif i == len(included_sets) - 1:
+                      result += f" or {s}"
+                  else:
+                      result += f", {s}"
+          if excluded_sets:
+              result += f" {'and ' if included_sets else ''}must not contain "
+              for i, s in enumerate(excluded_sets):
+                  if i == 0:
+                      result += f"{s}"
+                  elif i == len(excluded_sets) - 1:
+                      result += f" or {s}"
+                  else:
+                      result += f", {s}"
+          return result
+      else:
+          return no_set_query
 
 
     def truncate_string(self, original_string):

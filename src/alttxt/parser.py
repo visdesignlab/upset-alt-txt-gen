@@ -49,6 +49,12 @@ class Parser:
                 f"Cannot parse aggregated data, please provide non-aggregated data."
             )
 
+    def trim_set_name(self, set_name: str) -> str:
+        """
+        Trims the set name to remove the 'Set_' prefix, if it exists.
+        """
+        return set_name[4:] if set_name.startswith("Set_") else set_name
+
     def get_grammar(self) -> GrammarModel:
         """
         Parses the grammar data from the JSON export from the UpSet Multinet implementation
@@ -166,7 +172,7 @@ class Parser:
             classification = self.classify_subset(degree, len(data["visibleSets"]))
 
             # Process setMembership to store only the names of sets with "Yes" membership
-            setMembership = {key[4:] if key.startswith("Set_") else key: value for key, value in item.get("setMembership", {}).items() if value == "Yes"}
+            setMembership = {self.trim_set_name(key): value for key, value in item.get("setMembership", {}).items() if value == "Yes"}
 
             # Only store the keys (set names) that have "Yes" as their value
             yes_sets = {key.replace('_','-') for key, value in setMembership.items() if value == "Yes"}
@@ -212,7 +218,7 @@ class Parser:
 
             classification = self.classify_subset(degree, all_sets_length)
 
-            setMembership = {key[4:] if key.startswith("Set_") else key: value for key, value in item.get("setMembership", {}).items() if value == "Yes"}
+            setMembership = {self.trim_set_name(key): value for key, value in item.get("setMembership", {}).items() if value == "Yes"}
         
             # Only store the keys (set names) that have "Yes" as their value
             yes_sets = {key for key, value in setMembership.items() if value == "Yes"}
@@ -228,8 +234,7 @@ class Parser:
 
         #     # Remove the 'Set_' prefix from the set name, if extant-
         #     # must be done after prev steps
-            if set_name.startswith("Set_"):
-                set_name = set_name[4:]
+            set_name = self.trim_set_name(set_name)
             sets_.append(set_name.replace('_', '-'))
 
         
@@ -299,9 +304,7 @@ class Parser:
                 # Add the set name and its size to the dictionary
                 # Remove the 'Set_' prefix from the set name, if extant
                 # visible_set_sizes expects "Thriller", rather than "Set_Thriller"
-                name = set_name
-                if name.startswith("Set_"):
-                    name = name[4:].replace('_', '-')
+                name = self.trim_set_name(set_name)
 
                 visible_set_sizes[name] = grammar["allSets"][all_set_names.index(set_name)]["size"]
             else:
@@ -323,8 +326,16 @@ class Parser:
 
         # Remove the 'Set_' prefix from each visible set name, if extant
         for i in range(len(visible_sets)):
-            if visible_sets[i].startswith("Set_"):
-                visible_sets[i] = visible_sets[i][4:].replace('_', '-')
+            visible_sets[i] = self.trim_set_name(visible_sets[i])
+        
+        set_query = grammar.get("setQuery", None)
+        if set_query:
+            set_query = {
+                "name": set_query["name"],
+                "query": {
+                    self.trim_set_name(key): value for key, value in set_query["query"].items()
+                }
+            }
 
         grammar_model = GrammarModel(
             first_aggregate_by=first_aggregate_by,
@@ -342,6 +353,7 @@ class Parser:
             plots=plots,
             metaData=metaData,
             bookmarked_intersections=bookmarked_intersections,
+            set_query=set_query,
         )
 
         return grammar_model

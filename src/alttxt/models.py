@@ -1,4 +1,5 @@
-from typing import Optional
+from enum import Enum
+from typing import Dict, Optional
 from alttxt.enums import AggregateBy, SortBy, SortVisibleBy, SortOrder, IntersectionType
 from pydantic import BaseModel
 
@@ -55,6 +56,16 @@ class MetaDataModel(BaseModel):
     sets: Optional[str] = ""
     items: Optional[str] = ""
 
+class SetMembershipStatus(str, Enum):
+    '''Possible set membership statuses'''
+    YES = "Yes"
+    NO = "No"
+    MAY = "May"
+    
+class SetQueryModel(BaseModel):
+    '''A set query, which defines which sets are included, excluded, or may be included in the intersections'''
+    name: str
+    query: Dict[str, SetMembershipStatus]
 
 class GrammarModel(BaseModel):
     # TODO: Uncomment these if added to the JSON export
@@ -75,3 +86,4 @@ class GrammarModel(BaseModel):
     plots: PlotModel
     metaData: MetaDataModel
     bookmarked_intersections: list  # of BookmarkedIntersectionModel
+    set_query: Optional[SetQueryModel]

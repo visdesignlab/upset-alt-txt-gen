@@ -75,6 +75,10 @@ class AltTxtGen:
             text_desc += set_description
             text_desc += " "
 
+            query_and_filters = self.descriptions["level_2"]["queries_and_filters"]
+            text_desc += query_and_filters
+            text_desc += " "
+
             intersection_description = self.descriptions["level_2"][
                 "intersection_description"
             ]
@@ -111,6 +115,7 @@ class AltTxtGen:
                     data_to_write_as_md = {
                         "UpSet Introduction": self.replaceTokens(introduction),
                         "Dataset Properties": self.replaceTokens(dataset_properties),
+                        "Queries and Filters": add_bullet_points(self.replaceTokens(query_and_filters)),
                         "Set Properties": add_bullet_points(self.replaceTokens(set_description)),
                         "Intersection Properties": add_bullet_points(self.replaceTokens(intersection_description)),
                         "Statistical Information": add_bullet_points(self.replaceTokens(statistical_information)),

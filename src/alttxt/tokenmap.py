@@ -188,6 +188,8 @@ class TokenMap:
             "large_sets": self.find_sets_in_large_subsets(),
             "all_set_index": self.get_all_set_position(),
             "set_query": self.set_query,
+            "degree_filters": self.degree_filters,
+            "hide_settings": self.hide_settings,
         }
 
     ###############################
@@ -1254,3 +1256,10 @@ class TokenMap:
             formatted_names = truncated_names[0] if truncated_names[0] == "the empty intersection" else "just " + truncated_names[0]
 
         return formatted_names
+    
+    def degree_filters(self) -> str:
+        """Returns a string describing the min and max degree filtered for, no terminating period"""
+        return f"The plot is filtered for subsets with degree between {self.grammar.filters.min_visible} and {self.grammar.filters.max_visible}"
+    
+    def hide_settings(self) -> str:
+        return f"Empty intersections are {'hidden' if self.grammar.filters.hide_empty else 'shown'} and the no-set intersection is {'hidden' if self.grammar.filters.hide_no_set else 'shown'}"

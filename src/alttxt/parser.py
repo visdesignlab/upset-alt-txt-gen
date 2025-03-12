@@ -272,6 +272,7 @@ class Parser:
             max_visible=grammar["filters"]["maxVisible"],
             min_visible=grammar["filters"]["minVisible"],
             hide_empty=grammar["filters"]["hideEmpty"],
+            hide_no_set=grammar["filters"]["hideNoSet"],
         )
 
         plots = PlotModel(

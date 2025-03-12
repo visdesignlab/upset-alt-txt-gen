@@ -36,6 +36,7 @@ class FilterModel(BaseModel):
     max_visible: int
     min_visible: int
     hide_empty: bool
+    hide_no_set: bool
 
 
 class BookmarkedIntersectionModel(BaseModel):

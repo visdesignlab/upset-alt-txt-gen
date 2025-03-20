@@ -910,7 +910,7 @@ class TokenMap:
                     
 
             # Calculate percentages based on sizes for other classifications
-            percentages = {cls: (size / total_sizes[region_name] * 100) for cls, size in classification_sizes.items()}
+            percentages = {cls: (size / total_sizes[region_name] * 100) if total_sizes[region_name] > 0 else 0 for cls, size in classification_sizes.items()}
             
             # Update results with percentages and direct sizes for special cases
             results[region_name] = {**percentages, **special_sizes}

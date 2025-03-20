@@ -28,9 +28,10 @@ DESCRIPTIONS: "dict[str, Any]" = {
     },
     # L2 splits generation by sort- verbosity is TBA
     "level_2": {
+        "queries_and_filters": "{{set_query}}. {{degree_filters}}. {{hide_settings}}.",
         "set_description": "[[set_divergence]] [[set_description]].",
         "intersection_description": "[[sort_by]]. {{pop_non-empty_intersections}}."
-        " {{list_max_5int}}.",
+        " {{set_query}}. {{list_max_5int}}.",
         "statistical_information": "[[size_percs]]. [[maxmin_set_percentages_info]].",
     },
     "level_3": {

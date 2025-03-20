@@ -1,5 +1,5 @@
-from typing import Any, Callable, Tuple, Union, Optional
-from alttxt.models import DataModel, GrammarModel, Subset
+from typing import Any, Callable, List, Tuple, Union, Optional
+from alttxt.models import DataModel, GrammarModel, SetMembershipStatus, Subset
 from alttxt.enums import SubsetField, IndividualSetSize, IntersectionTrend
 import statistics
 from alttxt.regionclass import *
@@ -187,6 +187,9 @@ class TokenMap:
             "highest_dominant_set": self.find_dominant_sets(len(self.grammar.visible_sets)),
             "large_sets": self.find_sets_in_large_subsets(),
             "all_set_index": self.get_all_set_position(),
+            "set_query": self.set_query,
+            "degree_filters": self.degree_filters,
+            "hide_settings": self.hide_settings,
         }
 
     ###############################
@@ -341,6 +344,27 @@ class TokenMap:
             "pos_size_avg": pos_size_total / pos_count if pos_count > 0 else 0,
             "neg_size_avg": neg_size_total / neg_count if neg_count > 0 else 0,
         }
+    
+    def trim_set_name(self, name: str) -> str:
+        """Trims Set_ from a set name if extant"""
+        return name[4:] if name.startswith("Set_") else name
+    
+    def get_set_query(self) -> Tuple[List[str], List[str]]:
+        """
+        Returns a tuple of included (first item) and excluded sets from the set query
+        If no set query is active, returns two empty lists
+        """
+        if self.grammar.set_query:
+          included_sets = []
+          excluded_sets = []
+          for name, membership in self.grammar.set_query.query.items():
+              if membership == SetMembershipStatus.YES:
+                  included_sets.append(name)
+              elif membership == SetMembershipStatus.NO:
+                  excluded_sets.append(name)
+          return included_sets, excluded_sets
+        else:
+            return [], []
 
     ###############################
     #       Token functions       #
@@ -388,7 +412,7 @@ class TokenMap:
             self.data.sizes.items(), key=lambda x: x[1], reverse=True
         ):
             # Trim "Set_" from the setID if extant to make it match up with the name field
-            set_name: str = setID[4:] if setID.startswith("Set_") else setID
+            set_name: str = self.trim_set_name(setID)
             if set_name in self.grammar.visible_sets:
                 result += f"{set_name}: {size}, "
 
@@ -587,10 +611,15 @@ class TokenMap:
     def sort_visible_sets(self) -> dict[str, int]:
         """
         Returns a dictionary mapping visible set names to their sizes,
-        sorted by size in descending order.
+        sorted by size in descending order, with sets that are excluded by the current set query filtered out
         """
+        excluded = self.get_set_query()[1]
+        def set_query_filter(set: Tuple[str, int]) -> bool:
+            return set[0] not in excluded
+        
+        sets = filter(set_query_filter, self.grammar.visible_set_sizes.items())
         return sorted(
-            self.grammar.visible_set_sizes.items(),
+            sets,
             key=lambda item: item[1],
             reverse=True,
         )
@@ -1154,7 +1183,33 @@ class TokenMap:
                 return f"The intersection of all sets is present with {all_set_size} elements."
         else:
             return ""
-
+        
+    def set_query(self):
+      '''Outputs text describing the current set query with no terminating period'''
+      included_sets, excluded_sets = self.get_set_query()
+      if not included_sets and not excluded_sets:
+          return "No set query is active"
+      
+      result = f"A set query is active; intersections"
+      if included_sets:
+          result += f" must contain {'either ' if len(included_sets) > 1 else ''}"
+          for i, s in enumerate(included_sets):
+              if i == 0:
+                  result += f"{s}"
+              elif i == len(included_sets) - 1:
+                  result += f" or {s}"
+              else:
+                  result += f", {s}"
+      if excluded_sets:
+          result += f" {'and ' if included_sets else ''}must not contain "
+          for i, s in enumerate(excluded_sets):
+              if i == 0:
+                  result += f"{s}"
+              elif i == len(excluded_sets) - 1:
+                  result += f" or {s}"
+              else:
+                  result += f", {s}"
+      return result
 
     def truncate_string(self, original_string):
         if original_string.lower().startswith('just '):
@@ -1201,3 +1256,10 @@ class TokenMap:
             formatted_names = truncated_names[0] if truncated_names[0] == "the empty intersection" else "just " + truncated_names[0]
 
         return formatted_names
+    
+    def degree_filters(self) -> str:
+        """Returns a string describing the min and max degree filtered for, no terminating period"""
+        return f"The plot is filtered for subsets with degree between {self.grammar.filters.min_visible} and {self.grammar.filters.max_visible}"
+    
+    def hide_settings(self) -> str:
+        return f"Empty intersections are {'hidden' if self.grammar.filters.hide_empty else 'shown'} and the no-set intersection is {'hidden' if self.grammar.filters.hide_no_set else 'shown'}"

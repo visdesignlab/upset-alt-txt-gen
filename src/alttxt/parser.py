@@ -346,8 +346,8 @@ class Parser:
         )
 
         selected_intersection = convert_intersection(
-            grammar.get('rowSelection').get('id', None)
-          ) if grammar.get('rowSelection') and grammar.get('selectionType') == 'row' else None
+            grammar.get('rowSelection').get('id', None) 
+          ) if grammar.get('rowSelection') else None
 
         # Remove the 'Set_' prefix from each visible set name, if extant
         for i in range(len(visible_sets)):
@@ -379,6 +379,7 @@ class Parser:
             metaData=metaData,
             bookmarked_intersections=bookmarked_intersections,
             selected_intersection=selected_intersection,
+            selection_type=grammar.get("selectionType", None),
             set_query=set_query,
         )
 

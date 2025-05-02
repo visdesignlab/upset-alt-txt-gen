@@ -79,6 +79,10 @@ class AltTxtGen:
             text_desc += query_and_filters
             text_desc += " "
 
+            selection_description = self.descriptions["level_2"]["selection_description"]
+            text_desc += selection_description
+            text_desc += " "
+
             intersection_description = self.descriptions["level_2"][
                 "intersection_description"
             ]
@@ -112,15 +116,16 @@ class AltTxtGen:
 
                 try:
                     # Construct the dictionary for markdown content
-                    data_to_write_as_md = {
-                        "UpSet Introduction": self.replaceTokens(introduction),
-                        "Dataset Properties": self.replaceTokens(dataset_properties),
-                        "Queries and Filters": add_bullet_points(self.replaceTokens(query_and_filters)),
-                        "Set Properties": add_bullet_points(self.replaceTokens(set_description)),
-                        "Intersection Properties": add_bullet_points(self.replaceTokens(intersection_description)),
-                        "Statistical Information": add_bullet_points(self.replaceTokens(statistical_information)),
-                        "Trend Analysis": add_bullet_points(self.replaceTokens(trend_analysis)),
-                    }
+                    data_to_write_as_md = {}
+                    data_to_write_as_md["UpSet Introduction"] = self.replaceTokens(introduction)
+                    data_to_write_as_md["Dataset Properties"] = self.replaceTokens(dataset_properties)
+                    data_to_write_as_md["Queries and Filters"] = add_bullet_points(self.replaceTokens(query_and_filters))
+                    if self.grammar.selection_type == 'row': 
+                        data_to_write_as_md["Intersection Selection"] = add_bullet_points(self.replaceTokens(selection_description))
+                    data_to_write_as_md["Set Properties"] = add_bullet_points(self.replaceTokens(set_description))
+                    data_to_write_as_md["Intersection Properties"] = add_bullet_points(self.replaceTokens(intersection_description))
+                    data_to_write_as_md["Statistical Information"] = add_bullet_points(self.replaceTokens(statistical_information))
+                    data_to_write_as_md["Trend Analysis"] = add_bullet_points(self.replaceTokens(trend_analysis))
                 except Exception as e:
                     print(f"Exception while constructing markdown content: {str(e)}")
 

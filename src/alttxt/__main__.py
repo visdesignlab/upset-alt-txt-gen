@@ -64,13 +64,13 @@ def main(argv: Optional["list[str]"] = None) -> int:
 
     args: argparse.Namespace = parser.parse_args(argv)
 
-    try:
-        upset_parser: Parser = Parser(Path(args.data))
-        grammar: GrammarModel = upset_parser.get_grammar()
-        data: DataModel = upset_parser.get_data()
-    except Exception as e:
-        print(f"Exception while parsing: {str(e)}")
-        return 1
+    # try:
+    upset_parser: Parser = Parser(Path(args.data))
+    grammar: GrammarModel = upset_parser.get_grammar()
+    data: DataModel = upset_parser.get_data()
+    # except Exception as e:
+    #     print(f"Exception while parsing: {str(e)}")
+    #     return 1
 
     title: str = args.title
 
@@ -78,6 +78,7 @@ def main(argv: Optional["list[str]"] = None) -> int:
 
     alttext = AltTxtGen(args.level, args.structured, tokenMap, grammar)
 
+    print(grammar.selected_intersection)
     print(90 * "-")
     print(
         f"DATASET={os.path.basename(args.data)}\tLEVEL={args.level.value}\t"

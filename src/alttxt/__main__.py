@@ -78,7 +78,6 @@ def main(argv: Optional["list[str]"] = None) -> int:
 
     alttext = AltTxtGen(args.level, args.structured, tokenMap, grammar)
 
-    print(grammar.selected_intersection)
     print(90 * "-")
     print(
         f"DATASET={os.path.basename(args.data)}\tLEVEL={args.level.value}\t"

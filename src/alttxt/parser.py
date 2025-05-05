@@ -319,7 +319,6 @@ class Parser:
             """
             intersection = grammar['processedData']['values'].get(str(id), {})
             atts = list(filter(lambda a: a != 'deviation', list(intersection['attributes'].keys())))
-            print(atts)
             att_means = []
             for att in atts:
                 att_means.append(

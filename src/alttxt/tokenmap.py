@@ -393,7 +393,7 @@ class TokenMap:
         if len(self.grammar.bookmarked_intersections) > 0:
             result = ""
             for inter in self.grammar.bookmarked_intersections:
-                if inter.id == self.grammar.selected_intersection.id: continue
+                if self.grammar.selected_intersection and inter.id == self.grammar.selected_intersection.id: continue
                 result += f"{self.trim_set_name(inter.label)} is bookmarked (size: {inter.size}); its attribute means are: "
                 for i in range(len(inter.atts)):
                     result += f"{inter.atts[i]}: {round(inter.att_means[i], 2)}, "

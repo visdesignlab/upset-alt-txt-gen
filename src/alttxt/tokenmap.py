@@ -380,13 +380,13 @@ class TokenMap:
         """
         inter = self.grammar.selected_intersection
         if inter and self.grammar.selection_type == "row":
-            result: str = f"{self.trim_set_name(inter.label)} is selected"
+            result: str = f"* {self.truncate_separately(inter.label)} is selected. Its intersection size is {inter.size}. "
             if len(self.grammar.visible_atts) > 0:
-                result += '; its attribute means are: '
+                result += 'Its attribute means are: '
                 for i in range(len(inter.atts)):
                     result += f"{inter.atts[i]}: {round(inter.att_means[i], 2)}, "
-                result = result.rstrip(', ')
-        else: result = "No intersection is selected"
+                result = result.rstrip(', ') + '.'
+        else: result = "No intersection is selected."
         return result
     
     def bookmark_list(self) -> str:
@@ -394,12 +394,12 @@ class TokenMap:
             result = ""
             for inter in self.grammar.bookmarked_intersections:
                 if self.grammar.selected_intersection and inter.id == self.grammar.selected_intersection.id: continue
-                result += f"{self.trim_set_name(inter.label)} is bookmarked (size: {inter.size}); its attribute means are: "
+                result += f"\n* {self.truncate_separately(inter.label)} is bookmarked. Its intersection size is {inter.size}. Its attribute means are: "
                 for i in range(len(inter.atts)):
                     result += f"{inter.atts[i]}: {round(inter.att_means[i], 2)}, "
-                result = result.rstrip(', ') + ". "
-        else: result = "No intersections are bookmarked. "
-        return result.rstrip(". ")
+                result = result.rstrip(', ') + "."
+        else: result = "\n* No intersections are bookmarked."
+        return result
 
     def get_subset_percentile(self, field: SubsetField, perc: int) -> str:
         """

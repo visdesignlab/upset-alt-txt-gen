@@ -121,7 +121,7 @@ class AltTxtGen:
                     data_to_write_as_md["Dataset Properties"] = self.replaceTokens(dataset_properties)
                     data_to_write_as_md["Queries and Filters"] = add_bullet_points(self.replaceTokens(query_and_filters))
                     if self.grammar.selection_type == 'row': 
-                        data_to_write_as_md["Intersection Selection"] = add_bullet_points(self.replaceTokens(selection_description))
+                        data_to_write_as_md["Intersection Selection"] = self.replaceTokens(selection_description)
                     data_to_write_as_md["Set Properties"] = add_bullet_points(self.replaceTokens(set_description))
                     data_to_write_as_md["Intersection Properties"] = add_bullet_points(self.replaceTokens(intersection_description))
                     data_to_write_as_md["Statistical Information"] = add_bullet_points(self.replaceTokens(statistical_information))

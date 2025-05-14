@@ -386,14 +386,14 @@ class TokenMap:
                 for i in range(len(inter.atts)):
                     result += f"{inter.atts[i]}: {round(inter.att_means[i], 2)}, "
                 result = result.rstrip(', ') + '.'
-        else: result = "No intersection is selected."
+        else: result = "* No intersection is selected."
         return result
     
     def bookmark_list(self) -> str:
         if len(self.grammar.bookmarked_intersections) > 0:
             result = ""
             for inter in self.grammar.bookmarked_intersections:
-                if self.grammar.selected_intersection and inter.id == self.grammar.selected_intersection.id: continue
+                if self.grammar.selection_type == "row" and self.grammar.selected_intersection and inter.id == self.grammar.selected_intersection.id: continue
                 result += f"\n* {self.truncate_separately(inter.label)} is bookmarked. Its intersection size is {inter.size}. Its attribute means are: "
                 for i in range(len(inter.atts)):
                     result += f"{inter.atts[i]}: {round(inter.att_means[i], 2)}, "

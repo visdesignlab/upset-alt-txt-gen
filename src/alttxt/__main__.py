@@ -64,13 +64,13 @@ def main(argv: Optional["list[str]"] = None) -> int:
 
     args: argparse.Namespace = parser.parse_args(argv)
 
-    # try:
-    upset_parser: Parser = Parser(Path(args.data))
-    grammar: GrammarModel = upset_parser.get_grammar()
-    data: DataModel = upset_parser.get_data()
-    # except Exception as e:
-    #     print(f"Exception while parsing: {str(e)}")
-    #     return 1
+    try:
+        upset_parser: Parser = Parser(Path(args.data))
+        grammar: GrammarModel = upset_parser.get_grammar()
+        data: DataModel = upset_parser.get_data()
+    except Exception as e:
+        print(f"Exception while parsing: {str(e)}")
+        return 1
 
     title: str = args.title
 

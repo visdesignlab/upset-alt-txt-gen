@@ -247,6 +247,7 @@ class Parser:
         """
         Parses the state data from the JSON export from the UpSet Multinet implementation
         into a GrammarModel.
+        The grammar param must be a state + data export, not just the state export.
         """
         # Currently removed as they don't exist in the grammar exports from multinet
         # TODO: Re-add title when it is added to the grammar export. Caption likely won't be
@@ -312,18 +313,40 @@ class Parser:
                 # If the set name is not found, you can choose to handle it as you see fit
                 print(f"Warning: Set {set_name} not found in data")
 
+        def convert_intersection(id: str) -> BookmarkedIntersectionModel:
+            """
+            Converts an intersection from the grammar data into a BookmarkedIntersectionModel.
+            """
+            intersection = grammar['processedData']['values'].get(str(id), {})
+            atts = list(filter(lambda a: a != 'deviation', list(intersection['attributes'].keys())))
+            att_means = []
+            for att in atts:
+                att_means.append(
+                    intersection['attributes'][att].get('mean', 0.0)
+                )
+            return BookmarkedIntersectionModel(
+                atts=atts,
+                att_means=att_means,
+                id=id,
+                label=intersection.get('elementName', self.default_field),
+                size=intersection.get('size', 0),
+            )
+                
+
         bookmarked_intersections = list(
             map(
-                lambda bookmarked_intersection: BookmarkedIntersectionModel(
-                    **bookmarked_intersection
-                ),
+                convert_intersection,
                 # Backwards compatibility (<v0.2.8)
                 # if bookmarks is not present, use bookmarkedIntersections
                 # this may introduce some issues with using bookmarks
                 # if removed, this is a breaking change for API calls, and so should likely be moved into a major version
-                grammar.get("bookmarks", grammar.get("bookmarkedIntersections", []))
+                map(lambda b: b.get('id', None), grammar.get("bookmarks", grammar.get("bookmarkedIntersections", [])))
             )
         )
+
+        selected_intersection = convert_intersection(
+            grammar.get('rowSelection').get('id', None) 
+          ) if grammar.get('rowSelection') else None
 
         # Remove the 'Set_' prefix from each visible set name, if extant
         for i in range(len(visible_sets)):
@@ -354,6 +377,8 @@ class Parser:
             plots=plots,
             metaData=metaData,
             bookmarked_intersections=bookmarked_intersections,
+            selected_intersection=selected_intersection,
+            selection_type=grammar.get("selectionType", None),
             set_query=set_query,
         )
 

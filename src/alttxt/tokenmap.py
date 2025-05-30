@@ -190,6 +190,8 @@ class TokenMap:
             "set_query": self.set_query,
             "degree_filters": self.degree_filters,
             "hide_settings": self.hide_settings,
+            "selected_intersection": self.selected_intersection,
+            "bookmark_list": self.bookmark_list,
         }
 
     ###############################
@@ -369,6 +371,35 @@ class TokenMap:
     ###############################
     #       Token functions       #
     ###############################
+
+    def selected_intersection(self) -> str:
+        """
+        If the selection type is row and we have a selected intersection, describes its attributes
+        Otherwise, 'No intersection is selected'
+        No terminating period
+        """
+        inter = self.grammar.selected_intersection
+        if inter and self.grammar.selection_type == "row":
+            result: str = f"* {self.truncate_separately(inter.label)} is selected. Its intersection size is {inter.size}. "
+            if len(self.grammar.visible_atts) > 0:
+                result += 'Its attribute means are: '
+                for i in range(len(inter.atts)):
+                    result += f"{inter.atts[i]}: {round(inter.att_means[i], 2)}, "
+                result = result.rstrip(', ') + '.'
+        else: result = "* No intersection is selected."
+        return result
+    
+    def bookmark_list(self) -> str:
+        if len(self.grammar.bookmarked_intersections) > 0:
+            result = ""
+            for inter in self.grammar.bookmarked_intersections:
+                if self.grammar.selection_type == "row" and self.grammar.selected_intersection and inter.id == self.grammar.selected_intersection.id: continue
+                result += f"\n* {self.truncate_separately(inter.label)} is bookmarked. Its intersection size is {inter.size}. Its attribute means are: "
+                for i in range(len(inter.atts)):
+                    result += f"{inter.atts[i]}: {round(inter.att_means[i], 2)}, "
+                result = result.rstrip(', ') + "."
+        else: result = "\n* No intersections are bookmarked."
+        return result
 
     def get_subset_percentile(self, field: SubsetField, perc: int) -> str:
         """

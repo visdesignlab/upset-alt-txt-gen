@@ -43,6 +43,8 @@ class BookmarkedIntersectionModel(BaseModel):
     id: str
     label: str
     size: int
+    atts: list[str]  # of str
+    att_means: list[float]  # of float
 
 
 class PlotModel(BaseModel):
@@ -80,11 +82,13 @@ class GrammarModel(BaseModel):
     sort_by: SortBy
     sort_order: SortOrder
     filters: FilterModel
-    collapsed: list  # of str
-    visible_sets: list  # of str
-    visible_atts: list  # of str
-    visible_set_sizes: dict  # str -> int
+    collapsed: list[str]  # of str
+    visible_sets: list[str]  # of str
+    visible_atts: list[str]  # of str
+    visible_set_sizes: dict[str, int]  # str -> int
     plots: PlotModel
     metaData: MetaDataModel
-    bookmarked_intersections: list  # of BookmarkedIntersectionModel
+    bookmarked_intersections: list[BookmarkedIntersectionModel]  # of BookmarkedIntersectionModel
+    selected_intersection: Optional[BookmarkedIntersectionModel]
+    selection_type: Optional[str]  # row, query, vega, or None
     set_query: Optional[SetQueryModel]
